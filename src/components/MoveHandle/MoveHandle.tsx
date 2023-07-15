@@ -19,9 +19,7 @@ export function MoveHandle({ parentRef, onMove, children }: MoveHandleProps) {
     setDragPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
   };
 
-  const onMouseUp = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const onMouseUp = () => {
     setMoving(false);
   };
 
