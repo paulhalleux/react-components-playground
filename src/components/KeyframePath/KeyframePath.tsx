@@ -17,7 +17,7 @@ export type KeyframePathProps = {
   onKeyframeChange: KeyframeChangeFn;
   pathColor?: [number, number, number];
   selectedKeyframe?: number;
-  onKeyframeSelect?: (index: number) => void;
+  onKeyframeSelect?: (index: number | undefined) => void;
 };
 
 export function KeyframePath({
@@ -89,7 +89,9 @@ export function KeyframePath({
               onKeyframeChange(index, { position })
             }
             selected={index === selectedKeyframe}
-            onSelect={() => onKeyframeSelect?.(index)}
+            onSelect={(selected) =>
+              onKeyframeSelect?.(selected ? index : undefined)
+            }
             keyframe={keyframe}
             key={keyframe.time}
             parentRef={parentRef}

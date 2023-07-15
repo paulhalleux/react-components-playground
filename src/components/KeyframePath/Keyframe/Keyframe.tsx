@@ -14,7 +14,7 @@ export type KeyframeProps = {
   onPositionChange: (position: Point) => void;
   onInterpolationChange: (interpolation: Interpolation) => void;
   selected: boolean;
-  onSelect: () => void;
+  onSelect: (selected: boolean) => void;
 };
 
 export function Keyframe({
@@ -38,12 +38,16 @@ export function Keyframe({
   };
 
   const onMouseDown = () => {
-    onSelect();
     setMoving(true);
   };
 
   const onMouseUp = () => {
     setMoving(false);
+  };
+
+  const onClick = (event: React.MouseEvent) => {
+    if (event.ctrlKey) onSelect(false);
+    else onSelect(true);
   };
 
   useEventListener("mousemove", (event) => {
@@ -59,7 +63,7 @@ export function Keyframe({
 
   useEventListener("mouseup", onMouseUp);
 
-  const onInterpolatonPositionChange = (
+  const onInterpolationPositionChange = (
     point: "p1" | "p2",
     position: Point,
   ) => {
@@ -81,7 +85,7 @@ export function Keyframe({
           {!isFirst && (
             <InterpolationHandle
               onPositionChange={(pos) =>
-                onInterpolatonPositionChange("p1", pos)
+                onInterpolationPositionChange("p1", pos)
               }
               point="p1"
               keyframe={keyframe}
@@ -90,7 +94,7 @@ export function Keyframe({
           {!isLast && (
             <InterpolationHandle
               onPositionChange={(pos) =>
-                onInterpolatonPositionChange("p2", pos)
+                onInterpolationPositionChange("p2", pos)
               }
               point="p2"
               keyframe={keyframe}
@@ -101,7 +105,7 @@ export function Keyframe({
       <rect
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
-        onClick={onSelect}
+        onClick={onClick}
         onDoubleClick={onDoubleClick}
         x={keyframe.position.x - 3.5}
         y={keyframe.position.y - 3.5}
