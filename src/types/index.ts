@@ -25,12 +25,17 @@ export type Size = {
   height: number;
 };
 
-export type ResizeFn = (
+export type FrameResizeFn = (
   handlePosition: HandlePosition,
   cursorPosition: Point,
 ) => void;
 
-export type MoveFn = (cursorPosition: Point, cursorDelta: Point) => void;
+export type FrameMoveFn = (cursorPosition: Point, cursorDelta: Point) => void;
+
+export type KeyframeMoveFn = (
+  keyframeIndex: number,
+  position: { x: number; y: number },
+) => void;
 
 export type Keyframe = {
   position: Point;

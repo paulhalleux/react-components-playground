@@ -21,9 +21,7 @@ export function Keyframe({
     setMoving(true);
   };
 
-  const onMouseUp = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
+  const onMouseUp = () => {
     setMoving(false);
   };
 

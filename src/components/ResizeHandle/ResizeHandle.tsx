@@ -1,4 +1,4 @@
-import { HandlePosition, HandleType, ResizeFn } from "../../types";
+import { FrameResizeFn, HandlePosition, HandleType } from "../../types";
 
 import styles from "./ResizeHandle.module.scss";
 import React from "react";
@@ -8,7 +8,7 @@ export type ResizeHandleProps = {
   parentRef: React.RefObject<HTMLElement>;
   type: HandleType;
   position: HandlePosition;
-  onResize: ResizeFn;
+  onResize: FrameResizeFn;
 };
 
 export function ResizeHandle({

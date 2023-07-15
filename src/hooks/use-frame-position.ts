@@ -1,4 +1,4 @@
-import { MoveFn, Point, Size } from "../types";
+import { FrameMoveFn, Point, Size } from "../types";
 import React from "react";
 
 export function useFramePosition(
@@ -7,7 +7,7 @@ export function useFramePosition(
   position: Point,
   onPositionChange: (position: Point) => void,
 ) {
-  const onMove: MoveFn = (cursorPosition, offset) => {
+  const onMove: FrameMoveFn = (cursorPosition, offset) => {
     const parentPosition = parentRef.current?.getBoundingClientRect();
     if (!parentPosition) {
       return;

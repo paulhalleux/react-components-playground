@@ -1,13 +1,15 @@
-import { Keyframe as KeyframeType, Point } from "../../types";
+import { Keyframe as KeyframeType, KeyframeMoveFn } from "../../types";
 
 import styles from "./KeyframePath.module.scss";
 import React, { CSSProperties } from "react";
 import { Keyframe } from "../Keyframe";
+import { DraggingPath } from "./DraggingPath/DraggingPath";
+import { useMovePath } from "../../hooks/use-move-path";
 
 export type KeyframePathProps = {
   parentRef: React.RefObject<HTMLDivElement>;
   keyframes: KeyframeType[];
-  onKeyframeMove: (index: number, position: Point) => void;
+  onKeyframeMove: KeyframeMoveFn;
   pathColor?: [number, number, number];
 };
 
@@ -20,6 +22,8 @@ export function KeyframePath({
   const style = {
     "--path-color": pathColor.join(","),
   } as CSSProperties;
+
+  const { onPathMove } = useMovePath(parentRef, onKeyframeMove, keyframes);
 
   return (
     <svg
@@ -44,20 +48,18 @@ export function KeyframePath({
         strokeWidth="1"
       />
 
-      {keyframes.slice(1).map((keyframe, index) => (
-        <path
-          key={keyframe.time}
-          d={`
-            M ${keyframes[index].position.x} ${keyframes[index].position.y}
-            L ${keyframe.position.x} ${keyframe.position.y}
-          `}
-          fill={"none"}
-          className={styles["keyframe-path__drag"]}
-          strokeWidth="7"
-        />
-      ))}
+      <g id="dragging-paths">
+        {keyframes.slice(1).map((keyframe, index) => (
+          <DraggingPath
+            key={keyframe.time}
+            startKeyframe={keyframes[index]}
+            endKeyframe={keyframe}
+            onPathMove={(oX, oY) => onPathMove(index, index + 1, oX, oY)}
+          />
+        ))}
+      </g>
 
-      <g>
+      <g id="keyframes">
         {keyframes.map((keyframe, index) => (
           <Keyframe
             onPositionChange={(position) => onKeyframeMove(index, position)}

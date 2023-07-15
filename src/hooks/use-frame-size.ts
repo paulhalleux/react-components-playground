@@ -1,4 +1,4 @@
-import { HandlePosition, Point, ResizeFn, Size } from "../types";
+import { FrameResizeFn, HandlePosition, Point, Size } from "../types";
 import { minmax } from "../utils/math";
 import React from "react";
 
@@ -14,7 +14,7 @@ export function useFrameSize(
   const parentWidth = parentRef.current?.getBoundingClientRect().width;
   const parentHeight = parentRef.current?.getBoundingClientRect().height;
 
-  const onResize: ResizeFn = (handlePosition, cursorPosition) => {
+  const onResize: FrameResizeFn = (handlePosition, cursorPosition) => {
     if (!parentWidth || !parentHeight) return;
 
     const cursorX = minmax(cursorPosition.x, 0, parentWidth);

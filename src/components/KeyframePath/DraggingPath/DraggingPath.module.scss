@@ -1,0 +1,9 @@
+.keyframe-path__drag {
+  cursor: move;
+  stroke: transparent;
+  transition: stroke .1s;
+
+  &:hover, &:active {
+    stroke: rgba(var(--path-color), .25);
+  }
+}
