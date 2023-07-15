@@ -2,6 +2,7 @@ import styles from "./App.module.scss";
 import { useRef, useState } from "react";
 import { FrameSelector, KeyframePath } from "../components";
 import { Keyframe, Point, Size } from "../types";
+import { CrossHead } from "../components/FrameSelector/CrossHead/CrossHead";
 
 export function App() {
   const frameSelectionRef = useRef<HTMLDivElement>(null);
@@ -42,7 +43,9 @@ export function App() {
             position={position}
             onPositionChange={setPosition}
             color={[32, 58, 75]}
-          />
+          >
+            <CrossHead />
+          </FrameSelector>
         </div>
       </div>
       <div className={styles.section}>

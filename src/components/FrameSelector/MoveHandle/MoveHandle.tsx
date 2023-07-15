@@ -46,11 +46,12 @@ export function MoveHandle({ parentRef, onMove, children }: MoveHandleProps) {
   });
 
   return (
-    <div
-      className={styles["move-handle"]}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-    >
+    <div className={styles["move-handle"]}>
+      <div
+        className={styles["move-handle-drag"]}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+      />
       {children}
     </div>
   );

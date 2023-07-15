@@ -5,10 +5,10 @@ Select a size and position with a draggable and resizable frame.
 
 ### Screenshots
 
-| FrameSelector                     | KeyframePath                                                                  |
-|:----------------------------------|:------------------------------------------------------------------------------|
-| ![Screenshot](./assets/frame.gif) | ![Screenshot 2](./assets/keyframe.gif)                                        | 
-|                                   | Supports bézier interpolation<br/>![Screenshot 3](./assets/interpolation.png) |
+| FrameSelector                                                                  | KeyframePath                                                                  |
+|:-------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
+| ![Screenshot](./assets/frame.gif)                                              | ![Screenshot 2](./assets/keyframe.gif)                                        | 
+| Supports children like `CrossHead`<br/>![Screenshot 3](./assets/crosshead.png) | Supports bézier interpolation<br/>![Screenshot 3](./assets/interpolation.png) |
 
 ### FrameSelector
 
