@@ -15,6 +15,7 @@ export type FrameSelectorProps = PropsWithChildren<{
   onSizeChange: (size: Size) => void;
   position: Point;
   onPositionChange: (position: Point) => void;
+  color?: [number, number, number];
 }>;
 
 const Handles = {
@@ -38,6 +39,7 @@ export function FrameSelector({
   position,
   onPositionChange,
   children,
+  color = [19, 132, 225],
 }: FrameSelectorProps) {
   const { onResize } = useFrameSize(
     parentRef,
@@ -59,6 +61,7 @@ export function FrameSelector({
   const style = {
     "--width": `${size.width}px`,
     "--height": `${size.height}px`,
+    "--frame-color": color?.join(","),
     transform: `translate(${position.x}px, ${position.y}px)`,
   } as CSSProperties;
 

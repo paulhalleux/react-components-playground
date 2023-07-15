@@ -108,13 +108,15 @@ export function useFrameSize(
         maxSize.height,
       );
 
+      const widthDiff = size.width - width;
+
       onSizeChange({
         height,
         width,
       });
 
       onPositionChange({
-        x: cursorX,
+        x: position.x + widthDiff,
         y: position.y,
       });
     }
@@ -127,6 +129,8 @@ export function useFrameSize(
         maxSize.height,
       );
 
+      const heightDiff = size.height - height;
+
       onSizeChange({
         height,
         width,
@@ -134,7 +138,7 @@ export function useFrameSize(
 
       onPositionChange({
         x: position.x,
-        y: cursorY,
+        y: position.y + heightDiff,
       });
     }
 
@@ -150,14 +154,17 @@ export function useFrameSize(
         maxSize.height,
       );
 
+      const widthDiff = size.width - width;
+      const heightDiff = size.height - height;
+
       onSizeChange({
         height,
         width,
       });
 
       onPositionChange({
-        x: cursorX,
-        y: cursorY,
+        x: position.x + widthDiff,
+        y: position.y + heightDiff,
       });
     }
   };

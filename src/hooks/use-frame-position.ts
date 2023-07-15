@@ -8,16 +8,14 @@ export function useFramePosition(
   onPositionChange: (position: Point) => void,
 ) {
   const onMove: MoveFn = (cursorPosition, offset) => {
-    // cursor position is relative to the window
-    // map it to the parent element
     const parentPosition = parentRef.current?.getBoundingClientRect();
     if (!parentPosition) {
       return;
     }
 
     const cursorDelta = {
-      x: cursorPosition.x - parentPosition.x - offset.x,
-      y: cursorPosition.y - parentPosition.y - offset.y,
+      x: Number((cursorPosition.x - parentPosition.x - offset.x).toFixed(0)),
+      y: Number((cursorPosition.y - parentPosition.y - offset.y).toFixed(0)),
     };
 
     if (cursorDelta.x < 0) {

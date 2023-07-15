@@ -17,7 +17,11 @@ export function App() {
           onSizeChange={setSize}
           position={position}
           onPositionChange={setPosition}
+          color={[32, 58, 75]}
         />
+      </div>
+      <div>
+        {JSON.stringify(size)} • {JSON.stringify(position)}
       </div>
     </div>
   );
