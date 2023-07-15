@@ -2,8 +2,8 @@ import React, { CSSProperties, PropsWithChildren } from "react";
 
 import styles from "./FrameSelector.module.scss";
 import { HandlePosition, HandleType, Point, Size } from "../../types";
-import { ResizeHandle } from "../ResizeHandle";
-import { MoveHandle } from "../MoveHandle";
+import { ResizeHandle } from "./ResizeHandle";
+import { MoveHandle } from "./MoveHandle";
 import { useFramePosition } from "../../hooks/use-frame-position";
 import { useFrameSize } from "../../hooks/use-frame-size";
 

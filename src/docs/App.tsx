@@ -10,9 +10,21 @@ export function App() {
   const [size, setSize] = useState<Size>({ width: 100, height: 100 });
   const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
 
+  const [selectedKeyframe, setSelectedKeyframe] = useState<number>();
   const [keyframes, setKeyframes] = useState<Keyframe[]>([
-    { position: { x: 25, y: 25 }, time: 0 },
-    { position: { x: 100, y: 100 }, time: 1 },
+    {
+      position: { x: 25, y: 25 },
+      time: 0,
+    },
+    {
+      position: { x: 100, y: 100 },
+      time: 1,
+      interpolation: {
+        type: "bezier",
+        p1: { x: -25, y: 0 },
+        p2: { x: 25, y: 0 },
+      },
+    },
     { position: { x: 200, y: 52 }, time: 2 },
     { position: { x: 300, y: 100 }, time: 3 },
     { position: { x: 400, y: 28 }, time: 4 },
@@ -38,10 +50,15 @@ export function App() {
           <KeyframePath
             parentRef={keyframesRef}
             keyframes={keyframes}
-            onKeyframeMove={(index, position) => {
+            selectedKeyframe={selectedKeyframe}
+            onKeyframeSelect={setSelectedKeyframe}
+            onKeyframeChange={(index, partial) => {
               setKeyframes((keyframes) => {
                 const newKeyframes = [...keyframes];
-                newKeyframes[index].position = position;
+                newKeyframes[index] = {
+                  ...newKeyframes[index],
+                  ...partial,
+                };
                 return newKeyframes;
               });
             }}

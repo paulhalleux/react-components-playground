@@ -1,8 +1,8 @@
-import { FrameResizeFn, HandlePosition, HandleType } from "../../types";
+import { FrameResizeFn, HandlePosition, HandleType } from "../../../types";
 
 import styles from "./ResizeHandle.module.scss";
 import React from "react";
-import { useEventListener } from "../../hooks/use-event-listener";
+import { useEventListener } from "../../../hooks/use-event-listener";
 
 export type ResizeHandleProps = {
   parentRef: React.RefObject<HTMLElement>;

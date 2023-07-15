@@ -1,9 +1,9 @@
-import { Keyframe, KeyframeMoveFn } from "../types";
+import { Keyframe, KeyframeChangeFn } from "../types";
 import React from "react";
 
 export function useMovePath(
   parentRef: React.RefObject<HTMLElement>,
-  onKeyframeMove: KeyframeMoveFn,
+  onKeyframeChange: KeyframeChangeFn,
   keyframes: Keyframe[],
 ) {
   const onPathMove = (
@@ -41,14 +41,18 @@ export function useMovePath(
       return;
     }
 
-    onKeyframeMove(startKeyframe, {
-      x: newStartX,
-      y: newStartY,
+    onKeyframeChange(startKeyframe, {
+      position: {
+        x: newStartX,
+        y: newStartY,
+      },
     });
 
-    onKeyframeMove(endKeyframe, {
-      x: newEndX,
-      y: newEndY,
+    onKeyframeChange(endKeyframe, {
+      position: {
+        x: newEndX,
+        y: newEndY,
+      },
     });
   };
 

@@ -2,6 +2,7 @@ import { Keyframe, Point } from "../../../types";
 import styles from "./DraggingPath.module.scss";
 import React from "react";
 import { useEventListener } from "../../../hooks/use-event-listener";
+import { getKeyframePath } from "../../../utils/path";
 
 export type DraggingPathProps = {
   startKeyframe: Keyframe;
@@ -55,10 +56,9 @@ export function DraggingPath({
     <path
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
-      d={`
-            M ${startKeyframe.position.x} ${startKeyframe.position.y}
-            L ${endKeyframe.position.x} ${endKeyframe.position.y}
-          `}
+      d={`M ${startKeyframe.position.x} ${
+        startKeyframe.position.y
+      } ${getKeyframePath(startKeyframe, endKeyframe)}`}
       fill={"none"}
       className={styles["keyframe-path__drag"]}
       strokeWidth="7"

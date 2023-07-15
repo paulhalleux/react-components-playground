@@ -1,29 +1,47 @@
-import { Keyframe as KeyframeType, KeyframeMoveFn } from "../../types";
+import {
+  Interpolation,
+  Keyframe as KeyframeType,
+  KeyframeChangeFn,
+} from "../../types";
 
 import styles from "./KeyframePath.module.scss";
 import React, { CSSProperties } from "react";
-import { Keyframe } from "../Keyframe";
-import { DraggingPath } from "./DraggingPath/DraggingPath";
+import { Keyframe } from "./Keyframe";
+import { DraggingPath } from "./DraggingPath";
 import { useMovePath } from "../../hooks/use-move-path";
+import { getKeyframePath } from "../../utils/path";
 
 export type KeyframePathProps = {
   parentRef: React.RefObject<HTMLDivElement>;
   keyframes: KeyframeType[];
-  onKeyframeMove: KeyframeMoveFn;
+  onKeyframeChange: KeyframeChangeFn;
   pathColor?: [number, number, number];
+  selectedKeyframe?: number;
+  onKeyframeSelect?: (index: number) => void;
 };
 
 export function KeyframePath({
   parentRef,
   keyframes,
-  onKeyframeMove,
+  onKeyframeChange,
   pathColor = [32, 58, 75],
+  selectedKeyframe,
+  onKeyframeSelect,
 }: KeyframePathProps) {
   const style = {
     "--path-color": pathColor.join(","),
   } as CSSProperties;
 
-  const { onPathMove } = useMovePath(parentRef, onKeyframeMove, keyframes);
+  const { onPathMove } = useMovePath(parentRef, onKeyframeChange, keyframes);
+  const onInterpolationChange = (
+    index: number,
+    interpolation: Interpolation,
+  ) => {
+    onKeyframeChange(index, {
+      ...keyframes[index],
+      interpolation,
+    });
+  };
 
   return (
     <svg
@@ -38,12 +56,12 @@ export function KeyframePath({
           M ${keyframes[0].position.x} ${keyframes[0].position.y}
           ${keyframes
             .slice(1)
-            .map(
-              (keyframe) => `L ${keyframe.position.x} ${keyframe.position.y}`,
+            .map((keyframe, index) =>
+              getKeyframePath(keyframes[index], keyframe),
             )
             .join(" ")}
         `}
-        fill={"none"}
+        fill="none"
         className={styles["keyframe-path"]}
         strokeWidth="1"
       />
@@ -62,7 +80,16 @@ export function KeyframePath({
       <g id="keyframes">
         {keyframes.map((keyframe, index) => (
           <Keyframe
-            onPositionChange={(position) => onKeyframeMove(index, position)}
+            isFirst={index === 0}
+            isLast={index === keyframes.length - 1}
+            onInterpolationChange={(interpolation) =>
+              onInterpolationChange(index, interpolation)
+            }
+            onPositionChange={(position) =>
+              onKeyframeChange(index, { position })
+            }
+            selected={index === selectedKeyframe}
+            onSelect={() => onKeyframeSelect?.(index)}
             keyframe={keyframe}
             key={keyframe.time}
             parentRef={parentRef}

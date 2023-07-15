@@ -32,12 +32,25 @@ export type FrameResizeFn = (
 
 export type FrameMoveFn = (cursorPosition: Point, cursorDelta: Point) => void;
 
-export type KeyframeMoveFn = (
+export type KeyframeChangeFn = (
   keyframeIndex: number,
-  position: { x: number; y: number },
+  keyframe: Partial<Keyframe>,
 ) => void;
+
+export type LinearInterpolation = {
+  type: "linear";
+};
+
+export type BezierInterpolation = {
+  type: "bezier";
+  p1: Point;
+  p2: Point;
+};
+
+export type Interpolation = LinearInterpolation | BezierInterpolation;
 
 export type Keyframe = {
   position: Point;
   time: number;
+  interpolation?: Interpolation;
 };
