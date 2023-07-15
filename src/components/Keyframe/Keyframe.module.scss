@@ -1,0 +1,14 @@
+.keyframe {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(45deg);
+  cursor: grab;
+
+  fill: white;
+  stroke: rgb(var(--path-color));
+  stroke-width: 1px;
+
+  &--selected {
+    fill: var(--path-color);
+  }
+}

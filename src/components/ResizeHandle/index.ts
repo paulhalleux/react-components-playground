@@ -1,1 +1,1 @@
-export { ResizeHandle } from "./ResizeHandle";
+export { ResizeHandle, type ResizeHandleProps } from "./ResizeHandle";

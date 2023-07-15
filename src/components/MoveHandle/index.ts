@@ -1,1 +1,1 @@
-export { MoveHandle } from "./MoveHandle";
+export { MoveHandle, type MoveHandleProps } from "./MoveHandle";

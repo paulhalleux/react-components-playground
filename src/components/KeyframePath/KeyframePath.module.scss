@@ -1,0 +1,19 @@
+.keyframe-path__container {
+  --path-color: 0, 0, 0;
+  display: block;
+}
+
+.keyframe-path {
+  stroke: rgb(var(--path-color));
+  cursor: pointer;
+
+  &__drag {
+    cursor: move;
+    stroke: transparent;
+    transition: stroke .1s;
+
+    &:hover {
+      stroke: rgba(var(--path-color), .25);
+    }
+  }
+}

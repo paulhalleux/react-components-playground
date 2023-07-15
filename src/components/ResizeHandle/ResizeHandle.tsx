@@ -4,7 +4,7 @@ import styles from "./ResizeHandle.module.scss";
 import React from "react";
 import { useEventListener } from "../../hooks/use-event-listener";
 
-type ResizeHandleProps = {
+export type ResizeHandleProps = {
   parentRef: React.RefObject<HTMLElement>;
   type: HandleType;
   position: HandlePosition;

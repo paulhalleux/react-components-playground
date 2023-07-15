@@ -5,11 +5,11 @@
   user-select: none;
   transition: background 0.1s;
 
-  --offset-short: 3px;
-  --offset-long: 4px;
+  --offset-short: 4px;
+  --offset-long: 0px;
 
   --long: calc(100% - calc(var(--offset-long) * 2));
-  --short: 5px;
+  --short: 7px;
 
   &:hover, &:active {
     background: rgba(var(--frame-color), 0.25);
@@ -54,13 +54,20 @@
 }
 
 .resize-handle-corner {
-  --size: 6px;
-  --offset: 3px;
+  --size: 7px;
+  --offset: 4px;
 
   position: absolute;
+  z-index: 1;
   background: white;
   border: 1px solid rgb(var(--frame-color));
   user-select: none;
+  outline: 3px solid transparent;
+  transition: outline 0.1s;
+
+  &:hover, &:active {
+    outline: 2px solid rgba(var(--frame-color), .25);
+  }
 
   &[data-handle-postion="top-left"] {
     top: calc(var(--offset) * -1);

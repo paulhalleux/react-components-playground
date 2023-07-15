@@ -1,1 +1,1 @@
-export { FrameSelector } from "./FrameSelector";
+export { FrameSelector, type FrameSelectorProps } from "./FrameSelector";

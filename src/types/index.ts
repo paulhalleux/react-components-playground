@@ -31,3 +31,8 @@ export type ResizeFn = (
 ) => void;
 
 export type MoveFn = (cursorPosition: Point, cursorDelta: Point) => void;
+
+export type Keyframe = {
+  position: Point;
+  time: number;
+};
