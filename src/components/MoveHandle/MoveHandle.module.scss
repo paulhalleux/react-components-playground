@@ -1,0 +1,15 @@
+.move-handle {
+  --gap: 14px;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(var(--frame-color), 0.25);
+  cursor: move;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: sans-serif;
+}
