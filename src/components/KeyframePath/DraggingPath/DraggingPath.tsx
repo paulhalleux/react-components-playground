@@ -3,6 +3,7 @@ import styles from "./DraggingPath.module.scss";
 import React from "react";
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { getKeyframePath } from "../../../utils/path";
+import { KeyframePathOptions } from "../../../constants/keyframe-path";
 
 export type DraggingPathProps = {
   startKeyframe: Keyframe;
@@ -61,7 +62,7 @@ export function DraggingPath({
       } ${getKeyframePath(startKeyframe, endKeyframe)}`}
       fill={"none"}
       className={styles["keyframe-path__drag"]}
-      strokeWidth="7"
+      strokeWidth={KeyframePathOptions.Path.InteractionWidth}
     />
   );
 }

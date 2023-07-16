@@ -5,6 +5,7 @@ import { useEventListener } from "../../../hooks/use-event-listener";
 import { minmax } from "../../../utils/math";
 import clsx from "clsx";
 import { InterpolationHandle } from "../InterpolationHandle";
+import { KeyframePathOptions } from "../../../constants/keyframe-path";
 
 export type KeyframeProps = {
   parentRef: React.RefObject<HTMLDivElement>;
@@ -15,6 +16,7 @@ export type KeyframeProps = {
   onInterpolationChange: (interpolation: Interpolation) => void;
   selected: boolean;
   onSelect: (selected: boolean) => void;
+  size?: number;
 };
 
 export function Keyframe({
@@ -26,6 +28,7 @@ export function Keyframe({
   onInterpolationChange,
   selected,
   onSelect,
+  size = KeyframePathOptions.Keyframe.Size,
 }: KeyframeProps) {
   const [moving, setMoving] = React.useState(false);
 
@@ -79,7 +82,7 @@ export function Keyframe({
   };
 
   return (
-    <g>
+    <g id={`kf-${keyframe.time}`}>
       {selected && (
         <>
           {!isFirst && (
@@ -107,10 +110,11 @@ export function Keyframe({
         onMouseUp={onMouseUp}
         onClick={onClick}
         onDoubleClick={onDoubleClick}
-        x={keyframe.position.x - 3.5}
-        y={keyframe.position.y - 3.5}
-        width={7}
-        height={7}
+        x={keyframe.position.x - size / 2}
+        y={keyframe.position.y - size / 2}
+        width={size}
+        height={size}
+        strokeWidth={KeyframePathOptions.Keyframe.StrokeWidth}
         className={clsx(styles["keyframe"], {
           [styles["keyframe--selected"]]: selected,
         })}

@@ -2,17 +2,20 @@ import styles from "./InterpolationHandle.module.scss";
 import React from "react";
 import { Keyframe, Point } from "../../../types";
 import { useEventListener } from "../../../hooks/use-event-listener";
+import { KeyframePathOptions } from "../../../constants/keyframe-path";
 
 export type InterpolationHandleProps = {
   point: "p1" | "p2";
   keyframe: Keyframe;
   onPositionChange: (position: Point) => void;
+  size?: number;
 };
 
 export function InterpolationHandle({
   point,
   keyframe,
   onPositionChange,
+  size = KeyframePathOptions.Interpolation.HandleSize,
 }: InterpolationHandleProps) {
   const [moving, setMoving] = React.useState(false);
   const [lastPosition, setLastPosition] = React.useState<Point>({
@@ -59,22 +62,22 @@ export function InterpolationHandle({
     point === "p1" ? keyframe.interpolation.p1 : keyframe.interpolation.p2;
 
   return (
-    <g>
+    <g id={`kf-${keyframe.time}-interpolation-${point}`}>
       <path
         d={`M ${keyframe.position.x} ${keyframe.position.y} L ${
           keyframe.position.x + interpolationPoint.x
         } ${keyframe.position.y + interpolationPoint.y}`}
         className={styles["interpolation-path"]}
         fill="transparent"
-        strokeWidth={1}
+        strokeWidth={KeyframePathOptions.Interpolation.StrokeWidth}
       />
       <rect
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
-        x={keyframe.position.x + interpolationPoint.x - 2}
-        y={keyframe.position.y + interpolationPoint.y - 2}
-        width={4}
-        height={4}
+        x={keyframe.position.x + interpolationPoint.x - size / 2}
+        y={keyframe.position.y + interpolationPoint.y - size / 2}
+        width={size}
+        height={size}
         className={styles["interpolation-handle"]}
       />
     </g>

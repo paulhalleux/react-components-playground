@@ -10,6 +10,7 @@ import { Keyframe } from "./Keyframe";
 import { DraggingPath } from "./DraggingPath";
 import { useMovePath } from "../../hooks/use-move-path";
 import { getKeyframePath } from "../../utils/path";
+import { KeyframePathOptions } from "../../constants/keyframe-path";
 
 export type KeyframePathProps = {
   parentRef: React.RefObject<HTMLDivElement>;
@@ -63,7 +64,7 @@ export function KeyframePath({
         `}
         fill="none"
         className={styles["keyframe-path"]}
-        strokeWidth="1"
+        strokeWidth={KeyframePathOptions.Path.StrokeWidth}
       />
 
       <g id="dragging-paths">
