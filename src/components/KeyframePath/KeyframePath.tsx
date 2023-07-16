@@ -2,7 +2,7 @@ import {
   Interpolation,
   Keyframe as KeyframeType,
   KeyframeChangeFn,
-} from "../../types";
+} from "../../types/keyframes";
 
 import styles from "./KeyframePath.module.scss";
 import React, { CSSProperties } from "react";
@@ -17,8 +17,10 @@ export type KeyframePathProps = {
   keyframes: KeyframeType[];
   onKeyframeChange: KeyframeChangeFn;
   pathColor?: [number, number, number];
-  selectedKeyframe?: number;
-  onKeyframeSelect?: (index: number | undefined) => void;
+  selectedKeyframes?: number[];
+  onKeyframeSelect?: (index: number[]) => void;
+  enableBezier?: boolean;
+  enablePathMove?: boolean;
 };
 
 export function KeyframePath({
@@ -26,8 +28,10 @@ export function KeyframePath({
   keyframes,
   onKeyframeChange,
   pathColor = [32, 58, 75],
-  selectedKeyframe,
+  selectedKeyframes,
   onKeyframeSelect,
+  enablePathMove,
+  enableBezier,
 }: KeyframePathProps) {
   const style = {
     "--path-color": pathColor.join(","),
@@ -57,6 +61,16 @@ export function KeyframePath({
     });
   };
 
+  const onSelectKeyframe = (index: number, selected: boolean) => {
+    if (!selectedKeyframes) selectedKeyframes = [];
+    if (selected) {
+      if (!selectedKeyframes.includes(index))
+        onKeyframeSelect?.([...selectedKeyframes, index]);
+    } else {
+      onKeyframeSelect?.(selectedKeyframes.filter((i) => i !== index));
+    }
+  };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -80,16 +94,18 @@ export function KeyframePath({
         strokeWidth={KeyframePathOptions.Path.StrokeWidth}
       />
 
-      <g id="dragging-paths">
-        {keyframes.slice(1).map((keyframe, index) => (
-          <DraggingPath
-            key={keyframe.time}
-            startKeyframe={keyframes[index]}
-            endKeyframe={keyframe}
-            onPathMove={(oX, oY) => onPathMove(index, index + 1, oX, oY)}
-          />
-        ))}
-      </g>
+      {enablePathMove && (
+        <g id="dragging-paths">
+          {keyframes.slice(1).map((keyframe, index) => (
+            <DraggingPath
+              key={keyframe.time}
+              startKeyframe={keyframes[index]}
+              endKeyframe={keyframe}
+              onPathMove={(oX, oY) => onPathMove(index, index + 1, oX, oY)}
+            />
+          ))}
+        </g>
+      )}
 
       <g id="keyframes">
         {keyframes.map((keyframe, index) => (
@@ -102,13 +118,14 @@ export function KeyframePath({
             onPositionChange={(movementX, movementY) =>
               onKeyframePositionChange(index, movementX, movementY)
             }
-            selected={index === selectedKeyframe}
-            onSelect={(selected) =>
-              onKeyframeSelect?.(selected ? index : undefined)
-            }
+            selected={selectedKeyframes?.includes(index)}
+            onSelect={(selected) => onSelectKeyframe(index, selected)}
             keyframe={keyframe}
             key={keyframe.time}
             parentRef={parentRef}
+            enableBezier={enableBezier}
+            id={`keyframe-${index}`}
+            position={keyframe.position}
           />
         ))}
       </g>

@@ -1,8 +1,9 @@
 import styles from "./InterpolationHandle.module.scss";
 import React from "react";
-import { Keyframe, PositionChangeFn } from "../../../types";
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
+import { PositionChangeFn } from "../../../types";
+import { Keyframe } from "../../../types/keyframes";
 
 export type InterpolationHandleProps = {
   point: "p1" | "p2";
@@ -19,7 +20,10 @@ export function InterpolationHandle({
 }: InterpolationHandleProps) {
   const [moving, setMoving] = React.useState(false);
 
-  const onMouseDown = () => setMoving(true);
+  const onMouseDown = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setMoving(true);
+  };
   const onMouseUp = () => setMoving(false);
 
   useEventListener("mouseup", onMouseUp);

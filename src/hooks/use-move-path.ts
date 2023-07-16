@@ -1,4 +1,4 @@
-import { Keyframe, KeyframeChangeFn } from "../types";
+import { Keyframe, KeyframeChangeFn } from "../types/keyframes";
 import React from "react";
 
 export function useMovePath(

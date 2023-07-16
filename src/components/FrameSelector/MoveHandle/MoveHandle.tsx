@@ -1,7 +1,8 @@
 import styles from "./MoveHandle.module.scss";
 import React, { PropsWithChildren, useState } from "react";
 import { useEventListener } from "../../../hooks/use-event-listener";
-import { FrameMoveFn, Point } from "../../../types";
+import { Point } from "../../../types";
+import { FrameMoveFn } from "../../../types/frame-selection";
 
 export type MoveHandleProps = PropsWithChildren<{
   parentRef: React.RefObject<HTMLElement>;

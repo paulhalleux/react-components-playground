@@ -1,9 +1,10 @@
-import { Keyframe, PositionChangeFn } from "../../../types";
+import { PositionChangeFn } from "../../../types";
 import styles from "./DraggingPath.module.scss";
 import React from "react";
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { getKeyframePath } from "../../../utils/path";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
+import { Keyframe } from "../../../types/keyframes";
 
 export type DraggingPathProps = {
   startKeyframe: Keyframe;
@@ -19,7 +20,10 @@ export function DraggingPath({
   const [dragging, setDragging] = React.useState(false);
 
   const events = {
-    onMouseDown: () => setDragging(true),
+    onMouseDown: (event: React.MouseEvent) => {
+      event.stopPropagation();
+      setDragging(true);
+    },
     onMouseUp: () => setDragging(false),
   };
 

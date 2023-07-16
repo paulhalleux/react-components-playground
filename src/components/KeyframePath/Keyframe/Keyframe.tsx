@@ -1,8 +1,7 @@
 import {
   Interpolation,
   Keyframe as KeyframeType,
-  PositionChangeFn,
-} from "../../../types";
+} from "../../../types/keyframes";
 import styles from "./Keyframe.module.scss";
 import React from "react";
 import { useEventListener } from "../../../hooks/use-event-listener";
@@ -10,20 +9,22 @@ import clsx from "clsx";
 import { InterpolationHandle } from "../InterpolationHandle";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
 import { minmax } from "../../../utils/math";
+import { PositionChangeFn } from "../../../types";
+import { selectable } from "../../Selector/selectable";
+import { Selectable } from "../../../types/selector";
 
-export type KeyframeProps = {
+export type KeyframeProps = Selectable & {
   parentRef: React.RefObject<HTMLDivElement>;
   isFirst: boolean;
   isLast: boolean;
   keyframe: KeyframeType;
   onPositionChange: PositionChangeFn;
   onInterpolationChange: (interpolation: Interpolation) => void;
-  selected: boolean;
-  onSelect: (selected: boolean) => void;
   size?: number;
+  enableBezier?: boolean;
 };
 
-export function Keyframe({
+function Keyframe({
   parentRef,
   isFirst,
   isLast,
@@ -33,22 +34,27 @@ export function Keyframe({
   selected,
   onSelect,
   size = KeyframePathOptions.Keyframe.Size,
+  enableBezier,
 }: KeyframeProps) {
   const [moving, setMoving] = React.useState(false);
 
   const events = {
     onDoubleClick: () => {
+      if (!enableBezier) return;
       onInterpolationChange({
         type: "bezier",
         p1: { x: -25, y: 0 },
         p2: { x: 25, y: 0 },
       });
     },
-    onMouseDown: () => setMoving(true),
+    onMouseDown: (event: React.MouseEvent) => {
+      event.stopPropagation();
+      setMoving(true);
+    },
     onMouseUp: () => setMoving(false),
     onClick: (event: React.MouseEvent) => {
-      if (event.ctrlKey) onSelect(false);
-      else onSelect(true);
+      if (event.ctrlKey) onSelect?.(false);
+      else onSelect?.(true);
     },
   };
 
@@ -91,7 +97,7 @@ export function Keyframe({
 
   return (
     <g id={`kf-${keyframe.time}`}>
-      {selected && (
+      {selected && enableBezier && (
         <>
           {!isFirst && (
             <InterpolationHandle
@@ -127,3 +133,5 @@ export function Keyframe({
     </g>
   );
 }
+
+export default selectable(Keyframe);

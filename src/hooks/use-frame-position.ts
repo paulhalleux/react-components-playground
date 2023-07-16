@@ -1,5 +1,6 @@
-import { FrameMoveFn, Point, Size } from "../types";
+import { Point, Size } from "../types";
 import React from "react";
+import { FrameMoveFn } from "../types/frame-selection";
 
 export function useFramePosition(
   parentRef: React.RefObject<HTMLElement>,

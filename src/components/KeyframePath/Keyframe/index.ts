@@ -1,1 +1,2 @@
-export { Keyframe, type KeyframeProps } from "./Keyframe";
+export { type KeyframeProps } from "./Keyframe";
+export { default as Keyframe } from "./Keyframe";

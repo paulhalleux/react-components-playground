@@ -8,7 +8,8 @@ Select a size and position with a draggable and resizable frame.
 | FrameSelector                                                                  | KeyframePath                                                                  |
 |:-------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
 | ![Screenshot](./assets/frame.gif)                                              | ![Screenshot 2](./assets/keyframe.gif)                                        | 
-| Supports children like `CrossHead`<br/>![Screenshot 3](./assets/crosshead.png) | Supports bézier interpolation<br/>![Screenshot 3](./assets/interpolation.png) |
+| Supports children like `CrossHead`<br/>![Screenshot 3](./assets/crosshead.png) | Supports bézier interpolation<br/>![Screenshot 4](./assets/interpolation.png) |
+|                                                                                | Supports keyframe selection<br/>![Screenshot 5](./assets/selector.gif)        |
 
 ### FrameSelector
 

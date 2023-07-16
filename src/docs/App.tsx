@@ -1,8 +1,10 @@
 import styles from "./App.module.scss";
 import { useRef, useState } from "react";
 import { FrameSelector, KeyframePath } from "../components";
-import { Keyframe, Point, Size } from "../types";
+import { Point, Size } from "../types";
+import { Keyframe } from "../types/keyframes";
 import { CrossHead } from "../components/FrameSelector/CrossHead/CrossHead";
+import { Selector } from "../components/Selector/Selector";
 
 export function App() {
   const frameSelectionRef = useRef<HTMLDivElement>(null);
@@ -11,7 +13,7 @@ export function App() {
   const [size, setSize] = useState<Size>({ width: 100, height: 100 });
   const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
 
-  const [selectedKeyframe, setSelectedKeyframe] = useState<number>();
+  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>();
   const [keyframes, setKeyframes] = useState<Keyframe[]>([
     {
       position: { x: 25, y: 25 },
@@ -50,22 +52,25 @@ export function App() {
       </div>
       <div className={styles.section}>
         <div className={styles.frame__container} ref={keyframesRef}>
-          <KeyframePath
-            parentRef={keyframesRef}
-            keyframes={keyframes}
-            selectedKeyframe={selectedKeyframe}
-            onKeyframeSelect={setSelectedKeyframe}
-            onKeyframeChange={(index, partial) => {
-              setKeyframes((keyframes) => {
-                const newKeyframes = [...keyframes];
-                newKeyframes[index] = {
-                  ...newKeyframes[index],
-                  ...partial,
-                };
-                return newKeyframes;
-              });
-            }}
-          />
+          <Selector parentRef={keyframesRef}>
+            <KeyframePath
+              enableBezier
+              parentRef={keyframesRef}
+              keyframes={keyframes}
+              selectedKeyframes={selectedKeyframes}
+              onKeyframeSelect={setSelectedKeyframes}
+              onKeyframeChange={(index, partial) => {
+                setKeyframes((keyframes) => {
+                  const newKeyframes = [...keyframes];
+                  newKeyframes[index] = {
+                    ...newKeyframes[index],
+                    ...partial,
+                  };
+                  return newKeyframes;
+                });
+              }}
+            />
+          </Selector>
         </div>
       </div>
     </div>
