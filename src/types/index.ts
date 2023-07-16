@@ -37,6 +37,8 @@ export type KeyframeChangeFn = (
   keyframe: Partial<Keyframe>,
 ) => void;
 
+export type PositionChangeFn = (movementX: number, movementY: number) => void;
+
 export type LinearInterpolation = {
   type: "linear";
 };

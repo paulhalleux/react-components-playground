@@ -44,6 +44,19 @@ export function KeyframePath({
     });
   };
 
+  const onKeyframePositionChange = (
+    index: number,
+    movementX: number,
+    movementY: number,
+  ) => {
+    onKeyframeChange(index, {
+      position: {
+        x: movementX,
+        y: movementY,
+      },
+    });
+  };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -86,8 +99,8 @@ export function KeyframePath({
             onInterpolationChange={(interpolation) =>
               onInterpolationChange(index, interpolation)
             }
-            onPositionChange={(position) =>
-              onKeyframeChange(index, { position })
+            onPositionChange={(movementX, movementY) =>
+              onKeyframePositionChange(index, movementX, movementY)
             }
             selected={index === selectedKeyframe}
             onSelect={(selected) =>

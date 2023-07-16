@@ -9,19 +9,19 @@ export function useMovePath(
   const onPathMove = (
     startKeyframe: number,
     endKeyframe: number,
-    offsetX: number,
-    offsetY: number,
+    movementX: number,
+    movementY: number,
   ) => {
     const parentPosition = parentRef.current?.getBoundingClientRect();
     if (!parentPosition) {
       return;
     }
 
-    const newStartX = keyframes[startKeyframe].position.x - offsetX;
-    const newStartY = keyframes[startKeyframe].position.y - offsetY;
+    const newStartX = keyframes[startKeyframe].position.x + movementX;
+    const newStartY = keyframes[startKeyframe].position.y + movementY;
 
-    const newEndX = keyframes[endKeyframe].position.x - offsetX;
-    const newEndY = keyframes[endKeyframe].position.y - offsetY;
+    const newEndX = keyframes[endKeyframe].position.x + movementX;
+    const newEndY = keyframes[endKeyframe].position.y + movementY;
 
     if (
       newStartX < 0 ||

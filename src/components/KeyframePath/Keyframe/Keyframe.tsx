@@ -1,18 +1,22 @@
-import { Interpolation, Keyframe as KeyframeType, Point } from "../../../types";
+import {
+  Interpolation,
+  Keyframe as KeyframeType,
+  PositionChangeFn,
+} from "../../../types";
 import styles from "./Keyframe.module.scss";
 import React from "react";
 import { useEventListener } from "../../../hooks/use-event-listener";
-import { minmax } from "../../../utils/math";
 import clsx from "clsx";
 import { InterpolationHandle } from "../InterpolationHandle";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
+import { minmax } from "../../../utils/math";
 
 export type KeyframeProps = {
   parentRef: React.RefObject<HTMLDivElement>;
   isFirst: boolean;
   isLast: boolean;
   keyframe: KeyframeType;
-  onPositionChange: (position: Point) => void;
+  onPositionChange: PositionChangeFn;
   onInterpolationChange: (interpolation: Interpolation) => void;
   selected: boolean;
   onSelect: (selected: boolean) => void;
@@ -32,51 +36,55 @@ export function Keyframe({
 }: KeyframeProps) {
   const [moving, setMoving] = React.useState(false);
 
-  const onDoubleClick = () => {
-    onInterpolationChange({
-      type: "bezier",
-      p1: { x: -25, y: 0 },
-      p2: { x: 25, y: 0 },
-    });
+  const events = {
+    onDoubleClick: () => {
+      onInterpolationChange({
+        type: "bezier",
+        p1: { x: -25, y: 0 },
+        p2: { x: 25, y: 0 },
+      });
+    },
+    onMouseDown: () => setMoving(true),
+    onMouseUp: () => setMoving(false),
+    onClick: (event: React.MouseEvent) => {
+      if (event.ctrlKey) onSelect(false);
+      else onSelect(true);
+    },
   };
 
-  const onMouseDown = () => {
-    setMoving(true);
-  };
-
-  const onMouseUp = () => {
-    setMoving(false);
-  };
-
-  const onClick = (event: React.MouseEvent) => {
-    if (event.ctrlKey) onSelect(false);
-    else onSelect(true);
-  };
-
+  useEventListener("mouseup", events.onMouseUp);
   useEventListener("mousemove", (event) => {
-    if (moving) {
-      const parentRect = parentRef.current?.getBoundingClientRect();
-      if (parentRect) {
-        const x = minmax(event.clientX - parentRect.left, 0, parentRect.width);
-        const y = minmax(event.clientY - parentRect.top, 0, parentRect.height);
-        onPositionChange({ x, y });
-      }
+    const parentRect = parentRef.current?.getBoundingClientRect();
+    if (!moving || !parentRect) {
+      return;
     }
-  });
 
-  useEventListener("mouseup", onMouseUp);
+    const cursor = {
+      x: minmax(event.clientX - parentRect.left, 0, parentRect.width),
+      y: minmax(event.clientY - parentRect.top, 0, parentRect.height),
+    };
+
+    if (cursor.x < 0 || cursor.y < 0) return;
+    if (cursor.x > parentRect.width || cursor.y > parentRect.height) return;
+
+    onPositionChange(
+      minmax(cursor.x, 0, parentRect.width),
+      minmax(cursor.y, 0, parentRect.height),
+    );
+  });
 
   const onInterpolationPositionChange = (
     point: "p1" | "p2",
-    position: Point,
+    movementX: number,
+    movementY: number,
   ) => {
-    if (!keyframe.interpolation || keyframe.interpolation.type !== "bezier")
-      return;
+    if (keyframe.interpolation?.type !== "bezier") return;
+
     onInterpolationChange({
       ...keyframe.interpolation,
       [point]: {
-        x: keyframe.interpolation[point].x + position.x,
-        y: keyframe.interpolation[point].y + position.y,
+        x: movementX,
+        y: movementY,
       },
     });
   };
@@ -87,8 +95,8 @@ export function Keyframe({
         <>
           {!isFirst && (
             <InterpolationHandle
-              onPositionChange={(pos) =>
-                onInterpolationPositionChange("p1", pos)
+              onPositionChange={(movementX, movementY) =>
+                onInterpolationPositionChange("p1", movementX, movementY)
               }
               point="p1"
               keyframe={keyframe}
@@ -96,8 +104,8 @@ export function Keyframe({
           )}
           {!isLast && (
             <InterpolationHandle
-              onPositionChange={(pos) =>
-                onInterpolationPositionChange("p2", pos)
+              onPositionChange={(movementX, movementY) =>
+                onInterpolationPositionChange("p2", movementX, movementY)
               }
               point="p2"
               keyframe={keyframe}
@@ -106,10 +114,7 @@ export function Keyframe({
         </>
       )}
       <rect
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onClick={onClick}
-        onDoubleClick={onDoubleClick}
+        {...events}
         x={keyframe.position.x - size / 2}
         y={keyframe.position.y - size / 2}
         width={size}
