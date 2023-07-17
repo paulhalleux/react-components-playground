@@ -3,6 +3,8 @@
 A frame selector component for React.
 Select a size and position with a draggable and resizable frame. 
 
+> **Important** This is a playground and not a library.
+
 ### Screenshots
 
 | FrameSelector                                                                  | KeyframePath                                                                  |
