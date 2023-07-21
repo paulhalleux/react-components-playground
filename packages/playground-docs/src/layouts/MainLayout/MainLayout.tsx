@@ -29,7 +29,7 @@ export function MainLayout() {
             addon={(input) => (
               <KeyboardShortcut
                 shortcut="ctrl+k"
-                onShortcut={() => input.focus()}
+                onShortcut={() => input.current?.focus()}
               />
             )}
           />

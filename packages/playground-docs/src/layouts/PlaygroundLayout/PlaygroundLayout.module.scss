@@ -48,6 +48,12 @@
         text-decoration: underline;
       }
     }
+
+    .active {
+      color: rgb(var(--color-text));
+      font-weight: 600;
+      text-decoration: underline;
+    }
   }
 
   .sidebar__group_items {

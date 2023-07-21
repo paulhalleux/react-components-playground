@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import clsx from "clsx";
 
 import styles from "./PlaygroundLayout.module.scss";
 
@@ -13,11 +14,28 @@ export function PlaygroundLayout({ components }: PlaygroundLayoutProps) {
       <section className={styles.playground__sidebar}>
         <section className={styles.sidebar__content}>
           <div className={styles.sidebar__group}>
+            <li className={styles.sidebar__group_item}>
+              <NavLink
+                to="/"
+                className={({ isActive }) => clsx(isActive && styles.active)}
+              >
+                Home
+              </NavLink>
+            </li>
+          </div>
+          <div className={styles.sidebar__group}>
             <h2 className={styles.sidebar__group_title}>Components</h2>
             <ul className={styles.sidebar__group_items}>
               {components.map(({ name, path }) => (
                 <li key={path} className={styles.sidebar__group_item}>
-                  <Link to={path}>{name}</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      clsx(isActive && styles.active)
+                    }
+                    to={path}
+                  >
+                    {name}
+                  </NavLink>
                 </li>
               ))}
             </ul>

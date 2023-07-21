@@ -9,7 +9,7 @@ import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
 import { mdxComponents } from "../../components/Mdx";
 import { Component as ComponentType } from "../../types/component";
 
-import styles from "./Component.module.scss";
+import styles from "./ComponentPage.module.scss";
 
 type ComponentProps = {
   component: ComponentType;
@@ -17,7 +17,7 @@ type ComponentProps = {
   next?: ComponentType;
 };
 
-export function Component({ component, previous, next }: ComponentProps) {
+export function ComponentPage({ component, previous, next }: ComponentProps) {
   // @ts-ignore
   const MdxComponent = Components[component.name];
 

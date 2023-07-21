@@ -6,7 +6,9 @@ type SearchProps = {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
-  addon?: React.ReactNode | ((input: HTMLInputElement) => React.ReactNode);
+  addon?:
+    | React.ReactNode
+    | ((input: React.RefObject<HTMLInputElement>) => React.ReactNode);
 };
 
 export function Search({ value, onChange, placeholder, addon }: SearchProps) {
@@ -31,7 +33,7 @@ export function Search({ value, onChange, placeholder, addon }: SearchProps) {
       />
       {addon && (
         <div className={styles.search__addon}>
-          {typeof addon === "function" ? addon(inputRef.current!) : addon}
+          {typeof addon === "function" ? addon(inputRef) : addon}
         </div>
       )}
     </div>
