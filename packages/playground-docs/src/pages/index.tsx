@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { CleanIcon, SelectionFrameIcon, SelectionIcon } from "../components";
-import { PointerIcon } from "../components/Icons";
+import { PointerIcon, SelectionFrameIcon, SelectionIcon } from "../components";
 import { MainLayout } from "../layouts";
 import { PlaygroundLayout } from "../layouts/PlaygroundLayout";
 import { Component } from "../types/component";
@@ -28,7 +27,7 @@ const components: Component[] = [
     description: "A component to select a value",
     icon: SelectionFrameIcon,
   },
-];
+].sort((a, b) => a.name.localeCompare(b.name));
 
 const componentRoutes = components.map((component, index) => ({
   path: component.path,

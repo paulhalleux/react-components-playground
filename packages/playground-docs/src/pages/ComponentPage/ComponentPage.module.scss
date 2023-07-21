@@ -38,7 +38,7 @@
 
 .switch-button {
   height: 80px;
-  width: 250px;
+  width: 280px;
   border-radius: 4px;
   border: 1px solid rgb(var(--color-border));
   background: none;
@@ -46,14 +46,28 @@
   text-decoration: none;
 
   text-align: left;
-  padding: 15px;
+  padding: 15px 20px;
   transition: background-color 0.2s ease-in-out;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  &--align-right .content {
-    text-align: right;
+  svg {
+    transition: transform .2s ease-in-out;
+  }
+
+  &:hover svg {
+    transform: translateX(5px);
+  }
+
+  &--align-right {
+    .content {
+      text-align: right;
+    }
+
+    &:hover svg {
+      transform: translateX(-5px);
+    }
   }
 
   .content {

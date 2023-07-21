@@ -3,14 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
 
 import Logo from "../../../assets/logo.png";
-import {
-  Anchor,
-  Container,
-  GithubIcon,
-  KeyboardShortcut,
-  Search,
-} from "../../components";
+import { Anchor, Container, GithubIcon } from "../../components";
 import { Component } from "../../types/component";
+
+import { ComponentSearch } from "./ComponentSearch";
 
 import styles from "./MainLayout.module.scss";
 
@@ -45,28 +41,7 @@ export function MainLayout({ components }: MainLayoutProps) {
           </nav>
         </div>
         <div className={styles.layout__header__actions}>
-          <Search
-            placeholder="Search component..."
-            addon={(input) => (
-              <KeyboardShortcut
-                shortcut="ctrl+k"
-                onShortcut={() => input.current?.focus()}
-              />
-            )}
-            autocompleteItems={components.map((component) => ({
-              ...component,
-              id: component.name,
-            }))}
-            renderAutocompleteItem={(component, className) => (
-              <Link
-                to={component.path}
-                className={clsx(styles.search__item, className)}
-              >
-                <component.icon width={12} height={12} />
-                {component.name}
-              </Link>
-            )}
-          />
+          <ComponentSearch components={components} />
           <Anchor
             href="https://github.com/paulhalleux/react-playground"
             target="_blank"

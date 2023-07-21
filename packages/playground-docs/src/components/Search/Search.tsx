@@ -30,6 +30,7 @@ export function Search<T extends AutoCompleteItemBase>({
 }: SearchProps<T>) {
   const [searchValue, setSearchValue] = React.useState(value);
   const [focused, setFocused] = React.useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onKeyDown = React.useCallback((e: React.KeyboardEvent) => {
@@ -49,12 +50,17 @@ export function Search<T extends AutoCompleteItemBase>({
     setFocused(false);
   };
 
-  useClickAway(inputRef, () => setFocused(false));
+  useClickAway(containerRef, () => setFocused(false));
 
   const opened = renderAutocompleteItem && autocompleteItems && focused;
 
   return (
-    <div className={styles.search__container} tabIndex={0} onFocus={onFocus}>
+    <div
+      className={styles.search__container}
+      tabIndex={0}
+      onFocus={onFocus}
+      ref={containerRef}
+    >
       <input
         ref={inputRef}
         onKeyDown={onKeyDown}
