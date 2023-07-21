@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -14,14 +13,29 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@paulhalleux/eslint-config-playground": "^1.0.0",
+    "@types/node": "^20.4.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.45.0",
     "sass": "^1.63.6",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
-    "vite-plugin-eslint": "^1.8.1",
-    "eslint": "^8.45.0",
-    "@paulhalleux/eslint-config-playground": "^1.0.0"
+    "vite-plugin-css-injected-by-js": "^3.2.1",
+    "vite-plugin-dts": "^3.3.1",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
   }
 }

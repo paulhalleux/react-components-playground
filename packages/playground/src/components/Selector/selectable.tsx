@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Selectable } from "../../types/selector";
+import { Selectable } from "../../types";
 
 import { useSelectorContext } from "./SelectorContext";
 
