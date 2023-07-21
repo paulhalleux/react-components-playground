@@ -12,19 +12,19 @@ import { MainPage } from "./MainPage";
 const components: Component[] = [
   {
     name: "KeyframePath",
-    path: "/component/keyframe-path",
+    path: "/components/keyframe-path",
     description: "A component to display a path with keyframes",
     icon: PointerIcon,
   },
   {
     name: "FrameSelector",
-    path: "/component/frame-selector",
+    path: "/components/frame-selector",
     description: "A component to select a frame",
     icon: SelectionIcon,
   },
   {
     name: "Selector",
-    path: "/component/selector",
+    path: "/components/selector",
     description: "A component to select a value",
     icon: SelectionFrameIcon,
   },
@@ -43,7 +43,7 @@ const componentRoutes = components.map((component, index) => ({
 
 export const router = createBrowserRouter([
   {
-    element: <MainLayout />,
+    element: <MainLayout components={components} />,
     children: [
       {
         element: <PlaygroundLayout components={components} />,

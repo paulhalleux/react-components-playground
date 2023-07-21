@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import clsx from "clsx";
 
 import Logo from "../../../assets/logo.png";
 import {
@@ -9,10 +10,15 @@ import {
   KeyboardShortcut,
   Search,
 } from "../../components";
+import { Component } from "../../types/component";
 
 import styles from "./MainLayout.module.scss";
 
-export function MainLayout() {
+type MainLayoutProps = {
+  components: Component[];
+};
+
+export function MainLayout({ components }: MainLayoutProps) {
   return (
     <main className={styles.layout}>
       <Container
@@ -20,9 +26,24 @@ export function MainLayout() {
         containerClassName={styles.layout__header__container}
         className={styles.layout__header}
       >
-        <Link to="/">
-          <img src={Logo} alt="Logo" className={styles.logo} />
-        </Link>
+        <div className={styles.layout__header__nav}>
+          <Link to="/">
+            <img src={Logo} alt="Logo" className={styles.logo} />
+          </Link>
+          <nav className={styles.layout__header__nav__links}>
+            <NavLink
+              className={({ isActive }) =>
+                clsx(
+                  styles.layout__header__nav__link,
+                  isActive && styles.active,
+                )
+              }
+              to="/"
+            >
+              Components
+            </NavLink>
+          </nav>
+        </div>
         <div className={styles.layout__header__actions}>
           <Search
             placeholder="Search component..."
@@ -31,6 +52,19 @@ export function MainLayout() {
                 shortcut="ctrl+k"
                 onShortcut={() => input.current?.focus()}
               />
+            )}
+            autocompleteItems={components.map((component) => ({
+              ...component,
+              id: component.name,
+            }))}
+            renderAutocompleteItem={(component, className) => (
+              <Link
+                to={component.path}
+                className={clsx(styles.search__item, className)}
+              >
+                <component.icon width={12} height={12} />
+                {component.name}
+              </Link>
             )}
           />
           <Anchor

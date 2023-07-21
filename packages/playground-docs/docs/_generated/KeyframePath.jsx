@@ -14,7 +14,7 @@ function _createMdxContent(props) {
   return <><_components.h1>{"KeyframePath"}</_components.h1>{"\n"}<_components.p><_components.code>{"KeyframePath"}</_components.code>{" is a component that allows you to display a path of keyframes that can be moved around and edited."}</_components.p>{"\n"}<_components.pre><_components.code className="language-tsx">{"import { KeyframePath, Keyframe } from \"@paulhalleux/react-playground\";\r\n\r\nconst App = () => {\r\n  const containerRef = React.useRef<HTMLDivElement>(null);\r\n  const [keyframes, setKeyframes] = React.useState<Keyframe>([\r\n    { position: { x: 0, y: 0 }, time: 0 },\r\n    { position: { x: 100, y: 100 }, time: 1 },\r\n    { position: { x: 200, y: 0 }, time: 2 },\r\n  ]);\r\n\r\n  return (\r\n    <div ref={containerRef}>\r\n      <KeyframePath\r\n        parentRef={containerRef}\r\n        keyframes={keyframes}\r\n        onKeyframeChange={(keyframes) => setKeyframes(keyframes)}\r\n        enableBezier={true}\r\n        enablePathMove={true}\r\n        onKeyframeSelect={(keyframe) => console.log(keyframe)}\r\n        pathColor={[10, 10, 10]}\r\n        selectedKeyframes={[0, 2]}\r\n      />\r\n    </div>\r\n  );\r\n};\n"}</_components.code></_components.pre>{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"KeyframePath Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: "parentRef",
     type: "React.RefObject<HTMLElement>",
-    description: "The parent element of the keyframe path. This is used to compute the position of the keyframes."
+    description: "The parent element of the keyframe path."
   }, {
     name: "keyframes",
     type: "Keyframe[]",
@@ -42,7 +42,7 @@ function _createMdxContent(props) {
   }, {
     name: "selectedKeyframes",
     type: "number[]",
-    description: "The time of the selected keyframes. This is used to display the selected keyframes. The time of the selected keyframes. This is used to display the selected keyframes."
+    description: "The time of the selected keyframes."
   }]} /></>;
 }
 function MDXContent(props = {}) {

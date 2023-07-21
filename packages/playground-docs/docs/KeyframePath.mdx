@@ -38,13 +38,13 @@ const App = () => {
 
 <Properties properties={
   [
-    { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element of the keyframe path. This is used to compute the position of the keyframes." },
+    { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element of the keyframe path." },
     { name: "keyframes", type: "Keyframe[]", description: "The keyframes to display." },
     { name: "onKeyframeChange", type: "(keyframes: Keyframe[]) => void", description: "Callback when the keyframes change." },
     { name: "enableBezier", type: "boolean", description: "Whether to enable bezier handles." },
     { name: "enablePathMove", type: "boolean", description: "Whether to enable moving the path." },
     { name: "onKeyframeSelect", type: "(keyframe: Keyframe) => void", description: "Callback when a keyframe is selected." },
     { name: "pathColor", type: "number[]", description: "The color of the path." },
-    { name: "selectedKeyframes", type: "number[]", description: "The time of the selected keyframes. This is used to display the selected keyframes. The time of the selected keyframes. This is used to display the selected keyframes." },
+    { name: "selectedKeyframes", type: "number[]", description: "The time of the selected keyframes." },
   ]
 } />
