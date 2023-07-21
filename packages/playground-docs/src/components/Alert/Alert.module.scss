@@ -1,0 +1,23 @@
+@use "../Mdx/Code/Code.module" as *;
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  background: rgba(var(--color-main-light), .2);
+  border: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-text-light));
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+
+  code {
+    @extend .code;
+  }
+}
+
+.alert__icon {
+  margin-right: 1rem;
+  height: 20px;
+}

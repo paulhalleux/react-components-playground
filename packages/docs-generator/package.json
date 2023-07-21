@@ -1,0 +1,21 @@
+{
+  "name": "@paulhalleux/docs-generator",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "bin": {
+    "generate-docs": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc --target esnext --module esnext --outDir dist"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^2.3.0",
+    "esbuild": "^0.18.15",
+    "glob": "^10.3.3"
+  }
+}

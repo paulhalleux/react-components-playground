@@ -1,0 +1,10 @@
+.anchor {
+  color: inherit;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

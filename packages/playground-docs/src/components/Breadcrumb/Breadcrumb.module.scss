@@ -1,0 +1,23 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.breadcrumb__item {
+  font-size: 13px;
+  color: rgb(var(--color-text-light));
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &:not(.active):after {
+    content: '/';
+    margin-left: 8px;
+    margin-right: 8px;
+    color: rgb(var(--color-text-light));
+  }
+
+  &.active {
+    color: rgb(var(--color-text));
+  }
+}

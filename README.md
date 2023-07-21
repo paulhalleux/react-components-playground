@@ -1,3 +1,3 @@
-# React Playground
+# React PlaygroundLayout
 
 A react component playground repository.
