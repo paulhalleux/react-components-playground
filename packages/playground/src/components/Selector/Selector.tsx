@@ -11,17 +11,24 @@ import styles from "./Selector.module.scss";
 
 export type SelectorProps = PropsWithChildren<{
   parentRef: React.RefObject<HTMLElement>;
+  color?: [number, number, number];
 }>;
 
-export function Selector({ children, parentRef }: SelectorProps) {
+export function Selector({ children, parentRef, color }: SelectorProps) {
   return (
     <SelectorProvider>
-      <SelectorInner parentRef={parentRef}>{children}</SelectorInner>
+      <SelectorInner parentRef={parentRef} color={color}>
+        {children}
+      </SelectorInner>
     </SelectorProvider>
   );
 }
 
-function SelectorInner({ children, parentRef }: SelectorProps) {
+function SelectorInner({
+  children,
+  parentRef,
+  color = [0, 0, 0],
+}: SelectorProps) {
   const { selectables } = useSelectorContext();
 
   const [startPoint, setStartPoint] = useState<Point>({ x: 0, y: 0 });
@@ -52,6 +59,7 @@ function SelectorInner({ children, parentRef }: SelectorProps) {
     top: size.height < 0 ? startPoint.y + size.height : startPoint.y,
     width: Math.abs(size.width),
     height: Math.abs(size.height),
+    "--selector-color": `${color.join(",")}`,
   };
 
   useEventListener("mouseup", events.onMouseUp);

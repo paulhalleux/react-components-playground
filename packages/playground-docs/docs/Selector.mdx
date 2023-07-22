@@ -1,0 +1,85 @@
+import { Properties } from "../components";
+import { SelectorExample } from "../examples/SelectorExample";
+
+# Selector
+
+`Selector` is a component that allows you to select elements in a container.
+It works like a lasso tool, where you click and drag to select elements.
+
+## Example
+
+<SelectorExample />
+
+```tsx
+import { useRef, useState } from "react";
+import {
+  Selectable,
+  selectable,
+  Selector,
+} from "@paulhalleux/react-playground";
+
+export function SelectorExample() {
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const onSelect = (id: string, selected: boolean) => {
+    if (selected) {
+      setSelected((prev) => [...prev, id]);
+    } else {
+      setSelected((prev) => prev.filter((item) => item !== id));
+    }
+  };
+
+  return (
+    <Display ref={containerRef}>
+      <Selector parentRef={containerRef}>
+        <SelectableItem
+          onSelect={(selected) => onSelect("a", selected)}
+          selected={selected.includes("a")}
+          position={{ x: 100, y: 50 }}
+          id="a"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("b", selected)}
+          selected={selected.includes("b")}
+          position={{ x: 200, y: 150 }}
+          id="b"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("c", selected)}
+          selected={selected.includes("c")}
+          position={{ x: 300, y: 75 }}
+          id="c"
+        />
+      </Selector>
+    </Display>
+  );
+}
+
+const SelectableItem = selectable(({ selected, position }: Selectable) => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: position.x,
+          top: position.y,
+          width: 15,
+          height: 15,
+          backgroundColor: selected ? "green" : "gray",
+        }}
+      />
+    );
+  },
+);
+```
+
+## API
+
+### Selector Props
+
+<Properties properties={[
+  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element to select elements in.", required: true },
+  { name: "color", type: "[number, number, number]", description: "The color of the selector." },
+  { name: "children", type: "React.ReactNode", description: "The elements to select." },
+]} />

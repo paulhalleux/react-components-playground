@@ -44,6 +44,10 @@ export function ComponentPage({ component, previous, next }: ComponentProps) {
     }
   }, [component]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [component]);
+
   return (
     <div className={styles.component__container}>
       <div className={styles.component__content}>

@@ -15,5 +15,5 @@ export function selectable<T extends Selectable>(
     }, [props]);
 
     return React.createElement(component, props);
-  };
+  } as React.FC<T>;
 }

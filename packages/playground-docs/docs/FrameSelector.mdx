@@ -54,6 +54,7 @@ export function FrameSelectorExample() {
 ### FrameSelector Props
 
 <Properties properties={[
+  { name: "children", type: "React.ReactNode", description: "Children to render inside the frame." },
   { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "Reference to the parent element of the frame selector.", required: true },
   { name: "size", type: "Size", description: "Size of the frame.", required: true },
   { name: "onSizeChange", type: "(size: Size) => void", description: "Callback when the size of the frame changes.", required: true },
