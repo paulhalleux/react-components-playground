@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
 import styles from "./PlaygroundLayout.module.scss";
@@ -42,9 +42,7 @@ export function PlaygroundLayout({ components }: PlaygroundLayoutProps) {
           </div>
         </section>
       </section>
-      <section className={styles.playground__content}>
-        <Outlet />
-      </section>
+      <Outlet />
     </section>
   );
 }

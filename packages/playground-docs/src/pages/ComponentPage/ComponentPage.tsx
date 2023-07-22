@@ -1,12 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import clsx from "clsx";
+import React, { useEffect } from "react";
 
 import { Components } from "../../../docs/_generated";
-import { ArrowLeft, ArrowRight, CleanIcon } from "../../components";
-import { Alert } from "../../components/Alert/Alert";
-import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
+import {
+  Alert,
+  Breadcrumb,
+  CleanIcon,
+  ContentTable,
+  ContentTableItem,
+} from "../../components";
 import { mdxComponents } from "../../components/Mdx";
+import { SwitchButton } from "../../components/SwitchButton";
 import { Component as ComponentType } from "../../types/component";
 
 import styles from "./ComponentPage.module.scss";
@@ -20,49 +23,48 @@ type ComponentProps = {
 export function ComponentPage({ component, previous, next }: ComponentProps) {
   // @ts-ignore
   const MdxComponent = Components[component.name];
+  const mdxContainer = React.useRef<HTMLDivElement>(null);
+  const [tableItems, setTableItems] = React.useState<ContentTableItem[]>([]);
+
+  useEffect(() => {
+    if (mdxContainer.current) {
+      const headings =
+        mdxContainer.current.querySelectorAll<HTMLHeadingElement>(
+          "h1, h2, h3, h4, h5, h6",
+        );
+
+      const items: ContentTableItem[] = Array.from(headings).map((heading) => {
+        const level = parseInt(heading.tagName[1], 10);
+        const name = heading.textContent ?? "";
+        const id = heading.id;
+        return { level, name, id };
+      });
+
+      setTableItems(items);
+    }
+  }, [component]);
 
   return (
     <div className={styles.component__container}>
-      <header className={styles.component__header}>
+      <div className={styles.component__content}>
         <Breadcrumb items={["Component", component.name]} />
-      </header>
-      <section className={styles.component__content}>
-        {MdxComponent ? (
-          <MdxComponent components={mdxComponents} />
-        ) : (
-          <Alert icon={CleanIcon}>
-            No documentation found for <code>{component.name}</code>
-          </Alert>
-        )}
-      </section>
-      <section className={styles.component__footer}>
-        <Link
-          className={clsx(
-            styles["switch-button"],
-            styles["switch-button--align-right"],
-            { [styles.disabled]: !previous },
+        <section className={styles.mdx} ref={mdxContainer}>
+          {MdxComponent ? (
+            <MdxComponent components={mdxComponents} />
+          ) : (
+            <Alert icon={CleanIcon}>
+              No documentation found for <code>{component.name}</code>
+            </Alert>
           )}
-          to={previous?.path ?? ""}
-        >
-          <ArrowLeft />
-          <div className={styles.content}>
-            <span className={styles.title}>Previous</span>
-            <span className={styles.component}>{previous?.name}</span>
-          </div>
-        </Link>
-        <Link
-          className={clsx(styles["switch-button"], {
-            [styles.disabled]: !next,
-          })}
-          to={next?.path ?? ""}
-        >
-          <div className={styles.content}>
-            <span className={styles.title}>Next</span>
-            <span className={styles.component}>{next?.name}</span>
-          </div>
-          <ArrowRight />
-        </Link>
-      </section>
+        </section>
+        <section className={styles.switch__navigation}>
+          <SwitchButton position="left" component={previous} />
+          <SwitchButton position="right" component={next} />
+        </section>
+      </div>
+      <div className={styles.component__content_table}>
+        <ContentTable items={tableItems} />
+      </div>
     </div>
   );
 }

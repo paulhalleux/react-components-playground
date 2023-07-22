@@ -21,8 +21,6 @@ module.exports = {
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off",
-    "no-console": "error",
-    "no-alert": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/prop-types": 0,
     "react/display-name": 0,

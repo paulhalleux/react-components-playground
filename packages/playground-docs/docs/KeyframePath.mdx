@@ -1,8 +1,11 @@
 import { Properties } from "../components";
+import { KeyframePathExample } from "../examples/KeyframePathExample";
 
 # KeyframePath
 
 `KeyframePath` is a component that allows you to display a path of keyframes that can be moved around and edited.
+
+<KeyframePathExample />
 
 ```tsx
 import { KeyframePath, Keyframe } from "@paulhalleux/react-playground";
@@ -15,17 +18,21 @@ const App = () => {
     { position: { x: 200, y: 0 }, time: 2 },
   ]);
 
+  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe[]>) => {
+    const newKeyframes = [...keyframes];
+    newKeyframes[keyframe] = { ...newKeyframes[keyframe], ...partial };
+    setKeyframes(newKeyframes);
+  };
+
   return (
     <div ref={containerRef}>
       <KeyframePath
         parentRef={containerRef}
         keyframes={keyframes}
-        onKeyframeChange={(keyframes) => setKeyframes(keyframes)}
+        onKeyframeChange={onKeyframeChange}
         enableBezier={true}
         enablePathMove={true}
-        onKeyframeSelect={(keyframe) => console.log(keyframe)}
-        pathColor={[10, 10, 10]}
-        selectedKeyframes={[0, 2]}
+        pathColor={[255, 255, 255]}
       />
     </div>
   );
@@ -36,15 +43,14 @@ const App = () => {
 
 ### KeyframePath Props
 
-<Properties properties={
-  [
-    { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element of the keyframe path." },
-    { name: "keyframes", type: "Keyframe[]", description: "The keyframes to display." },
-    { name: "onKeyframeChange", type: "(keyframes: Keyframe[]) => void", description: "Callback when the keyframes change." },
-    { name: "enableBezier", type: "boolean", description: "Whether to enable bezier handles." },
-    { name: "enablePathMove", type: "boolean", description: "Whether to enable moving the path." },
-    { name: "onKeyframeSelect", type: "(keyframe: Keyframe) => void", description: "Callback when a keyframe is selected." },
-    { name: "pathColor", type: "number[]", description: "The color of the path." },
-    { name: "selectedKeyframes", type: "number[]", description: "The time of the selected keyframes." },
-  ]
-} />
+<Properties properties={[
+  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "Reference of the parent element of the keyframe path." },
+  { name: "keyframes", type: "Keyframe[]", description: "The keyframes to display." },
+  { name: "onKeyframeChange", type: "(index: number, partial: Partial<Keyframe>) => void", description: "Callback when a keyframe change." },
+  { name: "enableBezier", type: "boolean", description: "Whether to enable bezier handles." },
+  { name: "enablePathMove", type: "boolean", description: "Whether to enable moving the path." },
+  { name: "onKeyframeSelect", type: "(indexes: number[]) => void", description: "Callback when a keyframe is selected." },
+  { name: "pathColor", type: "[number, number, number]", description: "The color of the path and keyframes." },
+  { name: "selectedKeyframes", type: "number[]", description: "The indexes of the selected keyframes." },
+]} />
+

@@ -1,29 +1,23 @@
-.h1 {
-  font-size: 24px;
-  font-weight: 700;
+$headings: (
+  h1: 24px,
+  h2: 20px,
+  h3: 18px,
+  h4: 16px,
+  h5: 14px,
+  h6: 12px,
+);
+
+@mixin heading($level) {
+  font-size: map-get($headings, $level);
+  font-weight: 600;
+  color: rgb(var(--color-text));
+  scroll-margin-top: 80px;
 }
 
-.h2 {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.h4 {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.h5 {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.h6 {
-  font-size: 12px;
-  font-weight: 600;
+.heading {
+  @each $level, $size in $headings {
+    &__#{$level} {
+      @include heading($level);
+    }
+  }
 }
