@@ -48,15 +48,15 @@
   background: rgb(var(--color-main));
   border-radius: 0 0 4px 4px;
   width: 100%;
-  max-height: 300px;
   border: 1px solid rgb(var(--color-border));
   border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
 
   &__item_container {
     overflow: auto;
     max-height: 300px;
-    margin: -1px;
-    width: calc(100% + 2px);
+    width: 100%;
 
     &:first-child {
       margin-top: 0;
@@ -75,10 +75,11 @@
     align-items: center;
     gap: 8px;
     width: 100%;
+    border: 1px solid transparent;
 
     &:focus-visible {
       outline: none;
-      border: 1px solid rgb(var(--color-border-primary));
+      border-color: rgb(var(--color-border-primary)) !important;
     }
 
     &:hover {

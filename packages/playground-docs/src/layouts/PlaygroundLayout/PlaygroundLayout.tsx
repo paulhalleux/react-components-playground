@@ -1,11 +1,14 @@
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
+import { Badge } from "@paulhalleux/react-playground";
 import clsx from "clsx";
+
+import { Component } from "../../types/component";
 
 import styles from "./PlaygroundLayout.module.scss";
 
 type PlaygroundLayoutProps = {
-  components: { name: string; path: string }[];
+  components: Component[];
 };
 
 export function PlaygroundLayout({ components }: PlaygroundLayoutProps) {
@@ -26,7 +29,7 @@ export function PlaygroundLayout({ components }: PlaygroundLayoutProps) {
           <div className={styles.sidebar__group}>
             <h2 className={styles.sidebar__group_title}>Components</h2>
             <ul className={styles.sidebar__group_items}>
-              {components.map(({ name, path }) => (
+              {components.map(({ name, path, status }) => (
                 <li key={path} className={styles.sidebar__group_item}>
                   <NavLink
                     className={({ isActive }) =>
@@ -36,6 +39,7 @@ export function PlaygroundLayout({ components }: PlaygroundLayoutProps) {
                   >
                     {name}
                   </NavLink>
+                  {status !== "done" && <Badge size="small">{status}</Badge>}
                 </li>
               ))}
             </ul>

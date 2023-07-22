@@ -55,14 +55,10 @@ export function Search<T extends AutoCompleteItemBase>({
   const opened = renderAutocompleteItem && autocompleteItems && focused;
 
   return (
-    <div
-      className={styles.search__container}
-      tabIndex={0}
-      onFocus={onFocus}
-      ref={containerRef}
-    >
+    <div className={styles.search__container} ref={containerRef}>
       <input
         ref={inputRef}
+        onFocus={onFocus}
         onKeyDown={onKeyDown}
         type="text"
         className={clsx(styles.search, {
@@ -78,7 +74,7 @@ export function Search<T extends AutoCompleteItemBase>({
         </div>
       )}
       {opened && (
-        <div className={styles.search__autocomplete}>
+        <div className={styles.search__autocomplete} tabIndex={-1}>
           {autocompleteItems
             .filter((item) => filterFn(item, searchValue || ""))
             .map((item) => (

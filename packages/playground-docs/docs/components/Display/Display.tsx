@@ -8,10 +8,11 @@ type DisplayProps = PropsWithChildren<{
   onReset?: () => void;
   padding?: number;
   align?: "flex-start" | "center" | "flex-end";
+  direction?: "row" | "column";
 }>;
 
 function Display(
-  { children, onReset, padding, align }: DisplayProps,
+  { children, onReset, padding, align, direction }: DisplayProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -28,6 +29,8 @@ function Display(
         padding,
         alignItems: align,
         justifyContent: align,
+        flexDirection: direction,
+        gap: padding,
       }}
     >
       {onReset && (

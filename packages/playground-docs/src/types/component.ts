@@ -6,4 +6,5 @@ export type Component = {
   path: string;
   description: string;
   icon: React.FC<IconProps>;
+  status: string;
 };

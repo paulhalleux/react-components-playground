@@ -39,6 +39,9 @@
   .sidebar__group_item {
     list-style: none;
     font-size: 13px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
 
     a {
       color: rgb(var(--color-text-light));
@@ -51,7 +54,6 @@
 
     .active {
       color: rgb(var(--color-text));
-      font-weight: 600;
       text-decoration: underline;
     }
   }

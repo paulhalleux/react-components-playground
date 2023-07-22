@@ -15,3 +15,4 @@ export { ArrowDownIcon } from "./ArrowDownIcon";
 export { ArrowUpIcon } from "./ArrowUpIcon";
 export { TableIcon } from "./TableIcon";
 export { ArrowDownUpIcon } from "./ArrowDownUpIcon";
+export { BadgeIcon } from "./BadgeIcon";

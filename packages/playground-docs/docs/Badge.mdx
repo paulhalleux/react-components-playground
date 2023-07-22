@@ -1,0 +1,73 @@
+import { Properties } from "../components";
+import { BadgeExample } from "../examples/BadgeExample";
+
+# Badge
+
+`Badge` is a component to display a badge. It can be used to display a status, a count, or any other information.
+
+## Examples
+
+### Badge
+
+<BadgeExample />
+
+### Pill
+
+Pill are badges that are pill-shaped.
+
+<BadgeExample pill />
+
+```tsx
+import { Badge } from "@paulhalleux/react-playground";
+
+const GroupStyle = {
+  display: "flex",
+  gap: 24,
+  alignItems: "center",
+};
+
+export function App() {
+  return (
+    <div>
+      <div style={GroupStyle}>
+        <Badge size="small">Default</Badge>
+        <Badge size="small" variant="primary">
+          Primary
+        </Badge>
+        <Badge size="small" variant="secondary">
+          Secondary
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="medium">Default</Badge>
+        <Badge size="medium" variant="primary">
+          Primary
+        </Badge>
+        <Badge size="medium" variant="secondary">
+          Secondary
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="large">Default</Badge>
+        <Badge size="large" variant="primary">
+          Primary
+        </Badge>
+        <Badge size="large" variant="secondary">
+          Secondary
+        </Badge>
+      </div>
+    </Display>
+  );
+}
+```
+
+## API
+
+### Badge Props
+
+<Properties properties={[
+  { name: 'children', type: 'React.ReactNode', description: 'The content of the badge.' },
+  { name: 'size', type: '"small" | "medium" | "large"', description: 'The size of the badge.', default: '"medium"' },
+  { name: 'variant', type: '"primary" | "secondary" | "default"', description: 'The variant of the badge.', default: '"default"' },
+  { name: 'pill', type: 'boolean', description: 'Whether the badge should be pill-shaped.', default: 'false' },
+]} />
