@@ -1,0 +1,132 @@
+import { Properties } from "../components";
+import { SimpleTableExample } from "../examples/Table/SimpleTableExample";
+import { CustomRenderingExample } from "../examples/Table/CustomRenderingExample";
+
+# Table
+
+`Table` is a component to display data in a table. It supports sorting and custom rendering.
+
+## Examples
+
+### Simple Table
+
+<SimpleTableExample />
+
+```tsx
+import { Table } from "@paulhalleux/react-playground";
+
+export function App() {
+  return (
+    <Table
+      columns={[
+        { key: "id", label: "ID", width: 100 },
+        {
+          key: "name",
+          label: "Name",
+          sortable: true,
+          sortFn: sortName,
+          width: 200,
+        },
+        { key: "age", label: "Age", width: 100 },
+      ]}
+      data={[
+        { id: 1, name: "Paul", age: 30 },
+        { id: 2, name: "John", age: 40 },
+        { id: 3, name: "Jane", age: 50 },
+      ]}
+    />
+  );
+}
+
+function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
+  if (sort === "asc") {
+    return a.name.localeCompare(b.name);
+  } else if (sort === "desc") {
+    return b.name.localeCompare(a.name);
+  } else {
+    return 0;
+  }
+}
+```
+
+### Custom Rendering
+
+<CustomRenderingExample />
+
+```tsx
+import { Table } from "@paulhalleux/react-playground";
+
+export function App() {
+  return (
+    <Table
+      columns={[
+        { key: "id", label: "ID", width: 100 },
+        {
+          key: "name",
+          label: "Name",
+          sortable: true,
+          sortFn: sortName,
+          width: 200,
+          renderHeader: (label) => (
+            <span style={{ textDecoration: "underline" }}>{label}</span>
+          ),
+          render: (value) => (
+            <span
+              style={{
+                fontWeight: 800,
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <ArrowRightIcon width={16} height={16} />
+              {value}
+            </span>
+          ),
+        },
+        { key: "age", label: "Age", width: 100 },
+      ]}
+      data={[
+        { id: 1, name: "Paul", age: 30 },
+        { id: 2, name: "John", age: 40 },
+        { id: 3, name: "Jane", age: 50 },
+      ]}
+    />
+  );
+}
+
+function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
+  if (sort === "asc") {
+    return a.name.localeCompare(b.name);
+  } else if (sort === "desc") {
+    return b.name.localeCompare(a.name);
+  } else {
+    return 0;
+  }
+}
+```
+
+## API
+
+### Table Props
+
+<Properties properties={[
+  { name: 'columns', type: 'TableColumn<T>[]', description: 'The columns to display in the table.', required: true },
+  { name: 'data', type: 'T[]', description: 'The data to display in the table.', required: true },
+  { name: 'maxHeight', type: 'string | number', description: 'The maximum height of the table.' },
+]} />
+
+### TableColumn Type
+
+```typescript
+type TableColumn<T extends Record<string, any>> = {
+  key: keyof T;
+  label: string;
+  render?: (value: T[keyof T]) => React.ReactNode;
+  renderHeader?: (label: string) => React.ReactNode;
+  sortable?: boolean;
+  sortFn?: (a: T, b: T, order: "asc" | "desc" | null) => number;
+  sort?: "asc" | "desc" | null;
+  width?: string | number;
+};
+```

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ArrowLeftIcon, ArrowRightIcon } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import { Component } from "../../types/component";
-import { ArrowLeftIcon, ArrowRightIcon } from "../Icons";
 
 import styles from "./SwitchButton.module.scss";
 

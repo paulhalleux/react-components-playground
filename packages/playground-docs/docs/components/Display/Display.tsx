@@ -6,10 +6,12 @@ import styles from "./Display.module.scss";
 
 type DisplayProps = PropsWithChildren<{
   onReset?: () => void;
+  padding?: number;
+  align?: "flex-start" | "center" | "flex-end";
 }>;
 
 function Display(
-  { children, onReset }: DisplayProps,
+  { children, onReset, padding, align }: DisplayProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -18,7 +20,16 @@ function Display(
   };
 
   return (
-    <div onWheel={onWheel} className={styles.display} ref={ref}>
+    <div
+      onWheel={onWheel}
+      className={styles.display}
+      ref={ref}
+      style={{
+        padding,
+        alignItems: align,
+        justifyContent: align,
+      }}
+    >
       {onReset && (
         <Button className={styles.reset} onClick={onReset} size="small">
           Reset

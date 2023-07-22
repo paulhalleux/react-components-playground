@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { CleanIcon } from "@paulhalleux/react-playground";
 
 import { Components } from "../../../docs/_generated";
 import {
   Alert,
   Breadcrumb,
-  CleanIcon,
   ContentTable,
   ContentTableItem,
 } from "../../components";

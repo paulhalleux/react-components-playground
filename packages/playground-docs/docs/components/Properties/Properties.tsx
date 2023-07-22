@@ -1,5 +1,6 @@
+import { Table } from "@paulhalleux/react-playground";
+
 import { Code } from "../../../src/components/Mdx/Code/Code";
-import { Table } from "../../../src/components/Mdx/Table/Table";
 
 type PropertiesProps = {
   properties: {
@@ -13,33 +14,35 @@ type PropertiesProps = {
 
 export function Properties({ properties }: PropertiesProps) {
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Property</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {properties.map((property) => (
-          <tr key={property.name}>
-            <td>
-              <Code>{property.name}</Code>
-            </td>
-            <td>
-              <Code>{property.type}</Code>
-            </td>
-            <td>{property.required ? "Yes" : "No"}</td>
-            <td>
-              <Code>{property.default}</Code>
-            </td>
-            <td>{property.description}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+    <Table
+      columns={[
+        {
+          key: "name",
+          label: "Property",
+          width: "20%",
+          render: (label) => <Code>{label}</Code>,
+        },
+        {
+          key: "type",
+          label: "Type",
+          width: "10%",
+          render: (label) => <Code>{label}</Code>,
+        },
+        {
+          key: "required",
+          label: "Required",
+          width: "10%",
+          render: (value) => (value ? "Yes" : "No"),
+        },
+        {
+          key: "default",
+          label: "Default",
+          width: "10%",
+          render: (label) => <Code>{label}</Code>,
+        },
+        { key: "description", label: "Description", width: "50%" },
+      ]}
+      data={properties}
+    />
   );
 }

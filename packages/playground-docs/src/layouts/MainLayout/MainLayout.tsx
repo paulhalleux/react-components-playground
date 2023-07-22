@@ -1,16 +1,9 @@
 import { Outlet } from "react-router";
 import { Link, NavLink } from "react-router-dom";
+import { GithubIcon, MoonIcon, SunIcon } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
-import {
-  Anchor,
-  Button,
-  Container,
-  GithubIcon,
-  Logo,
-  MoonIcon,
-  SunIcon,
-} from "../../components";
+import { Anchor, Button, Container, Logo } from "../../components";
 import { ThemeType, useTheme } from "../../contexts/theme-context";
 import { Component } from "../../types/component";
 

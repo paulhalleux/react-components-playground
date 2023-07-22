@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from "react";
+import { IconProps } from "@paulhalleux/react-playground";
 import clsx from "clsx";
-
-import { IconProps } from "../Icons/types";
 
 import styles from "./Alert.module.scss";
 

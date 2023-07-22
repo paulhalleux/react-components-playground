@@ -1,8 +1,8 @@
 import { JSX, PropsWithChildren } from "react";
+import { LinkIcon } from "@paulhalleux/react-playground";
 import kebab from "lodash/kebabCase";
 
 import { Button } from "../../Button";
-import { LinkIcon } from "../../Icons";
 
 import styles from "./Title.module.scss";
 

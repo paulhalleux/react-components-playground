@@ -1,6 +1,5 @@
 import React from "react";
-
-import { IconProps } from "../components/Icons/types";
+import { IconProps } from "@paulhalleux/react-playground";
 
 export type Component = {
   name: string;

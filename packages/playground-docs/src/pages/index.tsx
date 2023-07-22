@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
+import {
+  PointerIcon,
+  SelectionFrameIcon,
+  SelectionIcon,
+  TableIcon,
+} from "@paulhalleux/react-playground";
 
-import { PointerIcon, SelectionFrameIcon, SelectionIcon } from "../components";
 import { MainLayout } from "../layouts";
 import { PlaygroundLayout } from "../layouts/PlaygroundLayout";
 import { Component } from "../types/component";
@@ -26,6 +31,12 @@ const components: Component[] = [
     path: "/components/selector",
     description: "A component to select a value",
     icon: SelectionFrameIcon,
+  },
+  {
+    name: "Table",
+    path: "/components/table",
+    description: "A component to display a table",
+    icon: TableIcon,
   },
 ].sort((a, b) => a.name.localeCompare(b.name));
 

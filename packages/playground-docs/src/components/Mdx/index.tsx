@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
+import { InfoIcon } from "@paulhalleux/react-playground";
 
 import { Alert } from "../Alert";
-import { InfoIcon } from "../Icons";
 
 import { Code } from "./Code/Code";
 import { Paragraph } from "./Paragraph/Paragraph";

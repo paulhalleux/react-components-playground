@@ -1,3 +1,5 @@
+export { type IconProps } from "./types";
+
 export { GithubIcon } from "./GithubIcon";
 export { CleanIcon } from "./CleanIcon";
 export { ArrowRightIcon } from "./ArrowRightIcon";
@@ -9,3 +11,7 @@ export { SunIcon } from "./SunIcon";
 export { MoonIcon } from "./MoonIcon";
 export { LinkIcon } from "./LinkIcon";
 export { InfoIcon } from "./InfoIcon";
+export { ArrowDownIcon } from "./ArrowDownIcon";
+export { ArrowUpIcon } from "./ArrowUpIcon";
+export { TableIcon } from "./TableIcon";
+export { ArrowDownUpIcon } from "./ArrowDownUpIcon";
