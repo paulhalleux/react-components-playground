@@ -8,10 +8,18 @@ $headings: (
 );
 
 @mixin heading($level) {
+  position: relative;
   font-size: map-get($headings, $level);
   font-weight: 600;
   color: rgb(var(--color-text));
   scroll-margin-top: 80px;
+  width: max-content;
+
+  &:hover {
+    .link__button {
+      opacity: 1;
+    }
+  }
 }
 
 .heading {
@@ -19,5 +27,18 @@ $headings: (
     &__#{$level} {
       @include heading($level);
     }
+  }
+}
+
+.link__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -20px;
+
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
   }
 }
