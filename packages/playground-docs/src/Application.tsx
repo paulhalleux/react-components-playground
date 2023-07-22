@@ -1,7 +1,13 @@
 import { RouterProvider } from "react-router";
 
+import { useTheme } from "./contexts/theme-context";
 import { router } from "./pages";
 
 export function Application() {
-  return <RouterProvider router={router} />;
+  const { theme } = useTheme();
+  return (
+    <div className={theme}>
+      <RouterProvider router={router} />
+    </div>
+  );
 }

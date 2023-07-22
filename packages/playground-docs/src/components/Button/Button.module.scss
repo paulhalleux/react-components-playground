@@ -1,0 +1,28 @@
+.button {
+  height: 32px;
+  padding: 0 16px;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 4px;
+  background: rgb(var(--color-main));
+  color: rgb(var(--color-text));
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(var(--color-text-light));
+  }
+
+  &--ghost {
+    background: transparent;
+    border: none;
+  }
+
+  &--icon {
+    padding: 0;
+    width: 20px;
+    height: 20px;
+  }
+}

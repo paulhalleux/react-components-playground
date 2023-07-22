@@ -6,3 +6,5 @@ export * from "./Icons";
 export * from "./ContentTable";
 export * from "./Breadcrumb";
 export * from "./Alert";
+export * from "./Button";
+export * from "./Logo";

@@ -2,8 +2,16 @@ import { Outlet } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
 
-import Logo from "../../../assets/logo.png";
-import { Anchor, Container, GithubIcon } from "../../components";
+import {
+  Anchor,
+  Button,
+  Container,
+  GithubIcon,
+  Logo,
+  MoonIcon,
+  SunIcon,
+} from "../../components";
+import { ThemeType, useTheme } from "../../contexts/theme-context";
 import { Component } from "../../types/component";
 
 import { ComponentSearch } from "./ComponentSearch";
@@ -15,6 +23,16 @@ type MainLayoutProps = {
 };
 
 export function MainLayout({ components }: MainLayoutProps) {
+  const { theme, setTheme } = useTheme();
+
+  const onThemeChange = () => {
+    if (theme === ThemeType.Dark) {
+      setTheme(ThemeType.Light);
+    } else {
+      setTheme(ThemeType.Dark);
+    }
+  };
+
   return (
     <main className={styles.layout}>
       <Container
@@ -24,7 +42,7 @@ export function MainLayout({ components }: MainLayoutProps) {
       >
         <div className={styles.layout__header__nav}>
           <Link to="/">
-            <img src={Logo} alt="Logo" className={styles.logo} />
+            <Logo />
           </Link>
           <nav className={styles.layout__header__nav__links}>
             <NavLink
@@ -48,6 +66,13 @@ export function MainLayout({ components }: MainLayoutProps) {
           >
             <GithubIcon height={20} width={20} />
           </Anchor>
+          <Button onClick={onThemeChange} variant="ghost" icon>
+            {theme === ThemeType.Light ? (
+              <MoonIcon height={20} width={20} />
+            ) : (
+              <SunIcon height={20} width={20} />
+            )}
+          </Button>
         </div>
       </Container>
       <Container as="section" containerClassName={styles.layout__content}>

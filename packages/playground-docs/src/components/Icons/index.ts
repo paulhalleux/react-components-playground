@@ -5,3 +5,5 @@ export { ArrowLeft } from "./ArrowLeft";
 export { SelectionIcon } from "./SelectionIcon";
 export { PointerIcon } from "./PointerIcon";
 export { SelectionFrameIcon } from "./SelectionFrameIcon";
+export { SunIcon } from "./SunIcon";
+export { MoonIcon } from "./MoonIcon";
