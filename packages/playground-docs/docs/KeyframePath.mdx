@@ -65,8 +65,28 @@ const App = () => {
 
 ### Keyframe Type
 
-<Properties properties={[
-  { name: "position", type: "{ x: number, y: number }", description: "The position of the keyframe.", required: true },
-  { name: "time", type: "number", description: "The time of the keyframe.", required: true },
-  { name: "interpolation", type: "{ type: 'linear' | 'bezier', p1: Point, p2: Point }", description: "The bezier handles of the keyframe." },
-]} />
+```ts
+type Keyframe = {
+  position: { x: number; y: number };
+  time: number;
+  interpolation?: Interpolation;
+};
+```
+
+> Note that `interpolation` is optional and defaults to `linear`.
+
+### Interpolation Type
+
+```ts
+type LinearInterpolation = {
+  type: "linear";
+};
+
+type BezierInterpolation = {
+  type: "bezier";
+  p1: { x: number; y: number };
+  p2: { x: number; y: number };
+};
+
+type Interpolation = LinearInterpolation | BezierInterpolation;
+```

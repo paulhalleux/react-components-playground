@@ -1,5 +1,8 @@
 import React, { PropsWithChildren } from "react";
 
+import { Alert } from "../Alert";
+import { InfoIcon } from "../Icons";
+
 import { Code } from "./Code/Code";
 import { Paragraph } from "./Paragraph/Paragraph";
 import { Table } from "./Table/Table";
@@ -21,4 +24,5 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   ),
   table: Table,
   p: Paragraph,
+  blockquote: (props) => <Alert icon={InfoIcon} {...props} />,
 };

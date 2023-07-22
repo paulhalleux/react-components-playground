@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import { Component } from "../../types/component";
-import { ArrowLeft, ArrowRight } from "../Icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "../Icons";
 
 import styles from "./SwitchButton.module.scss";
 
@@ -21,14 +21,14 @@ export function SwitchButton({ position, component }: SwitchButtonProps) {
       })}
       to={component?.path ?? ""}
     >
-      {position === "left" && <ArrowLeft />}
+      {position === "left" && <ArrowLeftIcon />}
       <div className={styles.content}>
         <span className={styles.title}>
           {position === "left" ? "Previous" : "Next"}
         </span>
         <span className={styles.component}>{component?.name}</span>
       </div>
-      {position === "right" && <ArrowRight />}
+      {position === "right" && <ArrowRightIcon />}
     </Link>
   );
 }

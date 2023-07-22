@@ -49,7 +49,7 @@ function _createMdxContent(props) {
     name: "color",
     type: "[number, number, number]",
     description: "Color of the frame."
-  }]} /></>;
+  }]} />{"\n"}<_components.h3>{"Point Type"}</_components.h3>{"\n"}<_components.pre><_components.code className="language-ts">{"type Point = {\r\n  x: number;\r\n  y: number;\r\n};\n"}</_components.code></_components.pre>{"\n"}<_components.h3>{"Size Type"}</_components.h3>{"\n"}<_components.pre><_components.code className="language-ts">{"type Size = {\r\n  width: number;\r\n  height: number;\r\n};\n"}</_components.code></_components.pre></>;
 }
 function MDXContent(props = {}) {
   const {wrapper: MDXLayout} = props.components || ({});
