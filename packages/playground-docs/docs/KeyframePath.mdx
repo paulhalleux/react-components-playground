@@ -1,5 +1,4 @@
-import { Properties } from "../components";
-import { KeyframePathExample } from "../examples/KeyframePathExample";
+import { Properties, Example } from "../components";
 
 # KeyframePath
 
@@ -13,39 +12,7 @@ and change the interpolation type to `bezier` by double-clicking on the keyframe
 
 ## Example
 
-<KeyframePathExample />
-
-```tsx
-import { KeyframePath, Keyframe } from "@paulhalleux/react-playground";
-
-const App = () => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [keyframes, setKeyframes] = React.useState<Keyframe>([
-    { position: { x: 0, y: 0 }, time: 0 },
-    { position: { x: 100, y: 100 }, time: 1 },
-    { position: { x: 200, y: 0 }, time: 2 },
-  ]);
-
-  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe[]>) => {
-    const newKeyframes = [...keyframes];
-    newKeyframes[keyframe] = { ...newKeyframes[keyframe], ...partial };
-    setKeyframes(newKeyframes);
-  };
-
-  return (
-    <div ref={containerRef}>
-      <KeyframePath
-        parentRef={containerRef}
-        keyframes={keyframes}
-        onKeyframeChange={onKeyframeChange}
-        enableBezier={true}
-        enablePathMove={true}
-        pathColor={[255, 255, 255]}
-      />
-    </div>
-  );
-};
-```
+<Example name="KeyframePath" />
 
 ## API
 

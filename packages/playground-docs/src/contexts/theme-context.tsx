@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { createContext, PropsWithChildren, useContext } from "react";
 
 import { StorageKeys } from "../constants/storage-keys";
 import { useStoreState } from "../hooks/use-store-state";

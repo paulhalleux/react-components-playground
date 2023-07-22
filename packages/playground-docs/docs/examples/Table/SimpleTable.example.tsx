@@ -8,7 +8,7 @@ type Person = {
   age: number;
 };
 
-export function SimpleTableExample() {
+function SimpleTableExample() {
   return (
     <Display padding={24} align="center">
       <Table<Person>
@@ -42,3 +42,8 @@ function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
     return 0;
   }
 }
+
+export default {
+  name: "SimpleTable",
+  component: SimpleTableExample,
+};

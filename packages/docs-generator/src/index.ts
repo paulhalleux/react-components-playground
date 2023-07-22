@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-import chalk from "chalk";
-import { writeFile, mkdir, readFile, unlink } from "fs/promises";
+import { writeFile, mkdir, readFile } from "fs/promises";
 
 import { compile } from "@mdx-js/mdx";
 import { glob } from "glob";
-import { LogMessages } from "./utils/log-messages";
+import { getExamples } from "./utils/examples.js";
+import { LogMessages } from "./utils/log-messages.js";
 
 const generateDocs = async () => {
   console.log(LogMessages.Discovering());
@@ -24,6 +24,8 @@ const generateDocs = async () => {
       jsx: true,
       jsxs: true,
     });
+
+    await getExamples();
 
     await mkdir("./docs/_generated", { recursive: true });
     await writeFile(

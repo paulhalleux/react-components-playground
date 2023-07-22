@@ -4,7 +4,7 @@ import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 import { ThemeType, useTheme } from "../../src/contexts/theme-context";
 import { Display } from "../components";
 
-export function KeyframePathExample() {
+function KeyframePathExample() {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,3 +46,8 @@ export function KeyframePathExample() {
     </Display>
   );
 }
+
+export default {
+  name: "KeyframePath",
+  component: KeyframePathExample,
+};

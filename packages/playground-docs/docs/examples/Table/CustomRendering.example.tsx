@@ -8,7 +8,7 @@ type Person = {
   age: number;
 };
 
-export function CustomRenderingExample() {
+function CustomRenderingExample() {
   return (
     <Display padding={24} align="center">
       <Table<Person>
@@ -58,3 +58,8 @@ function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
     return 0;
   }
 }
+
+export default {
+  name: "CustomRendering",
+  component: CustomRenderingExample,
+};

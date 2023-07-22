@@ -52,28 +52,24 @@ export function ContentTable({ items = [] }: ContentTableProps) {
     };
   }, [items]);
 
-  return (
+  return items.length > 0 ? (
     <div className={styles.content__table}>
       <h1 className={styles.title}>Table of Contents</h1>
-      {items.length > 0 ? (
-        <ul className={styles.list}>
-          {items.map((item) => (
-            <li
-              key={item.id}
-              onClick={() => onItemClicked(item)}
-              className={clsx(
-                styles.list__item,
-                styles[`list__item--level-${item.level}`],
-                { [styles.active]: activeItem === item.id },
-              )}
-            >
-              <Link to={`#${item.id}`}>{item.name}</Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className={styles.empty}>Table of contents is empty</p>
-      )}
+      <ul className={styles.list}>
+        {items.map((item) => (
+          <li
+            key={`${item.id}-${item.level}`}
+            onClick={() => onItemClicked(item)}
+            className={clsx(
+              styles.list__item,
+              styles[`list__item--level-${item.level}`],
+              { [styles.active]: activeItem === item.id },
+            )}
+          >
+            <Link to={`#${item.id}`}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
-  );
+  ) : null;
 }

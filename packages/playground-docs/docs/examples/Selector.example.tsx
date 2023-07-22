@@ -8,7 +8,7 @@ import {
 import { useTheme } from "../../src/contexts/theme-context";
 import { Display } from "../components";
 
-export function SelectorExample() {
+function SelectorExample() {
   const { theme } = useTheme();
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -67,3 +67,8 @@ const SelectableItem = selectable<Selectable>(
     );
   },
 );
+
+export default {
+  name: "Selector",
+  component: SelectorExample,
+};

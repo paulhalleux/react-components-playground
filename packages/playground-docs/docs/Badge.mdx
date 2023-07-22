@@ -1,5 +1,4 @@
-import { Properties } from "../components";
-import { BadgeExample } from "../examples/BadgeExample";
+import { Properties, Example } from "../components";
 
 # Badge
 
@@ -9,57 +8,13 @@ import { BadgeExample } from "../examples/BadgeExample";
 
 ### Badge
 
-<BadgeExample />
+<Example name="Badge" />
 
 ### Pill
 
 Pill are badges that are pill-shaped.
 
-<BadgeExample pill />
-
-```tsx
-import { Badge } from "@paulhalleux/react-playground";
-
-const GroupStyle = {
-  display: "flex",
-  gap: 24,
-  alignItems: "center",
-};
-
-export function App() {
-  return (
-    <div>
-      <div style={GroupStyle}>
-        <Badge size="small">Default</Badge>
-        <Badge size="small" variant="primary">
-          Primary
-        </Badge>
-        <Badge size="small" variant="secondary">
-          Secondary
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="medium">Default</Badge>
-        <Badge size="medium" variant="primary">
-          Primary
-        </Badge>
-        <Badge size="medium" variant="secondary">
-          Secondary
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="large">Default</Badge>
-        <Badge size="large" variant="primary">
-          Primary
-        </Badge>
-        <Badge size="large" variant="secondary">
-          Secondary
-        </Badge>
-      </div>
-    </Display>
-  );
-}
-```
+<Example name="Badge" hideCode props={{ pill: true }} />
 
 ## API
 

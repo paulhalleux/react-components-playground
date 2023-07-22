@@ -1,5 +1,4 @@
-import { Properties } from "../components";
-import { FrameSelectorExample } from "../examples/FrameSelectorExample";
+import { Properties, Example } from "../components";
 
 # FrameSelector
 
@@ -13,41 +12,7 @@ It also accepts a `children` prop that will be rendered inside the frame. In the
 
 ## Example
 
-<FrameSelectorExample />
-
-```tsx
-import { useRef, useState } from "react";
-import {
-  CrossHead,
-  FrameSelector,
-  Point,
-  Size,
-} from "@paulhalleux/react-playground";
-
-export function FrameSelectorExample() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
-  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
-
-  return (
-    <div ref={containerRef}>
-      <FrameSelector
-        parentRef={containerRef}
-        color={[255, 255, 255]}
-        position={position}
-        onPositionChange={setPosition}
-        size={size}
-        onSizeChange={setSize}
-        maxSize={{ width: 75, height: 75 }}
-        minSize={{ width: 25, height: 25 }}
-      >
-        <CrossHead />
-      </FrameSelector>
-    </div>
-  );
-}
-
-```
+<Example name="FrameSelector" />
 
 ## API
 

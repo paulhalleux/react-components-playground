@@ -11,6 +11,7 @@ const componentRoutes = components.map((component, index) => ({
   path: component.path,
   element: (
     <ComponentPage
+      key={component.name}
       component={component}
       previous={components[index - 1]}
       next={components[index + 1]}

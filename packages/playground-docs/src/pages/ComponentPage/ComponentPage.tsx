@@ -10,6 +10,7 @@ import {
 } from "../../components";
 import { mdxComponents } from "../../components/Mdx";
 import { SwitchButton } from "../../components/SwitchButton";
+import { ExamplesProvider } from "../../contexts/examples-context";
 import { Component as ComponentType } from "../../types/component";
 
 import styles from "./ComponentPage.module.scss";
@@ -54,7 +55,9 @@ export function ComponentPage({ component, previous, next }: ComponentProps) {
         <Breadcrumb items={["Component", component.name]} />
         <section className={styles.mdx} ref={mdxContainer}>
           {MdxComponent ? (
-            <MdxComponent components={mdxComponents} />
+            <ExamplesProvider examples={MdxComponent.Examples}>
+              <MdxComponent components={mdxComponents} />
+            </ExamplesProvider>
           ) : (
             <Alert icon={CleanIcon}>
               No documentation found for <code>{component.name}</code>

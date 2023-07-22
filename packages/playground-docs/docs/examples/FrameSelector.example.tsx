@@ -9,7 +9,7 @@ import {
 import { ThemeType, useTheme } from "../../src/contexts/theme-context";
 import { Display } from "../components";
 
-export function FrameSelectorExample() {
+function FrameSelectorExample() {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,3 +56,8 @@ export function FrameSelectorExample() {
     </Display>
   );
 }
+
+export default {
+  name: "FrameSelector",
+  component: FrameSelectorExample,
+};

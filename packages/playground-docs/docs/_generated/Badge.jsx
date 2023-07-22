@@ -1,18 +1,18 @@
 import React from "react";
 
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties} from "../components";
-import {BadgeExample} from "../examples/BadgeExample";
+import {Properties, Example} from "../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",
     p: "p",
     code: "code",
     h2: "h2",
-    h3: "h3",
-    pre: "pre"
+    h3: "h3"
   }, props.components);
-  return <><_components.h1>{"Badge"}</_components.h1>{"\n"}<_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Examples"}</_components.h2>{"\n"}<_components.h3>{"Badge"}</_components.h3>{"\n"}<BadgeExample />{"\n"}<_components.h3>{"Pill"}</_components.h3>{"\n"}<_components.p>{"Pill are badges that are pill-shaped."}</_components.p>{"\n"}<BadgeExample pill />{"\n"}<_components.pre><_components.code className="language-tsx">{"import { Badge } from \"@paulhalleux/react-playground\";\r\n\r\nconst GroupStyle = {\r\n  display: \"flex\",\r\n  gap: 24,\r\n  alignItems: \"center\",\r\n};\r\n\r\nexport function App() {\r\n  return (\r\n    <div>\r\n      <div style={GroupStyle}>\r\n        <Badge size=\"small\">Default</Badge>\r\n        <Badge size=\"small\" variant=\"primary\">\r\n          Primary\r\n        </Badge>\r\n        <Badge size=\"small\" variant=\"secondary\">\r\n          Secondary\r\n        </Badge>\r\n      </div>\r\n      <div style={GroupStyle}>\r\n        <Badge size=\"medium\">Default</Badge>\r\n        <Badge size=\"medium\" variant=\"primary\">\r\n          Primary\r\n        </Badge>\r\n        <Badge size=\"medium\" variant=\"secondary\">\r\n          Secondary\r\n        </Badge>\r\n      </div>\r\n      <div style={GroupStyle}>\r\n        <Badge size=\"large\">Default</Badge>\r\n        <Badge size=\"large\" variant=\"primary\">\r\n          Primary\r\n        </Badge>\r\n        <Badge size=\"large\" variant=\"secondary\">\r\n          Secondary\r\n        </Badge>\r\n      </div>\r\n    </Display>\r\n  );\r\n}\n"}</_components.code></_components.pre>{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.h1>{"Badge"}</_components.h1>{"\n"}<_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Examples"}</_components.h2>{"\n"}<_components.h3>{"Badge"}</_components.h3>{"\n"}<Example name="Badge" />{"\n"}<_components.h3>{"Pill"}</_components.h3>{"\n"}<_components.p>{"Pill are badges that are pill-shaped."}</_components.p>{"\n"}<Example name="Badge" hideCode props={{
+    pill: true
+  }} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'React.ReactNode',
     description: 'The content of the badge.'
