@@ -21,6 +21,7 @@
   color: rgb(var(--color-text));
   position: sticky;
   top: 0;
+  z-index: 1;
 
   background: rgba(var(--color-main), .80);
   backdrop-filter: blur(5px);

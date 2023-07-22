@@ -1,0 +1,65 @@
+import { Properties } from "../components";
+import { FrameSelectorExample } from "../examples/FrameSelectorExample";
+
+# FrameSelector
+
+`FrameSelector` is a component to select a frame (size and position) in a container.
+It can be used to crop an image or to select a region of interest.
+
+The component has multiple handles that can be used to resize the frame.
+The frame can be moved by dragging the center of the frame.
+
+It also accepts a `children` prop that will be rendered inside the frame. In the example below, we use the `CrossHead` component to render a cross inside the frame.
+
+## Example
+
+<FrameSelectorExample />
+
+```tsx
+import { useRef, useState } from "react";
+import {
+  CrossHead,
+  FrameSelector,
+  Point,
+  Size,
+} from "@paulhalleux/react-playground";
+
+export function FrameSelectorExample() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
+  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
+
+  return (
+    <div ref={containerRef}>
+      <FrameSelector
+        parentRef={containerRef}
+        color={[255, 255, 255]}
+        position={position}
+        onPositionChange={setPosition}
+        size={size}
+        onSizeChange={setSize}
+        maxSize={{ width: 75, height: 75 }}
+        minSize={{ width: 25, height: 25 }}
+      >
+        <CrossHead />
+      </FrameSelector>
+    </div>
+  );
+}
+
+```
+
+## API
+
+### FrameSelector Props
+
+<Properties properties={[
+  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "Reference to the parent element of the frame selector.", required: true },
+  { name: "size", type: "Size", description: "Size of the frame.", required: true },
+  { name: "onSizeChange", type: "(size: Size) => void", description: "Callback when the size of the frame changes.", required: true },
+  { name: "position", type: "Point", description: "Position of the frame.", required: true },
+  { name: "onPositionChange", type: "(position: Point) => void", description: "Callback when the position of the frame changes.", required: true },
+  { name: "minSize", type: "Size", description: "Minimum size of the frame." },
+  { name: "maxSize", type: "Size", description: "Maximum size of the frame." },
+  { name: "color", type: "[number, number, number]", description: "Color of the frame." },
+]} />

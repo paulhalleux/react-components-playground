@@ -7,9 +7,9 @@ export function KeyframePathExample() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
   const [keyframes, setKeyframes] = useState<Keyframe[]>([
-    { position: { x: 0, y: 0 }, time: 1 },
-    { position: { x: 100, y: 100 }, time: 2 },
-    { position: { x: 200, y: 0 }, time: 3 },
+    { position: { x: 100, y: 50 }, time: 1 },
+    { position: { x: 200, y: 150 }, time: 2 },
+    { position: { x: 300, y: 75 }, time: 3 },
   ]);
 
   const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
@@ -19,8 +19,17 @@ export function KeyframePathExample() {
       return next;
     });
 
+  const onReset = () => {
+    setKeyframes([
+      { position: { x: 100, y: 50 }, time: 1 },
+      { position: { x: 200, y: 150 }, time: 2 },
+      { position: { x: 300, y: 75 }, time: 3 },
+    ]);
+    setSelectedKeyframes([]);
+  };
+
   return (
-    <Display ref={containerRef}>
+    <Display ref={containerRef} onReset={onReset}>
       <KeyframePath
         parentRef={containerRef}
         keyframes={keyframes}

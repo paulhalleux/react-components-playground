@@ -7,6 +7,8 @@ type ButtonProps = PropsWithChildren<{
   onClick?: () => void;
   variant?: "default" | "ghost";
   icon?: boolean;
+  className?: string;
+  size?: "small" | "medium" | "large";
 }>;
 
 export function Button({
@@ -14,14 +16,22 @@ export function Button({
   onClick,
   variant = "default",
   icon,
+  className,
+  size = "medium",
 }: ButtonProps) {
   return (
     <button
       onClick={onClick}
       type="button"
-      className={clsx(styles.button, styles[`button--${variant}`], {
-        [styles["button--icon"]]: icon,
-      })}
+      className={clsx(
+        styles.button,
+        styles[`button--${variant}`],
+        styles[`button--${size}`],
+        {
+          [styles["button--icon"]]: icon,
+        },
+        className,
+      )}
     >
       {children}
     </button>

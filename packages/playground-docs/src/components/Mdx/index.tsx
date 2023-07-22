@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
 import { Code } from "./Code/Code";
+import { Paragraph } from "./Paragraph/Paragraph";
 import { Table } from "./Table/Table";
 import { Title } from "./Title/Title";
 
@@ -18,5 +19,6 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   code: (props) => (
     <Code isBlock={props.className?.startsWith("language-")} {...props} />
   ),
-  table: (props) => <Table {...props} />,
+  table: Table,
+  p: Paragraph,
 };
