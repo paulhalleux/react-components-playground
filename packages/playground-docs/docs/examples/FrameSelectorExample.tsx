@@ -6,9 +6,12 @@ import {
   Size,
 } from "@paulhalleux/react-playground";
 
+import { ThemeType, useTheme } from "../../src/contexts/theme-context";
 import { Display } from "../components";
 
 export function FrameSelectorExample() {
+  const { theme } = useTheme();
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
   const [size, setSize] = useState<Size>({ width: 50, height: 50 });
@@ -40,7 +43,7 @@ export function FrameSelectorExample() {
     <Display ref={containerRef} onReset={onReset}>
       <FrameSelector
         parentRef={containerRef}
-        color={[255, 255, 255]}
+        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
         position={position}
         onPositionChange={setPosition}
         size={size}

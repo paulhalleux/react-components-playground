@@ -1,73 +1,53 @@
+:root {
+  --code-color-base: rgb(var(--color-text));
+  --code-color-secondary: rgb(var(--color-text-light));
+  --code-color-primary: #a5d6ff;
+}
+
+.light {
+  --code-color-base: #2b4659;
+  --code-color-secondary: #203d7e;
+  --code-color-primary: #235db9;
+}
+
+
 .hljs {
-  color: rgb(var(--color-text));
+  color: var(--code-color-base);
   background: rgba(var(--color-main-light), .2)
 }
 
 .hljs-doctag, .hljs-keyword, .hljs-meta .hljs-keyword, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-variable.language_ {
-  color: rgb(var(--color-text-light));
+  color: var(--code-color-secondary);
 }
 
 .hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_ {
-  color: rgb(var(--color-text));
+  color: var(--code-color-base);
   font-weight: 700
 }
 
 .hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number, .hljs-operator, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id, .hljs-variable {
-  color: #a5d6ff
+  color: var(--code-color-primary)
 }
 
 .hljs-meta .hljs-string, .hljs-regexp, .hljs-string {
-  color: #a5d6ff
+  color: var(--code-color-primary)
 }
 
 .hljs-built_in, .hljs-symbol {
-  color: #a5d6ff
+  color: var(--code-color-primary)
 }
 
 .hljs-code, .hljs-comment, .hljs-formula {
-  color: #8b949e
+  color: var(--code-color-secondary)
 }
 
 .hljs-tag {
-  color: rgb(var(--color-text-light));
+  color: var(--code-color-secondary);
   .hljs-name {
-    color: rgb(var(--color-text));
+    color: var(--code-color-base);
   }
 }
 
 .hljs-quote, .hljs-selector-pseudo, .hljs-selector-tag {
-  color: rgb(var(--color-text-light));
-}
-
-.hljs-subst {
-  color: #c9d1d9
-}
-
-.hljs-section {
-  color: #1f6feb;
-  font-weight: 700
-}
-
-.hljs-bullet {
-  color: #f2cc60
-}
-
-.hljs-emphasis {
-  color: #c9d1d9;
-  font-style: italic
-}
-
-.hljs-strong {
-  color: #c9d1d9;
-  font-weight: 700
-}
-
-.hljs-addition {
-  color: #aff5b4;
-  background-color: #033a16
-}
-
-.hljs-deletion {
-  color: #ffdcd7;
-  background-color: #67060c
+  color: var(--code-color-secondary);
 }

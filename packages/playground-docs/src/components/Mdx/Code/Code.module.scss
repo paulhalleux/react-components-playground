@@ -8,6 +8,10 @@
   color: rgb(var(--color-text-light));
 }
 
+:global(.light) .code__block {
+  color: #686d94;
+}
+
 .code__wrapper {
   position: relative;
 
@@ -29,9 +33,9 @@
   border: 1px solid rgb(var(--color-border));
   font-size: 14px;
   background: rgba(var(--color-main-light), .2);
-  color: rgb(var(--color-text-light));
   width: 100%;
   font-family: "Fira Code", monospace !important;
+  color: #ebebef;
 
   &:not(.code__block_expanded) {
     max-height: 200px;

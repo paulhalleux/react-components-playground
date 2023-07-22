@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 
+import { ThemeType, useTheme } from "../../src/contexts/theme-context";
 import { Display } from "../components";
 
 export function KeyframePathExample() {
+  const { theme } = useTheme();
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
   const [keyframes, setKeyframes] = useState<Keyframe[]>([
@@ -38,7 +41,7 @@ export function KeyframePathExample() {
         enableBezier
         selectedKeyframes={selectedKeyframes}
         onKeyframeSelect={setSelectedKeyframes}
-        pathColor={[255, 255, 255]}
+        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
       />
     </Display>
   );
