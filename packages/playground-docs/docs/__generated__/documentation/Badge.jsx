@@ -8,9 +8,7 @@ function _createMdxContent(props) {
     h2: "h2",
     h3: "h3"
   }, props.components);
-  return <><_components.h1>{"Badge"}</_components.h1>{"\n"}<_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Examples"}</_components.h2>{"\n"}<_components.h3>{"Badge"}</_components.h3>{"\n"}<Example name="Badge" />{"\n"}<_components.h3>{"Pill"}</_components.h3>{"\n"}<_components.p>{"Pill are badges that are pill-shaped."}</_components.p>{"\n"}<Example name="Badge" hideCode props={{
-    pill: true
-  }} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.h1>{"Badge"}</_components.h1>{"\n"}<_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Badge" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'React.ReactNode',
     description: 'The content of the badge.'

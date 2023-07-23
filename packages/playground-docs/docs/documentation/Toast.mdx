@@ -1,0 +1,52 @@
+import { Properties, Example } from "../components";
+
+# Toast
+
+`Toast` is a component that displays a message to the user. It is used to provide feedback about an operation or inform something important.
+
+## Example
+
+<Example name="Toast" />
+
+## API
+
+### ToasterProvider
+
+The `ToasterProvider` component is used to display the `Toast` components. It should be placed at the root of your application.
+
+```tsx
+import { ToasterProvider } from "@paulhalleux/react-playground";
+
+const App = () => (
+  <ToasterProvider>
+    <App />
+  </ToasterProvider>
+);
+```
+
+### useToasts
+
+The `useToasts` hook returns a `pushToast` function that can be used to push a new toast to the `ToasterProvider`.
+
+```tsx
+import { useToasts } from "@paulhalleux/react-playground";
+
+const { pushToast } = useToasts();
+
+// --> pushToast(toast: ToastType) => void
+```
+
+### Toast Type
+
+```tsx
+type Toast = {
+  icon?: React.FC<IconProps>;
+  title?: string;
+  content: string;
+  type?: "primary" | "success" | "warning" | "error" | "default";
+  duration?: number;
+  closable?: boolean;
+  actionLabel?: string;
+  onAction?: () => void;
+};
+```

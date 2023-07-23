@@ -19,3 +19,7 @@ export { BadgeIcon } from "./BadgeIcon";
 export { TabsIcon } from "./TabsIcon";
 export { CodeIcon } from "./CodeIcon";
 export { InputSearchIcon } from "./InputSearchIcon";
+export { CommandIcon } from "./CommandIcon";
+export { ModalIcon } from "./ModalIcon";
+export { ConfirmIcon } from "./ConfirmIcon";
+export { NotificationIcon } from "./NotificationIcon";

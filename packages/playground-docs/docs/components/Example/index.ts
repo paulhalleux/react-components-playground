@@ -8,7 +8,7 @@ export type ExampleMetadata = {
   controls?: Control[];
 };
 
-export type ExampleComponentProps<TControl, TExtend> = {
+export type ExampleComponentProps<TControl = {}, TExtend = {}> = {
   controls: TControl;
 } & TExtend;
 

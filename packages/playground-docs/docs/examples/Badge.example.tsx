@@ -8,32 +8,28 @@ const GroupStyle = {
   alignItems: "center",
 };
 
-type BadgeExampleProps = {
-  pill?: boolean;
-};
-
 type BadgeExampleControls = {
   variant: "default" | "primary" | "secondary" | "warning";
+  pill: "badge" | "pill";
 };
 
 function BadgeExample({
-  pill,
   controls,
-}: ExampleComponentProps<BadgeExampleControls, BadgeExampleProps>) {
+}: ExampleComponentProps<BadgeExampleControls>) {
   return (
     <Display padding={24} align="center" direction="column">
       <div style={GroupStyle}>
-        <Badge pill={pill} size="small" {...controls}>
+        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
           Badge content
         </Badge>
       </div>
       <div style={GroupStyle}>
-        <Badge pill={pill} size="medium" {...controls}>
+        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
           Badge content
         </Badge>
       </div>
       <div style={GroupStyle}>
-        <Badge pill={pill} size="large" {...controls}>
+        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
           Badge content
         </Badge>
       </div>
@@ -50,6 +46,12 @@ export default {
       type: "select",
       property: "variant",
       options: ["default", "primary", "secondary", "warning"],
+    },
+    {
+      label: "Type",
+      type: "select",
+      property: "pill",
+      options: ["badge", "pill"],
     },
   ],
 };

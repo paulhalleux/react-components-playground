@@ -1,3 +1,4 @@
+import { default as Toast } from "../examples/Toast.example";
 import { default as Selector } from "../examples/Selector.example";
 import { default as KeyframePath } from "../examples/KeyframePath.example";
 import { default as FrameSelector } from "../examples/FrameSelector.example";
@@ -10,6 +11,7 @@ import { default as TableSimpleTable } from "../examples/Table/SimpleTable.examp
 import { default as TableCustomRendering } from "../examples/Table/CustomRendering.example";
 
 export const Examples = {
+	Toast,
 	Selector,
 	KeyframePath,
 	FrameSelector,
@@ -23,6 +25,42 @@ export const Examples = {
 };
 
 export const ExamplesSources = {
+	Toast: `import { Button, useToaster } from "@paulhalleux/react-playground";
+
+import { Display, ExampleComponentProps } from "../components";
+
+type BadgeExampleControls = {
+  variant: "default" | "primary" | "secondary" | "warning";
+  pill: "badge" | "pill";
+};
+
+function ToastExample({}: ExampleComponentProps<BadgeExampleControls>) {
+  const { pushToast } = useToaster();
+
+  const onClick = () => {
+    pushToast({
+      title: "Toast Title",
+      content: "Toast Content",
+      type: "primary",
+      duration: 5000,
+      closable: true,
+      actionLabel: "Action",
+      onAction: () => alert("Action Clicked"),
+    });
+  };
+
+  return (
+    <Display padding={24} align="center" direction="column">
+      <Button onClick={onClick}>Send Toast</Button>
+    </Display>
+  );
+}
+
+export default {
+  name: "Toast",
+  component: ToastExample,
+};
+`,
 	Selector: `import { useRef, useState } from "react";
 import {
   Selectable,
@@ -266,32 +304,28 @@ const GroupStyle = {
   alignItems: "center",
 };
 
-type BadgeExampleProps = {
-  pill?: boolean;
-};
-
 type BadgeExampleControls = {
   variant: "default" | "primary" | "secondary" | "warning";
+  pill: "badge" | "pill";
 };
 
 function BadgeExample({
-  pill,
   controls,
-}: ExampleComponentProps<BadgeExampleControls, BadgeExampleProps>) {
+}: ExampleComponentProps<BadgeExampleControls>) {
   return (
     <Display padding={24} align="center" direction="column">
       <div style={GroupStyle}>
-        <Badge pill={pill} size="small" {...controls}>
+        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
           Badge content
         </Badge>
       </div>
       <div style={GroupStyle}>
-        <Badge pill={pill} size="medium" {...controls}>
+        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
           Badge content
         </Badge>
       </div>
       <div style={GroupStyle}>
-        <Badge pill={pill} size="large" {...controls}>
+        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
           Badge content
         </Badge>
       </div>
@@ -308,6 +342,12 @@ export default {
       type: "select",
       property: "variant",
       options: ["default", "primary", "secondary", "warning"],
+    },
+    {
+      label: "Type",
+      type: "select",
+      property: "pill",
+      options: ["badge", "pill"],
     },
   ],
 };

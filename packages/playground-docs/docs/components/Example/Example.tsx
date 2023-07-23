@@ -1,6 +1,8 @@
 import React from "react";
 import { CodeBlock, Tabs } from "@paulhalleux/react-playground";
 
+import { Alert } from "../../../src/components";
+import { Code } from "../../../src/components/Mdx/Code/Code";
 import { Examples, ExamplesSources } from "../../__generated__";
 
 import { SelectControl } from "./Controls/SelectControl";
@@ -27,6 +29,14 @@ export function Example({ name, hideCode, props }: ExampleProps) {
   const [controls, setControls] = React.useState<Control[] | undefined>(
     controlsList,
   );
+
+  if (!ExampleComponent) {
+    return (
+      <Alert>
+        Example <Code>{name}</Code> not found
+      </Alert>
+    );
+  }
 
   const onControlChange = (control: Control, value: any) => {
     setControls(
@@ -108,8 +118,8 @@ function getExampleInfo(name: string) {
     ExamplesSources[name.replace("/", "") as keyof typeof ExamplesSources];
 
   return {
-    ExampleComponent: example.component,
-    controls: example.controls,
+    ExampleComponent: example?.component,
+    controls: example?.controls,
     sources,
   };
 }

@@ -32,15 +32,17 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     defaultValue.theme,
   );
 
+  const theme = themeType === ThemeType.System ? getSystemTheme() : themeType;
+
   return (
     <ThemeContext.Provider
       value={{
         themeType: ThemeType.System,
-        theme: themeType === ThemeType.System ? getSystemTheme() : themeType,
+        theme: theme,
         setTheme: setThemeType,
       }}
     >
-      {children}
+      <div className={theme}>{children}</div>
     </ThemeContext.Provider>
   );
 }
