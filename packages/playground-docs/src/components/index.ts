@@ -5,5 +5,5 @@ export * from "./KeyboardShortcut";
 export * from "./ContentTable";
 export * from "./Breadcrumb";
 export * from "./Alert";
-export * from "./Button";
+export * from "../../../playground/src/components/Button";
 export * from "./Logo";

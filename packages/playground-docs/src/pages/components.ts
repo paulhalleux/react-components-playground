@@ -58,6 +58,6 @@ export const components: Component[] = [
     path: "/components/code-block",
     description: "A component to display a code block",
     icon: CodeIcon,
-    status: "todo",
+    status: "done",
   },
 ].sort((a, b) => a.name.localeCompare(b.name));

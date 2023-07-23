@@ -3,6 +3,7 @@ import Table from "./documentation/Table";
 import Selector from "./documentation/Selector";
 import KeyframePath from "./documentation/KeyframePath";
 import FrameSelector from "./documentation/FrameSelector";
+import CodeBlock from "./documentation/CodeBlock";
 import Badge from "./documentation/Badge";
 export const Components = {
   Tabs,
@@ -10,6 +11,7 @@ export const Components = {
   Selector,
   KeyframePath,
   FrameSelector,
+  CodeBlock,
   Badge,
 }
 export * from "./examples";

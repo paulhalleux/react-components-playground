@@ -1,6 +1,7 @@
 import { default as Selector } from "../examples/Selector.example";
 import { default as KeyframePath } from "../examples/KeyframePath.example";
 import { default as FrameSelector } from "../examples/FrameSelector.example";
+import { default as CodeBlock } from "../examples/CodeBlock.example";
 import { default as Badge } from "../examples/Badge.example";
 import { default as TabsSpaced } from "../examples/Tabs/Spaced.example";
 import { default as TabsHorizontal } from "../examples/Tabs/Horizontal.example";
@@ -11,12 +12,13 @@ import { default as TableCustomRendering } from "../examples/Table/CustomRenderi
 export const Examples = {
 	KeyframePath,
 	Selector,
-	FrameSelector,
-	Badge,
+	CodeBlock,
 	TabsSpaced,
-	TabsCompact,
-	TableSimpleTable,
 	TabsHorizontal,
+	FrameSelector,
+	TabsCompact,
+	Badge,
+	TableSimpleTable,
 	TableCustomRendering,
 };
 
@@ -150,6 +152,118 @@ export default {
   component: SelectorExample,
 };
 `,
+	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
+
+import { Display } from "../components";
+
+function CodeBlockExample() {
+  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
+  
+import { Display } from "../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1
+};
+
+function CodeBlockExample() {
+  return (
+    <Display padding={24}>
+      <CodeBlock>
+        {ContentStyle}
+      </CodeBlock>
+    </Display>
+  );
+}\`;
+
+  return (
+    <Display padding={24}>
+      <CodeBlock language="tsx">{code}</CodeBlock>
+    </Display>
+  );
+}
+
+export default {
+  name: "CodeBlock",
+  component: CodeBlockExample,
+};
+`,
+	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { Display } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1,
+};
+
+function SpacedExample() {
+  return (
+    <Display padding={24}>
+      <Tabs orientation="vertical" layout="spaced">
+        <Tabs.Tab id="tab1" label="Tab 1">
+          <p style={ContentStyle}>Tab 1 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab2" label="Tab 2">
+          <p style={ContentStyle}>Tab 2 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab3" label="Tab 3">
+          <p style={ContentStyle}>Tab 3 content</p>
+        </Tabs.Tab>
+      </Tabs>
+    </Display>
+  );
+}
+
+export default {
+  name: "Spaced",
+  component: SpacedExample,
+};
+`,
+	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { Display } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1,
+};
+
+function HorizontalExample() {
+  return (
+    <Display padding={24}>
+      <Tabs orientation="horizontal">
+        <Tabs.Tab id="tab1" label="Tab 1">
+          <p style={ContentStyle}>Tab 1 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab2" label="Tab 2">
+          <p style={ContentStyle}>Tab 2 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab3" label="Tab 3">
+          <p style={ContentStyle}>Tab 3 content</p>
+        </Tabs.Tab>
+      </Tabs>
+    </Display>
+  );
+}
+
+export default {
+  name: "Horizontal",
+  component: HorizontalExample,
+};
+`,
 	FrameSelector: `import { useEffect, useRef, useState } from "react";
 import {
   CrossHead,
@@ -214,6 +328,42 @@ export default {
   component: FrameSelectorExample,
 };
 `,
+	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { Display } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: "0 4px 4px 4px",
+  height: "100%",
+  flexGrow: 1,
+};
+
+function CompactExample() {
+  return (
+    <Display padding={24}>
+      <Tabs orientation="vertical" layout="compact">
+        <Tabs.Tab id="tab1" label="Tab 1">
+          <p style={ContentStyle}>Tab 1 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab2" label="Tab 2">
+          <p style={ContentStyle}>Tab 2 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab3" label="Tab 3">
+          <p style={ContentStyle}>Tab 3 content</p>
+        </Tabs.Tab>
+      </Tabs>
+    </Display>
+  );
+}
+
+export default {
+  name: "Compact",
+  component: CompactExample,
+};
+`,
 	Badge: `import { Badge } from "@paulhalleux/react-playground";
 
 import { Display } from "../components";
@@ -269,78 +419,6 @@ export default {
   component: BadgeExample,
 };
 `,
-	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function SpacedExample() {
-  return (
-    <Display padding={24}>
-      <Tabs orientation="vertical" layout="spaced">
-        <Tabs.Tab id="tab1" label="Tab 1">
-          <p style={ContentStyle}>Tab 1 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" label="Tab 2">
-          <p style={ContentStyle}>Tab 2 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab3" label="Tab 3">
-          <p style={ContentStyle}>Tab 3 content</p>
-        </Tabs.Tab>
-      </Tabs>
-    </Display>
-  );
-}
-
-export default {
-  name: "Spaced",
-  component: SpacedExample,
-};
-`,
-	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: "0 4px 4px 4px",
-  height: "100%",
-  flexGrow: 1,
-};
-
-function CompactExample() {
-  return (
-    <Display padding={24}>
-      <Tabs orientation="vertical" layout="compact">
-        <Tabs.Tab id="tab1" label="Tab 1">
-          <p style={ContentStyle}>Tab 1 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" label="Tab 2">
-          <p style={ContentStyle}>Tab 2 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab3" label="Tab 3">
-          <p style={ContentStyle}>Tab 3 content</p>
-        </Tabs.Tab>
-      </Tabs>
-    </Display>
-  );
-}
-
-export default {
-  name: "Compact",
-  component: CompactExample,
-};
-`,
 	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
 
 import { Display } from "../../components";
@@ -389,42 +467,6 @@ function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
 export default {
   name: "SimpleTable",
   component: SimpleTableExample,
-};
-`,
-	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function HorizontalExample() {
-  return (
-    <Display padding={24}>
-      <Tabs orientation="horizontal">
-        <Tabs.Tab id="tab1" label="Tab 1">
-          <p style={ContentStyle}>Tab 1 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" label="Tab 2">
-          <p style={ContentStyle}>Tab 2 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab3" label="Tab 3">
-          <p style={ContentStyle}>Tab 3 content</p>
-        </Tabs.Tab>
-      </Tabs>
-    </Display>
-  );
-}
-
-export default {
-  name: "Horizontal",
-  component: HorizontalExample,
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";

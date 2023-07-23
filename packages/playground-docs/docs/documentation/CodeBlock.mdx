@@ -1,0 +1,22 @@
+import { Properties, Example } from "../components";
+
+# CodeBlock
+
+`CodeBlock` is a component that displays a block of code.
+If the height of the code block exceeds the value of `collapseAt` property, it will be collapsed and a button will be displayed to expand it.
+
+## Example
+
+<Example name="CodeBlock" />
+
+## API
+
+### CodeBlock Props
+
+<Properties properties={[
+  { name: 'children', type: 'ReactNode', description: 'The code to be displayed.', required: true },
+  { name: "className", type: "string", description: "The class name of the component." },
+  { name: "defaultExpanded", type: "boolean", description: "If true, the code block will be expanded by default." },
+  { name: "language", type: "string", description: "The language of the code block." },
+  { name: "collapseAt", type: "number", description: "The height at which the code block will be collapsed automatically.", default: '300px' },
+]} />

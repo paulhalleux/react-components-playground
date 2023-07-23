@@ -1,6 +1,5 @@
-import { Tabs } from "@paulhalleux/react-playground";
+import { CodeBlock, Tabs } from "@paulhalleux/react-playground";
 
-import { Code } from "../../../src/components/Mdx/Code/Code";
 import { Examples, ExamplesSources } from "../../__generated__";
 
 type ExampleProps = {
@@ -23,9 +22,7 @@ export function Example({ name, hideCode, props }: ExampleProps) {
       </Tabs.Tab>
       <Tabs.Tab label="Code" id="code">
         <pre>
-          <Code isBlock defaultExpanded>
-            {sources}
-          </Code>
+          <CodeBlock defaultExpanded>{sources}</CodeBlock>
         </pre>
       </Tabs.Tab>
     </Tabs>

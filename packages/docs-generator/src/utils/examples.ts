@@ -22,7 +22,7 @@ export async function getExamples() {
         "utf-8",
       );
 
-      sources.push(`${name}: \`${source}\`,`);
+      sources.push(`${name}: \`${source.replace(/`/g, "\\`")}\`,`);
       exports.push(name);
 
       return `import { default as ${name} } from "../examples/${filename}";`;
