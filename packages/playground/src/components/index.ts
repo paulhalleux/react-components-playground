@@ -4,3 +4,4 @@ export * from "./Selector";
 export * from "./Table";
 export * from "./Icons";
 export * from "./Badge";
+export * from "./Tabs";

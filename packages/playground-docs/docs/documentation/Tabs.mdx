@@ -1,0 +1,38 @@
+import { Properties, Example } from "../components";
+
+# Tabs
+
+`Tabs` are used to display multiple panels of content at once. They are commonly used for navigation.
+
+## Examples
+
+### Compact Layout Tabs
+
+<Example name="Tabs/Compact" />
+
+### Spaced Layout Tabs
+
+<Example name="Tabs/Spaced" />
+
+### Horizontal Orientation
+
+<Example name="Tabs/Horizontal" />
+
+## API
+
+### Tabs Props
+
+<Properties properties={[
+  { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },
+  { name: 'defaultActiveTab', type: 'string', description: 'The default active tab. This is only used if `activeTab` is not set.' },
+  { name: 'orientation', type: '"horizontal" | "vertical"', description: 'The orientation of the component. Can be `horizontal` or `vertical`.', default: '"horizontal"' },
+  { name: 'layout', type: '"compact" | "spaced"', description: 'The layout of the component. Can be `compact` or `spaced`.', default: '"spaced"' },
+]} />
+
+### Tab Props
+
+<Properties properties={[
+  { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },
+  { name: 'label', type: 'string', description: 'The label of the tab.', required: true },
+  { name: 'id', type: 'string', description: 'The id of the tab. This is used to identify the tab.', required: true },
+]} />

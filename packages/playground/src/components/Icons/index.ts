@@ -16,3 +16,5 @@ export { ArrowUpIcon } from "./ArrowUpIcon";
 export { TableIcon } from "./TableIcon";
 export { ArrowDownUpIcon } from "./ArrowDownUpIcon";
 export { BadgeIcon } from "./BadgeIcon";
+export { TabsIcon } from "./TabsIcon";
+export { CodeIcon } from "./CodeIcon";

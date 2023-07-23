@@ -1,6 +1,6 @@
 import { Badge } from "@paulhalleux/react-playground";
 
-import { Display, ExampleProps } from "../components";
+import { Display } from "../components";
 
 const GroupStyle = {
   display: "flex",
@@ -8,7 +8,7 @@ const GroupStyle = {
   alignItems: "center",
 };
 
-function BadgeExample({ pill }: ExampleProps & { pill?: boolean }) {
+function BadgeExample({ pill }: { pill?: boolean }) {
   return (
     <Display padding={24} align="center" direction="column">
       <div style={GroupStyle}>

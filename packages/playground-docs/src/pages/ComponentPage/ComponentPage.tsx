@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { CleanIcon } from "@paulhalleux/react-playground";
 
-import { Components } from "../../../docs/_generated";
+import { Components } from "../../../docs/__generated__";
 import {
   Alert,
   Breadcrumb,

@@ -1,7 +1,5 @@
-import React from "react";
-
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties, Example} from "../components";
+import {Properties, Example} from "../../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",

@@ -1,9 +1,10 @@
 import * as fs from "fs/promises";
 import { glob } from "glob";
+import { Config } from "./config.js";
 
 export async function getExamples() {
-  const files = await glob("**/*.example.{js,jsx,ts,tsx}", {
-    cwd: "docs/examples",
+  const files = await glob(Config.ExamplesGlob, {
+    cwd: Config.ExamplesGlobCwd,
   });
 
   const exports = [];
@@ -16,7 +17,11 @@ export async function getExamples() {
         .replace(/[\\\/]/, "");
       const filename = file.replace(/[\\]/, "/").replace(/\.[jt]sx?$/, "");
 
-      const source = await fs.readFile(`docs/examples/${file}`, "utf-8");
+      const source = await fs.readFile(
+        `${Config.ExamplesPath}/${file}`,
+        "utf-8",
+      );
+
       sources.push(`${name}: \`${source}\`,`);
       exports.push(name);
 
@@ -28,12 +33,12 @@ export async function getExamples() {
     .map((name) => `\t${name},`)
     .join("\n")}\n};`;
 
-  const exportedSources = `export const Sources = {\n${sources
+  const exportedSources = `export const ExamplesSources = {\n${sources
     .map((source) => `\t${source}`)
     .join("\n")}\n};`;
 
   await fs.writeFile(
-    "docs/_generated/_examples.ts",
+    `${Config.OutputPath}/examples.ts`,
     `${examples.join("\n")}\n\n${exportedObject}\n\n${exportedSources}`,
   );
 }

@@ -1,9 +1,11 @@
 import {
   BadgeIcon,
+  CodeIcon,
   PointerIcon,
   SelectionFrameIcon,
   SelectionIcon,
   TableIcon,
+  TabsIcon,
 } from "@paulhalleux/react-playground";
 
 import { Component } from "../types/component";
@@ -35,7 +37,7 @@ export const components: Component[] = [
     path: "/components/table",
     description: "A component to display a table",
     icon: TableIcon,
-    status: "wip",
+    status: "done",
   },
   {
     name: "Badge",
@@ -43,5 +45,19 @@ export const components: Component[] = [
     description: "A component to display a badge",
     icon: BadgeIcon,
     status: "done",
+  },
+  {
+    name: "Tabs",
+    path: "/components/tabs",
+    description: "A component to display tabs",
+    icon: TabsIcon,
+    status: "done",
+  },
+  {
+    name: "CodeBlock",
+    path: "/components/code-block",
+    description: "A component to display a code block",
+    icon: CodeIcon,
+    status: "todo",
   },
 ].sort((a, b) => a.name.localeCompare(b.name));

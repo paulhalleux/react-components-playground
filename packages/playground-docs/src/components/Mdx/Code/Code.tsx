@@ -10,19 +10,25 @@ import styles from "./Code.module.scss";
 type CodeProps = PropsWithChildren<{
   isBlock?: boolean;
   className?: string;
+  defaultExpanded?: boolean;
 }>;
 
-export function Code({ isBlock, children, className }: CodeProps) {
+export function Code({
+  isBlock,
+  children,
+  className,
+  defaultExpanded,
+}: CodeProps) {
   const blockRef = useRef<HTMLDivElement>(null);
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   useEffect(() => {
     hljs.highlightAll();
   }, []);
 
   useEffect(() => {
-    if (blockRef.current && blockRef.current.offsetHeight > 400) {
-      setExpanded(false);
+    if (blockRef.current && blockRef.current.offsetHeight < 400) {
+      setExpanded(true);
     }
   }, [blockRef]);
 
