@@ -5,13 +5,17 @@ import { Alert } from "../../../src/components";
 import { Code } from "../../../src/components/Mdx/Code/Code";
 import { Examples, ExamplesSources } from "../../__generated__";
 
+import { BooleanControl } from "./Controls/BooleanControl";
 import { SelectControl } from "./Controls/SelectControl";
+import { StringControl } from "./Controls/StringControl";
 import { Control, ExampleMetadata } from "./index";
 
 import styles from "./Example.module.scss";
 
 const ControlMap = {
   select: SelectControl,
+  string: StringControl,
+  boolean: BooleanControl,
 };
 
 type ExampleProps = {
@@ -78,10 +82,13 @@ export function Example({ name, hideCode, props }: ExampleProps) {
               >
                 {control.label}
               </label>
-              {ControlMap[control.type as keyof typeof ControlMap]({
-                control: control as any,
-                onChange: (value) => onControlChange(control, value),
-              })}
+              <div className={styles.control}>
+                {ControlMap[control.type as keyof typeof ControlMap]({
+                  // @ts-ignore
+                  control: control,
+                  onChange: (value) => onControlChange(control, value),
+                })}
+              </div>
             </div>
           ))}
         </div>

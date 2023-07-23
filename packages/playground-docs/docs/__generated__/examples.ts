@@ -17,35 +17,37 @@ export const Examples = {
 	FrameSelector,
 	CodeBlock,
 	Badge,
-	TabsSpaced,
 	TabsHorizontal,
-	TabsCompact,
+	TabsSpaced,
 	TableSimpleTable,
+	TabsCompact,
 	TableCustomRendering,
 };
 
 export const ExamplesSources = {
 	Toast: `import { Button, useToaster } from "@paulhalleux/react-playground";
 
-import { Display, ExampleComponentProps } from "../components";
+import { Display, ExampleComponentProps, ExampleMetadata } from "../components";
 
-type BadgeExampleControls = {
-  variant: "default" | "primary" | "secondary" | "warning";
-  pill: "badge" | "pill";
+type ToastExampleControls = {
+  title: string;
+  content: string;
+  closable: boolean;
+  action: boolean;
 };
 
-function ToastExample({}: ExampleComponentProps<BadgeExampleControls>) {
+function ToastExample({
+  controls,
+}: ExampleComponentProps<ToastExampleControls>) {
   const { pushToast } = useToaster();
 
   const onClick = () => {
     pushToast({
-      title: "Toast Title",
-      content: "Toast Content",
       type: "primary",
       duration: 5000,
-      closable: true,
-      actionLabel: "Action",
+      actionLabel: controls.action ? "Action" : undefined,
       onAction: () => alert("Action Clicked"),
+      ...controls,
     });
   };
 
@@ -59,7 +61,28 @@ function ToastExample({}: ExampleComponentProps<BadgeExampleControls>) {
 export default {
   name: "Toast",
   component: ToastExample,
-};
+  controls: [
+    { type: "string", label: "Title", property: "title", value: "Toast Title" },
+    {
+      type: "string",
+      label: "Content",
+      property: "content",
+      value: "Toast Content",
+    },
+    {
+      type: "boolean",
+      label: "Closable",
+      property: "closable",
+      value: true,
+    },
+    {
+      type: "boolean",
+      label: "Action",
+      property: "action",
+      value: true,
+    },
+  ],
+} as ExampleMetadata;
 `,
 	Selector: `import { useRef, useState } from "react";
 import {
@@ -352,42 +375,6 @@ export default {
   ],
 };
 `,
-	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function SpacedExample() {
-  return (
-    <Display padding={24}>
-      <Tabs orientation="vertical" layout="spaced">
-        <Tabs.Tab id="tab1" label="Tab 1">
-          <p style={ContentStyle}>Tab 1 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" label="Tab 2">
-          <p style={ContentStyle}>Tab 2 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab3" label="Tab 3">
-          <p style={ContentStyle}>Tab 3 content</p>
-        </Tabs.Tab>
-      </Tabs>
-    </Display>
-  );
-}
-
-export default {
-  name: "Spaced",
-  component: SpacedExample,
-};
-`,
 	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { Display } from "../../components";
@@ -424,7 +411,7 @@ export default {
   component: HorizontalExample,
 };
 `,
-	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
+	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { Display } from "../../components";
 
@@ -432,15 +419,15 @@ const ContentStyle = {
   padding: 12,
   backgroundColor: "rgb(var(--color-main-light), .2)",
   border: "1px solid rgb(var(--color-border))",
-  borderRadius: "0 4px 4px 4px",
+  borderRadius: 4,
   height: "100%",
   flexGrow: 1,
 };
 
-function CompactExample() {
+function SpacedExample() {
   return (
     <Display padding={24}>
-      <Tabs orientation="vertical" layout="compact">
+      <Tabs orientation="vertical" layout="spaced">
         <Tabs.Tab id="tab1" label="Tab 1">
           <p style={ContentStyle}>Tab 1 content</p>
         </Tabs.Tab>
@@ -456,8 +443,8 @@ function CompactExample() {
 }
 
 export default {
-  name: "Compact",
-  component: CompactExample,
+  name: "Spaced",
+  component: SpacedExample,
 };
 `,
 	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
@@ -508,6 +495,42 @@ function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
 export default {
   name: "SimpleTable",
   component: SimpleTableExample,
+};
+`,
+	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { Display } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: "0 4px 4px 4px",
+  height: "100%",
+  flexGrow: 1,
+};
+
+function CompactExample() {
+  return (
+    <Display padding={24}>
+      <Tabs orientation="vertical" layout="compact">
+        <Tabs.Tab id="tab1" label="Tab 1">
+          <p style={ContentStyle}>Tab 1 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab2" label="Tab 2">
+          <p style={ContentStyle}>Tab 2 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab3" label="Tab 3">
+          <p style={ContentStyle}>Tab 3 content</p>
+        </Tabs.Tab>
+      </Tabs>
+    </Display>
+  );
+}
+
+export default {
+  name: "Compact",
+  component: CompactExample,
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";

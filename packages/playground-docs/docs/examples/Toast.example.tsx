@@ -1,24 +1,26 @@
 import { Button, useToaster } from "@paulhalleux/react-playground";
 
-import { Display, ExampleComponentProps } from "../components";
+import { Display, ExampleComponentProps, ExampleMetadata } from "../components";
 
-type BadgeExampleControls = {
-  variant: "default" | "primary" | "secondary" | "warning";
-  pill: "badge" | "pill";
+type ToastExampleControls = {
+  title: string;
+  content: string;
+  closable: boolean;
+  action: boolean;
 };
 
-function ToastExample({}: ExampleComponentProps<BadgeExampleControls>) {
+function ToastExample({
+  controls,
+}: ExampleComponentProps<ToastExampleControls>) {
   const { pushToast } = useToaster();
 
   const onClick = () => {
     pushToast({
-      title: "Toast Title",
-      content: "Toast Content",
       type: "primary",
       duration: 5000,
-      closable: true,
-      actionLabel: "Action",
+      actionLabel: controls.action ? "Action" : undefined,
       onAction: () => alert("Action Clicked"),
+      ...controls,
     });
   };
 
@@ -32,4 +34,25 @@ function ToastExample({}: ExampleComponentProps<BadgeExampleControls>) {
 export default {
   name: "Toast",
   component: ToastExample,
-};
+  controls: [
+    { type: "string", label: "Title", property: "title", value: "Toast Title" },
+    {
+      type: "string",
+      label: "Content",
+      property: "content",
+      value: "Toast Content",
+    },
+    {
+      type: "boolean",
+      label: "Closable",
+      property: "closable",
+      value: true,
+    },
+    {
+      type: "boolean",
+      label: "Action",
+      property: "action",
+      value: true,
+    },
+  ],
+} as ExampleMetadata;

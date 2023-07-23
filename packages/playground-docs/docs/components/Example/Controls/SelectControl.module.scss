@@ -6,6 +6,12 @@
   width: 100%;
   padding: 0 8px;
   color: rgb(var(--color-text));
+  caret-color: rgb(var(--color-text));
+
+  &:focus {
+    outline: none;
+    border-color: rgb(var(--color-main-primary));
+  }
 
   &::-ms-expand {
     display: none;
