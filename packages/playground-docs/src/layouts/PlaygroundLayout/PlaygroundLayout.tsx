@@ -39,7 +39,14 @@ export function PlaygroundLayout({ components }: PlaygroundLayoutProps) {
                   >
                     {name}
                   </NavLink>
-                  {status !== "done" && <Badge size="small">{status}</Badge>}
+                  {status !== "done" && (
+                    <Badge
+                      size="small"
+                      variant={status === "todo" ? "warning" : "default"}
+                    >
+                      {status}
+                    </Badge>
+                  )}
                 </li>
               ))}
             </ul>

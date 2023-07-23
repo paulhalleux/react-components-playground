@@ -1,4 +1,5 @@
 import React, { ForwardedRef, forwardRef, PropsWithChildren } from "react";
+import clsx from "clsx";
 
 import { Button } from "../../../src/components";
 
@@ -9,10 +10,11 @@ type DisplayProps = PropsWithChildren<{
   padding?: number;
   align?: "flex-start" | "center" | "flex-end";
   direction?: "row" | "column";
+  grow?: boolean;
 }>;
 
 function Display(
-  { children, onReset, padding, align, direction }: DisplayProps,
+  { children, onReset, padding, align, direction, grow }: DisplayProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -23,7 +25,9 @@ function Display(
   return (
     <div
       onWheel={onWheel}
-      className={styles.display}
+      className={clsx(styles.display, {
+        [styles["display--grow"]]: grow,
+      })}
       ref={ref}
       style={{
         padding,

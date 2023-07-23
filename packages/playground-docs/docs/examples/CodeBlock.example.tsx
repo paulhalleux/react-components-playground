@@ -27,7 +27,7 @@ function CodeBlockExample() {
 }`;
 
   return (
-    <Display padding={24}>
+    <Display padding={24} grow>
       <CodeBlock language="tsx">{code}</CodeBlock>
     </Display>
   );

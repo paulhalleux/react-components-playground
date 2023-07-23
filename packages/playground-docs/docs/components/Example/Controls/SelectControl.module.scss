@@ -1,0 +1,18 @@
+.example__controls__select {
+  background: rgb(var(--color-main));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 3px;
+  height: 32px;
+  width: 100%;
+  padding: 0 8px;
+  color: rgb(var(--color-text));
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 rgb(var(--color-text));
+  }
+}

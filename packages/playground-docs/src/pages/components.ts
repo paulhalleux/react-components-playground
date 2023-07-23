@@ -1,6 +1,7 @@
 import {
   BadgeIcon,
   CodeIcon,
+  InputSearchIcon,
   PointerIcon,
   SelectionFrameIcon,
   SelectionIcon,
@@ -59,5 +60,19 @@ export const components: Component[] = [
     description: "A component to display a code block",
     icon: CodeIcon,
     status: "done",
+  },
+  {
+    name: "Search",
+    path: "/components/search",
+    description: "A component to search with autocomplete",
+    icon: InputSearchIcon,
+    status: "todo",
+  },
+  {
+    name: "Button",
+    path: "/components/button",
+    description: "A component to display a button",
+    icon: InputSearchIcon,
+    status: "todo",
   },
 ].sort((a, b) => a.name.localeCompare(b.name));

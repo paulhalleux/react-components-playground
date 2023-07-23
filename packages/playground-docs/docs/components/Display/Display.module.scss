@@ -1,11 +1,17 @@
 .display {
   width: 100%;
   min-height: 250px;
+  max-height: 250px;
+  height: 100%;
   border: 1px solid rgb(var(--color-border));
   background-color: rgb(var(--color-main));
   border-radius: 4px;
   position: relative;
   display: flex;
+
+  &--grow {
+    max-height: unset;
+  }
 }
 
 .reset {

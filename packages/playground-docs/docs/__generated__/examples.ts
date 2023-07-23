@@ -10,73 +10,19 @@ import { default as TableSimpleTable } from "../examples/Table/SimpleTable.examp
 import { default as TableCustomRendering } from "../examples/Table/CustomRendering.example";
 
 export const Examples = {
-	KeyframePath,
 	Selector,
+	KeyframePath,
+	FrameSelector,
 	CodeBlock,
+	Badge,
 	TabsSpaced,
 	TabsHorizontal,
-	FrameSelector,
 	TabsCompact,
-	Badge,
 	TableSimpleTable,
 	TableCustomRendering,
 };
 
 export const ExamplesSources = {
-	KeyframePath: `import { useRef, useState } from "react";
-import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
-
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
-
-function KeyframePathExample() {
-  const { theme } = useTheme();
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
-  const [keyframes, setKeyframes] = useState<Keyframe[]>([
-    { position: { x: 100, y: 50 }, time: 1 },
-    { position: { x: 200, y: 150 }, time: 2 },
-    { position: { x: 300, y: 75 }, time: 3 },
-  ]);
-
-  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
-    setKeyframes((prev) => {
-      const next = [...prev];
-      next[keyframe] = { ...next[keyframe], ...partial };
-      return next;
-    });
-
-  const onReset = () => {
-    setKeyframes([
-      { position: { x: 100, y: 50 }, time: 1 },
-      { position: { x: 200, y: 150 }, time: 2 },
-      { position: { x: 300, y: 75 }, time: 3 },
-    ]);
-    setSelectedKeyframes([]);
-  };
-
-  return (
-    <Display ref={containerRef} onReset={onReset}>
-      <KeyframePath
-        parentRef={containerRef}
-        keyframes={keyframes}
-        onKeyframeChange={onKeyframeChange}
-        enablePathMove
-        enableBezier
-        selectedKeyframes={selectedKeyframes}
-        onKeyframeSelect={setSelectedKeyframes}
-        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
-      />
-    </Display>
-  );
-}
-
-export default {
-  name: "KeyframePath",
-  component: KeyframePathExample,
-};
-`,
 	Selector: `import { useRef, useState } from "react";
 import {
   Selectable,
@@ -152,6 +98,124 @@ export default {
   component: SelectorExample,
 };
 `,
+	KeyframePath: `import { useRef, useState } from "react";
+import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
+
+import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import { Display } from "../components";
+
+function KeyframePathExample() {
+  const { theme } = useTheme();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
+  const [keyframes, setKeyframes] = useState<Keyframe[]>([
+    { position: { x: 100, y: 50 }, time: 1 },
+    { position: { x: 200, y: 150 }, time: 2 },
+    { position: { x: 300, y: 75 }, time: 3 },
+  ]);
+
+  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
+    setKeyframes((prev) => {
+      const next = [...prev];
+      next[keyframe] = { ...next[keyframe], ...partial };
+      return next;
+    });
+
+  const onReset = () => {
+    setKeyframes([
+      { position: { x: 100, y: 50 }, time: 1 },
+      { position: { x: 200, y: 150 }, time: 2 },
+      { position: { x: 300, y: 75 }, time: 3 },
+    ]);
+    setSelectedKeyframes([]);
+  };
+
+  return (
+    <Display ref={containerRef} onReset={onReset}>
+      <KeyframePath
+        parentRef={containerRef}
+        keyframes={keyframes}
+        onKeyframeChange={onKeyframeChange}
+        enablePathMove
+        enableBezier
+        selectedKeyframes={selectedKeyframes}
+        onKeyframeSelect={setSelectedKeyframes}
+        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
+      />
+    </Display>
+  );
+}
+
+export default {
+  name: "KeyframePath",
+  component: KeyframePathExample,
+};
+`,
+	FrameSelector: `import { useEffect, useRef, useState } from "react";
+import {
+  CrossHead,
+  FrameSelector,
+  Point,
+  Size,
+} from "@paulhalleux/react-playground";
+
+import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import { Display } from "../components";
+
+function FrameSelectorExample() {
+  const { theme } = useTheme();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
+  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
+
+  useEffect(() => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    setPosition({
+      x: width / 2 - size.width / 2,
+      y: height / 2 - size.height / 2,
+    });
+  }, [containerRef]);
+
+  const onReset = () => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    setSize({ width: 50, height: 50 });
+    setPosition({
+      x: width / 2 - 50 / 2,
+      y: height / 2 - 50 / 2,
+    });
+  };
+
+  return (
+    <Display ref={containerRef} onReset={onReset}>
+      <FrameSelector
+        parentRef={containerRef}
+        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
+        position={position}
+        onPositionChange={setPosition}
+        size={size}
+        onSizeChange={setSize}
+        maxSize={{ width: 75, height: 75 }}
+        minSize={{ width: 25, height: 25 }}
+      >
+        <CrossHead />
+      </FrameSelector>
+    </Display>
+  );
+}
+
+export default {
+  name: "FrameSelector",
+  component: FrameSelectorExample,
+};
+`,
 	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
 
 import { Display } from "../components";
@@ -181,7 +245,7 @@ function CodeBlockExample() {
 }\`;
 
   return (
-    <Display padding={24}>
+    <Display padding={24} grow>
       <CodeBlock language="tsx">{code}</CodeBlock>
     </Display>
   );
@@ -190,6 +254,62 @@ function CodeBlockExample() {
 export default {
   name: "CodeBlock",
   component: CodeBlockExample,
+};
+`,
+	Badge: `import { Badge } from "@paulhalleux/react-playground";
+
+import { Display, ExampleComponentProps } from "../components";
+
+const GroupStyle = {
+  display: "flex",
+  gap: 24,
+  alignItems: "center",
+};
+
+type BadgeExampleProps = {
+  pill?: boolean;
+};
+
+type BadgeExampleControls = {
+  variant: "default" | "primary" | "secondary" | "warning";
+};
+
+function BadgeExample({
+  pill,
+  controls,
+}: ExampleComponentProps<BadgeExampleControls, BadgeExampleProps>) {
+  return (
+    <Display padding={24} align="center" direction="column">
+      <div style={GroupStyle}>
+        <Badge pill={pill} size="small" {...controls}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge pill={pill} size="medium" {...controls}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge pill={pill} size="large" {...controls}>
+          Badge content
+        </Badge>
+      </div>
+    </Display>
+  );
+}
+
+export default {
+  name: "Badge",
+  component: BadgeExample,
+  controls: [
+    {
+      label: "Status",
+      type: "select",
+      property: "variant",
+      options: ["default", "primary", "secondary", "warning"],
+    },
+  ],
 };
 `,
 	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
@@ -264,70 +384,6 @@ export default {
   component: HorizontalExample,
 };
 `,
-	FrameSelector: `import { useEffect, useRef, useState } from "react";
-import {
-  CrossHead,
-  FrameSelector,
-  Point,
-  Size,
-} from "@paulhalleux/react-playground";
-
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
-
-function FrameSelectorExample() {
-  const { theme } = useTheme();
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
-  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
-
-  useEffect(() => {
-    const { current } = containerRef;
-    if (!current) return;
-
-    const { width, height } = current.getBoundingClientRect();
-    setPosition({
-      x: width / 2 - size.width / 2,
-      y: height / 2 - size.height / 2,
-    });
-  }, [containerRef]);
-
-  const onReset = () => {
-    const { current } = containerRef;
-    if (!current) return;
-
-    const { width, height } = current.getBoundingClientRect();
-    setSize({ width: 50, height: 50 });
-    setPosition({
-      x: width / 2 - 50 / 2,
-      y: height / 2 - 50 / 2,
-    });
-  };
-
-  return (
-    <Display ref={containerRef} onReset={onReset}>
-      <FrameSelector
-        parentRef={containerRef}
-        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
-        position={position}
-        onPositionChange={setPosition}
-        size={size}
-        onSizeChange={setSize}
-        maxSize={{ width: 75, height: 75 }}
-        minSize={{ width: 25, height: 25 }}
-      >
-        <CrossHead />
-      </FrameSelector>
-    </Display>
-  );
-}
-
-export default {
-  name: "FrameSelector",
-  component: FrameSelectorExample,
-};
-`,
 	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { Display } from "../../components";
@@ -362,61 +418,6 @@ function CompactExample() {
 export default {
   name: "Compact",
   component: CompactExample,
-};
-`,
-	Badge: `import { Badge } from "@paulhalleux/react-playground";
-
-import { Display } from "../components";
-
-const GroupStyle = {
-  display: "flex",
-  gap: 24,
-  alignItems: "center",
-};
-
-function BadgeExample({ pill }: { pill?: boolean }) {
-  return (
-    <Display padding={24} align="center" direction="column">
-      <div style={GroupStyle}>
-        <Badge pill={pill} size="small">
-          Default
-        </Badge>
-        <Badge pill={pill} size="small" variant="primary">
-          Primary
-        </Badge>
-        <Badge pill={pill} size="small" variant="secondary">
-          Secondary
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge pill={pill} size="medium">
-          Default
-        </Badge>
-        <Badge pill={pill} size="medium" variant="primary">
-          Primary
-        </Badge>
-        <Badge pill={pill} size="medium" variant="secondary">
-          Secondary
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge pill={pill} size="large">
-          Default
-        </Badge>
-        <Badge pill={pill} size="large" variant="primary">
-          Primary
-        </Badge>
-        <Badge pill={pill} size="large" variant="secondary">
-          Secondary
-        </Badge>
-      </div>
-    </Display>
-  );
-}
-
-export default {
-  name: "Badge",
-  component: BadgeExample,
 };
 `,
 	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";

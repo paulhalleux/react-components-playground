@@ -1,6 +1,6 @@
 import { Badge } from "@paulhalleux/react-playground";
 
-import { Display } from "../components";
+import { Display, ExampleComponentProps } from "../components";
 
 const GroupStyle = {
   display: "flex",
@@ -8,40 +8,33 @@ const GroupStyle = {
   alignItems: "center",
 };
 
-function BadgeExample({ pill }: { pill?: boolean }) {
+type BadgeExampleProps = {
+  pill?: boolean;
+};
+
+type BadgeExampleControls = {
+  variant: "default" | "primary" | "secondary" | "warning";
+};
+
+function BadgeExample({
+  pill,
+  controls,
+}: ExampleComponentProps<BadgeExampleControls, BadgeExampleProps>) {
   return (
     <Display padding={24} align="center" direction="column">
       <div style={GroupStyle}>
-        <Badge pill={pill} size="small">
-          Default
-        </Badge>
-        <Badge pill={pill} size="small" variant="primary">
-          Primary
-        </Badge>
-        <Badge pill={pill} size="small" variant="secondary">
-          Secondary
+        <Badge pill={pill} size="small" {...controls}>
+          Badge content
         </Badge>
       </div>
       <div style={GroupStyle}>
-        <Badge pill={pill} size="medium">
-          Default
-        </Badge>
-        <Badge pill={pill} size="medium" variant="primary">
-          Primary
-        </Badge>
-        <Badge pill={pill} size="medium" variant="secondary">
-          Secondary
+        <Badge pill={pill} size="medium" {...controls}>
+          Badge content
         </Badge>
       </div>
       <div style={GroupStyle}>
-        <Badge pill={pill} size="large">
-          Default
-        </Badge>
-        <Badge pill={pill} size="large" variant="primary">
-          Primary
-        </Badge>
-        <Badge pill={pill} size="large" variant="secondary">
-          Secondary
+        <Badge pill={pill} size="large" {...controls}>
+          Badge content
         </Badge>
       </div>
     </Display>
@@ -51,4 +44,12 @@ function BadgeExample({ pill }: { pill?: boolean }) {
 export default {
   name: "Badge",
   component: BadgeExample,
+  controls: [
+    {
+      label: "Status",
+      type: "select",
+      property: "variant",
+      options: ["default", "primary", "secondary", "warning"],
+    },
+  ],
 };

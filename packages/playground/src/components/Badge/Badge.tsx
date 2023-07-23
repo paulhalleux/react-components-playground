@@ -6,7 +6,7 @@ import styles from "./Badge.module.scss";
 export type BadgeProps = {
   children: React.ReactNode;
   size?: "small" | "medium" | "large";
-  variant?: "primary" | "secondary" | "default";
+  variant?: "primary" | "secondary" | "default" | "warning";
   pill?: boolean;
 };
 
