@@ -10,7 +10,7 @@
 
   &:focus {
     outline: none;
-    border-color: rgb(var(--color-main-primary));
+    border-color: rgb(var(--color-border-primary));
   }
 
   &::-ms-expand {
@@ -21,4 +21,15 @@
     color: transparent;
     text-shadow: 0 0 0 rgb(var(--color-text));
   }
+}
+
+.checkbox__wrapper {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  padding: 0 4px;
+  border: 1px solid rgb(var(--color-border));
+  background: rgb(var(--color-main));
+  width: 100%;
 }

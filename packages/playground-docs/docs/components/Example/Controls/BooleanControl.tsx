@@ -1,4 +1,8 @@
+import { Checkbox } from "@paulhalleux/react-playground";
+
 import { BooleanControl as BooleanControlType } from "../index";
+
+import styles from "./SelectControl.module.scss";
 
 type BooleanControlProps = {
   control: BooleanControlType;
@@ -7,11 +11,16 @@ type BooleanControlProps = {
 
 export function BooleanControl({ control, onChange }: BooleanControlProps) {
   return (
-    <input
-      id={control.property}
-      type={"checkbox"}
-      checked={control.value}
-      onChange={(e) => onChange(e.target.checked)}
-    />
+    <div className={styles.checkbox__wrapper}>
+      <Checkbox
+        variant="ghost"
+        id={control.property}
+        name={control.property}
+        checked={control.value}
+        onChange={onChange}
+        size="large"
+        label={control.label}
+      />
+    </div>
   );
 }

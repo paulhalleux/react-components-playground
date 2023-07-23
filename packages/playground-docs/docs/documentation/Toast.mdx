@@ -28,7 +28,7 @@ const App = () => (
 
 The `useToasts` hook returns a `pushToast` function that can be used to push a new toast to the `ToasterProvider`.
 
-```tsx
+```ts
 import { useToasts } from "@paulhalleux/react-playground";
 
 const { pushToast } = useToasts();
@@ -38,7 +38,7 @@ const { pushToast } = useToasts();
 
 ### Toast Type
 
-```tsx
+```ts
 type Toast = {
   icon?: React.FC<IconProps>;
   title?: string;
