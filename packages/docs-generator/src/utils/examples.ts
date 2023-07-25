@@ -2,7 +2,7 @@ import * as fs from "fs/promises";
 import { glob } from "glob";
 import { Config } from "./config.js";
 
-export async function getExamples() {
+export async function generateExamples() {
   const files = await glob(Config.ExamplesGlob, {
     cwd: Config.ExamplesGlobCwd,
   });

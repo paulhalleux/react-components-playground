@@ -1,5 +1,4 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties, Example} from "../../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",
@@ -9,7 +8,9 @@ function _createMdxContent(props) {
     h3: "h3",
     pre: "pre",
     blockquote: "blockquote"
-  }, props.components);
+  }, props.components), {Example, Properties} = _components;
+  if (!Example) _missingMdxReference("Example", true);
+  if (!Properties) _missingMdxReference("Properties", true);
   return <><_components.h1>{"KeyframePath"}</_components.h1>{"\n"}<_components.p><_components.code>{"KeyframePath"}</_components.code>{" is a component that allows you to display a path of keyframes that can be moved around and edited.\r\nA keyframe is an object with a position and a time. The position is relative to the parent element of the keyframe path.\r\nThe time is a number that can be used to interpolate between keyframes.\r\nThe interpolation is "}<_components.code>{"linear"}</_components.code>{" by default but can be changed to a "}<_components.code>{"bezier curve"}</_components.code>{"."}</_components.p>{"\n"}<_components.p>{"If the "}<_components.code>{"enableBezier"}</_components.code>{" prop is set to "}<_components.code>{"true"}</_components.code>{", the user can move the bezier handles of the keyframes\r\nand change the interpolation type to "}<_components.code>{"bezier"}</_components.code>{" by double-clicking on the keyframe."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="KeyframePath" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"KeyframePath Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: "parentRef",
     type: "React.RefObject<HTMLElement>",
@@ -52,3 +53,6 @@ function MDXContent(props = {}) {
   return MDXLayout ? <MDXLayout {...props}><_createMdxContent {...props} /></MDXLayout> : _createMdxContent(props);
 }
 export default MDXContent;
+function _missingMdxReference(id, component) {
+  throw new Error("Expected " + (component ? "component" : "object") + " `" + id + "` to be defined: you likely forgot to import, pass, or provide it.");
+}

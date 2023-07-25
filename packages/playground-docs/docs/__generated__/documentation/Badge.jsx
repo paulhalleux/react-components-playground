@@ -1,5 +1,4 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties, Example} from "../../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",
@@ -7,8 +6,11 @@ function _createMdxContent(props) {
     code: "code",
     h2: "h2",
     h3: "h3"
-  }, props.components);
-  return <><_components.h1>{"Badge"}</_components.h1>{"\n"}<_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Badge" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
+  }, props.components), {Example, Features, Properties} = _components;
+  if (!Example) _missingMdxReference("Example", true);
+  if (!Features) _missingMdxReference("Features", true);
+  if (!Properties) _missingMdxReference("Properties", true);
+  return <><_components.h1>{"Badge"}</_components.h1>{"\n"}<_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Badge" />{"\n"}<Features features={['Multiple variants & sizes', 'Pill-shaped badges']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'React.ReactNode',
     description: 'The content of the badge.'
@@ -34,3 +36,6 @@ function MDXContent(props = {}) {
   return MDXLayout ? <MDXLayout {...props}><_createMdxContent {...props} /></MDXLayout> : _createMdxContent(props);
 }
 export default MDXContent;
+function _missingMdxReference(id, component) {
+  throw new Error("Expected " + (component ? "component" : "object") + " `" + id + "` to be defined: you likely forgot to import, pass, or provide it.");
+}

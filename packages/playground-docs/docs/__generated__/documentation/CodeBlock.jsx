@@ -1,5 +1,4 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties, Example} from "../../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",
@@ -7,8 +6,11 @@ function _createMdxContent(props) {
     code: "code",
     h2: "h2",
     h3: "h3"
-  }, props.components);
-  return <><_components.h1>{"CodeBlock"}</_components.h1>{"\n"}<_components.p><_components.code>{"CodeBlock"}</_components.code>{" is a component that displays a block of code.\r\nIf the height of the code block exceeds the value of "}<_components.code>{"collapseAt"}</_components.code>{" property, it will be collapsed and a button will be displayed to expand it."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="CodeBlock" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"CodeBlock Props"}</_components.h3>{"\n"}<Properties properties={[{
+  }, props.components), {Example, Features, Properties} = _components;
+  if (!Example) _missingMdxReference("Example", true);
+  if (!Features) _missingMdxReference("Features", true);
+  if (!Properties) _missingMdxReference("Properties", true);
+  return <><_components.h1>{"CodeBlock"}</_components.h1>{"\n"}<_components.p><_components.code>{"CodeBlock"}</_components.code>{" is a component that displays a block of code.\r\nIf the height of the code block exceeds the value of "}<_components.code>{"collapseAt"}</_components.code>{" property, it will be collapsed and a button will be displayed to expand it."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="CodeBlock" />{"\n"}<Features features={['The code block can be expanded and collapsed.', 'All languages supported by Highlight.js are supported.']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"CodeBlock Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'ReactNode',
     description: 'The code to be displayed.',
@@ -37,3 +39,6 @@ function MDXContent(props = {}) {
   return MDXLayout ? <MDXLayout {...props}><_createMdxContent {...props} /></MDXLayout> : _createMdxContent(props);
 }
 export default MDXContent;
+function _missingMdxReference(id, component) {
+  throw new Error("Expected " + (component ? "component" : "object") + " `" + id + "` to be defined: you likely forgot to import, pass, or provide it.");
+}

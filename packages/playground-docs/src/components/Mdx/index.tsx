@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { InfoIcon } from "@paulhalleux/react-playground";
 
+import { Example, Features, Properties } from "../../../docs/components";
 import { Alert } from "../Alert";
 
 import { Code } from "./Code/Code";
@@ -8,9 +9,11 @@ import { Paragraph } from "./Paragraph/Paragraph";
 import { Table } from "./Table/Table";
 import { Title } from "./Title/Title";
 
-type MdxComponentProps = PropsWithChildren<{
-  className?: string;
-}>;
+type MdxComponentProps =
+  | PropsWithChildren<{
+      className?: string;
+    }>
+  | any;
 
 export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   h1: (props) => <Title level={1} {...props} />,
@@ -25,4 +28,7 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   table: Table,
   p: Paragraph,
   blockquote: (props) => <Alert icon={InfoIcon} {...props} />,
+  Example,
+  Properties,
+  Features,
 };

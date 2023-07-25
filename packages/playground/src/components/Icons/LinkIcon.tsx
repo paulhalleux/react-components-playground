@@ -1,6 +1,6 @@
 import { IconProps } from "./types";
 
-export function LinkIcon({ height, width }: IconProps) {
+export function LinkIcon({ height = 20, width = 20 }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" height={height} width={width}>
       <path d="M8.465 11.293c1.133-1.133 3.109-1.133 4.242 0l.707.707 1.414-1.414-.707-.707c-.943-.944-2.199-1.465-3.535-1.465s-2.592.521-3.535 1.465L4.929 12a5.008 5.008 0 000 7.071 4.983 4.983 0 003.535 1.462A4.982 4.982 0 0012 19.071l.707-.707-1.414-1.414-.707.707a3.007 3.007 0 01-4.243 0 3.005 3.005 0 010-4.243l2.122-2.121z" />

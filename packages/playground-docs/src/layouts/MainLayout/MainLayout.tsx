@@ -1,21 +1,22 @@
 import { Outlet } from "react-router";
 import { Link, NavLink } from "react-router-dom";
-import { GithubIcon, MoonIcon, SunIcon } from "@paulhalleux/react-playground";
+import {
+  Button,
+  GithubIcon,
+  MoonIcon,
+  SunIcon,
+} from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
-import { Anchor, Button, Container, Logo } from "../../components";
+import { ComponentList } from "../../../docs/__generated__/components";
+import { Anchor, Container, Logo } from "../../components";
 import { ThemeType, useTheme } from "../../contexts/theme-context";
-import { Component } from "../../types/component";
 
 import { ComponentSearch } from "./ComponentSearch";
 
 import styles from "./MainLayout.module.scss";
 
-type MainLayoutProps = {
-  components: Component[];
-};
-
-export function MainLayout({ components }: MainLayoutProps) {
+export function MainLayout() {
   const { theme, setTheme } = useTheme();
 
   const onThemeChange = () => {
@@ -52,7 +53,7 @@ export function MainLayout({ components }: MainLayoutProps) {
           </nav>
         </div>
         <div className={styles.layout__header__actions}>
-          <ComponentSearch components={components} />
+          <ComponentSearch components={Object.values(ComponentList)} />
           <Anchor
             href="https://github.com/paulhalleux/react-playground"
             target="_blank"

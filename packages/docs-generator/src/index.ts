@@ -5,8 +5,26 @@ import { rimraf } from "rimraf";
 import { compile } from "@mdx-js/mdx";
 import { glob } from "glob";
 import { Config } from "./utils/config.js";
-import { getExamples } from "./utils/examples.js";
+import { generateExamples } from "./utils/examples.js";
 import { LogMessages } from "./utils/log-messages.js";
+import { parseMetadata } from "./utils/metadata.js";
+
+export type Meta = Partial<{
+  path: string;
+  category: string;
+  description: string;
+  status: string;
+  icon: string;
+}> & {
+  fileName: string;
+  title: string;
+};
+
+type ComponentData = {
+  mdxContent: string;
+  meta: Meta;
+  jsxCode: string | undefined;
+};
 
 const generateDocs = async () => {
   rimraf.sync(Config.OutputPath);
@@ -20,56 +38,93 @@ const generateDocs = async () => {
 
   console.log(LogMessages.Generating(files.length));
 
+  const components = new Map<string, ComponentData>();
+
   for (const file of files) {
     const mdxContent = await readFile(
       `${Config.DocumentationPath}/${file}`,
       "utf8",
     );
 
-    const componentName = file.replace(/\.mdx$/, ""); // Remove the .mdx extension for the component name
+    const defaultName = file.replace(/\.mdx$/, "");
+    let componentData: ComponentData = {
+      mdxContent: mdxContent,
+      meta: { title: defaultName, fileName: defaultName },
+      jsxCode: undefined,
+    };
 
-    const jsxCode = await compile(mdxContent, {
+    if (mdxContent.startsWith("---")) {
+      const content = mdxContent.split("---");
+      componentData.mdxContent = content[2];
+      componentData.meta = {
+        title: defaultName,
+        ...parseMetadata(content[1]),
+        fileName: defaultName,
+      };
+    }
+
+    const jsxCode = await compile(componentData.mdxContent, {
       // @ts-ignore
       Fragment: "React.Fragment",
       jsx: true,
       jsxs: true,
     });
 
-    let mapped = jsxCode.toString();
+    componentData.jsxCode = jsxCode.toString();
     for (const [key, value] of Object.entries(Config.ImportMap)) {
-      mapped = mapped.replace(new RegExp(key, "g"), value);
+      componentData.jsxCode = componentData.jsxCode.replace(
+        new RegExp(key, "g"),
+        value,
+      );
     }
 
-    await getExamples();
-    await writeFile(
-      `${Config.OutputPath}/documentation/${componentName}.jsx`,
-      `${mapped}`,
-    );
-
-    console.log(LogMessages.Generated(file, componentName));
+    components.set(componentData.meta.fileName, componentData);
   }
 
-  const componentImports = files.map((file) => {
-    const componentName = file.replace(/\.mdx$/, "");
-    return `import ${componentName} from "./documentation/${componentName}";`;
-  });
+  const indexParts: string[] = [];
 
-  const indexParts = [
-    componentImports.join("\n"),
-    `export const Components = {`,
-    files
-      .map((file) => {
-        const componentName = file.replace(/\.mdx$/, "");
-        return `  ${componentName},`;
-      })
+  await Promise.all(
+    Array.from(components.entries()).map(
+      async ([componentName, componentData]) => {
+        const importStatement = `import ${componentData.meta.fileName} from "./documentation/${componentData.meta.fileName}";`;
+        indexParts.push(importStatement);
+
+        await writeFile(
+          `${Config.OutputPath}/documentation/${componentData.meta.fileName}.jsx`,
+          `${componentData.jsxCode}`,
+        );
+        console.log(LogMessages.Generated(componentName));
+      },
+    ),
+  );
+
+  indexParts.push(
+    `\nexport const Components = {`,
+    Array.from(components.keys())
+      .map((fileName) => `  ${fileName},`)
       .join("\n"),
     `}`,
-    `export * from "./examples";`,
-  ];
+    `\nexport * from "./examples";`,
+  );
 
+  await generateExamples();
   await writeFile(`${Config.OutputPath}/index.ts`, indexParts.join("\n"));
+  await writeFile(
+    `${Config.OutputPath}/components.ts`,
+    [
+      `export type ComponentMeta = Partial<{\n\tdescription: string;\n\tpath: string;\n\tcategory: string;\n\tstatus: string;\n\ticon: string;\n}> & { title: string; fileName: string; };`,
+      `export const ComponentList: Record<string, ComponentMeta> = {`,
+      ...Array.from(components.entries()).map(
+        ([componentName, componentData]) =>
+          `  ${componentData.meta.fileName}: ${JSON.stringify(
+            componentData.meta,
+          )},`,
+      ),
+      `}`,
+    ].join("\n"),
+  );
 
   console.log(LogMessages.IndexGenerated());
 };
 
-generateDocs();
+generateDocs().catch(console.error);

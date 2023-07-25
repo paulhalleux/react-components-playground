@@ -1,9 +1,9 @@
+import { ComponentMeta } from "../../../../docs/__generated__/components";
 import { KeyboardShortcut, Search } from "../../../components";
-import { Component } from "../../../types/component";
 import { AutocompleteItem } from "../AutocompleteItem";
 
 type ComponentSearchProps = {
-  components: Component[];
+  components: ComponentMeta[];
 };
 
 export function ComponentSearch({ components }: ComponentSearchProps) {
@@ -17,8 +17,8 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
         />
       )}
       autocompleteItems={components.map((component) => ({
-        ...component,
-        id: component.name,
+        name: component.title,
+        id: component.title,
       }))}
       renderAutocompleteItem={(component, className) => (
         <AutocompleteItem component={component} className={className} />

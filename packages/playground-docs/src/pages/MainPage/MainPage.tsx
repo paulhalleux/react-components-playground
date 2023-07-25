@@ -1,17 +1,14 @@
 import { useState } from "react";
 
+import { ComponentList } from "../../../docs/__generated__/components";
 import { Search } from "../../components";
-import { Component } from "../../types/component";
+import { groupComponents } from "../../utils/components";
 
 import { MainItem } from "./MainItem";
 
 import styles from "./MainPage.module.scss";
 
-type MainPageProps = {
-  components: Component[];
-};
-
-export function MainPage({ components }: MainPageProps) {
+export function MainPage() {
   const [search, setSearch] = useState<string>("");
 
   return (
@@ -23,14 +20,29 @@ export function MainPage({ components }: MainPageProps) {
           onChange={setSearch}
         />
       </header>
-      <section className={styles.main__grid}>
-        {components
-          .filter((component) =>
-            component.name.toLowerCase().includes(search.toLowerCase()),
-          )
-          .map((component) => (
-            <MainItem component={component} key={component.path} />
-          ))}
+      <section>
+        {Object.entries(groupComponents(ComponentList)).map(
+          ([group, components]) => {
+            const filteredComponents = components.filter((component) =>
+              component.title.toLowerCase().includes(search.toLowerCase()),
+            );
+
+            if (filteredComponents.length === 0) {
+              return null;
+            }
+
+            return (
+              <div key={group} className={styles.main__grid__group}>
+                <h2 className={styles.main__grid__title}>{group}</h2>
+                <div className={styles.main__grid}>
+                  {filteredComponents.map((component) => (
+                    <MainItem component={component} key={component.path} />
+                  ))}
+                </div>
+              </div>
+            );
+          },
+        )}
       </section>
     </div>
   );

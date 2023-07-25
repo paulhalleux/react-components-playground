@@ -1,6 +1,6 @@
 import { IconProps } from "./types";
 
-export function GithubIcon({ width = 24, height = 24 }: IconProps) {
+export function GithubIcon({ width = 20, height = 20 }: IconProps) {
   return (
     <svg
       width={width}

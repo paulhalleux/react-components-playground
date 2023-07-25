@@ -3,13 +3,13 @@ import clsx from "clsx";
 import styles from "./Breadcrumb.module.scss";
 
 type BreadcrumbProps = {
-  items: string[];
+  items: (string | undefined)[];
 };
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
     <ul className={styles.breadcrumb}>
-      {items.map((item, index) => {
+      {items.filter(Boolean).map((item, index) => {
         return (
           <li
             key={item}

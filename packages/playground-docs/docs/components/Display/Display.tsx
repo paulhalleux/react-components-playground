@@ -1,7 +1,6 @@
 import React, { ForwardedRef, forwardRef, PropsWithChildren } from "react";
+import { Button } from "@paulhalleux/react-playground";
 import clsx from "clsx";
-
-import { Button } from "../../../src/components";
 
 import styles from "./Display.module.scss";
 

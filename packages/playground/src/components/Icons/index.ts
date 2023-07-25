@@ -23,3 +23,5 @@ export { CommandIcon } from "./CommandIcon";
 export { ModalIcon } from "./ModalIcon";
 export { ConfirmIcon } from "./ConfirmIcon";
 export { NotificationIcon } from "./NotificationIcon";
+export { ClickIcon } from "./ClickIcon";
+export { CheckIcon } from "./CheckIcon";

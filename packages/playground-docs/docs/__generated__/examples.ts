@@ -11,20 +11,149 @@ import { default as TableSimpleTable } from "../examples/Table/SimpleTable.examp
 import { default as TableCustomRendering } from "../examples/Table/CustomRendering.example";
 
 export const Examples = {
-	Toast,
+	Selector,
 	KeyframePath,
+	Toast,
+	Badge,
+	TabsSpaced,
 	CodeBlock,
 	FrameSelector,
-	Selector,
-	Badge,
 	TabsHorizontal,
 	TabsCompact,
-	TabsSpaced,
 	TableCustomRendering,
 	TableSimpleTable,
 };
 
 export const ExamplesSources = {
+	Selector: `import { useRef, useState } from "react";
+import {
+  Selectable,
+  selectable,
+  Selector,
+} from "@paulhalleux/react-playground";
+
+import { useTheme } from "../../src/contexts/theme-context";
+import { Display } from "../components";
+
+function SelectorExample() {
+  const { theme } = useTheme();
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const onSelect = (id: string, selected: boolean) => {
+    if (selected) {
+      setSelected((prev) => [...prev, id]);
+    } else {
+      setSelected((prev) => prev.filter((item) => item !== id));
+    }
+  };
+
+  return (
+    <Display ref={containerRef}>
+      <Selector
+        parentRef={containerRef}
+        color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
+      >
+        <SelectableItem
+          onSelect={(selected) => onSelect("a", selected)}
+          selected={selected.includes("a")}
+          position={{ x: 100, y: 50 }}
+          id="a"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("b", selected)}
+          selected={selected.includes("b")}
+          position={{ x: 200, y: 150 }}
+          id="b"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("c", selected)}
+          selected={selected.includes("c")}
+          position={{ x: 300, y: 75 }}
+          id="c"
+        />
+      </Selector>
+    </Display>
+  );
+}
+
+const SelectableItem = selectable<Selectable>(
+  ({ selected, position }: Selectable) => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: position.x,
+          top: position.y,
+          width: 15,
+          height: 15,
+          backgroundColor: selected ? "green" : "gray",
+        }}
+      ></div>
+    );
+  },
+);
+
+export default {
+  name: "Selector",
+  component: SelectorExample,
+};
+`,
+	KeyframePath: `import { useRef, useState } from "react";
+import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
+
+import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import { Display } from "../components";
+
+function KeyframePathExample() {
+  const { theme } = useTheme();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
+  const [keyframes, setKeyframes] = useState<Keyframe[]>([
+    { position: { x: 100, y: 50 }, time: 1 },
+    { position: { x: 200, y: 150 }, time: 2 },
+    { position: { x: 300, y: 75 }, time: 3 },
+  ]);
+
+  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
+    setKeyframes((prev) => {
+      const next = [...prev];
+      next[keyframe] = { ...next[keyframe], ...partial };
+      return next;
+    });
+
+  const onReset = () => {
+    setKeyframes([
+      { position: { x: 100, y: 50 }, time: 1 },
+      { position: { x: 200, y: 150 }, time: 2 },
+      { position: { x: 300, y: 75 }, time: 3 },
+    ]);
+    setSelectedKeyframes([]);
+  };
+
+  return (
+    <Display ref={containerRef} onReset={onReset}>
+      <KeyframePath
+        parentRef={containerRef}
+        keyframes={keyframes}
+        onKeyframeChange={onKeyframeChange}
+        enablePathMove
+        enableBezier
+        selectedKeyframes={selectedKeyframes}
+        onKeyframeSelect={setSelectedKeyframes}
+        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
+      />
+    </Display>
+  );
+}
+
+export default {
+  name: "KeyframePath",
+  component: KeyframePathExample,
+};
+`,
 	Toast: `import { Button, useToaster } from "@paulhalleux/react-playground";
 
 import { Display, ExampleComponentProps, ExampleMetadata } from "../components";
@@ -84,58 +213,98 @@ export default {
   ],
 } as ExampleMetadata;
 `,
-	KeyframePath: `import { useRef, useState } from "react";
-import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
+	Badge: `import { Badge } from "@paulhalleux/react-playground";
 
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
+import { Display, ExampleComponentProps } from "../components";
 
-function KeyframePathExample() {
-  const { theme } = useTheme();
+const GroupStyle = {
+  display: "flex",
+  gap: 24,
+  alignItems: "center",
+};
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
-  const [keyframes, setKeyframes] = useState<Keyframe[]>([
-    { position: { x: 100, y: 50 }, time: 1 },
-    { position: { x: 200, y: 150 }, time: 2 },
-    { position: { x: 300, y: 75 }, time: 3 },
-  ]);
+type BadgeExampleControls = {
+  variant: "default" | "primary" | "secondary" | "warning";
+  pill: "badge" | "pill";
+};
 
-  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
-    setKeyframes((prev) => {
-      const next = [...prev];
-      next[keyframe] = { ...next[keyframe], ...partial };
-      return next;
-    });
-
-  const onReset = () => {
-    setKeyframes([
-      { position: { x: 100, y: 50 }, time: 1 },
-      { position: { x: 200, y: 150 }, time: 2 },
-      { position: { x: 300, y: 75 }, time: 3 },
-    ]);
-    setSelectedKeyframes([]);
-  };
-
+function BadgeExample({
+  controls,
+}: ExampleComponentProps<BadgeExampleControls>) {
   return (
-    <Display ref={containerRef} onReset={onReset}>
-      <KeyframePath
-        parentRef={containerRef}
-        keyframes={keyframes}
-        onKeyframeChange={onKeyframeChange}
-        enablePathMove
-        enableBezier
-        selectedKeyframes={selectedKeyframes}
-        onKeyframeSelect={setSelectedKeyframes}
-        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
-      />
+    <Display padding={24} align="center" direction="column">
+      <div style={GroupStyle}>
+        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
     </Display>
   );
 }
 
 export default {
-  name: "KeyframePath",
-  component: KeyframePathExample,
+  name: "Badge",
+  component: BadgeExample,
+  controls: [
+    {
+      label: "Status",
+      type: "select",
+      property: "variant",
+      options: ["default", "primary", "secondary", "warning"],
+    },
+    {
+      label: "Type",
+      type: "select",
+      property: "pill",
+      options: ["badge", "pill"],
+    },
+  ],
+};
+`,
+	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { Display } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1,
+};
+
+function SpacedExample() {
+  return (
+    <Display padding={24}>
+      <Tabs orientation="vertical" layout="spaced">
+        <Tabs.Tab id="tab1" label="Tab 1">
+          <p style={ContentStyle}>Tab 1 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab2" label="Tab 2">
+          <p style={ContentStyle}>Tab 2 content</p>
+        </Tabs.Tab>
+        <Tabs.Tab id="tab3" label="Tab 3">
+          <p style={ContentStyle}>Tab 3 content</p>
+        </Tabs.Tab>
+      </Tabs>
+    </Display>
+  );
+}
+
+export default {
+  name: "Spaced",
+  component: SpacedExample,
 };
 `,
 	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
@@ -242,139 +411,6 @@ export default {
   component: FrameSelectorExample,
 };
 `,
-	Selector: `import { useRef, useState } from "react";
-import {
-  Selectable,
-  selectable,
-  Selector,
-} from "@paulhalleux/react-playground";
-
-import { useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
-
-function SelectorExample() {
-  const { theme } = useTheme();
-  const [selected, setSelected] = useState<string[]>([]);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const onSelect = (id: string, selected: boolean) => {
-    if (selected) {
-      setSelected((prev) => [...prev, id]);
-    } else {
-      setSelected((prev) => prev.filter((item) => item !== id));
-    }
-  };
-
-  return (
-    <Display ref={containerRef}>
-      <Selector
-        parentRef={containerRef}
-        color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
-      >
-        <SelectableItem
-          onSelect={(selected) => onSelect("a", selected)}
-          selected={selected.includes("a")}
-          position={{ x: 100, y: 50 }}
-          id="a"
-        />
-        <SelectableItem
-          onSelect={(selected) => onSelect("b", selected)}
-          selected={selected.includes("b")}
-          position={{ x: 200, y: 150 }}
-          id="b"
-        />
-        <SelectableItem
-          onSelect={(selected) => onSelect("c", selected)}
-          selected={selected.includes("c")}
-          position={{ x: 300, y: 75 }}
-          id="c"
-        />
-      </Selector>
-    </Display>
-  );
-}
-
-const SelectableItem = selectable<Selectable>(
-  ({ selected, position }: Selectable) => {
-    return (
-      <div
-        style={{
-          position: "absolute",
-          left: position.x,
-          top: position.y,
-          width: 15,
-          height: 15,
-          backgroundColor: selected ? "green" : "gray",
-        }}
-      ></div>
-    );
-  },
-);
-
-export default {
-  name: "Selector",
-  component: SelectorExample,
-};
-`,
-	Badge: `import { Badge } from "@paulhalleux/react-playground";
-
-import { Display, ExampleComponentProps } from "../components";
-
-const GroupStyle = {
-  display: "flex",
-  gap: 24,
-  alignItems: "center",
-};
-
-type BadgeExampleControls = {
-  variant: "default" | "primary" | "secondary" | "warning";
-  pill: "badge" | "pill";
-};
-
-function BadgeExample({
-  controls,
-}: ExampleComponentProps<BadgeExampleControls>) {
-  return (
-    <Display padding={24} align="center" direction="column">
-      <div style={GroupStyle}>
-        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-    </Display>
-  );
-}
-
-export default {
-  name: "Badge",
-  component: BadgeExample,
-  controls: [
-    {
-      label: "Status",
-      type: "select",
-      property: "variant",
-      options: ["default", "primary", "secondary", "warning"],
-    },
-    {
-      label: "Type",
-      type: "select",
-      property: "pill",
-      options: ["badge", "pill"],
-    },
-  ],
-};
-`,
 	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { Display } from "../../components";
@@ -445,42 +481,6 @@ function CompactExample() {
 export default {
   name: "Compact",
   component: CompactExample,
-};
-`,
-	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function SpacedExample() {
-  return (
-    <Display padding={24}>
-      <Tabs orientation="vertical" layout="spaced">
-        <Tabs.Tab id="tab1" label="Tab 1">
-          <p style={ContentStyle}>Tab 1 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab2" label="Tab 2">
-          <p style={ContentStyle}>Tab 2 content</p>
-        </Tabs.Tab>
-        <Tabs.Tab id="tab3" label="Tab 3">
-          <p style={ContentStyle}>Tab 3 content</p>
-        </Tabs.Tab>
-      </Tabs>
-    </Display>
-  );
-}
-
-export default {
-  name: "Spaced",
-  component: SpacedExample,
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";

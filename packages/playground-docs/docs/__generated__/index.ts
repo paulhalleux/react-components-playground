@@ -6,6 +6,7 @@ import KeyframePath from "./documentation/KeyframePath";
 import FrameSelector from "./documentation/FrameSelector";
 import CodeBlock from "./documentation/CodeBlock";
 import Badge from "./documentation/Badge";
+
 export const Components = {
   Toast,
   Tabs,
@@ -16,4 +17,5 @@ export const Components = {
   CodeBlock,
   Badge,
 }
+
 export * from "./examples";

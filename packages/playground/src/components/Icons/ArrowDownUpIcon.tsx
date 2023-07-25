@@ -1,6 +1,6 @@
 import { IconProps } from "./types";
 
-export function ArrowDownUpIcon({ height, width }: IconProps) {
+export function ArrowDownUpIcon({ height = 20, width = 20 }: IconProps) {
   return (
     <svg fill="currentColor" viewBox="0 0 16 16" height={height} width={width}>
       <path

@@ -18,7 +18,6 @@ export function BooleanControl({ control, onChange }: BooleanControlProps) {
         name={control.property}
         checked={control.value}
         onChange={onChange}
-        size="large"
         label={control.label}
       />
     </div>

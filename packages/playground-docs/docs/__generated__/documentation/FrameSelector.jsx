@@ -1,5 +1,4 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties, Example} from "../../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",
@@ -8,7 +7,9 @@ function _createMdxContent(props) {
     h2: "h2",
     h3: "h3",
     pre: "pre"
-  }, props.components);
+  }, props.components), {Example, Properties} = _components;
+  if (!Example) _missingMdxReference("Example", true);
+  if (!Properties) _missingMdxReference("Properties", true);
   return <><_components.h1>{"FrameSelector"}</_components.h1>{"\n"}<_components.p><_components.code>{"FrameSelector"}</_components.code>{" is a component to select a frame (size and position) in a container.\r\nIt can be used to crop an image or to select a region of interest."}</_components.p>{"\n"}<_components.p>{"The component has multiple handles that can be used to resize the frame.\r\nThe frame can be moved by dragging the center of the frame."}</_components.p>{"\n"}<_components.p>{"It also accepts a "}<_components.code>{"children"}</_components.code>{" prop that will be rendered inside the frame. In the example below, we use the "}<_components.code>{"CrossHead"}</_components.code>{" component to render a cross inside the frame."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="FrameSelector" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"FrameSelector Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: "children",
     type: "React.ReactNode",
@@ -57,3 +58,6 @@ function MDXContent(props = {}) {
   return MDXLayout ? <MDXLayout {...props}><_createMdxContent {...props} /></MDXLayout> : _createMdxContent(props);
 }
 export default MDXContent;
+function _missingMdxReference(id, component) {
+  throw new Error("Expected " + (component ? "component" : "object") + " `" + id + "` to be defined: you likely forgot to import, pass, or provide it.");
+}

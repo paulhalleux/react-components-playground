@@ -1,5 +1,4 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
-import {Properties, Example} from "../../components";
 function _createMdxContent(props) {
   const _components = Object.assign({
     h1: "h1",
@@ -7,7 +6,9 @@ function _createMdxContent(props) {
     code: "code",
     h2: "h2",
     h3: "h3"
-  }, props.components);
+  }, props.components), {Example, Properties} = _components;
+  if (!Example) _missingMdxReference("Example", true);
+  if (!Properties) _missingMdxReference("Properties", true);
   return <><_components.h1>{"Selector"}</_components.h1>{"\n"}<_components.p><_components.code>{"Selector"}</_components.code>{" is a component that allows you to select elements in a container.\r\nIt works like a lasso tool, where you click and drag to select elements."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Selector" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Selector Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: "parentRef",
     type: "React.RefObject<HTMLElement>",
@@ -28,3 +29,6 @@ function MDXContent(props = {}) {
   return MDXLayout ? <MDXLayout {...props}><_createMdxContent {...props} /></MDXLayout> : _createMdxContent(props);
 }
 export default MDXContent;
+function _missingMdxReference(id, component) {
+  throw new Error("Expected " + (component ? "component" : "object") + " `" + id + "` to be defined: you likely forgot to import, pass, or provide it.");
+}

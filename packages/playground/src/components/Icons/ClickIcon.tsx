@@ -1,6 +1,6 @@
 import { IconProps } from "./types";
 
-export function CleanIcon({ height = 20, width = 20 }: IconProps) {
+export function ClickIcon({ height = 20, width = 20 }: IconProps) {
   return (
     <svg
       fill="none"
@@ -13,7 +13,7 @@ export function CleanIcon({ height = 20, width = 20 }: IconProps) {
       width={width}
     >
       <path stroke="none" d="M0 0h24v24H0z" />
-      <path d="M20.048 16.033A9 9 0 007.954 3.958M5.633 5.64a9 9 0 0012.733 12.723M3 3l18 18" />
+      <path d="M3 12h3M12 3v3M7.8 7.8L5.6 5.6M16.2 7.8l2.2-2.2M7.8 16.2l-2.2 2.2M12 12l9 3-4 2-2 4-3-9" />
     </svg>
   );
 }

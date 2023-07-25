@@ -1,5 +1,6 @@
 import {
   BadgeIcon,
+  ClickIcon,
   CodeIcon,
   CommandIcon,
   ConfirmIcon,
@@ -15,7 +16,8 @@ import {
 
 import { Component } from "../types/component";
 
-export const components: Component[] = [
+// eslint-disable-next-line
+const components: Component[] = [
   {
     name: "KeyframePath",
     path: "/components/keyframe-path",
@@ -76,7 +78,7 @@ export const components: Component[] = [
     name: "Button",
     path: "/components/button",
     description: "A component to display a button",
-    icon: InputSearchIcon,
+    icon: ClickIcon,
     status: "todo",
   },
   {

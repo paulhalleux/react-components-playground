@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { CleanIcon, useToaster } from "@paulhalleux/react-playground";
+import { CleanIcon } from "@paulhalleux/react-playground";
 
 import { Components } from "../../../docs/__generated__";
+import { ComponentMeta } from "../../../docs/__generated__/components";
 import {
   Alert,
   Breadcrumb,
@@ -11,19 +12,18 @@ import {
 import { mdxComponents } from "../../components/Mdx";
 import { SwitchButton } from "../../components/SwitchButton";
 import { ExamplesProvider } from "../../contexts/examples-context";
-import { Component as ComponentType } from "../../types/component";
 
 import styles from "./ComponentPage.module.scss";
 
 type ComponentProps = {
-  component: ComponentType;
-  previous?: ComponentType;
-  next?: ComponentType;
+  component: ComponentMeta;
+  previous?: ComponentMeta;
+  next?: ComponentMeta;
 };
 
 export function ComponentPage({ component, previous, next }: ComponentProps) {
   // @ts-ignore
-  const MdxComponent = Components[component.name];
+  const MdxComponent = Components[component.fileName];
   const mdxContainer = React.useRef<HTMLDivElement>(null);
   const [tableItems, setTableItems] = React.useState<ContentTableItem[]>([]);
 
@@ -52,7 +52,7 @@ export function ComponentPage({ component, previous, next }: ComponentProps) {
   return (
     <div className={styles.component__container}>
       <div className={styles.component__content}>
-        <Breadcrumb items={["Component", component.name]} />
+        <Breadcrumb items={["Component", component.title || undefined]} />
         <section className={styles.mdx} ref={mdxContainer}>
           {MdxComponent ? (
             <ExamplesProvider examples={MdxComponent.Examples}>
@@ -60,7 +60,7 @@ export function ComponentPage({ component, previous, next }: ComponentProps) {
             </ExamplesProvider>
           ) : (
             <Alert icon={CleanIcon}>
-              No documentation found for <code>{component.name}</code>
+              No documentation found for <code>{component.title}</code>
             </Alert>
           )}
         </section>
