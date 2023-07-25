@@ -4,6 +4,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import { ComponentMeta } from "../../../docs/__generated__/components";
+import { getComponentPath } from "../../utils/path";
 
 import styles from "./SwitchButton.module.scss";
 
@@ -19,7 +20,13 @@ export function SwitchButton({ position, component }: SwitchButtonProps) {
         [styles.disabled]: !component,
         [styles["switch-button--align-right"]]: position === "left",
       })}
-      to={component?.path ?? ""}
+      to={
+        component
+          ? `/components/${
+              component.path || getComponentPath(component?.title)
+            }`
+          : "#"
+      }
     >
       {position === "left" && <ArrowLeftIcon />}
       <div className={styles.content}>
