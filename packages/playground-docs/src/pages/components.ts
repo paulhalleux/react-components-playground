@@ -14,10 +14,8 @@ import {
   TabsIcon,
 } from "@paulhalleux/react-playground";
 
-import { Component } from "../types/component";
-
 // eslint-disable-next-line
-const components: Component[] = [
+const components = [
   {
     name: "KeyframePath",
     path: "/components/keyframe-path",

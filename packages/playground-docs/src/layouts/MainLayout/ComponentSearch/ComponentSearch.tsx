@@ -17,6 +17,7 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
         />
       )}
       autocompleteItems={components.map((component) => ({
+        ...component,
         name: component.title,
         id: component.title,
       }))}

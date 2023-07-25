@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { ArrowLeftIcon, ArrowRightIcon } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
-import { Component } from "../../types/component";
+import { ComponentMeta } from "../../../docs/__generated__/components";
 
 import styles from "./SwitchButton.module.scss";
 
 type SwitchButtonProps = {
   position: "left" | "right";
-  component?: Component;
+  component?: ComponentMeta;
 };
 
 export function SwitchButton({ position, component }: SwitchButtonProps) {
@@ -26,7 +26,7 @@ export function SwitchButton({ position, component }: SwitchButtonProps) {
         <span className={styles.title}>
           {position === "left" ? "Previous" : "Next"}
         </span>
-        <span className={styles.component}>{component?.name}</span>
+        <span className={styles.component}>{component?.title}</span>
       </div>
       {position === "right" && <ArrowRightIcon />}
     </Link>
