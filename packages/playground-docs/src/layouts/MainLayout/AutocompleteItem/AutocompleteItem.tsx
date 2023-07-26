@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import { Icons } from "../../../../../playground/dist/index.es";
 import { ComponentMeta } from "../../../../docs/__generated__/components";
-import { getComponentPath } from "../../../utils/path";
+import { Routes } from "../../../constants/routes";
 
 import styles from "../MainLayout.module.scss";
 
@@ -22,7 +22,7 @@ export function AutocompleteItem({
 
   return (
     <Link
-      to={`/components/${component.path || getComponentPath(component.title)}`}
+      to={Routes.Component(component)}
       className={clsx(styles.search__item, className)}
     >
       {Icon && <Icon width={12} height={12} />}

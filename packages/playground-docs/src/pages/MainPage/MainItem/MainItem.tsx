@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Icons } from "@paulhalleux/react-playground";
 
 import { ComponentMeta } from "../../../../docs/__generated__/components";
-import { getComponentPath } from "../../../utils/path";
+import { Routes } from "../../../constants/routes";
 
 import styles from "../MainPage.module.scss";
 
@@ -18,7 +18,7 @@ export function MainItem({ component }: MainItemProps) {
   return (
     <Link
       className={styles.main__grid_item}
-      to={`/components/${component.path || getComponentPath(component.title)}`}
+      to={Routes.Component(component)}
       title={`${component.title}\n${component.description}`}
     >
       <header className={styles.main__grid_item__header}>

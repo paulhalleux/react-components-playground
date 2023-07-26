@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { ComponentList } from "../../docs/__generated__/components";
+import { Routes } from "../constants/routes";
 import { MainLayout } from "../layouts";
 import { PlaygroundLayout } from "../layouts/PlaygroundLayout";
-import { getComponentPath } from "../utils/path";
 
 import { ComponentPage } from "./ComponentPage";
 import { MainPage } from "./MainPage";
 
 const ComponentsArray = Object.values(ComponentList);
 const componentRoutes = ComponentsArray.map((component, index) => ({
-  path: `/components/${component.path || getComponentPath(component.title)}`,
+  path: Routes.Component(component),
   element: (
     <ComponentPage
       key={component.title}
@@ -27,7 +27,10 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <PlaygroundLayout />,
-        children: [{ path: "/", element: <MainPage /> }, ...componentRoutes],
+        children: [
+          { path: Routes.Home, element: <MainPage /> },
+          ...componentRoutes,
+        ],
       },
     ],
   },
