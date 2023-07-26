@@ -1,7 +1,6 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = Object.assign({
-    h1: "h1",
     p: "p",
     code: "code",
     h2: "h2",
@@ -10,7 +9,7 @@ function _createMdxContent(props) {
   if (!Example) _missingMdxReference("Example", true);
   if (!Features) _missingMdxReference("Features", true);
   if (!Properties) _missingMdxReference("Properties", true);
-  return <><_components.h1>{"Tabs"}</_components.h1>{"\n"}<_components.p><_components.code>{"Tabs"}</_components.code>{" are used to display multiple panels of content at once. They are commonly used for navigation."}</_components.p>{"\n"}<_components.h2>{"Examples"}</_components.h2>{"\n"}<_components.h3>{"Compact Layout Tabs"}</_components.h3>{"\n"}<Example name="Tabs/Compact" />{"\n"}<_components.h3>{"Spaced Layout Tabs"}</_components.h3>{"\n"}<Example name="Tabs/Spaced" />{"\n"}<_components.h3>{"Horizontal Orientation"}</_components.h3>{"\n"}<Example name="Tabs/Horizontal" />{"\n"}<Features features={['Multiple orientations', 'Multiple layouts']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Tabs Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.p><_components.code>{"Tabs"}</_components.code>{" are used to display multiple panels of content at once. They are commonly used for navigation."}</_components.p>{"\n"}<_components.h2>{"Examples"}</_components.h2>{"\n"}<_components.h3>{"Compact Layout Tabs"}</_components.h3>{"\n"}<Example name="Tabs/Compact" />{"\n"}<_components.h3>{"Spaced Layout Tabs"}</_components.h3>{"\n"}<Example name="Tabs/Spaced" />{"\n"}<_components.h3>{"Horizontal Orientation"}</_components.h3>{"\n"}<Example name="Tabs/Horizontal" />{"\n"}<Features features={['Multiple orientations', 'Multiple layouts']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Tabs Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'React.Node',
     description: 'The content of the component.',

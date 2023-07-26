@@ -1,7 +1,6 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = Object.assign({
-    h1: "h1",
     p: "p",
     code: "code",
     h2: "h2",
@@ -10,7 +9,7 @@ function _createMdxContent(props) {
   }, props.components), {Example, Properties} = _components;
   if (!Example) _missingMdxReference("Example", true);
   if (!Properties) _missingMdxReference("Properties", true);
-  return <><_components.h1>{"FrameSelector"}</_components.h1>{"\n"}<_components.p><_components.code>{"FrameSelector"}</_components.code>{" is a component to select a frame (size and position) in a container.\r\nIt can be used to crop an image or to select a region of interest."}</_components.p>{"\n"}<_components.p>{"The component has multiple handles that can be used to resize the frame.\r\nThe frame can be moved by dragging the center of the frame."}</_components.p>{"\n"}<_components.p>{"It also accepts a "}<_components.code>{"children"}</_components.code>{" prop that will be rendered inside the frame. In the example below, we use the "}<_components.code>{"CrossHead"}</_components.code>{" component to render a cross inside the frame."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="FrameSelector" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"FrameSelector Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.p><_components.code>{"FrameSelector"}</_components.code>{" is a component to select a frame (size and position) in a container.\r\nIt can be used to crop an image or to select a region of interest."}</_components.p>{"\n"}<_components.p>{"The component has multiple handles that can be used to resize the frame.\r\nThe frame can be moved by dragging the center of the frame."}</_components.p>{"\n"}<_components.p>{"It also accepts a "}<_components.code>{"children"}</_components.code>{" prop that will be rendered inside the frame. In the example below, we use the "}<_components.code>{"CrossHead"}</_components.code>{" component to render a cross inside the frame."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="FrameSelector" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"FrameSelector Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: "children",
     type: "React.ReactNode",
     description: "Children to render inside the frame."

@@ -10,6 +10,7 @@ import {
   ContentTableItem,
 } from "../../components";
 import { mdxComponents } from "../../components/Mdx";
+import { Title } from "../../components/Mdx/Title/Title";
 import { SwitchButton } from "../../components/SwitchButton";
 import { ExamplesProvider } from "../../contexts/examples-context";
 
@@ -53,6 +54,7 @@ export function ComponentPage({ component, previous, next }: ComponentProps) {
     <div className={styles.component__container}>
       <div className={styles.component__content}>
         <Breadcrumb items={["Component", component.title || undefined]} />
+        <Title level={1}>{component.title}</Title>
         <section className={styles.mdx} ref={mdxContainer}>
           {MdxComponent ? (
             <ExamplesProvider examples={MdxComponent.Examples}>

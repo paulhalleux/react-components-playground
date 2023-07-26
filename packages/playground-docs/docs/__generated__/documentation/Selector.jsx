@@ -1,7 +1,6 @@
 /*@jsxRuntime automatic @jsxImportSource react*/
 function _createMdxContent(props) {
   const _components = Object.assign({
-    h1: "h1",
     p: "p",
     code: "code",
     h2: "h2",
@@ -9,7 +8,7 @@ function _createMdxContent(props) {
   }, props.components), {Example, Properties} = _components;
   if (!Example) _missingMdxReference("Example", true);
   if (!Properties) _missingMdxReference("Properties", true);
-  return <><_components.h1>{"Selector"}</_components.h1>{"\n"}<_components.p><_components.code>{"Selector"}</_components.code>{" is a component that allows you to select elements in a container.\r\nIt works like a lasso tool, where you click and drag to select elements."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Selector" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Selector Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.p><_components.code>{"Selector"}</_components.code>{" is a component that allows you to select elements in a container.\r\nIt works like a lasso tool, where you click and drag to select elements."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Selector" />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Selector Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: "parentRef",
     type: "React.RefObject<HTMLElement>",
     description: "The parent element to select elements in.",
