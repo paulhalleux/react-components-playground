@@ -6,7 +6,7 @@ import {
 } from "@paulhalleux/react-playground";
 
 import { useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
+import { ExampleMetadata } from "../components";
 
 function SelectorExample() {
   const { theme } = useTheme();
@@ -23,7 +23,7 @@ function SelectorExample() {
   };
 
   return (
-    <Display ref={containerRef}>
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
       <Selector
         parentRef={containerRef}
         color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
@@ -47,7 +47,7 @@ function SelectorExample() {
           id="c"
         />
       </Selector>
-    </Display>
+    </div>
   );
 }
 
@@ -68,7 +68,7 @@ const SelectableItem = selectable<Selectable>(
   },
 );
 
-export default {
+export const metadata: ExampleMetadata = {
   name: "Selector",
   component: SelectorExample,
 };

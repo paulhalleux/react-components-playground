@@ -2,15 +2,14 @@ import React, { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { Button } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
+import { ExampleMetadata } from "../Example";
+
 import styles from "./Display.module.scss";
 
 type DisplayProps = PropsWithChildren<{
   onReset?: () => void;
-  padding?: number;
-  align?: "flex-start" | "center" | "flex-end";
-  direction?: "row" | "column";
-  grow?: boolean;
-}>;
+}> &
+  ExampleMetadata["display"];
 
 function Display(
   { children, onReset, padding, align, direction, grow }: DisplayProps,
@@ -29,11 +28,11 @@ function Display(
       })}
       ref={ref}
       style={{
-        padding,
+        padding: padding ? 24 : undefined,
         alignItems: align,
         justifyContent: align,
         flexDirection: direction,
-        gap: padding,
+        gap: padding ? 24 : undefined,
       }}
     >
       {onReset && (

@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import {
   CrossHead,
   FrameSelector,
@@ -7,9 +13,9 @@ import {
 } from "@paulhalleux/react-playground";
 
 import { ThemeType, useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
+import { ExampleMetadata, ExampleRef } from "../components";
 
-function FrameSelectorExample() {
+const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,8 +45,16 @@ function FrameSelectorExample() {
     });
   };
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      reset: onReset,
+    }),
+    [onReset],
+  );
+
   return (
-    <Display ref={containerRef} onReset={onReset}>
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
       <FrameSelector
         parentRef={containerRef}
         color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
@@ -53,11 +67,11 @@ function FrameSelectorExample() {
       >
         <CrossHead />
       </FrameSelector>
-    </Display>
+    </div>
   );
-}
+});
 
-export default {
+export const metadata: ExampleMetadata = {
   name: "FrameSelector",
   component: FrameSelectorExample,
 };

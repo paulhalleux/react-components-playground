@@ -6,6 +6,16 @@ export type ExampleMetadata = {
   name: string;
   component: React.ComponentType<ExampleComponentProps<any, any>>;
   controls?: Control[];
+  display?: {
+    padding?: boolean;
+    align?: "flex-start" | "center" | "flex-end";
+    direction?: "row" | "column";
+    grow?: boolean;
+  };
+};
+
+export type ExampleRef = {
+  reset?: () => void;
 };
 
 export type ExampleComponentProps<TControl = {}, TExtend = {}> = {

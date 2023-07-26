@@ -25,7 +25,7 @@ export async function generateExamples() {
       sources.push(`${name}: \`${source.replace(/`/g, "\\`")}\`,`);
       exports.push(name);
 
-      return `import { default as ${name} } from "../examples/${filename}";`;
+      return `import * as ${name} from "../examples/${filename}";`;
     }),
   );
 

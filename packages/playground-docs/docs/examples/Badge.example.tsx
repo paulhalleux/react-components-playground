@@ -1,6 +1,6 @@
 import { Badge } from "@paulhalleux/react-playground";
 
-import { Display, ExampleComponentProps } from "../components";
+import { ExampleComponentProps, ExampleMetadata } from "../components";
 
 const GroupStyle = {
   display: "flex",
@@ -17,7 +17,7 @@ function BadgeExample({
   controls,
 }: ExampleComponentProps<BadgeExampleControls>) {
   return (
-    <Display padding={24} align="center" direction="column">
+    <>
       <div style={GroupStyle}>
         <Badge size="small" {...controls} pill={controls.pill === "pill"}>
           Badge content
@@ -33,25 +33,32 @@ function BadgeExample({
           Badge content
         </Badge>
       </div>
-    </Display>
+    </>
   );
 }
 
-export default {
+export const metadata: ExampleMetadata = {
   name: "Badge",
   component: BadgeExample,
   controls: [
     {
       label: "Status",
       type: "select",
+      value: "default",
       property: "variant",
       options: ["default", "primary", "secondary", "warning"],
     },
     {
       label: "Type",
       type: "select",
+      value: "badge",
       property: "pill",
       options: ["badge", "pill"],
     },
   ],
+  display: {
+    padding: true,
+    align: "center",
+    direction: "column",
+  },
 };

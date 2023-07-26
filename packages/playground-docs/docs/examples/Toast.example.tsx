@@ -1,6 +1,6 @@
 import { Button, useToaster } from "@paulhalleux/react-playground";
 
-import { Display, ExampleComponentProps, ExampleMetadata } from "../components";
+import { ExampleComponentProps, ExampleMetadata } from "../components";
 
 type ToastExampleControls = {
   title: string;
@@ -24,14 +24,10 @@ function ToastExample({
     });
   };
 
-  return (
-    <Display padding={24} align="center" direction="column">
-      <Button onClick={onClick}>Send Toast</Button>
-    </Display>
-  );
+  return <Button onClick={onClick}>Send Toast</Button>;
 }
 
-export default {
+export const metadata: ExampleMetadata = {
   name: "Toast",
   component: ToastExample,
   controls: [
@@ -55,4 +51,8 @@ export default {
       value: true,
     },
   ],
-} as ExampleMetadata;
+  display: {
+    padding: true,
+    align: "center",
+  },
+};

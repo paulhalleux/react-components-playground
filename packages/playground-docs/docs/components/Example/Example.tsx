@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { CodeBlock, Tabs } from "@paulhalleux/react-playground";
 
 import { Alert } from "../../../src/components";
 import { Code } from "../../../src/components/Mdx/Code/Code";
 import { Examples, ExamplesSources } from "../../__generated__";
+import { Display } from "../Display";
 
 import { BooleanControl } from "./Controls/BooleanControl";
 import { SelectControl } from "./Controls/SelectControl";
 import { StringControl } from "./Controls/StringControl";
-import { Control, ExampleMetadata } from "./index";
+import { Control, ExampleRef } from "./index";
 
 import styles from "./Example.module.scss";
 
@@ -25,16 +26,14 @@ type ExampleProps = {
 };
 
 export function Example({ name, hideCode, props }: ExampleProps) {
-  const {
-    ExampleComponent,
-    sources,
-    controls: controlsList,
-  } = getExampleInfo(name);
+  const exampleRef = useRef<ExampleRef>();
+
+  const { example, sources } = getExampleInfo(name);
   const [controls, setControls] = React.useState<Control[] | undefined>(
-    controlsList,
+    example.controls,
   );
 
-  if (!ExampleComponent) {
+  if (!example.component) {
     return (
       <Alert>
         Example <Code>{name}</Code> not found
@@ -59,16 +58,19 @@ export function Example({ name, hideCode, props }: ExampleProps) {
 
   const RenderedExample = (
     <div>
-      <ExampleComponent
-        {...props}
-        controls={controls?.reduce(
-          (acc, control) => {
-            acc[control.property] = control.value;
-            return acc;
-          },
-          {} as Record<string, any>,
-        )}
-      />
+      <Display onReset={exampleRef.current?.reset} {...example.display}>
+        <example.component
+          {...props}
+          ref={exampleRef}
+          controls={controls?.reduce(
+            (acc, control) => {
+              acc[control.property] = control.value;
+              return acc;
+            },
+            {} as Record<string, any>,
+          )}
+        />
+      </Display>
       {controls && (
         <div className={styles.example__controls}>
           {controls.map((control) => (
@@ -117,16 +119,13 @@ export function Example({ name, hideCode, props }: ExampleProps) {
 }
 
 function getExampleInfo(name: string) {
-  const example = Examples[
-    name.replace("/", "") as keyof typeof Examples
-  ] as ExampleMetadata;
+  const exampleName = name.replace("/", "") as keyof typeof Examples;
 
-  const sources =
-    ExamplesSources[name.replace("/", "") as keyof typeof ExamplesSources];
+  const example = Examples[exampleName].metadata;
+  const sources = ExamplesSources[exampleName];
 
   return {
-    ExampleComponent: example?.component,
-    controls: example?.controls,
+    example,
     sources,
   };
 }

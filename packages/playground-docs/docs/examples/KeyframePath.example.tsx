@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 
 import { ThemeType, useTheme } from "../../src/contexts/theme-context";
-import { Display } from "../components";
+import { ExampleMetadata, ExampleRef } from "../components";
 
-function KeyframePathExample() {
+export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,8 +31,16 @@ function KeyframePathExample() {
     setSelectedKeyframes([]);
   };
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      reset: onReset,
+    }),
+    [onReset],
+  );
+
   return (
-    <Display ref={containerRef} onReset={onReset}>
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
       <KeyframePath
         parentRef={containerRef}
         keyframes={keyframes}
@@ -43,11 +51,11 @@ function KeyframePathExample() {
         onKeyframeSelect={setSelectedKeyframes}
         pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
       />
-    </Display>
+    </div>
   );
-}
+});
 
-export default {
+export const metadata: ExampleMetadata = {
   name: "KeyframePath",
   component: KeyframePathExample,
 };
