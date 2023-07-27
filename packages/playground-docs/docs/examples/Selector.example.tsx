@@ -5,7 +5,7 @@ import {
   Selector,
 } from "@paulhalleux/react-playground";
 
-import { useTheme } from "../../src/contexts/theme-context";
+import { useTheme } from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata } from "../components";
 
 function SelectorExample() {

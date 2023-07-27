@@ -11,7 +11,7 @@ $headings: (
   position: relative;
   font-size: map-get($headings, $level);
   font-weight: 600;
-  color: rgb(var(--color-text));
+  color: c(text);
   scroll-margin-top: 80px;
   width: max-content;
 

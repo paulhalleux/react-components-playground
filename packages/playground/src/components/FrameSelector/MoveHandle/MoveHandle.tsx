@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from "react";
 
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { Point } from "../../../types";
-import { FrameMoveFn } from "../../../types/frame-selection";
+import { FrameMoveFn } from "../types";
 
 import styles from "./MoveHandle.module.scss";
 

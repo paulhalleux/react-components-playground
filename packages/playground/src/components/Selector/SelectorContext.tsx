@@ -1,10 +1,10 @@
 import React, { createContext, PropsWithChildren } from "react";
 
-import { RegisterFn, Selectable } from "../../types";
+import { RegisterSelectableFn, Selectable } from "./types";
 
 type SelectorContextValue = {
   selectables: Selectable[];
-  register: RegisterFn;
+  register: RegisterSelectableFn;
 };
 
 const defaultValue: SelectorContextValue = {
@@ -18,7 +18,7 @@ export const SelectorContext =
 export function SelectorProvider({ children }: PropsWithChildren) {
   const [selectables, setSelectables] = React.useState<Selectable[]>([]);
 
-  const register: RegisterFn = (selectable) => {
+  const register: RegisterSelectableFn = (selectable) => {
     setSelectables((prev) => [...prev, selectable]);
     return () => unregister(selectable.id);
   };

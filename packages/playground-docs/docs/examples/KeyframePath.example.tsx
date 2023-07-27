@@ -1,7 +1,10 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata, ExampleRef } from "../components";
 
 export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {

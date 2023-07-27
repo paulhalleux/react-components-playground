@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ToasterProvider } from "@paulhalleux/react-playground";
+import { ThemeProvider, ToasterProvider } from "@paulhalleux/react-playground";
 
-import { ThemeProvider } from "./contexts/theme-context";
 import { Application } from "./Application";
 
 import "./main.scss";

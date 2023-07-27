@@ -1,4 +1,4 @@
-import { Point } from "./index";
+import { Point } from "../../types";
 
 export type KeyframeChangeFn = (
   keyframeIndex: number,

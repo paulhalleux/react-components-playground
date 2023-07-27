@@ -3,8 +3,8 @@ import React from "react";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { PositionChangeFn } from "../../../types";
-import { Keyframe } from "../../../types/keyframes";
 import { getKeyframePath } from "../../../utils/path";
+import { Keyframe } from "../types";
 
 import styles from "./DraggingPath.module.scss";
 

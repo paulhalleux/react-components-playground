@@ -12,15 +12,15 @@ import * as TableCustomRendering from "../examples/Table/CustomRendering.example
 
 export const Examples = {
 	Toast,
-	CodeBlock,
+	Selector,
 	KeyframePath,
 	FrameSelector,
+	CodeBlock,
+	Badge,
 	TabsSpaced,
+	TabsHorizontal,
 	TabsCompact,
 	TableSimpleTable,
-	Badge,
-	Selector,
-	TabsHorizontal,
 	TableCustomRendering,
 };
 
@@ -84,46 +84,88 @@ export const metadata: ExampleMetadata = {
   },
 };
 `,
-	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
+	Selector: `import { useRef, useState } from "react";
+import {
+  Selectable,
+  selectable,
+  Selector,
+} from "@paulhalleux/react-playground";
 
+import { useTheme } from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata } from "../components";
 
-function CodeBlockExample() {
-  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
-  
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1
-};
+function SelectorExample() {
+  const { theme } = useTheme();
+  const [selected, setSelected] = useState<string[]>([]);
 
-function CodeBlockExample() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const onSelect = (id: string, selected: boolean) => {
+    if (selected) {
+      setSelected((prev) => [...prev, id]);
+    } else {
+      setSelected((prev) => prev.filter((item) => item !== id));
+    }
+  };
+
   return (
-    <CodeBlock>
-      {ContentStyle}
-    </CodeBlock>
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <Selector
+        parentRef={containerRef}
+        color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
+      >
+        <SelectableItem
+          onSelect={(selected) => onSelect("a", selected)}
+          selected={selected.includes("a")}
+          position={{ x: 100, y: 50 }}
+          id="a"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("b", selected)}
+          selected={selected.includes("b")}
+          position={{ x: 200, y: 150 }}
+          id="b"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("c", selected)}
+          selected={selected.includes("c")}
+          position={{ x: 300, y: 75 }}
+          id="c"
+        />
+      </Selector>
+    </div>
   );
-}\`;
-
-  return <CodeBlock language="tsx">{code}</CodeBlock>;
 }
 
-export const metadata: ExampleMetadata = {
-  name: "CodeBlock",
-  component: CodeBlockExample,
-  display: {
-    padding: true,
-    grow: true,
+const SelectableItem = selectable<Selectable>(
+  ({ selected, position }: Selectable) => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: position.x,
+          top: position.y,
+          width: 15,
+          height: 15,
+          backgroundColor: selected ? "green" : "gray",
+        }}
+      ></div>
+    );
   },
+);
+
+export const metadata: ExampleMetadata = {
+  name: "Selector",
+  component: SelectorExample,
 };
 `,
 	KeyframePath: `import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata, ExampleRef } from "../components";
 
 export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {
@@ -196,7 +238,10 @@ import {
   Size,
 } from "@paulhalleux/react-playground";
 
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata, ExampleRef } from "../components";
 
 const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
@@ -260,6 +305,122 @@ export const metadata: ExampleMetadata = {
   component: FrameSelectorExample,
 };
 `,
+	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../components";
+
+function CodeBlockExample() {
+  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
+  
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1
+};
+
+function CodeBlockExample() {
+  return (
+    <CodeBlock>
+      {ContentStyle}
+    </CodeBlock>
+  );
+}\`;
+
+  return <CodeBlock language="tsx">{code}</CodeBlock>;
+}
+
+export const metadata: ExampleMetadata = {
+  name: "CodeBlock",
+  component: CodeBlockExample,
+  display: {
+    padding: true,
+    grow: true,
+  },
+};
+`,
+	Badge: `import { Badge } from "@paulhalleux/react-playground";
+
+import { ExampleComponentProps, ExampleMetadata } from "../components";
+
+const GroupStyle = {
+  display: "flex",
+  gap: 24,
+  alignItems: "center",
+};
+
+type BadgeExampleControls = {
+  variant: "default" | "primary" | "secondary" | "warning";
+  pill: "badge" | "pill";
+};
+
+function BadgeExample({
+  controls,
+}: ExampleComponentProps<BadgeExampleControls>) {
+  return (
+    <>
+      <div style={GroupStyle}>
+        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+    </>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Badge",
+  component: BadgeExample,
+  controls: [
+    {
+      label: "Status",
+      type: "select",
+      value: "default",
+      property: "variant",
+      options: [
+        "default",
+        "primary",
+        "secondary",
+        "warning",
+        "danger",
+        "success",
+        "info",
+        "ghost",
+      ],
+    },
+    {
+      label: "Type",
+      type: "select",
+      value: "badge",
+      property: "pill",
+      options: ["badge", "pill"],
+    },
+    {
+      label: "Closeable",
+      type: "boolean",
+      value: false,
+      property: "closeable",
+    },
+  ],
+  display: {
+    padding: true,
+    align: "center",
+    direction: "column",
+  },
+};
+`,
 	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../components";
@@ -292,6 +453,43 @@ function SpacedExample() {
 export const metadata: ExampleMetadata = {
   name: "Spaced",
   component: SpacedExample,
+  display: {
+    padding: true,
+  },
+};
+`,
+	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { Display, ExampleMetadata } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1,
+};
+
+function HorizontalExample() {
+  return (
+    <Tabs orientation="horizontal">
+      <Tabs.Tab id="tab1" label="Tab 1">
+        <p style={ContentStyle}>Tab 1 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab2" label="Tab 2">
+        <p style={ContentStyle}>Tab 2 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab3" label="Tab 3">
+        <p style={ContentStyle}>Tab 3 content</p>
+      </Tabs.Tab>
+    </Tabs>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Horizontal",
+  component: HorizontalExample,
   display: {
     padding: true,
   },
@@ -380,183 +578,6 @@ function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
 export const metadata: ExampleMetadata = {
   name: "SimpleTable",
   component: SimpleTableExample,
-  display: {
-    padding: true,
-  },
-};
-`,
-	Badge: `import { Badge } from "@paulhalleux/react-playground";
-
-import { ExampleComponentProps, ExampleMetadata } from "../components";
-
-const GroupStyle = {
-  display: "flex",
-  gap: 24,
-  alignItems: "center",
-};
-
-type BadgeExampleControls = {
-  variant: "default" | "primary" | "secondary" | "warning";
-  pill: "badge" | "pill";
-};
-
-function BadgeExample({
-  controls,
-}: ExampleComponentProps<BadgeExampleControls>) {
-  return (
-    <>
-      <div style={GroupStyle}>
-        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-    </>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Badge",
-  component: BadgeExample,
-  controls: [
-    {
-      label: "Status",
-      type: "select",
-      value: "default",
-      property: "variant",
-      options: ["default", "primary", "secondary", "warning"],
-    },
-    {
-      label: "Type",
-      type: "select",
-      value: "badge",
-      property: "pill",
-      options: ["badge", "pill"],
-    },
-  ],
-  display: {
-    padding: true,
-    align: "center",
-    direction: "column",
-  },
-};
-`,
-	Selector: `import { useRef, useState } from "react";
-import {
-  Selectable,
-  selectable,
-  Selector,
-} from "@paulhalleux/react-playground";
-
-import { useTheme } from "../../src/contexts/theme-context";
-import { ExampleMetadata } from "../components";
-
-function SelectorExample() {
-  const { theme } = useTheme();
-  const [selected, setSelected] = useState<string[]>([]);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const onSelect = (id: string, selected: boolean) => {
-    if (selected) {
-      setSelected((prev) => [...prev, id]);
-    } else {
-      setSelected((prev) => prev.filter((item) => item !== id));
-    }
-  };
-
-  return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
-      <Selector
-        parentRef={containerRef}
-        color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
-      >
-        <SelectableItem
-          onSelect={(selected) => onSelect("a", selected)}
-          selected={selected.includes("a")}
-          position={{ x: 100, y: 50 }}
-          id="a"
-        />
-        <SelectableItem
-          onSelect={(selected) => onSelect("b", selected)}
-          selected={selected.includes("b")}
-          position={{ x: 200, y: 150 }}
-          id="b"
-        />
-        <SelectableItem
-          onSelect={(selected) => onSelect("c", selected)}
-          selected={selected.includes("c")}
-          position={{ x: 300, y: 75 }}
-          id="c"
-        />
-      </Selector>
-    </div>
-  );
-}
-
-const SelectableItem = selectable<Selectable>(
-  ({ selected, position }: Selectable) => {
-    return (
-      <div
-        style={{
-          position: "absolute",
-          left: position.x,
-          top: position.y,
-          width: 15,
-          height: 15,
-          backgroundColor: selected ? "green" : "gray",
-        }}
-      ></div>
-    );
-  },
-);
-
-export const metadata: ExampleMetadata = {
-  name: "Selector",
-  component: SelectorExample,
-};
-`,
-	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display, ExampleMetadata } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function HorizontalExample() {
-  return (
-    <Tabs orientation="horizontal">
-      <Tabs.Tab id="tab1" label="Tab 1">
-        <p style={ContentStyle}>Tab 1 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2">
-        <p style={ContentStyle}>Tab 2 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3">
-        <p style={ContentStyle}>Tab 3 content</p>
-      </Tabs.Tab>
-    </Tabs>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Horizontal",
-  component: HorizontalExample,
   display: {
     padding: true,
   },

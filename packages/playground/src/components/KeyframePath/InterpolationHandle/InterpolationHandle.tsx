@@ -3,7 +3,7 @@ import React from "react";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { PositionChangeFn } from "../../../types";
-import { Keyframe } from "../../../types/keyframes";
+import { Keyframe } from "../types";
 
 import styles from "./InterpolationHandle.module.scss";
 

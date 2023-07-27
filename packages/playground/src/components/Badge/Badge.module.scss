@@ -1,47 +1,62 @@
+$sizes: (
+  small: ( padding: t(padding-xxs) t(padding-xs), font-size: t(font-size-xs) ),
+  medium: ( padding: t(padding-xxs) t(padding-xs), font-size: t(font-size-sm) ),
+  large: ( padding: t(padding-xxs) t(padding-sm), font-size: t(font-size-md) ),
+);
+
+$variants: (
+  ghost: ( background-color: transparent, color: c(text) ),
+  default: ( background-color: c(main), color: c(text), border: 1px solid c(border) ),
+  secondary: ( background-color: c(main-contrast, .5), color: c(text) ),
+  primary: ( background-color: c(primary, .1), color: c(primary) ),
+  warning: ( background-color: c(warning, .1), color: c(warning) ),
+  danger: ( background-color: c(danger, .1), color: c(danger) ),
+  success: ( background-color: c(success, .1), color: c(success) ),
+  info: ( background-color: c(info, .1), color: c(info) ),
+);
+
 .badge {
   font-weight: 600;
   text-transform: uppercase;
   height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: t(padding-xs);
 
-  &--small {
-    padding: 2px 4px;
-    font-size: 10px;
-    border-radius: 2px;
+  @each $size, $properties in $sizes {
+    &--#{$size} {
+      padding: map-get($properties, padding);
+      font-size: map-get($properties, font-size);
+      border-radius: t(border-radius-sm);
+    }
   }
 
-  &--medium {
-    padding: 2px 4px;
-    font-size: 11px;
-    border-radius: 3px;
-  }
-
-  &--large {
-    padding: 3px 7px;
-    font-size: 12px;
-    border-radius: 4px;
-  }
-
-  &--default {
-    border: 1px solid rgb(var(--color-border));
-    background-color: rgb(var(--color-main));
-  }
-
-  &--primary {
-    background-color: rgb(var(--color-main-primary), .1);
-    color: rgb(var(--color-main-primary));
-  }
-
-  &--warning {
-    background-color: rgb(var(--color-main-warning), .1);
-    color: rgb(var(--color-main-warning));
-  }
-
-  &--secondary {
-    background-color: rgb(var(--color-main-light), .5);
-    color: rgb(var(--color-text));
+  @each $variant, $properties in $variants {
+    &--#{$variant} {
+      background-color: map-get($properties, background-color);
+      color: map-get($properties, color);
+      border: map-get($properties, border);
+    }
   }
 
   &--pill {
     border-radius: 25px;
+  }
+
+  &__close {
+    height: 13px;
+    width: 12px;
+    background-color: transparent;
+    border: none;
+    color: currentColor;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: .8;
+    }
   }
 }

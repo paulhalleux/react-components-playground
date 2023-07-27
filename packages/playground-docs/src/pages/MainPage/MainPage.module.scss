@@ -26,21 +26,21 @@
   display: flex;
   gap: 8px;
   border-radius: 4px;
-  border: 1px solid rgb(var(--color-border));
-  background: rgb(var(--color-main));
-  color: rgb(var(--color-text));
+  border: 1px solid c(border);
+  background: c(main);
+  color: c(text);
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
   text-decoration: none;
 
   &:hover {
-    background-color: rgb(var(--color-main-light), .2);
+    background-color: c(main-contrast, .2);
   }
 
   &__header {
     height: 100%;
     aspect-ratio: 1 / 1;
-    background-color: rgb(var(--color-main-light), .2);
+    background-color: c(main-contrast, .2);
 
     display: flex;
     justify-content: center;
@@ -58,13 +58,13 @@
   .item__title {
     font-size: 18px;
     font-weight: 600;
-    color: rgb(var(--color-text));
+    color: c(text);
   }
 
   .item__description {
     font-size: 14px;
     font-weight: 400;
-    color: rgb(var(--color-text-light));
+    color: c(text-contrast);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

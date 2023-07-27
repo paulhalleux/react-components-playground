@@ -27,12 +27,12 @@
   &_title {
     font-size: 24px;
     font-weight: 600;
-    color: rgb(var(--color-text));
+    color: c(text);
   }
 }
 
 .switch__navigation {
-  border-top: 1px solid rgb(var(--color-border));
+  border-top: 1px solid c(border);
   padding-top: 24px;
   display: flex;
   justify-content: space-between;

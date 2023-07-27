@@ -1,0 +1,60 @@
+import { ThemeConfiguration } from "../types";
+
+export const DefaultThemeConfiguration: ThemeConfiguration = {
+  colors: {
+    dark: {
+      main: [9, 9, 11],
+      mainContrast: [39, 39, 42],
+      border: [39, 39, 42],
+      borderContrast: [39, 39, 42, 0.7],
+      borderPrimary: [0, 119, 255],
+      text: [255, 255, 255],
+      textContrast: [255, 255, 255, 0.7],
+      primary: [88, 153, 229],
+      info: [10, 132, 255],
+      warning: [241, 189, 95],
+      danger: [255, 69, 58],
+      success: [76, 217, 100],
+    },
+    light: {
+      main: [255, 255, 255],
+      mainContrast: [230, 230, 230],
+      border: [220, 220, 220],
+      borderContrast: [220, 220, 220, 0.7],
+      borderPrimary: [0, 119, 255],
+      text: [0, 0, 0],
+      textContrast: [0, 0, 0, 0.6],
+      primary: [88, 153, 229],
+      info: [10, 132, 255],
+      warning: [241, 189, 95],
+      danger: [255, 69, 58],
+      success: [76, 217, 100],
+    },
+  },
+  sizes: {
+    padding: {
+      xxs: 2,
+      xs: 4,
+      sm: 8,
+      md: 12,
+      lg: 20,
+      xl: 24,
+      xxl: 36,
+    },
+    borderRadius: {
+      xs: 2,
+      sm: 4,
+      md: 6,
+      lg: 8,
+      xl: 12,
+    },
+    fontSize: {
+      xs: 10,
+      sm: 12,
+      md: 14,
+      lg: 16,
+      xl: 20,
+      xxl: 24,
+    },
+  },
+};

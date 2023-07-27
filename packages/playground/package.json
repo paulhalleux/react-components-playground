@@ -27,7 +27,8 @@
     "vite": "^4.1.0",
     "vite-plugin-css-injected-by-js": "^3.2.1",
     "vite-plugin-dts": "^3.3.1",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-static-copy": "^0.17.0"
   },
   "files": [
     "dist"
@@ -39,6 +40,7 @@
     ".": {
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
-    }
+    },
+    "./index.scss": "./dist/index.scss"
   }
 }

@@ -12,7 +12,10 @@ import {
   Size,
 } from "@paulhalleux/react-playground";
 
-import { ThemeType, useTheme } from "../../src/contexts/theme-context";
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata, ExampleRef } from "../components";
 
 const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {

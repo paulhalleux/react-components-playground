@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import inlineCss from "vite-plugin-css-injected-by-js";
 import dts from "vite-plugin-dts";
 import eslint from "vite-plugin-eslint";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   plugins: [
@@ -13,7 +14,23 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
     inlineCss(),
+    viteStaticCopy({
+      targets: [
+        { src: "./src/index.scss", dest: "." },
+        { src: "./src/style", dest: "." },
+      ],
+    }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "${__dirname.replace(
+          /\\/g,
+          "/",
+        )}/src/index.scss" as *;\n\n`,
+      },
+    },
+  },
   build: {
     sourcemap: true,
     lib: {

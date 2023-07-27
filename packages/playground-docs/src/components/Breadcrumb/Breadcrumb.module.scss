@@ -5,7 +5,7 @@
 
 .breadcrumb__item {
   font-size: 13px;
-  color: rgb(var(--color-text-light));
+  color: c(text-contrast);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -14,10 +14,10 @@
     content: '/';
     margin-left: 8px;
     margin-right: 8px;
-    color: rgb(var(--color-text-light));
+    color: c(text-contrast);
   }
 
   &.active {
-    color: rgb(var(--color-text));
+    color: c(text);
   }
 }

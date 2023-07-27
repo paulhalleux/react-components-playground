@@ -2,15 +2,15 @@ import React, { CSSProperties } from "react";
 
 import { KeyframePathOptions } from "../../constants/keyframe-path";
 import { useMovePath } from "../../hooks/use-move-path";
-import {
-  Interpolation,
-  Keyframe as KeyframeType,
-  KeyframeChangeFn,
-} from "../../types/keyframes";
 import { getKeyframePath } from "../../utils/path";
 
 import { DraggingPath } from "./DraggingPath";
 import { Keyframe } from "./Keyframe";
+import {
+  Interpolation,
+  Keyframe as KeyframeType,
+  KeyframeChangeFn,
+} from "./types";
 
 import styles from "./KeyframePath.module.scss";
 

@@ -3,9 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "bin": {
-    "generate-docs": "./bin/generate-docs.js"
-  },
   "scripts": {
     "dev": "concurrently \"vite\" \"yarn watch:docs\"",
     "build": "tsc && vite build",

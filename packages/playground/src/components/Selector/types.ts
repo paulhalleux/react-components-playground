@@ -1,4 +1,4 @@
-import { Point } from "./index";
+import { Point } from "../../types";
 
 export type Selectable = {
   id: string;
@@ -8,4 +8,4 @@ export type Selectable = {
 };
 
 export type UnregisterFn = () => void;
-export type RegisterFn = (id: Selectable) => UnregisterFn;
+export type RegisterSelectableFn = (id: Selectable) => UnregisterFn;

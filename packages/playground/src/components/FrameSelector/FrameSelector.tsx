@@ -3,10 +3,10 @@ import React, { CSSProperties, PropsWithChildren } from "react";
 import { useFramePosition } from "../../hooks/use-frame-position";
 import { useFrameSize } from "../../hooks/use-frame-size";
 import { Point, Size } from "../../types";
-import { HandlePosition, HandleType } from "../../types/frame-selection";
 
 import { MoveHandle } from "./MoveHandle";
 import { ResizeHandle } from "./ResizeHandle";
+import { HandlePosition, HandleType } from "./types";
 
 import styles from "./FrameSelector.module.scss";
 

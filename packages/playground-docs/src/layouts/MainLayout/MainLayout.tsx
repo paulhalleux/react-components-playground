@@ -5,12 +5,13 @@ import {
   GithubIcon,
   MoonIcon,
   SunIcon,
+  ThemeType,
+  useTheme,
 } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import { ComponentList } from "../../../docs/__generated__/components";
 import { Anchor, Container, Logo } from "../../components";
-import { ThemeType, useTheme } from "../../contexts/theme-context";
 
 import { ComponentSearch } from "./ComponentSearch";
 

@@ -1,4 +1,4 @@
-import { Keyframe as KeyframeType } from "../types/keyframes";
+import { Keyframe as KeyframeType } from "../components/KeyframePath/types";
 
 export function getKeyframePath(
   prevKeyframe: KeyframeType,

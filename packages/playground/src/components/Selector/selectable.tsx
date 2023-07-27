@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 
-import { Selectable } from "../../types";
-
 import { useSelectorContext } from "./SelectorContext";
+import { Selectable } from "./types";
 
 export function selectable<T extends Selectable>(
   component: React.ComponentType<T>,

@@ -4,12 +4,12 @@
   cursor: pointer;
 
   &:hover .checkbox__box:not(.checkbox__box--checked) {
-    border-color: rgb(var(--color-border-light));
+    border-color: c(border-contrast);
   }
 
   .label {
     margin-left: 8px;
-    color: rgb(var(--color-text-light));
+    color: c(text-contrast);
     font-size: 13px;
     line-height: 1;
     user-select: none;
@@ -17,16 +17,16 @@
 
   &--default {
     .checkbox__box {
-      border: 1px solid rgb(var(--color-border));
+      border: 1px solid c(border);
     }
 
     .checkbox__box--checked {
-      border-color: rgb(var(--color-text), .5);
+      border-color: c(text, .5);
     }
   }
 
   &--ghost .checkbox__box {
-    background: rgb(var(--color-main-light), .3);
+    background: c(main-contrast, .3);
     border: 1px solid transparent;
   }
 
@@ -43,7 +43,7 @@
         display: block;
         height: 14%;
         width: 40%;
-        border: 2px solid rgb(var(--color-text));
+        border: 2px solid c(text);
         border-top: none;
         border-right: none;
         position: relative;
@@ -62,7 +62,7 @@
 
     &:focus-visible + .checkbox__box {
       outline: none;
-      border-color: rgb(var(--color-border-primary)) !important;
+      border-color: c(border-primary) !important;
     }
   }
 }

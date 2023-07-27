@@ -46,7 +46,16 @@ export const metadata: ExampleMetadata = {
       type: "select",
       value: "default",
       property: "variant",
-      options: ["default", "primary", "secondary", "warning"],
+      options: [
+        "default",
+        "primary",
+        "secondary",
+        "warning",
+        "danger",
+        "success",
+        "info",
+        "ghost",
+      ],
     },
     {
       label: "Type",
@@ -54,6 +63,12 @@ export const metadata: ExampleMetadata = {
       value: "badge",
       property: "pill",
       options: ["badge", "pill"],
+    },
+    {
+      label: "Closeable",
+      type: "boolean",
+      value: false,
+      property: "closeable",
     },
   ],
   display: {

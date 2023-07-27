@@ -20,7 +20,7 @@ function _createMdxContent(props) {
     default: '"medium"'
   }, {
     name: 'variant',
-    type: '"primary" | "secondary" | "default"',
+    type: '"primary" | "secondary" | "default" | "danger" | "success" | "info" | "ghost"',
     description: 'The variant of the badge.',
     default: '"default"'
   }, {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Keyframe, KeyframeChangeFn } from "../types/keyframes";
+import { Keyframe, KeyframeChangeFn } from "../components/KeyframePath/types";
 
 export function useMovePath(
   parentRef: React.RefObject<HTMLElement>,

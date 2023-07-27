@@ -29,7 +29,13 @@ export function SidebarGroup({ title, components }: SidebarGroupProps) {
             {(component.status || "done") !== "done" && (
               <Badge
                 size="small"
-                variant={component.status === "todo" ? "warning" : "default"}
+                variant={
+                  component.status === "todo"
+                    ? "warning"
+                    : component.status === "in-progress"
+                    ? "warning"
+                    : "default"
+                }
               >
                 {component.status}
               </Badge>

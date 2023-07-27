@@ -78,7 +78,7 @@
   display: flex;
   padding: 4px;
   height: 36px;
-  border: 1px solid rgb(var(--color-border));
+  border: 1px solid c(border);
   gap: 4px;
   min-width: 100px;
   overflow: hidden;
@@ -95,7 +95,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: rgb(var(--color-text-light));
+  color: c(text-contrast);
   max-width: 200px;
 
   white-space: nowrap;
@@ -104,7 +104,7 @@
 
   &--active,
   &:hover {
-    color: rgb(var(--color-text));
-    background: rgb(var(--color-main-light), .5);
+    color: c(text);
+    background: c(main-contrast, .5);
   }
 }

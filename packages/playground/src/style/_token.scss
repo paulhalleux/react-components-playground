@@ -1,0 +1,10 @@
+@function t($key) {
+  @return var(--#{unquote($key)});
+}
+
+@function c($key, $alpha: null) {
+  @if($alpha != null) {
+    @return rgba(var(--color-#{unquote($key)}), $alpha);
+  }
+  @return rgb(var(--color-#{unquote($key)}));
+}

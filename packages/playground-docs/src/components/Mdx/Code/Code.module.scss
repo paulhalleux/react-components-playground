@@ -4,6 +4,6 @@
   line-height: 1.4;
   border-radius: 2px;
   font-family: "Fira Code", monospace !important;
-  background: rgba(var(--color-main-light));
-  color: rgb(var(--color-text-light));
+  background: c(main-contrast);
+  color: c(text-contrast);
 }

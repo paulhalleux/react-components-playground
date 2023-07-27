@@ -4,14 +4,11 @@ import clsx from "clsx";
 import { KeyframePathOptions } from "../../../constants/keyframe-path";
 import { useEventListener } from "../../../hooks/use-event-listener";
 import { PositionChangeFn } from "../../../types";
-import {
-  Interpolation,
-  Keyframe as KeyframeType,
-} from "../../../types/keyframes";
-import { Selectable } from "../../../types/selector";
 import { minmax } from "../../../utils/math";
 import { selectable } from "../../Selector/selectable";
+import { Selectable } from "../../Selector/types";
 import { InterpolationHandle } from "../InterpolationHandle";
+import { Interpolation, Keyframe as KeyframeType } from "../types";
 
 import styles from "./Keyframe.module.scss";
 

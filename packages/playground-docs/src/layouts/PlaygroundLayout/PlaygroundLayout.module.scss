@@ -15,7 +15,7 @@
 .playground__sidebar {
   width: 240px;
   min-width: 240px;
-  border-right: 1px solid rgb(var(--color-border));
+  border-right: 1px solid c(border);
   padding: 24px 0;
 
   .sidebar__content {
@@ -33,7 +33,7 @@
   .sidebar__group_title {
     font-size: 16px;
     font-weight: 600;
-    color: rgb(var(--color-text));
+    color: c(text);
   }
 
   .sidebar__group_item {
@@ -44,7 +44,7 @@
     align-items: center;
 
     a {
-      color: rgb(var(--color-text-light));
+      color: c(text-contrast);
       text-decoration: none;
 
       &:hover {
@@ -53,7 +53,7 @@
     }
 
     .active {
-      color: rgb(var(--color-text));
+      color: c(text);
       text-decoration: underline;
     }
   }

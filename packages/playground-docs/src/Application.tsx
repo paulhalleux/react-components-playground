@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router";
+import { useTheme } from "@paulhalleux/react-playground";
 
-import { useTheme } from "./contexts/theme-context";
 import { router } from "./pages";
 
 export function Application() {
