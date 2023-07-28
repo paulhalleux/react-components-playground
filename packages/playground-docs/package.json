@@ -1,5 +1,5 @@
 {
-  "name": "playground-docs",
+  "name": "@paulhalleux/react-playground-docs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,8 @@
     "build:prod": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "watch:docs": "onchange \"docs/documentation/**/*.mdx\" \"docs/examples/**/*.example.tsx\" -- yarn generate-docs",
-    "generate:docs": "yarn generate-docs",
+    "watch:docs": "onchange \"docs/documentation/**/*.mdx\" \"docs/examples/**/*.example.tsx\" -- yarn generate:docs",
+    "generate:docs": "generate-docs",
     "deploy:docs": "firebase deploy"
   },
   "dependencies": {

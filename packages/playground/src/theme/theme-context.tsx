@@ -1,10 +1,10 @@
 import { createContext, PropsWithChildren, useContext, useMemo } from "react";
-import { StorageKeys } from "playground-docs/src/constants/storage-keys";
-import { useStoreState } from "playground-docs/src/hooks/use-store-state";
-import { getSystemTheme } from "playground-docs/src/utils/theme";
 
+import { StorageKeys } from "../constants/storage-keys";
+import { useStoreState } from "../hooks/use-store-state";
 import { RecursiveFull, ThemeConfiguration } from "../types";
 import { merge } from "../utils/object";
+import { getSystemTheme } from "../utils/theme";
 
 import { DefaultThemeConfiguration } from "./default-theme-configuration";
 import { useConfiguration } from "./use-configuration";

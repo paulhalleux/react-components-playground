@@ -1,7 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-export default ({ mode }) => {
+export default ({ mode }: { mode: string }) => {
   const env = mode || process.env.NODE_ENV;
   return defineConfig({
     plugins: [react()],

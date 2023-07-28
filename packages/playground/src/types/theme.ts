@@ -3,6 +3,7 @@ import { RecursivePartial } from "./helpers";
 export type ColorTriplet =
   | [number, number, number]
   | [number, number, number, number];
+
 export type Color = string | ColorTriplet;
 
 export type ThemeConfiguration = RecursivePartial<{

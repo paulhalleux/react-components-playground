@@ -1,4 +1,4 @@
-import { Theme, ThemeType } from "../../../playground/src/theme/theme-context";
+import { Theme, ThemeType } from "../theme";
 
 /**
  * Get the system theme
