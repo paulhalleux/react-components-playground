@@ -7,7 +7,7 @@ export type ComponentMeta = Partial<{
 	icon: string;
 }> & { title: string; fileName: string; };
 export const ComponentList: Record<string, ComponentMeta> = {
-  Toast: {"title":"Toast","category":"Components","description":"A component to display toasts","icon":"NotificationIcon","status":"in-progress","sourceUrl":"https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Toast/toast-context.tsx","fileName":"Toast"},
+  Toast: {"title":"Toast","category":"Components","description":"A component to display toasts","icon":"NotificationIcon","status":"done","sourceUrl":"https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Toast/toast-context.tsx","fileName":"Toast"},
   Tabs: {"title":"Tabs","category":"Components","description":"A component to display tabs","icon":"TabsIcon","status":"done","sourceUrl":"https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Tabs/Tabs.tsx","fileName":"Tabs"},
   Table: {"title":"Table","category":"Components","description":"A component to display a table","icon":"TableIcon","status":"in-progress","sourceUrl":"https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Table/Table.tsx","fileName":"Table"},
   Selector: {"title":"Selector","category":"Experimental","description":"A component to select a value","icon":"SelectionFrameIcon","status":"draft","sourceUrl":"https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Separator/Separator.tsx","fileName":"Selector"},

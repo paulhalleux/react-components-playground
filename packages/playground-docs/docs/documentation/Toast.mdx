@@ -2,7 +2,7 @@
 category: Components
 description: A component to display toasts
 icon: NotificationIcon
-status: in-progress
+status: done
 sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Toast/toast-context.tsx
 ---
 
@@ -10,13 +10,18 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## Example
 
-<Example name="Toast" highlight="18-24,27" />
+<Example name="Toast" highlight="22-24,34-40,43" />
 
 ## API
 
 ### ToasterProvider
 
 The `ToasterProvider` component is used to display the `Toast` components. It should be placed at the root of your application.
+
+<Properties properties={[
+  { name: "replace", type: "boolean", description: "Whether new toast should replace previous.", default: "false" },
+  { name: "position", type: 'ToasterPosition', description: "The position of the toasts.", default: '"top-right"' },
+]} />
 
 ```tsx
 import { ToasterProvider } from "@paulhalleux/react-playground";
@@ -26,6 +31,12 @@ const App = () => (
     <App />
   </ToasterProvider>
 );
+```
+
+### ToasterPosition
+
+```ts
+type ToasterPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 ```
 
 ### useToaster

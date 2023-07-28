@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"vite\" \"yarn watch:docs\"",
-    "build": "tsc && vite build",
+    "build:dev": "tsc && vite build --mode development",
+    "build:prod": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "watch:docs": "onchange \"docs/documentation/**/*.mdx\" \"docs/examples/**/*.example.tsx\" -- yarn generate-docs",
-    "deploy": "yarn build && firebase deploy"
+    "generate:docs": "yarn generate-docs",
+    "deploy:docs": "firebase deploy"
   },
   "dependencies": {
     "@paulhalleux/docs-generator": "^0.0.0",

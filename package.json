@@ -4,6 +4,12 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "build:prod": "lerna run build:prod",
+    "generate:docs": "lerna run generate:docs",
+    "deploy:docs": "lerna run deploy:docs",
+    "deploy": "lerna run build:prod && lerna run generate:docs && lerna run deploy:docs"
+  },
   "dependencies": {},
   "devDependencies": {
     "lerna": "^7.1.4"
