@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from "react";
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Toast, ToastProps } from "./Toast";
@@ -23,17 +24,35 @@ const defaultValue = {
 
 const ToastContext = createContext(defaultValue);
 
-export function ToasterProvider({ children }: PropsWithChildren) {
+type ToastProviderProps = PropsWithChildren<{
+  replace?: boolean;
+  position?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+}>;
+
+export function ToasterProvider({
+  children,
+  replace = false,
+  position = "top-right",
+}: ToastProviderProps) {
   const pushToastRef = useRef(defaultPush);
   return (
-    <ToastContext.Provider value={{ pushToastRef }}>
-      <Toasts />
+    <ToastContext.Provider
+      value={{
+        pushToastRef,
+      }}
+    >
+      <Toasts replace={replace} position={position} />
       {children}
     </ToastContext.Provider>
   );
 }
 
-function Toasts() {
+type ToastsProps = {
+  replace: boolean;
+  position: ToastProviderProps["position"];
+};
+
+function Toasts({ replace, position }: ToastsProps) {
   const [toasts, setToasts] = useState<ToastWithIdAndTimer[]>([]);
   const { pushToastRef } = useContext(ToastContext);
 
@@ -44,7 +63,7 @@ function Toasts() {
       toast.duration || 0,
     );
     const toastWithId = { ...toast, id: Date.now(), timer };
-    setToasts((prev) => [toastWithId, ...prev]);
+    setToasts((prev) => (replace ? [toastWithId] : [toastWithId, ...prev]));
   };
 
   const removeToast = (toast: ToastWithIdAndTimer) => {
@@ -53,14 +72,26 @@ function Toasts() {
   };
 
   return (
-    <div className={styles.toaster__container}>
-      <AnimatePresence>
+    <div
+      className={clsx(
+        styles.toaster__container,
+        styles[`toaster__container--${position}`],
+      )}
+    >
+      <AnimatePresence mode={replace ? "wait" : undefined}>
         {toasts.map((toast) => (
           <motion.div
             key={toast.id}
-            initial={{ opacity: 0, y: -10 }}
+            initial={{
+              opacity: 0,
+              y: position?.startsWith("bottom") ? 10 : -10,
+            }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={
+              !replace
+                ? { opacity: 0, y: position?.startsWith("bottom") ? 10 : -10 }
+                : undefined
+            }
             transition={{ duration: 0.2 }}
           >
             <Toast {...toast} onClose={() => removeToast(toast)} />

@@ -60,14 +60,14 @@ export function ComponentPage() {
             "h1, h2, h3, h4, h5, h6",
           );
 
-        const items: ContentTableItem[] = Array.from(headings).map(
-          (heading) => {
+        const items: ContentTableItem[] = Array.from(headings)
+          .filter((heading) => !!heading.id)
+          .map((heading) => {
             const level = parseInt(heading.tagName[1], 10);
             const name = heading.textContent ?? "";
             const id = heading.id;
             return { level, name, id };
-          },
-        );
+          });
 
         setTableItems(items);
       }

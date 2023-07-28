@@ -1,4 +1,8 @@
-import { Button, useToaster } from "@paulhalleux/react-playground";
+import {
+  Button,
+  ToasterProvider,
+  useToaster,
+} from "@paulhalleux/react-playground";
 
 import { ExampleComponentProps, ExampleMetadata } from "../components";
 
@@ -7,7 +11,19 @@ type ToastExampleControls = {
   content: string;
   closable: boolean;
   action: boolean;
+  replace: boolean;
+  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 };
+
+function ToastExampleWrapper({
+  controls,
+}: ExampleComponentProps<ToastExampleControls>) {
+  return (
+    <ToasterProvider replace={controls.replace} position={controls.position}>
+      <ToastExample controls={controls} />
+    </ToasterProvider>
+  );
+}
 
 function ToastExample({
   controls,
@@ -29,7 +45,7 @@ function ToastExample({
 
 export const metadata: ExampleMetadata = {
   name: "Toast",
-  component: ToastExample,
+  component: ToastExampleWrapper,
   controls: [
     { type: "string", label: "Title", property: "title", value: "Toast Title" },
     {
@@ -49,6 +65,19 @@ export const metadata: ExampleMetadata = {
       label: "Action",
       property: "action",
       value: true,
+    },
+    {
+      type: "boolean",
+      label: "Replace",
+      property: "replace",
+      value: false,
+    },
+    {
+      type: "select",
+      label: "Position",
+      property: "position",
+      value: "top-right",
+      options: ["top-left", "top-right", "bottom-left", "bottom-right"],
     },
   ],
   display: {

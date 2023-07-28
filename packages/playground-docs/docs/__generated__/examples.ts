@@ -11,77 +11,83 @@ import * as TableSimpleTable from "../examples/Table/SimpleTable.example";
 import * as TableCustomRendering from "../examples/Table/CustomRendering.example";
 
 export const Examples = {
-	Toast,
-	Selector,
-	FrameSelector,
 	KeyframePath,
-	CodeBlock,
-	TabsSpaced,
-	Badge,
-	TabsHorizontal,
-	TableSimpleTable,
+	Selector,
+	Toast,
 	TabsCompact,
+	Badge,
+	TableSimpleTable,
+	TabsSpaced,
+	CodeBlock,
+	TabsHorizontal,
 	TableCustomRendering,
+	FrameSelector,
 };
 
 export const ExamplesSources = {
-	Toast: `import { Button, useToaster } from "@paulhalleux/react-playground";
+	KeyframePath: `import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 
-import { ExampleComponentProps, ExampleMetadata } from "../components";
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
+import { ExampleMetadata, ExampleRef } from "../components";
 
-type ToastExampleControls = {
-  title: string;
-  content: string;
-  closable: boolean;
-  action: boolean;
-};
+export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {
+  const { theme } = useTheme();
 
-function ToastExample({
-  controls,
-}: ExampleComponentProps<ToastExampleControls>) {
-  const { pushToast } = useToaster();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
+  const [keyframes, setKeyframes] = useState<Keyframe[]>([
+    { position: { x: 100, y: 50 }, time: 1 },
+    { position: { x: 200, y: 150 }, time: 2 },
+    { position: { x: 300, y: 75 }, time: 3 },
+  ]);
 
-  const onClick = () => {
-    pushToast({
-      type: "primary",
-      duration: 5000,
-      actionLabel: controls.action ? "Action" : undefined,
-      onAction: () => alert("Action Clicked"),
-      ...controls,
+  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
+    setKeyframes((prev) => {
+      const next = [...prev];
+      next[keyframe] = { ...next[keyframe], ...partial };
+      return next;
     });
+
+  const onReset = () => {
+    setKeyframes([
+      { position: { x: 100, y: 50 }, time: 1 },
+      { position: { x: 200, y: 150 }, time: 2 },
+      { position: { x: 300, y: 75 }, time: 3 },
+    ]);
+    setSelectedKeyframes([]);
   };
 
-  return <Button onClick={onClick}>Send Toast</Button>;
-}
+  useImperativeHandle(
+    ref,
+    () => ({
+      reset: onReset,
+    }),
+    [onReset],
+  );
+
+  return (
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <KeyframePath
+        parentRef={containerRef}
+        keyframes={keyframes}
+        onKeyframeChange={onKeyframeChange}
+        enablePathMove
+        enableBezier
+        selectedKeyframes={selectedKeyframes}
+        onKeyframeSelect={setSelectedKeyframes}
+        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
+      />
+    </div>
+  );
+});
 
 export const metadata: ExampleMetadata = {
-  name: "Toast",
-  component: ToastExample,
-  controls: [
-    { type: "string", label: "Title", property: "title", value: "Toast Title" },
-    {
-      type: "string",
-      label: "Content",
-      property: "content",
-      value: "Toast Content",
-    },
-    {
-      type: "boolean",
-      label: "Closable",
-      property: "closable",
-      value: true,
-    },
-    {
-      type: "boolean",
-      label: "Action",
-      property: "action",
-      value: true,
-    },
-  ],
-  display: {
-    padding: true,
-    align: "center",
-  },
+  name: "KeyframePath",
+  component: KeyframePathExample,
 };
 `,
 	Selector: `import { useRef, useState } from "react";
@@ -159,211 +165,124 @@ export const metadata: ExampleMetadata = {
   component: SelectorExample,
 };
 `,
-	FrameSelector: `import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
-import {
-  CrossHead,
-  FrameSelector,
-  Point,
-  Size,
+	Toast: `import {
+  Button,
+  ToasterProvider,
+  useToaster,
 } from "@paulhalleux/react-playground";
 
-import {
-  ThemeType,
-  useTheme,
-} from "../../../playground/src/theme/theme-context";
-import { ExampleMetadata, ExampleRef } from "../components";
+import { ExampleComponentProps, ExampleMetadata } from "../components";
 
-const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
-  const { theme } = useTheme();
+type ToastExampleControls = {
+  title: string;
+  content: string;
+  closable: boolean;
+  action: boolean;
+  replace: boolean;
+  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+};
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
-  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
+function ToastExampleWrapper({
+  controls,
+}: ExampleComponentProps<ToastExampleControls>) {
+  return (
+    <ToasterProvider replace={controls.replace} position={controls.position}>
+      <ToastExample controls={controls} />
+    </ToasterProvider>
+  );
+}
 
-  useEffect(() => {
-    const { current } = containerRef;
-    if (!current) return;
+function ToastExample({
+  controls,
+}: ExampleComponentProps<ToastExampleControls>) {
+  const { pushToast } = useToaster();
 
-    const { width, height } = current.getBoundingClientRect();
-    setPosition({
-      x: width / 2 - size.width / 2,
-      y: height / 2 - size.height / 2,
-    });
-  }, [containerRef]);
-
-  const onReset = () => {
-    const { current } = containerRef;
-    if (!current) return;
-
-    const { width, height } = current.getBoundingClientRect();
-    setSize({ width: 50, height: 50 });
-    setPosition({
-      x: width / 2 - 50 / 2,
-      y: height / 2 - 50 / 2,
+  const onClick = () => {
+    pushToast({
+      type: "primary",
+      duration: 5000,
+      actionLabel: controls.action ? "Action" : undefined,
+      onAction: () => alert("Action Clicked"),
+      ...controls,
     });
   };
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      reset: onReset,
-    }),
-    [onReset],
-  );
-
-  return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
-      <FrameSelector
-        parentRef={containerRef}
-        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
-        position={position}
-        onPositionChange={setPosition}
-        size={size}
-        onSizeChange={setSize}
-        maxSize={{ width: 75, height: 75 }}
-        minSize={{ width: 25, height: 25 }}
-      >
-        <CrossHead />
-      </FrameSelector>
-    </div>
-  );
-});
-
-export const metadata: ExampleMetadata = {
-  name: "FrameSelector",
-  component: FrameSelectorExample,
-};
-`,
-	KeyframePath: `import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
-
-import {
-  ThemeType,
-  useTheme,
-} from "../../../playground/src/theme/theme-context";
-import { ExampleMetadata, ExampleRef } from "../components";
-
-export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {
-  const { theme } = useTheme();
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [selectedKeyframes, setSelectedKeyframes] = useState<number[]>([]);
-  const [keyframes, setKeyframes] = useState<Keyframe[]>([
-    { position: { x: 100, y: 50 }, time: 1 },
-    { position: { x: 200, y: 150 }, time: 2 },
-    { position: { x: 300, y: 75 }, time: 3 },
-  ]);
-
-  const onKeyframeChange = (keyframe: number, partial: Partial<Keyframe>) =>
-    setKeyframes((prev) => {
-      const next = [...prev];
-      next[keyframe] = { ...next[keyframe], ...partial };
-      return next;
-    });
-
-  const onReset = () => {
-    setKeyframes([
-      { position: { x: 100, y: 50 }, time: 1 },
-      { position: { x: 200, y: 150 }, time: 2 },
-      { position: { x: 300, y: 75 }, time: 3 },
-    ]);
-    setSelectedKeyframes([]);
-  };
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      reset: onReset,
-    }),
-    [onReset],
-  );
-
-  return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
-      <KeyframePath
-        parentRef={containerRef}
-        keyframes={keyframes}
-        onKeyframeChange={onKeyframeChange}
-        enablePathMove
-        enableBezier
-        selectedKeyframes={selectedKeyframes}
-        onKeyframeSelect={setSelectedKeyframes}
-        pathColor={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
-      />
-    </div>
-  );
-});
-
-export const metadata: ExampleMetadata = {
-  name: "KeyframePath",
-  component: KeyframePathExample,
-};
-`,
-	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
-
-import { ExampleMetadata } from "../components";
-
-function CodeBlockExample() {
-  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
-  
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1
-};
-
-function CodeBlockExample() {
-  return (
-    <CodeBlock>
-      {ContentStyle}
-    </CodeBlock>
-  );
-}\`;
-
-  return <CodeBlock language="tsx">{code}</CodeBlock>;
+  return <Button onClick={onClick}>Send Toast</Button>;
 }
 
 export const metadata: ExampleMetadata = {
-  name: "CodeBlock",
-  component: CodeBlockExample,
+  name: "Toast",
+  component: ToastExampleWrapper,
+  controls: [
+    { type: "string", label: "Title", property: "title", value: "Toast Title" },
+    {
+      type: "string",
+      label: "Content",
+      property: "content",
+      value: "Toast Content",
+    },
+    {
+      type: "boolean",
+      label: "Closable",
+      property: "closable",
+      value: true,
+    },
+    {
+      type: "boolean",
+      label: "Action",
+      property: "action",
+      value: true,
+    },
+    {
+      type: "boolean",
+      label: "Replace",
+      property: "replace",
+      value: false,
+    },
+    {
+      type: "select",
+      label: "Position",
+      property: "position",
+      value: "top-right",
+      options: ["top-left", "top-right", "bottom-left", "bottom-right"],
+    },
+  ],
   display: {
     padding: true,
-    grow: true,
+    align: "center",
   },
 };
 `,
-	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
+	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../../components";
+import { ExampleComponentProps, ExampleMetadata } from "../../components";
 
 const ContentStyle = {
   padding: 12,
   backgroundColor: "rgb(var(--color-main-light), .2)",
   border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
+  borderRadius: "0 4px 4px 4px",
   height: "100%",
   flexGrow: 1,
 };
 
-function SpacedExample() {
+export type CompactExampleControls = {
+  addButton: boolean;
+  closeable: boolean;
+};
+
+function CompactExample({
+  controls,
+}: ExampleComponentProps<CompactExampleControls>) {
   return (
-    <Tabs orientation="vertical" layout="spaced">
-      <Tabs.Tab id="tab1" label="Tab 1">
+    <Tabs orientation="vertical" layout="compact" {...controls}>
+      <Tabs.Tab id="tab1" label="Tab 1" closeable={controls.closeable}>
         <p style={ContentStyle}>Tab 1 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2">
+      <Tabs.Tab id="tab2" label="Tab 2" closeable={controls.closeable}>
         <p style={ContentStyle}>Tab 2 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3">
+      <Tabs.Tab id="tab3" label="Tab 3" closeable={controls.closeable}>
         <p style={ContentStyle}>Tab 3 content</p>
       </Tabs.Tab>
     </Tabs>
@@ -371,11 +290,25 @@ function SpacedExample() {
 }
 
 export const metadata: ExampleMetadata = {
-  name: "Spaced",
-  component: SpacedExample,
+  name: "Compact",
+  component: CompactExample,
   display: {
     padding: true,
   },
+  controls: [
+    {
+      label: "Add button",
+      type: "boolean",
+      value: true,
+      property: "addButton",
+    },
+    {
+      label: "Closeable",
+      type: "boolean",
+      value: false,
+      property: "closeable",
+    },
+  ],
 };
 `,
 	Badge: `import { Badge } from "@paulhalleux/react-playground";
@@ -458,34 +391,6 @@ export const metadata: ExampleMetadata = {
   },
 };
 `,
-	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { ExampleMetadata } from "../../components";
-
-function HorizontalExample() {
-  return (
-    <Tabs orientation="horizontal" addButton>
-      <Tabs.Tab contained id="tab1" label="Tab 1" closeable>
-        <p style={{ padding: 12 }}>Tab 1 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab contained id="tab2" label="Tab 2" disabled closeable>
-        <p style={{ padding: 12 }}>Tab 2 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab contained id="tab3" label="Tab 3" closeable closeDisabled>
-        <p style={{ padding: 12 }}>Tab 3 content</p>
-      </Tabs.Tab>
-    </Tabs>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Horizontal",
-  component: HorizontalExample,
-  display: {
-    padding: true,
-  },
-};
-`,
 	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../components";
@@ -538,36 +443,29 @@ export const metadata: ExampleMetadata = {
   },
 };
 `,
-	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
+	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
 
-import { ExampleComponentProps, ExampleMetadata } from "../../components";
+import { ExampleMetadata } from "../../components";
 
 const ContentStyle = {
   padding: 12,
   backgroundColor: "rgb(var(--color-main-light), .2)",
   border: "1px solid rgb(var(--color-border))",
-  borderRadius: "0 4px 4px 4px",
+  borderRadius: 4,
   height: "100%",
   flexGrow: 1,
 };
 
-export type CompactExampleControls = {
-  addButton: boolean;
-  closeable: boolean;
-};
-
-function CompactExample({
-  controls,
-}: ExampleComponentProps<CompactExampleControls>) {
+function SpacedExample() {
   return (
-    <Tabs orientation="vertical" layout="compact" {...controls}>
-      <Tabs.Tab id="tab1" label="Tab 1" closeable={controls.closeable}>
+    <Tabs orientation="vertical" layout="spaced">
+      <Tabs.Tab id="tab1" label="Tab 1">
         <p style={ContentStyle}>Tab 1 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2" closeable={controls.closeable}>
+      <Tabs.Tab id="tab2" label="Tab 2">
         <p style={ContentStyle}>Tab 2 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3" closeable={controls.closeable}>
+      <Tabs.Tab id="tab3" label="Tab 3">
         <p style={ContentStyle}>Tab 3 content</p>
       </Tabs.Tab>
     </Tabs>
@@ -575,25 +473,75 @@ function CompactExample({
 }
 
 export const metadata: ExampleMetadata = {
-  name: "Compact",
-  component: CompactExample,
+  name: "Spaced",
+  component: SpacedExample,
   display: {
     padding: true,
   },
-  controls: [
-    {
-      label: "Add button",
-      type: "boolean",
-      value: true,
-      property: "addButton",
-    },
-    {
-      label: "Closeable",
-      type: "boolean",
-      value: false,
-      property: "closeable",
-    },
-  ],
+};
+`,
+	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../components";
+
+function CodeBlockExample() {
+  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
+  
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1
+};
+
+function CodeBlockExample() {
+  return (
+    <CodeBlock>
+      {ContentStyle}
+    </CodeBlock>
+  );
+}\`;
+
+  return <CodeBlock language="tsx">{code}</CodeBlock>;
+}
+
+export const metadata: ExampleMetadata = {
+  name: "CodeBlock",
+  component: CodeBlockExample,
+  display: {
+    padding: true,
+    grow: true,
+  },
+};
+`,
+	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../../components";
+
+function HorizontalExample() {
+  return (
+    <Tabs orientation="horizontal" addButton>
+      <Tabs.Tab contained id="tab1" label="Tab 1" closeable>
+        <p style={{ padding: 12 }}>Tab 1 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab contained id="tab2" label="Tab 2" disabled closeable>
+        <p style={{ padding: 12 }}>Tab 2 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab contained id="tab3" label="Tab 3" closeable closeDisabled>
+        <p style={{ padding: 12 }}>Tab 3 content</p>
+      </Tabs.Tab>
+    </Tabs>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Horizontal",
+  component: HorizontalExample,
+  display: {
+    padding: true,
+  },
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";
@@ -662,6 +610,87 @@ export const metadata: ExampleMetadata = {
     padding: true,
     align: "center",
   },
+};
+`,
+	FrameSelector: `import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import {
+  CrossHead,
+  FrameSelector,
+  Point,
+  Size,
+} from "@paulhalleux/react-playground";
+
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
+import { ExampleMetadata, ExampleRef } from "../components";
+
+const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
+  const { theme } = useTheme();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
+  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
+
+  useEffect(() => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    setPosition({
+      x: width / 2 - size.width / 2,
+      y: height / 2 - size.height / 2,
+    });
+  }, [containerRef]);
+
+  const onReset = () => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    setSize({ width: 50, height: 50 });
+    setPosition({
+      x: width / 2 - 50 / 2,
+      y: height / 2 - 50 / 2,
+    });
+  };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      reset: onReset,
+    }),
+    [onReset],
+  );
+
+  return (
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <FrameSelector
+        parentRef={containerRef}
+        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
+        position={position}
+        onPositionChange={setPosition}
+        size={size}
+        onSizeChange={setSize}
+        maxSize={{ width: 75, height: 75 }}
+        minSize={{ width: 25, height: 25 }}
+      >
+        <CrossHead />
+      </FrameSelector>
+    </div>
+  );
+});
+
+export const metadata: ExampleMetadata = {
+  name: "FrameSelector",
+  component: FrameSelectorExample,
 };
 `,
 };
