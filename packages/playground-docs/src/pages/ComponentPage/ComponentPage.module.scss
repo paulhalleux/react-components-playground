@@ -14,14 +14,13 @@
   .mdx {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
   }
 }
 
 .component__header {
   display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 8px;
   flex-direction: column;
 
   &_title {

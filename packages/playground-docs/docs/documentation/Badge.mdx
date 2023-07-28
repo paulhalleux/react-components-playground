@@ -3,6 +3,7 @@ category: Components
 description: A component to display a badge
 icon: BadgeIcon
 status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Badge/Badge.tsx
 ---
 
 `Badge` is a component to display a badge. It can be used to display a status, a count, or any other information.
@@ -28,6 +29,7 @@ status: done
   { name: 'pill', type: 'boolean', description: 'Whether the badge should be pill-shaped.', default: 'false' },
   { name: 'closeable', type: 'boolean', description: 'Whether the badge should be closeable.', default: 'false' },
   { name: 'onClose', type: '() => void', description: 'Callback when the badge is closed.' },
+  { name: 'onClick', type: '() => void', description: 'Callback when the badge is clicked.' },
 ]} />
 
 ### BadgeSize type

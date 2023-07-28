@@ -17,12 +17,19 @@ $variants: (
 
 .badge {
   font-weight: 600;
-  text-transform: uppercase;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: t(padding-xs);
+  width: max-content;
+
+  &--action {
+    cursor: pointer;
+    &:hover {
+      opacity: .8;
+    }
+  }
 
   @each $size, $properties in $sizes {
     &--#{$size} {

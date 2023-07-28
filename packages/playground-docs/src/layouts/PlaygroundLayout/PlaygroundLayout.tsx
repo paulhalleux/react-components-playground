@@ -25,17 +25,11 @@ export function PlaygroundLayout() {
               </NavLink>
             </li>
           </div>
-          <div className={styles.sidebar__group}>
-            {Object.entries(groupComponents(ComponentList)).map(
-              ([group, components]) => (
-                <SidebarGroup
-                  title={group}
-                  components={components}
-                  key={group}
-                />
-              ),
-            )}
-          </div>
+          {Object.entries(groupComponents(ComponentList)).map(
+            ([group, components]) => (
+              <SidebarGroup title={group} components={components} key={group} />
+            ),
+          )}
         </section>
       </section>
       <Outlet />

@@ -20,6 +20,7 @@ export type BadgeProps = {
     | "info"
     | "ghost";
   pill?: boolean;
+  onClick?: () => void;
 };
 
 export function Badge({
@@ -29,15 +30,19 @@ export function Badge({
   pill = false,
   onClose,
   closeable = false,
+  onClick,
 }: BadgeProps) {
   return (
     <span
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
       className={clsx(
         styles.badge,
         styles[`badge--${size}`],
         styles[`badge--${variant}`],
         {
           [styles["badge--pill"]]: pill,
+          [styles["badge--action"]]: !!onClick,
         },
       )}
     >

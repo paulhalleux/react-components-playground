@@ -38,6 +38,10 @@ function _createMdxContent(props) {
     name: 'onClose',
     type: '() => void',
     description: 'Callback when the badge is closed.'
+  }, {
+    name: 'onClick',
+    type: '() => void',
+    description: 'Callback when the badge is clicked.'
   }]} />{"\n"}<_components.h3>{"BadgeSize type"}</_components.h3>{"\n"}<_components.p>{"The "}<_components.code>{"BadgeSize"}</_components.code>{" type is an enum with the following values:"}</_components.p>{"\n"}<_components.pre><_components.code className="language-ts">{"type BadgeSize = \"small\" | \"medium\" | \"large\"\n"}</_components.code></_components.pre>{"\n"}<_components.h3>{"BadgeVariant type"}</_components.h3>{"\n"}<_components.p>{"The "}<_components.code>{"BadgeVariant"}</_components.code>{" type is an enum with the following values:"}</_components.p>{"\n"}<_components.pre><_components.code className="language-ts">{"type BadgeVariant = \"primary\" | \"secondary\" | \"default\" | \"danger\" | \"success\" | \"info\" | \"ghost\"\n"}</_components.code></_components.pre></>;
 }
 function MDXContent(props = {}) {

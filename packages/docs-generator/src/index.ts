@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { writeFile, mkdir, readFile } from "fs/promises";
+import { compile } from "@mdx-js/mdx";
+import { mkdir, readFile, writeFile } from "fs/promises";
+import { glob } from "glob";
 
 import { rimraf } from "rimraf";
-import { compile } from "@mdx-js/mdx";
-import { glob } from "glob";
 import { Config } from "./utils/config.js";
 import { generateExamples } from "./utils/examples.js";
 import { LogMessages } from "./utils/log-messages.js";
@@ -15,6 +15,7 @@ export type Meta = Partial<{
   description: string;
   status: string;
   icon: string;
+  sourceUrl: string;
 }> & {
   fileName: string;
   title: string;
@@ -112,10 +113,10 @@ const generateDocs = async () => {
   await writeFile(
     `${Config.OutputPath}/components.ts`,
     [
-      `export type ComponentMeta = Partial<{\n\tdescription: string;\n\tpath: string;\n\tcategory: string;\n\tstatus: string;\n\ticon: string;\n}> & { title: string; fileName: string; };`,
+      `export type ComponentMeta = Partial<{\n\tsourceUrl: string;\n\tdescription: string;\n\tpath: string;\n\tcategory: string;\n\tstatus: string;\n\ticon: string;\n}> & { title: string; fileName: string; };`,
       `export const ComponentList: Record<string, ComponentMeta> = {`,
       ...Array.from(components.entries()).map(
-        ([componentName, componentData]) =>
+        ([_, componentData]) =>
           `  ${componentData.meta.fileName}: ${JSON.stringify(
             componentData.meta,
           )},`,

@@ -15,7 +15,7 @@ type SidebarGroupProps = {
 
 export function SidebarGroup({ title, components }: SidebarGroupProps) {
   return (
-    <>
+    <div className={styles.sidebar__group}>
       <h2 className={styles.sidebar__group_title}>{title}</h2>
       <ul className={styles.sidebar__group_items}>
         {components.map((component: ComponentMeta) => (
@@ -43,6 +43,6 @@ export function SidebarGroup({ title, components }: SidebarGroupProps) {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

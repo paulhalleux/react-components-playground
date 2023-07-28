@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CleanIcon } from "@paulhalleux/react-playground";
+import { Badge, CleanIcon, GithubIcon } from "@paulhalleux/react-playground";
 
 import { Components } from "../../../docs/__generated__";
 import { ComponentMeta } from "../../../docs/__generated__/components";
@@ -54,7 +54,15 @@ export function ComponentPage({ component, previous, next }: ComponentProps) {
     <div className={styles.component__container}>
       <div className={styles.component__content}>
         <Breadcrumb items={["Component", component.title || undefined]} />
-        <Title level={1}>{component.title}</Title>
+        <div className={styles.component__header}>
+          <Title level={1}>{component.title}</Title>
+          {component.sourceUrl && (
+            <Badge onClick={() => window.open(component.sourceUrl, "_blank")}>
+              <GithubIcon width={14} height={14} />
+              View source
+            </Badge>
+          )}
+        </div>
         <section className={styles.mdx} ref={mdxContainer}>
           {MdxComponent ? (
             <ExamplesProvider examples={MdxComponent.Examples}>
