@@ -26,3 +26,5 @@ export { NotificationIcon } from "./NotificationIcon";
 export { ClickIcon } from "./ClickIcon";
 export { CheckIcon } from "./CheckIcon";
 export { CloseIcon } from "./CloseIcon";
+export { MinusIcon } from "./MinusIcon";
+export { PlusIcon } from "./PlusIcon";

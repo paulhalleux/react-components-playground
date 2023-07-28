@@ -24,6 +24,8 @@ status: in-progress
 <Features features={[
   'Multiple orientations',
   'Multiple layouts',
+  'Add button',
+  'Closeable tabs',
 ]} />
 
 ## API
@@ -35,6 +37,11 @@ status: in-progress
   { name: 'defaultActiveTab', type: 'string', description: 'The default active tab. This is only used if `activeTab` is not set.' },
   { name: 'orientation', type: '"horizontal" | "vertical"', description: 'The orientation of the component. Can be `horizontal` or `vertical`.', default: '"horizontal"' },
   { name: 'layout', type: '"compact" | "spaced"', description: 'The layout of the component. Can be `compact` or `spaced`.', default: '"spaced"' },
+  { name: 'renderLabel', type: '(label: string) => ReactNode', description: 'A function to render the label of the tab. The default implementation is to render the label as text.', default: '(label) => label' },
+  { name: 'addButton', type: 'boolean', description: 'Whether or not display an add icon.', default: 'false' },
+  { name: 'onAdd', type: '() => void', description: 'Callback executed when add button is clicked.' },
+  { name: 'addDisabled', type: 'boolean', description: 'Whether or not the add button is disabled.', default: 'false' },
+  { name: 'addButtonLabel', type: 'string', description: 'The label of the add button.', default: '"Add tab"' }
 ]} />
 
 ### Tab Props
@@ -43,4 +50,9 @@ status: in-progress
   { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },
   { name: 'label', type: 'string', description: 'The label of the tab.', required: true },
   { name: 'id', type: 'string', description: 'The id of the tab. This is used to identify the tab.', required: true },
+  { name: 'closeable', type: 'boolean', description: 'Whether or not the tab can be closed.', default: 'false' },
+  { name: 'onClose', type: '() => void', description: 'A function that is called when the tab is closed.' },
+  { name: 'disabled', type: 'boolean', description: 'Whether or not the tab is disabled.', default: 'false' },
+  { name: 'closeDisabled', type: 'boolean', description: 'Whether or not the tab close button is disabled.', default: 'false' },
+  { name: 'contained', type: 'boolean', description: 'Whether or not the tab content should be contained.', default: 'false' },
 ]} />

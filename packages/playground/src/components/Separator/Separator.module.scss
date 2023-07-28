@@ -1,0 +1,13 @@
+.separator {
+  border-color: c(border);
+
+  &--vertical {
+    border-right: 1px solid c(border);
+    height: 80%;
+  }
+
+  &--horizontal {
+    width: 80%;
+    border-bottom: 1px solid c(border);
+  }
+}

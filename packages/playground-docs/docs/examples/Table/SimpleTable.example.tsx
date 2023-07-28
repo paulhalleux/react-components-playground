@@ -46,5 +46,6 @@ export const metadata: ExampleMetadata = {
   component: SimpleTableExample,
   display: {
     padding: true,
+    align: "center",
   },
 };

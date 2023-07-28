@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
+import { Icons } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
-import { Icons } from "../../../../../playground/dist/index.es";
 import { ComponentMeta } from "../../../../docs/__generated__/components";
 import { Routes } from "../../../constants/routes";
 

@@ -43,20 +43,4 @@ $variants: (
   &--pill {
     border-radius: 25px;
   }
-
-  &__close {
-    height: 13px;
-    width: 12px;
-    background-color: transparent;
-    border: none;
-    color: currentColor;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      opacity: .8;
-    }
-  }
 }

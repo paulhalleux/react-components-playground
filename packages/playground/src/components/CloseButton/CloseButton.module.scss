@@ -1,0 +1,31 @@
+$sizes: (
+  small: (height: 13, width: 12),
+  medium: (height: 17, width: 16),
+  large: (height: 21, width: 20),
+);
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: currentColor;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @each $size, $properties in $sizes {
+    &--#{$size} {
+      height: map-get($properties, height);
+      width: map-get($properties, width);
+    }
+  }
+
+  &--default {
+    border-radius: 50%;
+    background-color: c(main-contrast, .2);
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+}

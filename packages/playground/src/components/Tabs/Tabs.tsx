@@ -1,6 +1,10 @@
 import React, { ReactNode, useState } from "react";
 import clsx from "clsx";
 
+import { CloseButton } from "../CloseButton";
+import { PlusIcon } from "../Icons";
+import { Separator } from "../Separator";
+
 import { Tab, TabProps } from "./Tab";
 
 import styles from "./Tabs.module.scss";
@@ -10,6 +14,11 @@ export type TabsProps = {
   defaultActiveTab?: string;
   orientation?: "horizontal" | "vertical";
   layout?: "spaced" | "compact";
+  renderLabel?: (label: string) => ReactNode;
+  addButton?: boolean;
+  onAdd?: () => void;
+  addButtonLabel?: string;
+  addDisabled?: boolean;
 };
 
 export function Tabs({
@@ -17,6 +26,11 @@ export function Tabs({
   defaultActiveTab,
   orientation = "vertical",
   layout = "spaced",
+  renderLabel = (label: string) => label,
+  onAdd,
+  addButton,
+  addDisabled,
+  addButtonLabel = "Add tab",
 }: TabsProps) {
   const TabsChildren = React.Children.toArray(
     children,
@@ -36,22 +50,49 @@ export function Tabs({
     >
       <div className={styles.tabs__tablist}>
         {TabsChildren.map((tab) => {
-          const { id, label } = tab.props;
+          const { id, label, disabled, closeDisabled, onClose, closeable } =
+            tab.props;
 
           return (
-            <button
+            <div
+              role="button"
               key={id}
               className={clsx(styles.tabs__tab__button, {
                 [styles["tabs__tab__button--active"]]: id === activeTab,
+                [styles["tabs__tab__button--disabled"]]: disabled,
               })}
-              onClick={() => setActiveTab(id)}
+              onClick={() => !disabled && setActiveTab(id)}
               aria-selected={id === activeTab}
               aria-controls={id}
             >
-              {label}
-            </button>
+              {renderLabel(label)}
+              {closeable && (
+                <CloseButton
+                  size="medium"
+                  onClick={onClose}
+                  disabled={closeDisabled || disabled}
+                  variant="ghost"
+                />
+              )}
+            </div>
           );
         })}
+        {addButton && (
+          <>
+            <Separator orientation={orientation} />
+            <button
+              onClick={onAdd}
+              disabled={addDisabled}
+              className={clsx(
+                styles.tabs__tab__button,
+                styles.tabs__tab__button_add,
+              )}
+            >
+              <PlusIcon width={15} height={15} />
+              {orientation === "horizontal" && addButtonLabel}
+            </button>
+          </>
+        )}
       </div>
       <div className={styles.tab__pane__container}>
         {TabsChildren.map((tab) => (

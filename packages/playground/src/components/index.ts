@@ -9,5 +9,7 @@ export * from "./Button";
 export * from "./CodeBlock";
 export * from "./Toast";
 export * from "./Checkbox";
+export * from "./CloseButton";
+export * from "./Separator";
 
 export * as Icons from "./Icons";

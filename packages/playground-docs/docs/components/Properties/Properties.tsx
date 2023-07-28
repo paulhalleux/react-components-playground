@@ -42,7 +42,7 @@ export function Properties({ properties }: PropertiesProps) {
         },
         { key: "description", label: "Description", width: "50%" },
       ]}
-      data={properties}
+      data={properties.map((p) => ({ ...p, id: p.name }))}
     />
   );
 }

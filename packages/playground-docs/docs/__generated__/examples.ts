@@ -15,13 +15,13 @@ export const Examples = {
 	Selector,
 	KeyframePath,
 	FrameSelector,
+	TabsSpaced,
 	CodeBlock,
 	Badge,
-	TabsSpaced,
 	TabsHorizontal,
 	TabsCompact,
-	TableSimpleTable,
 	TableCustomRendering,
+	TableSimpleTable,
 };
 
 export const ExamplesSources = {
@@ -305,6 +305,43 @@ export const metadata: ExampleMetadata = {
   component: FrameSelectorExample,
 };
 `,
+	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1,
+};
+
+function SpacedExample() {
+  return (
+    <Tabs orientation="vertical" layout="spaced">
+      <Tabs.Tab id="tab1" label="Tab 1">
+        <p style={ContentStyle}>Tab 1 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab2" label="Tab 2">
+        <p style={ContentStyle}>Tab 2 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab3" label="Tab 3">
+        <p style={ContentStyle}>Tab 3 content</p>
+      </Tabs.Tab>
+    </Tabs>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Spaced",
+  component: SpacedExample,
+  display: {
+    padding: true,
+  },
+};
+`,
 	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../components";
@@ -421,67 +458,21 @@ export const metadata: ExampleMetadata = {
   },
 };
 `,
-	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
+	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../components";
 
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function SpacedExample() {
-  return (
-    <Tabs orientation="vertical" layout="spaced">
-      <Tabs.Tab id="tab1" label="Tab 1">
-        <p style={ContentStyle}>Tab 1 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2">
-        <p style={ContentStyle}>Tab 2 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3">
-        <p style={ContentStyle}>Tab 3 content</p>
-      </Tabs.Tab>
-    </Tabs>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Spaced",
-  component: SpacedExample,
-  display: {
-    padding: true,
-  },
-};
-`,
-	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { Display, ExampleMetadata } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
 function HorizontalExample() {
   return (
-    <Tabs orientation="horizontal">
-      <Tabs.Tab id="tab1" label="Tab 1">
-        <p style={ContentStyle}>Tab 1 content</p>
+    <Tabs orientation="horizontal" addButton>
+      <Tabs.Tab contained id="tab1" label="Tab 1" closeable>
+        <p style={{ padding: 12 }}>Tab 1 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2">
-        <p style={ContentStyle}>Tab 2 content</p>
+      <Tabs.Tab contained id="tab2" label="Tab 2" disabled closeable>
+        <p style={{ padding: 12 }}>Tab 2 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3">
-        <p style={ContentStyle}>Tab 3 content</p>
+      <Tabs.Tab contained id="tab3" label="Tab 3" closeable closeDisabled>
+        <p style={{ padding: 12 }}>Tab 3 content</p>
       </Tabs.Tab>
     </Tabs>
   );
@@ -497,7 +488,7 @@ export const metadata: ExampleMetadata = {
 `,
 	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../../components";
+import { ExampleComponentProps, ExampleMetadata } from "../../components";
 
 const ContentStyle = {
   padding: 12,
@@ -508,16 +499,23 @@ const ContentStyle = {
   flexGrow: 1,
 };
 
-function CompactExample() {
+export type CompactExampleControls = {
+  addButton: boolean;
+  closeable: boolean;
+};
+
+function CompactExample({
+  controls,
+}: ExampleComponentProps<CompactExampleControls>) {
   return (
-    <Tabs orientation="vertical" layout="compact">
-      <Tabs.Tab id="tab1" label="Tab 1">
+    <Tabs orientation="vertical" layout="compact" {...controls}>
+      <Tabs.Tab id="tab1" label="Tab 1" closeable={controls.closeable}>
         <p style={ContentStyle}>Tab 1 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2">
+      <Tabs.Tab id="tab2" label="Tab 2" closeable={controls.closeable}>
         <p style={ContentStyle}>Tab 2 content</p>
       </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3">
+      <Tabs.Tab id="tab3" label="Tab 3" closeable={controls.closeable}>
         <p style={ContentStyle}>Tab 3 content</p>
       </Tabs.Tab>
     </Tabs>
@@ -530,57 +528,20 @@ export const metadata: ExampleMetadata = {
   display: {
     padding: true,
   },
-};
-`,
-	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
-
-import { ExampleMetadata } from "../../components";
-
-type Person = {
-  id: number;
-  name: string;
-  age: number;
-};
-
-function SimpleTableExample() {
-  return (
-    <Table<Person>
-      columns={[
-        { key: "id", label: "ID", width: 100 },
-        {
-          key: "name",
-          label: "Name",
-          sortable: true,
-          sortFn: sortName,
-          width: 200,
-        },
-        { key: "age", label: "Age", width: 100 },
-      ]}
-      data={[
-        { id: 1, name: "Paul", age: 30 },
-        { id: 2, name: "John", age: 40 },
-        { id: 3, name: "Jane", age: 50 },
-      ]}
-    />
-  );
-}
-
-function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
-  if (sort === "asc") {
-    return a.name.localeCompare(b.name);
-  } else if (sort === "desc") {
-    return b.name.localeCompare(a.name);
-  } else {
-    return 0;
-  }
-}
-
-export const metadata: ExampleMetadata = {
-  name: "SimpleTable",
-  component: SimpleTableExample,
-  display: {
-    padding: true,
-  },
+  controls: [
+    {
+      label: "Add button",
+      type: "boolean",
+      value: true,
+      property: "addButton",
+    },
+    {
+      label: "Closeable",
+      type: "boolean",
+      value: false,
+      property: "closeable",
+    },
+  ],
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";
@@ -647,6 +608,59 @@ export const metadata: ExampleMetadata = {
   component: CustomRenderingExample,
   display: {
     padding: true,
+    align: "center",
+  },
+};
+`,
+	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../../components";
+
+type Person = {
+  id: number;
+  name: string;
+  age: number;
+};
+
+function SimpleTableExample() {
+  return (
+    <Table<Person>
+      columns={[
+        { key: "id", label: "ID", width: 100 },
+        {
+          key: "name",
+          label: "Name",
+          sortable: true,
+          sortFn: sortName,
+          width: 200,
+        },
+        { key: "age", label: "Age", width: 100 },
+      ]}
+      data={[
+        { id: 1, name: "Paul", age: 30 },
+        { id: 2, name: "John", age: 40 },
+        { id: 3, name: "Jane", age: 50 },
+      ]}
+    />
+  );
+}
+
+function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
+  if (sort === "asc") {
+    return a.name.localeCompare(b.name);
+  } else if (sort === "desc") {
+    return b.name.localeCompare(a.name);
+  } else {
+    return 0;
+  }
+}
+
+export const metadata: ExampleMetadata = {
+  name: "SimpleTable",
+  component: SimpleTableExample,
+  display: {
+    padding: true,
+    align: "center",
   },
 };
 `,

@@ -4,6 +4,12 @@
   height: 100%;
 }
 
+.tab--contained {
+  border: 1px solid c(border);
+  border-radius: t(border-radius-sm);
+  background-color: c(main);
+}
+
 .tabs__container {
   display: flex;
   align-items: flex-start;
@@ -15,22 +21,30 @@
   width: 100%;
 
   .tabs__tab__button {
-    justify-content: flex-start;
+    justify-content: space-between;
     text-align: left;
+    width: 100%;
+
+    &_add {
+      padding: t(padding-sm) t(padding-md);
+      svg {
+        margin-left: -4px;
+      }
+    }
   }
 
   &.tabs__container--spaced {
     flex-direction: row;
-    gap: 8px;
+    gap: t(padding-sm);
 
     > .tabs__tablist {
-      border-radius: 4px;
+      border-radius: t(border-radius-sm);
     }
   }
 
   &.tabs__container--compact {
     > .tabs__tablist {
-      border-radius: 4px 0 0 4px;
+      border-radius: t(border-radus-sm) 0 0 t(border-radus-sm);
       margin-right: -1px;
     }
   }
@@ -48,10 +62,10 @@
 
   &.tabs__container--spaced {
     flex-direction: column;
-    gap: 8px;
+    gap: t(padding-sm);
 
     > .tabs__tablist {
-      border-radius: 4px;
+      border-radius: t(border-radius-sm);
     }
   }
 
@@ -59,7 +73,7 @@
     gap: 0;
 
     > .tabs__tablist {
-      border-radius: 4px 4px 0 0;
+      border-radius: t(border-radius-sm) t(border-radius-sm) 0 0;
       margin-bottom: -1px;
     }
   }
@@ -76,27 +90,30 @@
 
 .tabs__tablist {
   display: flex;
-  padding: 4px;
-  height: 36px;
+  align-items: center;
+  padding: t(padding-xs);
   border: 1px solid c(border);
-  gap: 4px;
+  gap: t(padding-xs);
   min-width: 100px;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .tabs__tab__button {
-  height: 26px;
   border: none;
   background: none;
-  padding: 0 12px;
-  border-radius: 3px;
-  display: block;
-  align-items: center;
-  justify-content: center;
+  padding: t(padding-sm) t(padding-md);
+  border-radius: t(border-radius-sm);
   cursor: pointer;
   color: c(text-contrast);
   max-width: 200px;
+  font-size: t(font-size-sm);
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t(padding-xs);
 
   white-space: nowrap;
   overflow: hidden;
@@ -106,5 +123,14 @@
   &:hover {
     color: c(text);
     background: c(main-contrast, .5);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: .5;
+  }
+
+  &_add {
+    padding: t(padding-sm) t(padding-sm);
   }
 }

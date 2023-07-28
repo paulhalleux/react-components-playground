@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import { CloseIcon } from "../Icons";
+import { CloseButton } from "../CloseButton";
 
 import styles from "./Badge.module.scss";
 
@@ -43,13 +43,7 @@ export function Badge({
     >
       {children}
       {closeable && (
-        <button
-          type="button"
-          className={styles["badge__close"]}
-          onClick={onClose}
-        >
-          <CloseIcon width={12} height={12} />
-        </button>
+        <CloseButton size="small" variant="ghost" onClick={onClose} />
       )}
     </span>
   );

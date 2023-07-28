@@ -62,5 +62,6 @@ export const metadata: ExampleMetadata = {
   component: CustomRenderingExample,
   display: {
     padding: true,
+    align: "center",
   },
 };

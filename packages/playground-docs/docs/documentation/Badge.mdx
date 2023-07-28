@@ -22,7 +22,25 @@ status: done
 
 <Properties properties={[
   { name: 'children', type: 'React.ReactNode', description: 'The content of the badge.' },
-  { name: 'size', type: '"small" | "medium" | "large"', description: 'The size of the badge.', default: '"medium"' },
-  { name: 'variant', type: '"primary" | "secondary" | "default" | "danger" | "success" | "info" | "ghost"', description: 'The variant of the badge.', default: '"default"' },
+  { name: 'size', type: 'BadgeSize', description: 'The size of the badge.', default: '"medium"' },
+  { name: 'variant', type: 'BadgeVariant', description: 'The variant of the badge.', default: '"default"' },
   { name: 'pill', type: 'boolean', description: 'Whether the badge should be pill-shaped.', default: 'false' },
+  { name: 'closeable', type: 'boolean', description: 'Whether the badge should be closeable.', default: 'false' },
+  { name: 'onClose', type: '() => void', description: 'Callback when the badge is closed.' },
 ]} />
+
+### BadgeSize type
+
+The `BadgeSize` type is an enum with the following values:
+
+```ts
+type BadgeSize = "small" | "medium" | "large"
+```
+
+### BadgeVariant type
+
+The `BadgeVariant` type is an enum with the following values:
+
+```ts
+type BadgeVariant = "primary" | "secondary" | "default" | "danger" | "success" | "info" | "ghost"
+```

@@ -4,7 +4,8 @@ function _createMdxContent(props) {
     p: "p",
     code: "code",
     h2: "h2",
-    h3: "h3"
+    h3: "h3",
+    pre: "pre"
   }, props.components), {Example, Features, Properties} = _components;
   if (!Example) _missingMdxReference("Example", true);
   if (!Features) _missingMdxReference("Features", true);
@@ -15,12 +16,12 @@ function _createMdxContent(props) {
     description: 'The content of the badge.'
   }, {
     name: 'size',
-    type: '"small" | "medium" | "large"',
+    type: 'BadgeSize',
     description: 'The size of the badge.',
     default: '"medium"'
   }, {
     name: 'variant',
-    type: '"primary" | "secondary" | "default" | "danger" | "success" | "info" | "ghost"',
+    type: 'BadgeVariant',
     description: 'The variant of the badge.',
     default: '"default"'
   }, {
@@ -28,7 +29,16 @@ function _createMdxContent(props) {
     type: 'boolean',
     description: 'Whether the badge should be pill-shaped.',
     default: 'false'
-  }]} /></>;
+  }, {
+    name: 'closeable',
+    type: 'boolean',
+    description: 'Whether the badge should be closeable.',
+    default: 'false'
+  }, {
+    name: 'onClose',
+    type: '() => void',
+    description: 'Callback when the badge is closed.'
+  }]} />{"\n"}<_components.h3>{"BadgeSize type"}</_components.h3>{"\n"}<_components.p>{"The "}<_components.code>{"BadgeSize"}</_components.code>{" type is an enum with the following values:"}</_components.p>{"\n"}<_components.pre><_components.code className="language-ts">{"type BadgeSize = \"small\" | \"medium\" | \"large\"\n"}</_components.code></_components.pre>{"\n"}<_components.h3>{"BadgeVariant type"}</_components.h3>{"\n"}<_components.p>{"The "}<_components.code>{"BadgeVariant"}</_components.code>{" type is an enum with the following values:"}</_components.p>{"\n"}<_components.pre><_components.code className="language-ts">{"type BadgeVariant = \"primary\" | \"secondary\" | \"default\" | \"danger\" | \"success\" | \"info\" | \"ghost\"\n"}</_components.code></_components.pre></>;
 }
 function MDXContent(props = {}) {
   const {wrapper: MDXLayout} = props.components || ({});
