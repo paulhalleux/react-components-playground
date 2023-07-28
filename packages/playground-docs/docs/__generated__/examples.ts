@@ -12,15 +12,15 @@ import * as TableCustomRendering from "../examples/Table/CustomRendering.example
 
 export const Examples = {
 	Toast,
+	Selector,
+	FrameSelector,
 	KeyframePath,
 	CodeBlock,
-	Selector,
 	TabsSpaced,
-	FrameSelector,
 	Badge,
 	TabsHorizontal,
-	TabsCompact,
 	TableSimpleTable,
+	TabsCompact,
 	TableCustomRendering,
 };
 
@@ -82,6 +82,162 @@ export const metadata: ExampleMetadata = {
     padding: true,
     align: "center",
   },
+};
+`,
+	Selector: `import { useRef, useState } from "react";
+import {
+  Selectable,
+  selectable,
+  Selector,
+} from "@paulhalleux/react-playground";
+
+import { useTheme } from "../../../playground/src/theme/theme-context";
+import { ExampleMetadata } from "../components";
+
+function SelectorExample() {
+  const { theme } = useTheme();
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const onSelect = (id: string, selected: boolean) => {
+    if (selected) {
+      setSelected((prev) => [...prev, id]);
+    } else {
+      setSelected((prev) => prev.filter((item) => item !== id));
+    }
+  };
+
+  return (
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <Selector
+        parentRef={containerRef}
+        color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
+      >
+        <SelectableItem
+          onSelect={(selected) => onSelect("a", selected)}
+          selected={selected.includes("a")}
+          position={{ x: 100, y: 50 }}
+          id="a"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("b", selected)}
+          selected={selected.includes("b")}
+          position={{ x: 200, y: 150 }}
+          id="b"
+        />
+        <SelectableItem
+          onSelect={(selected) => onSelect("c", selected)}
+          selected={selected.includes("c")}
+          position={{ x: 300, y: 75 }}
+          id="c"
+        />
+      </Selector>
+    </div>
+  );
+}
+
+const SelectableItem = selectable<Selectable>(
+  ({ selected, position }: Selectable) => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: position.x,
+          top: position.y,
+          width: 15,
+          height: 15,
+          backgroundColor: selected ? "green" : "gray",
+        }}
+      ></div>
+    );
+  },
+);
+
+export const metadata: ExampleMetadata = {
+  name: "Selector",
+  component: SelectorExample,
+};
+`,
+	FrameSelector: `import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import {
+  CrossHead,
+  FrameSelector,
+  Point,
+  Size,
+} from "@paulhalleux/react-playground";
+
+import {
+  ThemeType,
+  useTheme,
+} from "../../../playground/src/theme/theme-context";
+import { ExampleMetadata, ExampleRef } from "../components";
+
+const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
+  const { theme } = useTheme();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
+  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
+
+  useEffect(() => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    setPosition({
+      x: width / 2 - size.width / 2,
+      y: height / 2 - size.height / 2,
+    });
+  }, [containerRef]);
+
+  const onReset = () => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const { width, height } = current.getBoundingClientRect();
+    setSize({ width: 50, height: 50 });
+    setPosition({
+      x: width / 2 - 50 / 2,
+      y: height / 2 - 50 / 2,
+    });
+  };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      reset: onReset,
+    }),
+    [onReset],
+  );
+
+  return (
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <FrameSelector
+        parentRef={containerRef}
+        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
+        position={position}
+        onPositionChange={setPosition}
+        size={size}
+        onSizeChange={setSize}
+        maxSize={{ width: 75, height: 75 }}
+        minSize={{ width: 25, height: 25 }}
+      >
+        <CrossHead />
+      </FrameSelector>
+    </div>
+  );
+});
+
+export const metadata: ExampleMetadata = {
+  name: "FrameSelector",
+  component: FrameSelectorExample,
 };
 `,
 	KeyframePath: `import { forwardRef, useImperativeHandle, useRef, useState } from "react";
@@ -185,81 +341,6 @@ export const metadata: ExampleMetadata = {
   },
 };
 `,
-	Selector: `import { useRef, useState } from "react";
-import {
-  Selectable,
-  selectable,
-  Selector,
-} from "@paulhalleux/react-playground";
-
-import { useTheme } from "../../../playground/src/theme/theme-context";
-import { ExampleMetadata } from "../components";
-
-function SelectorExample() {
-  const { theme } = useTheme();
-  const [selected, setSelected] = useState<string[]>([]);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const onSelect = (id: string, selected: boolean) => {
-    if (selected) {
-      setSelected((prev) => [...prev, id]);
-    } else {
-      setSelected((prev) => prev.filter((item) => item !== id));
-    }
-  };
-
-  return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
-      <Selector
-        parentRef={containerRef}
-        color={theme === "light" ? [0, 0, 0] : [255, 255, 255]}
-      >
-        <SelectableItem
-          onSelect={(selected) => onSelect("a", selected)}
-          selected={selected.includes("a")}
-          position={{ x: 100, y: 50 }}
-          id="a"
-        />
-        <SelectableItem
-          onSelect={(selected) => onSelect("b", selected)}
-          selected={selected.includes("b")}
-          position={{ x: 200, y: 150 }}
-          id="b"
-        />
-        <SelectableItem
-          onSelect={(selected) => onSelect("c", selected)}
-          selected={selected.includes("c")}
-          position={{ x: 300, y: 75 }}
-          id="c"
-        />
-      </Selector>
-    </div>
-  );
-}
-
-const SelectableItem = selectable<Selectable>(
-  ({ selected, position }: Selectable) => {
-    return (
-      <div
-        style={{
-          position: "absolute",
-          left: position.x,
-          top: position.y,
-          width: 15,
-          height: 15,
-          backgroundColor: selected ? "green" : "gray",
-        }}
-      ></div>
-    );
-  },
-);
-
-export const metadata: ExampleMetadata = {
-  name: "Selector",
-  component: SelectorExample,
-};
-`,
 	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../components";
@@ -295,87 +376,6 @@ export const metadata: ExampleMetadata = {
   display: {
     padding: true,
   },
-};
-`,
-	FrameSelector: `import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
-import {
-  CrossHead,
-  FrameSelector,
-  Point,
-  Size,
-} from "@paulhalleux/react-playground";
-
-import {
-  ThemeType,
-  useTheme,
-} from "../../../playground/src/theme/theme-context";
-import { ExampleMetadata, ExampleRef } from "../components";
-
-const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
-  const { theme } = useTheme();
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<Point>({ x: 0, y: 0 });
-  const [size, setSize] = useState<Size>({ width: 50, height: 50 });
-
-  useEffect(() => {
-    const { current } = containerRef;
-    if (!current) return;
-
-    const { width, height } = current.getBoundingClientRect();
-    setPosition({
-      x: width / 2 - size.width / 2,
-      y: height / 2 - size.height / 2,
-    });
-  }, [containerRef]);
-
-  const onReset = () => {
-    const { current } = containerRef;
-    if (!current) return;
-
-    const { width, height } = current.getBoundingClientRect();
-    setSize({ width: 50, height: 50 });
-    setPosition({
-      x: width / 2 - 50 / 2,
-      y: height / 2 - 50 / 2,
-    });
-  };
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      reset: onReset,
-    }),
-    [onReset],
-  );
-
-  return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
-      <FrameSelector
-        parentRef={containerRef}
-        color={theme === ThemeType.Light ? [0, 0, 0] : [255, 255, 255]}
-        position={position}
-        onPositionChange={setPosition}
-        size={size}
-        onSizeChange={setSize}
-        maxSize={{ width: 75, height: 75 }}
-        minSize={{ width: 25, height: 25 }}
-      >
-        <CrossHead />
-      </FrameSelector>
-    </div>
-  );
-});
-
-export const metadata: ExampleMetadata = {
-  name: "FrameSelector",
-  component: FrameSelectorExample,
 };
 `,
 	Badge: `import { Badge } from "@paulhalleux/react-playground";
@@ -486,6 +486,58 @@ export const metadata: ExampleMetadata = {
   },
 };
 `,
+	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../../components";
+
+type Person = {
+  id: number;
+  name: string;
+  age: number;
+};
+
+function SimpleTableExample() {
+  return (
+    <Table<Person>
+      columns={[
+        { key: "id", label: "ID", width: 100 },
+        {
+          key: "name",
+          label: "Name",
+          sortable: true,
+          sortFn: sortName,
+          width: 200,
+        },
+        { key: "age", label: "Age", width: 100 },
+      ]}
+      data={[
+        { id: 1, name: "Paul", age: 30 },
+        { id: 2, name: "John", age: 40 },
+        { id: 3, name: "Jane", age: 50 },
+      ]}
+    />
+  );
+}
+
+function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
+  if (sort === "asc") {
+    return a.name.localeCompare(b.name);
+  } else if (sort === "desc") {
+    return b.name.localeCompare(a.name);
+  } else {
+    return 0;
+  }
+}
+
+export const metadata: ExampleMetadata = {
+  name: "SimpleTable",
+  component: SimpleTableExample,
+  display: {
+    padding: true,
+    align: "center",
+  },
+};
+`,
 	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { ExampleComponentProps, ExampleMetadata } from "../../components";
@@ -542,58 +594,6 @@ export const metadata: ExampleMetadata = {
       property: "closeable",
     },
   ],
-};
-`,
-	TableSimpleTable: `import { Table } from "@paulhalleux/react-playground";
-
-import { ExampleMetadata } from "../../components";
-
-type Person = {
-  id: number;
-  name: string;
-  age: number;
-};
-
-function SimpleTableExample() {
-  return (
-    <Table<Person>
-      columns={[
-        { key: "id", label: "ID", width: 100 },
-        {
-          key: "name",
-          label: "Name",
-          sortable: true,
-          sortFn: sortName,
-          width: 200,
-        },
-        { key: "age", label: "Age", width: 100 },
-      ]}
-      data={[
-        { id: 1, name: "Paul", age: 30 },
-        { id: 2, name: "John", age: 40 },
-        { id: 3, name: "Jane", age: 50 },
-      ]}
-    />
-  );
-}
-
-function sortName(a: Person, b: Person, sort: "asc" | "desc" | null) {
-  if (sort === "asc") {
-    return a.name.localeCompare(b.name);
-  } else if (sort === "desc") {
-    return b.name.localeCompare(a.name);
-  } else {
-    return 0;
-  }
-}
-
-export const metadata: ExampleMetadata = {
-  name: "SimpleTable",
-  component: SimpleTableExample,
-  display: {
-    padding: true,
-    align: "center",
-  },
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";

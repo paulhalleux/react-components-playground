@@ -5,6 +5,7 @@ import { router } from "./pages";
 
 export function Application() {
   const { theme } = useTheme();
+
   return (
     <div className={theme}>
       <RouterProvider router={router} />

@@ -1,5 +1,7 @@
 import kebab from "lodash/kebabCase";
 
-export function getComponentPath(componentName: string) {
-  return kebab(componentName);
+import { ComponentMeta } from "../../docs/__generated__/components";
+
+export function getComponentPath(component: ComponentMeta) {
+  return component.path || kebab(component.title);
 }

@@ -4,5 +4,5 @@ import { getComponentPath } from "../utils/path";
 export const Routes = {
   Home: "/",
   Component: (component: ComponentMeta) =>
-    `/components/${component.path || getComponentPath(component.title)}`,
+    `/components/${getComponentPath(component)}`,
 };
