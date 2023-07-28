@@ -9,7 +9,7 @@ status: in-progress
 
 ## Example
 
-<Example name="Toast" />
+<Example name="Toast" highlight="18-24,27" />
 
 ## API
 
@@ -27,14 +27,14 @@ const App = () => (
 );
 ```
 
-### useToasts
+### useToaster
 
 The `useToasts` hook returns a `pushToast` function that can be used to push a new toast to the `ToasterProvider`.
 
 ```ts
 import { useToasts } from "@paulhalleux/react-playground";
 
-const { pushToast } = useToasts();
+const { pushToast } = useToaster();
 
 // --> pushToast(toast: ToastType) => void
 ```

@@ -11,79 +11,20 @@ import * as TableSimpleTable from "../examples/Table/SimpleTable.example";
 import * as TableCustomRendering from "../examples/Table/CustomRendering.example";
 
 export const Examples = {
-	Toast,
 	Selector,
-	KeyframePath,
-	FrameSelector,
 	TabsSpaced,
+	KeyframePath,
+	Toast,
 	CodeBlock,
-	Badge,
+	FrameSelector,
 	TabsHorizontal,
-	TabsCompact,
 	TableCustomRendering,
 	TableSimpleTable,
+	Badge,
+	TabsCompact,
 };
 
 export const ExamplesSources = {
-	Toast: `import { Button, useToaster } from "@paulhalleux/react-playground";
-
-import { ExampleComponentProps, ExampleMetadata } from "../components";
-
-type ToastExampleControls = {
-  title: string;
-  content: string;
-  closable: boolean;
-  action: boolean;
-};
-
-function ToastExample({
-  controls,
-}: ExampleComponentProps<ToastExampleControls>) {
-  const { pushToast } = useToaster();
-
-  const onClick = () => {
-    pushToast({
-      type: "primary",
-      duration: 5000,
-      actionLabel: controls.action ? "Action" : undefined,
-      onAction: () => alert("Action Clicked"),
-      ...controls,
-    });
-  };
-
-  return <Button onClick={onClick}>Send Toast</Button>;
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Toast",
-  component: ToastExample,
-  controls: [
-    { type: "string", label: "Title", property: "title", value: "Toast Title" },
-    {
-      type: "string",
-      label: "Content",
-      property: "content",
-      value: "Toast Content",
-    },
-    {
-      type: "boolean",
-      label: "Closable",
-      property: "closable",
-      value: true,
-    },
-    {
-      type: "boolean",
-      label: "Action",
-      property: "action",
-      value: true,
-    },
-  ],
-  display: {
-    padding: true,
-    align: "center",
-  },
-};
-`,
 	Selector: `import { useRef, useState } from "react";
 import {
   Selectable,
@@ -159,6 +100,43 @@ export const metadata: ExampleMetadata = {
   component: SelectorExample,
 };
 `,
+	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1,
+};
+
+function SpacedExample() {
+  return (
+    <Tabs orientation="vertical" layout="spaced">
+      <Tabs.Tab id="tab1" label="Tab 1">
+        <p style={ContentStyle}>Tab 1 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab2" label="Tab 2">
+        <p style={ContentStyle}>Tab 2 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab3" label="Tab 3">
+        <p style={ContentStyle}>Tab 3 content</p>
+      </Tabs.Tab>
+    </Tabs>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Spaced",
+  component: SpacedExample,
+  display: {
+    padding: true,
+  },
+};
+`,
 	KeyframePath: `import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { Keyframe, KeyframePath } from "@paulhalleux/react-playground";
 
@@ -222,6 +200,101 @@ export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {
 export const metadata: ExampleMetadata = {
   name: "KeyframePath",
   component: KeyframePathExample,
+};
+`,
+	Toast: `import { Button, useToaster } from "@paulhalleux/react-playground";
+
+import { ExampleComponentProps, ExampleMetadata } from "../components";
+
+type ToastExampleControls = {
+  title: string;
+  content: string;
+  closable: boolean;
+  action: boolean;
+};
+
+function ToastExample({
+  controls,
+}: ExampleComponentProps<ToastExampleControls>) {
+  const { pushToast } = useToaster();
+
+  const onClick = () => {
+    pushToast({
+      type: "primary",
+      duration: 5000,
+      actionLabel: controls.action ? "Action" : undefined,
+      onAction: () => alert("Action Clicked"),
+      ...controls,
+    });
+  };
+
+  return <Button onClick={onClick}>Send Toast</Button>;
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Toast",
+  component: ToastExample,
+  controls: [
+    { type: "string", label: "Title", property: "title", value: "Toast Title" },
+    {
+      type: "string",
+      label: "Content",
+      property: "content",
+      value: "Toast Content",
+    },
+    {
+      type: "boolean",
+      label: "Closable",
+      property: "closable",
+      value: true,
+    },
+    {
+      type: "boolean",
+      label: "Action",
+      property: "action",
+      value: true,
+    },
+  ],
+  display: {
+    padding: true,
+    align: "center",
+  },
+};
+`,
+	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
+
+import { ExampleMetadata } from "../components";
+
+function CodeBlockExample() {
+  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
+  
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: 4,
+  height: "100%",
+  flexGrow: 1
+};
+
+function CodeBlockExample() {
+  return (
+    <CodeBlock>
+      {ContentStyle}
+    </CodeBlock>
+  );
+}\`;
+
+  return <CodeBlock language="tsx">{code}</CodeBlock>;
+}
+
+export const metadata: ExampleMetadata = {
+  name: "CodeBlock",
+  component: CodeBlockExample,
+  display: {
+    padding: true,
+    grow: true,
+  },
 };
 `,
 	FrameSelector: `import {
@@ -305,159 +378,6 @@ export const metadata: ExampleMetadata = {
   component: FrameSelectorExample,
 };
 `,
-	TabsSpaced: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { ExampleMetadata } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1,
-};
-
-function SpacedExample() {
-  return (
-    <Tabs orientation="vertical" layout="spaced">
-      <Tabs.Tab id="tab1" label="Tab 1">
-        <p style={ContentStyle}>Tab 1 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2">
-        <p style={ContentStyle}>Tab 2 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3">
-        <p style={ContentStyle}>Tab 3 content</p>
-      </Tabs.Tab>
-    </Tabs>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Spaced",
-  component: SpacedExample,
-  display: {
-    padding: true,
-  },
-};
-`,
-	CodeBlock: `import { CodeBlock } from "@paulhalleux/react-playground";
-
-import { ExampleMetadata } from "../components";
-
-function CodeBlockExample() {
-  const code = \`import { CodeBlock } from "@paulhalleux/react-playground";
-  
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: 4,
-  height: "100%",
-  flexGrow: 1
-};
-
-function CodeBlockExample() {
-  return (
-    <CodeBlock>
-      {ContentStyle}
-    </CodeBlock>
-  );
-}\`;
-
-  return <CodeBlock language="tsx">{code}</CodeBlock>;
-}
-
-export const metadata: ExampleMetadata = {
-  name: "CodeBlock",
-  component: CodeBlockExample,
-  display: {
-    padding: true,
-    grow: true,
-  },
-};
-`,
-	Badge: `import { Badge } from "@paulhalleux/react-playground";
-
-import { ExampleComponentProps, ExampleMetadata } from "../components";
-
-const GroupStyle = {
-  display: "flex",
-  gap: 24,
-  alignItems: "center",
-};
-
-type BadgeExampleControls = {
-  variant: "default" | "primary" | "secondary" | "warning";
-  pill: "badge" | "pill";
-};
-
-function BadgeExample({
-  controls,
-}: ExampleComponentProps<BadgeExampleControls>) {
-  return (
-    <>
-      <div style={GroupStyle}>
-        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-    </>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Badge",
-  component: BadgeExample,
-  controls: [
-    {
-      label: "Status",
-      type: "select",
-      value: "default",
-      property: "variant",
-      options: [
-        "default",
-        "primary",
-        "secondary",
-        "warning",
-        "danger",
-        "success",
-        "info",
-        "ghost",
-      ],
-    },
-    {
-      label: "Type",
-      type: "select",
-      value: "badge",
-      property: "pill",
-      options: ["badge", "pill"],
-    },
-    {
-      label: "Closeable",
-      type: "boolean",
-      value: false,
-      property: "closeable",
-    },
-  ],
-  display: {
-    padding: true,
-    align: "center",
-    direction: "column",
-  },
-};
-`,
 	TabsHorizontal: `import { Tabs } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../components";
@@ -484,64 +404,6 @@ export const metadata: ExampleMetadata = {
   display: {
     padding: true,
   },
-};
-`,
-	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
-
-import { ExampleComponentProps, ExampleMetadata } from "../../components";
-
-const ContentStyle = {
-  padding: 12,
-  backgroundColor: "rgb(var(--color-main-light), .2)",
-  border: "1px solid rgb(var(--color-border))",
-  borderRadius: "0 4px 4px 4px",
-  height: "100%",
-  flexGrow: 1,
-};
-
-export type CompactExampleControls = {
-  addButton: boolean;
-  closeable: boolean;
-};
-
-function CompactExample({
-  controls,
-}: ExampleComponentProps<CompactExampleControls>) {
-  return (
-    <Tabs orientation="vertical" layout="compact" {...controls}>
-      <Tabs.Tab id="tab1" label="Tab 1" closeable={controls.closeable}>
-        <p style={ContentStyle}>Tab 1 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab2" label="Tab 2" closeable={controls.closeable}>
-        <p style={ContentStyle}>Tab 2 content</p>
-      </Tabs.Tab>
-      <Tabs.Tab id="tab3" label="Tab 3" closeable={controls.closeable}>
-        <p style={ContentStyle}>Tab 3 content</p>
-      </Tabs.Tab>
-    </Tabs>
-  );
-}
-
-export const metadata: ExampleMetadata = {
-  name: "Compact",
-  component: CompactExample,
-  display: {
-    padding: true,
-  },
-  controls: [
-    {
-      label: "Add button",
-      type: "boolean",
-      value: true,
-      property: "addButton",
-    },
-    {
-      label: "Closeable",
-      type: "boolean",
-      value: false,
-      property: "closeable",
-    },
-  ],
 };
 `,
 	TableCustomRendering: `import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";
@@ -662,6 +524,144 @@ export const metadata: ExampleMetadata = {
     padding: true,
     align: "center",
   },
+};
+`,
+	Badge: `import { Badge } from "@paulhalleux/react-playground";
+
+import { ExampleComponentProps, ExampleMetadata } from "../components";
+
+const GroupStyle = {
+  display: "flex",
+  gap: 24,
+  alignItems: "center",
+};
+
+type BadgeExampleControls = {
+  variant: "default" | "primary" | "secondary" | "warning";
+  pill: "badge" | "pill";
+};
+
+function BadgeExample({
+  controls,
+}: ExampleComponentProps<BadgeExampleControls>) {
+  return (
+    <>
+      <div style={GroupStyle}>
+        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+      <div style={GroupStyle}>
+        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
+          Badge content
+        </Badge>
+      </div>
+    </>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Badge",
+  component: BadgeExample,
+  controls: [
+    {
+      label: "Status",
+      type: "select",
+      value: "default",
+      property: "variant",
+      options: [
+        "default",
+        "primary",
+        "secondary",
+        "warning",
+        "danger",
+        "success",
+        "info",
+        "ghost",
+      ],
+    },
+    {
+      label: "Type",
+      type: "select",
+      value: "badge",
+      property: "pill",
+      options: ["badge", "pill"],
+    },
+    {
+      label: "Closeable",
+      type: "boolean",
+      value: false,
+      property: "closeable",
+    },
+  ],
+  display: {
+    padding: true,
+    align: "center",
+    direction: "column",
+  },
+};
+`,
+	TabsCompact: `import { Tabs } from "@paulhalleux/react-playground";
+
+import { ExampleComponentProps, ExampleMetadata } from "../../components";
+
+const ContentStyle = {
+  padding: 12,
+  backgroundColor: "rgb(var(--color-main-light), .2)",
+  border: "1px solid rgb(var(--color-border))",
+  borderRadius: "0 4px 4px 4px",
+  height: "100%",
+  flexGrow: 1,
+};
+
+export type CompactExampleControls = {
+  addButton: boolean;
+  closeable: boolean;
+};
+
+function CompactExample({
+  controls,
+}: ExampleComponentProps<CompactExampleControls>) {
+  return (
+    <Tabs orientation="vertical" layout="compact" {...controls}>
+      <Tabs.Tab id="tab1" label="Tab 1" closeable={controls.closeable}>
+        <p style={ContentStyle}>Tab 1 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab2" label="Tab 2" closeable={controls.closeable}>
+        <p style={ContentStyle}>Tab 2 content</p>
+      </Tabs.Tab>
+      <Tabs.Tab id="tab3" label="Tab 3" closeable={controls.closeable}>
+        <p style={ContentStyle}>Tab 3 content</p>
+      </Tabs.Tab>
+    </Tabs>
+  );
+}
+
+export const metadata: ExampleMetadata = {
+  name: "Compact",
+  component: CompactExample,
+  display: {
+    padding: true,
+  },
+  controls: [
+    {
+      label: "Add button",
+      type: "boolean",
+      value: true,
+      property: "addButton",
+    },
+    {
+      label: "Closeable",
+      type: "boolean",
+      value: false,
+      property: "closeable",
+    },
+  ],
 };
 `,
 };

@@ -22,10 +22,11 @@ const ControlMap = {
 type ExampleProps = {
   name: string;
   hideCode?: boolean;
+  highlight?: string;
   props?: Record<string, any>;
 };
 
-export function Example({ name, hideCode, props }: ExampleProps) {
+export function Example({ name, hideCode, highlight, props }: ExampleProps) {
   const exampleRef = useRef<ExampleRef>();
 
   const { example, sources } = getExampleInfo(name);
@@ -108,11 +109,9 @@ export function Example({ name, hideCode, props }: ExampleProps) {
         {RenderedExample}
       </Tabs.Tab>
       <Tabs.Tab label="Code" id="code">
-        <pre>
-          <CodeBlock language="tsx" defaultExpanded>
-            {sources}
-          </CodeBlock>
-        </pre>
+        <CodeBlock language="tsx" defaultExpanded highlightedLines={highlight}>
+          {sources}
+        </CodeBlock>
       </Tabs.Tab>
     </Tabs>
   );

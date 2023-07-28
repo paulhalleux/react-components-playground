@@ -14,5 +14,12 @@ export function Code({ isBlock, children, className }: CodeProps) {
     return <code className={clsx(styles.code, className)}>{children}</code>;
   }
 
-  return <CodeBlock defaultExpanded={true}>{children}</CodeBlock>;
+  return (
+    <CodeBlock
+      language={className?.replace("language-", "")}
+      defaultExpanded={true}
+    >
+      {children}
+    </CodeBlock>
+  );
 }

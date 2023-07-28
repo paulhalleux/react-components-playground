@@ -10,7 +10,7 @@ function _createMdxContent(props) {
   if (!Example) _missingMdxReference("Example", true);
   if (!Features) _missingMdxReference("Features", true);
   if (!Properties) _missingMdxReference("Properties", true);
-  return <><_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Badge" />{"\n"}<Features features={['Multiple variants & sizes', 'Pill-shaped badges']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.p><_components.code>{"Badge"}</_components.code>{" is a component to display a badge. It can be used to display a status, a count, or any other information."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="Badge" highlight="22-24,27-29,32-34" />{"\n"}<Features features={['Multiple variants & sizes', 'Pill-shaped badges', 'Closeable badges']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"Badge Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'React.ReactNode',
     description: 'The content of the badge.'

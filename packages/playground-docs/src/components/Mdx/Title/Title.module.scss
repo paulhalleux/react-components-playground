@@ -28,6 +28,9 @@ $headings: (
       @include heading($level);
     }
   }
+  &__h2 {
+    margin-top: 20px;
+  }
 }
 
 .link__button {

@@ -1,53 +1,104 @@
-:root {
-  --code-color-base: rgb(var(--color-text));
-  --code-color-secondary: rgb(var(--color-text-light));
-  --code-color-primary: #a5d6ff;
+@media print {
+  pre[class*="language-"],
+  code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+/* Tokens */
+.token.function,
+.token.class-name {
+  color: c(text, .8);
+  font-weight: 600;
+}
+.namespace {
+  opacity: .7;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #8b949e;
+}
+.token.punctuation {
+  color: rgba(255, 255, 255, 0.533);
+}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #93a6b9;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: rgba(255, 255, 255, 0.533);
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: rgba(255, 255, 255, 0.533);
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: rgba(255, 255, 255, 0.533);
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: rgba(255, 255, 255, 0.533);
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+.token.entity {
+  cursor: help;
 }
 
 .light {
-  --code-color-base: #2b4659;
-  --code-color-secondary: #203d7e;
-  --code-color-primary: #235db9;
-}
-
-
-.hljs {
-  color: var(--code-color-base);
-  background: rgba(var(--color-main-light), .2)
-}
-
-.hljs-doctag, .hljs-keyword, .hljs-meta .hljs-keyword, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-variable.language_ {
-  color: var(--code-color-secondary);
-}
-
-.hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_ {
-  color: var(--code-color-base);
-  font-weight: 700
-}
-
-.hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number, .hljs-operator, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id, .hljs-variable {
-  color: var(--code-color-primary)
-}
-
-.hljs-meta .hljs-string, .hljs-regexp, .hljs-string {
-  color: var(--code-color-primary)
-}
-
-.hljs-built_in, .hljs-symbol {
-  color: var(--code-color-primary)
-}
-
-.hljs-code, .hljs-comment, .hljs-formula {
-  color: var(--code-color-secondary)
-}
-
-.hljs-tag {
-  color: var(--code-color-secondary);
-  .hljs-name {
-    color: var(--code-color-base);
+  code[class*="language-"] {
+    color: c(text, .8);
   }
-}
 
-.hljs-quote, .hljs-selector-pseudo, .hljs-selector-tag {
-  color: var(--code-color-secondary);
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: rgba(0, 0, 0, 0.533);
+  }
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: rgba(0, 0, 0, 0.533);
+  }
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: rgba(0, 0, 0, 0.533);
+  }
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: rgba(0, 0, 0, 0.533);
+  }
+  .token.punctuation {
+    color: rgba(0, 0, 0, 0.533);
+  }
 }

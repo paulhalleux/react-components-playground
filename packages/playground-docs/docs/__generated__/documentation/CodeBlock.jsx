@@ -9,7 +9,7 @@ function _createMdxContent(props) {
   if (!Example) _missingMdxReference("Example", true);
   if (!Features) _missingMdxReference("Features", true);
   if (!Properties) _missingMdxReference("Properties", true);
-  return <><_components.p><_components.code>{"CodeBlock"}</_components.code>{" is a component that displays a block of code.\r\nIf the height of the code block exceeds the value of "}<_components.code>{"collapseAt"}</_components.code>{" property, it will be collapsed and a button will be displayed to expand it."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="CodeBlock" />{"\n"}<Features features={['The code block can be expanded and collapsed.', 'All languages supported by Highlight.js are supported.']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"CodeBlock Props"}</_components.h3>{"\n"}<Properties properties={[{
+  return <><_components.p><_components.code>{"CodeBlock"}</_components.code>{" is a component that displays a block of code.\r\nIf the height of the code block exceeds the value of "}<_components.code>{"collapseAt"}</_components.code>{" property, it will be collapsed and a button will be displayed to expand it."}</_components.p>{"\n"}<_components.h2>{"Example"}</_components.h2>{"\n"}<Example name="CodeBlock" highlight="25" />{"\n"}<Features features={['The code block can be expanded and collapsed.', 'All languages supported by Highlight.js are supported.', 'Line highlighting is supported.']} />{"\n"}<_components.h2>{"API"}</_components.h2>{"\n"}<_components.h3>{"CodeBlock Props"}</_components.h3>{"\n"}<Properties properties={[{
     name: 'children',
     type: 'ReactNode',
     description: 'The code to be displayed.',
