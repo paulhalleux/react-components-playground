@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@paulhalleux/react-playground";
 import clsx from "clsx";
@@ -16,42 +16,12 @@ type ContentTableProps = {
 };
 
 export function ContentTable({ items = [] }: ContentTableProps) {
-  const [activeItem, setActiveItem] = useState<string>();
   const onItemClicked = (item: ContentTableItem) => {
     const element = document.getElementById(item.id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveItem(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    items.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => {
-      items.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
-  }, [items]);
 
   return items.length > 0 ? (
     <div className={styles.content__table}>
@@ -64,7 +34,6 @@ export function ContentTable({ items = [] }: ContentTableProps) {
             className={clsx(
               styles.list__item,
               styles[`list__item--level-${item.level}`],
-              { [styles.active]: activeItem === item.id },
             )}
           >
             <Link to={`#${item.id}`}>{item.name}</Link>
