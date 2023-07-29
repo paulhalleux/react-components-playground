@@ -12,5 +12,6 @@ export * from "./Checkbox";
 export * from "./CloseButton";
 export * from "./Skeleton";
 export * from "./Separator";
+export * from "./KeyboardShortcut";
 
 export * as Icons from "./Icons";

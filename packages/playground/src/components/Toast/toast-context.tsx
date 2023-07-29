@@ -12,7 +12,7 @@ import { Toast, ToastProps } from "./Toast";
 
 import styles from "./Toast.module.scss";
 
-type ToastType = Omit<ToastProps, "onClose">;
+export type ToastType = Omit<ToastProps, "onClose">;
 type ToastWithIdAndTimer = ToastType & { id: number; timer: NodeJS.Timeout };
 
 // eslint-disable-next-line
@@ -24,9 +24,15 @@ const defaultValue = {
 
 const ToastContext = createContext(defaultValue);
 
-type ToastProviderProps = PropsWithChildren<{
+export type ToasterPosition =
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right";
+
+export type ToastProviderProps = PropsWithChildren<{
   replace?: boolean;
-  position?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  position?: ToasterPosition;
 }>;
 
 export function ToasterProvider({

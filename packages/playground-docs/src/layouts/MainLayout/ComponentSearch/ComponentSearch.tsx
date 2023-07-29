@@ -1,5 +1,7 @@
+import { KeyboardShortcut } from "@paulhalleux/react-playground";
+
 import { ComponentMeta } from "../../../../docs/__generated__/components";
-import { KeyboardShortcut, Search } from "../../../components";
+import { Search } from "../../../components";
 import { AutocompleteItem } from "../AutocompleteItem";
 
 type ComponentSearchProps = {
@@ -12,7 +14,7 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
       placeholder="Search component..."
       addon={(input) => (
         <KeyboardShortcut
-          shortcut="ctrl+k"
+          shortcut={{ key: "k", ctrlKey: true }}
           onShortcut={() => input.current?.focus()}
         />
       )}

@@ -3,13 +3,14 @@ import clsx from "clsx";
 
 import styles from "./Checkbox.module.scss";
 
+export type CheckboxVariant = "default" | "ghost";
 export type CheckboxProps = {
   id: string;
   name: string;
   label: React.ReactNode;
   checked: boolean;
   onChange: (checked: boolean) => void;
-  variant?: "default" | "ghost";
+  variant?: CheckboxVariant;
 };
 
 export function Checkbox({

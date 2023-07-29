@@ -1,5 +1,6 @@
 import {
   Button,
+  ToasterPosition,
   ToasterProvider,
   useToaster,
 } from "@paulhalleux/react-playground";
@@ -12,7 +13,7 @@ type ToastExampleControls = {
   closable: boolean;
   action: boolean;
   replace: boolean;
-  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  position: ToasterPosition;
 };
 
 function ToastExampleWrapper({
@@ -32,7 +33,6 @@ function ToastExample({
 
   const onClick = () => {
     pushToast({
-      type: "primary",
       duration: 5000,
       actionLabel: controls.action ? "Action" : undefined,
       onAction: () => alert("Action Clicked"),

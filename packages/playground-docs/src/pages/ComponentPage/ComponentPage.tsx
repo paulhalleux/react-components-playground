@@ -138,9 +138,9 @@ export function ComponentPage() {
       <AnimatePresence mode="wait">
         <motion.div
           key={component}
-          initial={{ opacity: 0.5 }}
+          initial={{ opacity: 0.3 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0.5 }}
+          exit={{ opacity: 0.3 }}
           className={styles.component__content_table}
         >
           {tableItems.length ? (

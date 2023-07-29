@@ -19,7 +19,7 @@ import { Button } from "../Button";
 import "./theme.scss";
 import styles from "./CodeBlock.module.scss";
 
-type CodeProps = PropsWithChildren<{
+export type CodeBlockProps = PropsWithChildren<{
   className?: string;
   defaultExpanded?: boolean;
   language?: string;
@@ -36,7 +36,7 @@ export function CodeBlock({
   collapseAt = 300,
   highlightedLines,
   maxHeight,
-}: CodeProps) {
+}: CodeBlockProps) {
   const blockRef = useRef<HTMLPreElement>(null);
   const baseCodeRef = useRef<HTMLDivElement>(null);
 

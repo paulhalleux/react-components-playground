@@ -5,11 +5,14 @@ import { CloseIcon } from "../Icons";
 
 import styles from "./CloseButton.module.scss";
 
+export type CloseButtonVariant = "default" | "ghost";
+export type CloseButtonSize = "small" | "medium" | "large";
+
 export type CloseButtonProps = {
   onClick?: () => void;
   disabled?: boolean;
-  variant?: "default" | "ghost";
-  size?: "small" | "medium" | "large";
+  variant?: CloseButtonVariant;
+  size?: CloseButtonSize;
 };
 
 const Sizes = {

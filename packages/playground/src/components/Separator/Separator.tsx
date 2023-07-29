@@ -2,8 +2,9 @@ import clsx from "clsx";
 
 import styles from "./Separator.module.scss";
 
+export type SeparatorOrientation = "horizontal" | "vertical";
 export type SeparatorProps = {
-  orientation?: "horizontal" | "vertical";
+  orientation?: SeparatorOrientation;
 };
 
 export function Separator({ orientation = "horizontal" }: SeparatorProps) {

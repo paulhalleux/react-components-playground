@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 
 import { IconProps } from "../Icons";
 
@@ -9,7 +8,6 @@ export type ToastProps = {
   icon?: React.FC<IconProps>;
   title?: string;
   content: string;
-  type?: "primary" | "success" | "warning" | "error" | "default";
   duration?: number;
   closable?: boolean;
   onClose?: () => void;
@@ -20,7 +18,6 @@ export type ToastProps = {
 export function Toast({
   title,
   content,
-  type = "default",
   closable = true,
   onClose,
   actionLabel,
@@ -28,7 +25,7 @@ export function Toast({
   icon: Icon,
 }: ToastProps) {
   return (
-    <div className={clsx(styles.toast, styles[`toast--${type}`])}>
+    <div className={styles.toast}>
       {Icon && (
         <div className={styles.toast__icon}>
           {<Icon height={16} width={16} />}

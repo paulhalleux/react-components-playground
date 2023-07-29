@@ -1,0 +1,62 @@
+---
+title: Keyboard Shortcut
+category: Components
+description: A component to display keyboard shortcuts.
+icon: ShortcutIcon
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/KeyboardShortcut/KeyboardShortcut.tsx
+---
+
+`KeyboardShortcut` is a component that displays a keyboard shortcut. It can also handle the keyboard shortcut when defining a `onShortcut` callback.
+
+## Example
+
+<Example name="KeyboardShortcut" highlight="10-19" />
+
+<Features features={[
+  "Display a keyboard shortcut",
+  "Handle the keyboard shortcut",
+]} />
+
+## API
+
+### KeyboardProvider
+
+`KeyboardProvider` is a component that handles keyboard shortcuts. It registers a `keydown` event listener on the `window` object.
+
+It should wrap all the `KeyboardShortcut` components to handle the keyboard shortcuts.
+
+```tsx
+<KeyboardProvider>
+  <KeyboardShortcut shortcut={{
+    ctrlKey: true,
+    key: "s",
+  }} />
+</KeyboardProvider>
+```
+
+### KeyboardShortcut
+
+```tsx
+<KeyboardShortcut shortcut={{
+  ctrlKey: true,
+  key: "s",
+}} />
+```
+
+<Properties properties={[
+  { name: "shortcut", type: "Shortcut", description: "The keyboard shortcut to display.", required: true },
+  { name: "onShortcut", type: "() => void", description: "A callback to call when the keyboard shortcut is pressed." },
+]} />
+
+### Shortcut
+
+```ts
+type Shortcut = {
+  ctrlKey?: boolean;
+  altKey?: boolean;
+  shiftKey?: boolean;
+  metaKey?: boolean;
+  key: string;
+};
+```

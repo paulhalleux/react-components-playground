@@ -16,11 +16,14 @@ import { Tab, TabProps } from "./Tab";
 
 import styles from "./Tabs.module.scss";
 
+export type TabLayout = "spaced" | "compact";
+export type TabOrientation = "horizontal" | "vertical";
+
 export type TabsProps = {
   children: ReactNode;
   defaultActiveTab?: string;
-  orientation?: "horizontal" | "vertical";
-  layout?: "spaced" | "compact";
+  orientation?: TabOrientation;
+  layout?: TabLayout;
   renderLabel?: (label: string) => ReactNode;
   addButton?: boolean;
   onAdd?: () => void;

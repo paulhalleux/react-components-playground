@@ -11,6 +11,8 @@ export function useConfiguration(
   theme: ThemeType,
 ) {
   useEffect(() => {
+    document.body.classList.add("no-transition");
+
     // colors
     const baseThemeColors =
       theme === ThemeType.Light
@@ -32,5 +34,11 @@ export function useConfiguration(
         );
       });
     });
+
+    const to = setTimeout(() => {
+      document.body.classList.remove("no-transition");
+    }, 1000);
+
+    return () => clearTimeout(to);
   }, [configuration, theme]);
 }

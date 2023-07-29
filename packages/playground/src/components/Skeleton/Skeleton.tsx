@@ -2,7 +2,7 @@ import { SkeletonContainer } from "./SkeletonContainer";
 
 import styles from "./Skeleton.module.scss";
 
-type SkeletonProps = {
+export type SkeletonProps = {
   width?: string | number;
   height?: string | number;
   radius?: string | number;

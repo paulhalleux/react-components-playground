@@ -3,12 +3,15 @@ import clsx from "clsx";
 
 import styles from "./Button.module.scss";
 
-type ButtonProps = PropsWithChildren<{
+export type ButtonSize = "small" | "medium" | "large";
+export type ButtonVariant = "default" | "ghost";
+
+export type ButtonProps = PropsWithChildren<{
   onClick?: () => void;
-  variant?: "default" | "ghost";
+  variant?: ButtonVariant;
   icon?: boolean;
   className?: string;
-  size?: "small" | "medium" | "large";
+  size?: ButtonSize;
 }>;
 
 export function Button({

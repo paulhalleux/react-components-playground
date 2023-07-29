@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useContext, useMemo } from "react";
 
 import { StorageKeys } from "../constants/storage-keys";
-import { useStoreState } from "../hooks/use-store-state";
+import { useStoreState } from "../hooks";
 import { RecursiveFull, ThemeConfiguration } from "../types";
 import { merge } from "../utils/object";
 import { getSystemTheme } from "../utils/theme";

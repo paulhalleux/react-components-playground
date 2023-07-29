@@ -28,3 +28,4 @@ export { CheckIcon } from "./CheckIcon";
 export { CloseIcon } from "./CloseIcon";
 export { MinusIcon } from "./MinusIcon";
 export { PlusIcon } from "./PlusIcon";
+export { ShortcutIcon } from "./ShortcutIcon";

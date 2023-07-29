@@ -5,20 +5,24 @@ import { CloseButton } from "../CloseButton";
 
 import styles from "./Badge.module.scss";
 
+export type BadgeVariant =
+  | "primary"
+  | "secondary"
+  | "default"
+  | "warning"
+  | "danger"
+  | "success"
+  | "info"
+  | "ghost";
+
+export type BadgeSize = "small" | "medium" | "large";
+
 export type BadgeProps = {
   children: React.ReactNode;
-  size?: "small" | "medium" | "large";
+  size?: BadgeSize;
   closeable?: boolean;
   onClose?: () => void;
-  variant?:
-    | "primary"
-    | "secondary"
-    | "default"
-    | "warning"
-    | "danger"
-    | "success"
-    | "info"
-    | "ghost";
+  variant?: BadgeVariant;
   pill?: boolean;
   onClick?: () => void;
 };

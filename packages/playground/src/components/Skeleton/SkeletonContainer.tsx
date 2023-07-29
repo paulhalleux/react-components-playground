@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 import styles from "./Skeleton.module.scss";
 
-type SkeletonContainerProps = PropsWithChildren<{
+export type SkeletonContainerProps = PropsWithChildren<{
   direction?: "row" | "column";
   alignItems?: "center" | "flex-start" | "flex-end";
   justifyContent?: "center" | "flex-start" | "flex-end";
