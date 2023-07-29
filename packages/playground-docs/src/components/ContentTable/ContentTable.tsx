@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Skeleton } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import styles from "./ContentTable.module.scss";
@@ -73,3 +74,15 @@ export function ContentTable({ items = [] }: ContentTableProps) {
     </div>
   ) : null;
 }
+
+ContentTable.Skeleton = function ContentTableSkeleton() {
+  return (
+    <Skeleton.Container>
+      <Skeleton width="70%" height="20px" margin="0 0 16px 0" />
+      <Skeleton width="100%" height="17px" margin="0 0 0 10px" />
+      <Skeleton width="80%" height="17px" margin="0 0 0 20px" />
+      <Skeleton width="80%" height="17px" margin="0 0 0 20px" />
+      <Skeleton width="80%" height="17px" margin="0 0 0 10px" />
+    </Skeleton.Container>
+  );
+};

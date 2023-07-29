@@ -143,7 +143,11 @@ export function ComponentPage() {
           exit={{ opacity: 0.5 }}
           className={styles.component__content_table}
         >
-          <ContentTable items={tableItems} />
+          {tableItems.length ? (
+            <ContentTable items={tableItems} />
+          ) : (
+            <ContentTable.Skeleton />
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

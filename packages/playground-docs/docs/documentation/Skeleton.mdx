@@ -1,0 +1,45 @@
+---
+category: Components
+description: A component to display placeholders while loading data.
+icon: ModalIcon
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Skeleton/Skeleton.tsx
+---
+
+`Skeleton` is a component to display placeholders while loading data. It can be used to display a placeholder for a list of items, or for a single item.
+
+## Example
+
+<Example name="Skeleton" highlight="7-23" />
+
+## API
+
+### Skeleton
+
+```tsx
+<Skeleton width={100} height={100} margin={10} />
+```
+
+<Properties properties={[
+  { name: "width", type: "number | string", description: "Width of the skeleton.", default: "100%" },
+  { name: "height", type: "number | string", description: "Height of the skeleton.", default: "100%" },
+  { name: "margin", type: "number | string", description: "Margin of the skeleton.", default: "0" },
+  { name: "radius", type: "number | string", description: "Border radius of the skeleton.", default: "3px" },
+]} />
+
+### Skeleton.Container
+
+```tsx
+<Skeleton.Container>
+  <Skeleton />
+  <Skeleton />
+  <Skeleton />
+</Skeleton.Container>
+```
+
+<Properties properties={[
+  { name: "direction", type: '"row" | "column"', description: "Skeleton direction.", default: '"row"' },
+  { name: "alignItems", type: '"flex-start" | "center" | "flex-end"', description: "Alignment of skeleton items.", default: '"flex-start"' },
+  { name: "justifyContent", type: '"flex-start" | "center" | "flex-end"', description: "Alignment of skeleton items.", default: '"flex-start"' },
+  { name: "gap", type: "number | string", description: "Gap between skeleton items.", default: "8px" },
+]} />

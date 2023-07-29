@@ -10,6 +10,7 @@ export * from "./CodeBlock";
 export * from "./Toast";
 export * from "./Checkbox";
 export * from "./CloseButton";
+export * from "./Skeleton";
 export * from "./Separator";
 
 export * as Icons from "./Icons";
