@@ -1,7 +1,7 @@
 $sizes: (
-  small: (height: 13, width: 12),
-  medium: (height: 17, width: 16),
-  large: (height: 21, width: 20),
+  small: (height: 12, width: 12),
+  medium: (height: 15, width: 16),
+  large: (height: 17, width: 18),
 );
 
 .close-button {
@@ -15,8 +15,8 @@ $sizes: (
 
   @each $size, $properties in $sizes {
     &--#{$size} {
-      height: map-get($properties, height);
-      width: map-get($properties, width);
+      height: map-get($properties, height) * 1px;
+      width: map-get($properties, width) * 1px;
     }
   }
 

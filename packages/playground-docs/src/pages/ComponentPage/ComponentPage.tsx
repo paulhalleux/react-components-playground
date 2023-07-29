@@ -16,7 +16,7 @@ import { Title } from "../../components/Mdx/Title/Title";
 import { SwitchButton } from "../../components/SwitchButton";
 import { ExamplesProvider } from "../../contexts/examples-context";
 import { getComponentPath } from "../../utils/path";
-import { ComponentsArray } from "../index";
+import { SortedComponents } from "../index";
 
 import styles from "./ComponentPage.module.scss";
 
@@ -28,15 +28,15 @@ export function ComponentPage() {
     nextComponentDefinition,
     previousComponentDefinition,
   } = useMemo(() => {
-    const componentDefinitionIndex = ComponentsArray.findIndex(
+    const componentDefinitionIndex = SortedComponents.findIndex(
       (value) => getComponentPath(value) === component,
     );
 
-    const componentDefinition = ComponentsArray[componentDefinitionIndex];
+    const componentDefinition = SortedComponents[componentDefinitionIndex];
     const nextComponentDefinition =
-      ComponentsArray[componentDefinitionIndex + 1];
+      SortedComponents[componentDefinitionIndex + 1];
     const previousComponentDefinition =
-      ComponentsArray[componentDefinitionIndex - 1];
+      SortedComponents[componentDefinitionIndex - 1];
 
     return {
       componentDefinition,

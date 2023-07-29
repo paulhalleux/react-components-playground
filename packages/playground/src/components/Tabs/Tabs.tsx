@@ -1,8 +1,15 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import clsx from "clsx";
 
+import { useOverflow } from "../../hooks";
 import { CloseButton } from "../CloseButton";
-import { PlusIcon } from "../Icons";
+import {
+  ArrowDownIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
+  PlusIcon,
+} from "../Icons";
 import { Separator } from "../Separator";
 
 import { Tab, TabProps } from "./Tab";
@@ -32,6 +39,9 @@ export function Tabs({
   addDisabled,
   addButtonLabel = "Add tab",
 }: TabsProps) {
+  const tabsContainer = useRef<HTMLDivElement>(null);
+  const { overflow, onScroll, scroll } = useOverflow(tabsContainer);
+
   const TabsChildren = React.Children.toArray(
     children,
   ) as React.ReactElement<TabProps>[];
@@ -40,43 +50,92 @@ export function Tabs({
     defaultActiveTab ?? TabsChildren[0].props.id,
   );
 
+  const onScrollClick = (dir: "left" | "right") => {
+    if (tabsContainer.current) {
+      const { scrollLeft, scrollTop } = tabsContainer.current;
+
+      if (orientation === "vertical") {
+        tabsContainer.current.scroll({
+          left: dir === "left" ? scrollLeft - 150 : scrollLeft + 150,
+          behavior: "smooth",
+        });
+      } else {
+        tabsContainer.current.scroll({
+          top: dir === "left" ? scrollTop - 150 : scrollTop + 150,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
   return (
     <div
       className={clsx(
         styles.tabs__container,
         styles[`tabs__container--${orientation}`],
         styles[`tabs__container--${layout}`],
+        { [styles["tabs--addable"]]: addButton },
       )}
     >
       <div className={styles.tabs__tablist}>
-        {TabsChildren.map((tab) => {
-          const { id, label, disabled, closeDisabled, onClose, closeable } =
-            tab.props;
+        {((overflow.x && scroll.left > 0) ||
+          (overflow.y && scroll.top > 0)) && (
+          <div
+            role="button"
+            className={styles["scroll--left"]}
+            onClick={() => onScrollClick("left")}
+          >
+            {orientation === "horizontal" ? (
+              <ArrowUpIcon width={16} height={16} />
+            ) : (
+              <ArrowLeftIcon width={16} height={16} />
+            )}
+          </div>
+        )}
+        <div onScroll={onScroll} className={styles.tabs} ref={tabsContainer}>
+          {TabsChildren.map((tab) => {
+            const { id, label, disabled, closeDisabled, onClose, closeable } =
+              tab.props;
 
-          return (
-            <div
-              role="button"
-              key={id}
-              className={clsx(styles.tabs__tab__button, {
-                [styles["tabs__tab__button--active"]]: id === activeTab,
-                [styles["tabs__tab__button--disabled"]]: disabled,
-              })}
-              onClick={() => !disabled && setActiveTab(id)}
-              aria-selected={id === activeTab}
-              aria-controls={id}
-            >
-              {renderLabel(label)}
-              {closeable && (
-                <CloseButton
-                  size="medium"
-                  onClick={onClose}
-                  disabled={closeDisabled || disabled}
-                  variant="ghost"
-                />
-              )}
-            </div>
-          );
-        })}
+            return (
+              <div
+                role="button"
+                key={id}
+                className={clsx(styles.tabs__tab__button, {
+                  [styles["tabs__tab__button--active"]]: id === activeTab,
+                  [styles["tabs__tab__button--disabled"]]: disabled,
+                })}
+                onClick={() => !disabled && setActiveTab(id)}
+                aria-selected={id === activeTab}
+                aria-controls={id}
+              >
+                {renderLabel(label)}
+                {closeable && (
+                  <CloseButton
+                    size="medium"
+                    onClick={onClose}
+                    disabled={closeDisabled || disabled}
+                    variant="ghost"
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {((overflow.x && scroll.left < scroll.maxLeft) ||
+          (overflow.y && scroll.top < scroll.maxTop)) && (
+          <div
+            role="button"
+            className={styles["scroll--right"]}
+            onClick={() => onScrollClick("right")}
+          >
+            {orientation === "horizontal" ? (
+              <ArrowDownIcon width={16} height={16} />
+            ) : (
+              <ArrowRightIcon width={16} height={16} />
+            )}
+          </div>
+        )}
         {addButton && (
           <>
             <Separator orientation={orientation} />

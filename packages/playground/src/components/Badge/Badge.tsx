@@ -48,7 +48,7 @@ export function Badge({
     >
       {children}
       {closeable && (
-        <CloseButton size="small" variant="ghost" onClick={onClose} />
+        <CloseButton size={size} variant="ghost" onClick={onClose} />
       )}
     </span>
   );

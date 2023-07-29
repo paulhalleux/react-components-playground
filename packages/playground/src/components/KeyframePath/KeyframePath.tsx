@@ -1,7 +1,6 @@
 import React, { CSSProperties } from "react";
 
 import { KeyframePathOptions } from "../../constants/keyframe-path";
-import { useMovePath } from "../../hooks/use-move-path";
 import { getKeyframePath } from "../../utils/path";
 
 import { DraggingPath } from "./DraggingPath";
@@ -11,6 +10,7 @@ import {
   Keyframe as KeyframeType,
   KeyframeChangeFn,
 } from "./types";
+import { useMovePath } from "./use-move-path";
 
 import styles from "./KeyframePath.module.scss";
 

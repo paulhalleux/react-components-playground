@@ -1,11 +1,9 @@
 import React from "react";
 
-import {
-  FrameResizeFn,
-  HandlePosition,
-} from "../components/FrameSelector/types";
-import { Point, Size } from "../types";
-import { minmax } from "../utils/math";
+import { Point, Size } from "../../types";
+import { minmax } from "../../utils/math";
+
+import { FrameResizeFn, HandlePosition } from "./types";
 
 export function useFrameSize(
   parentRef: React.RefObject<HTMLElement>,

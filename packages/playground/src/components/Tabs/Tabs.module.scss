@@ -2,6 +2,14 @@
 .tab__pane__container {
   width: 100%;
   height: 100%;
+
+  .tabs--addable.tabs__container--vertical .scroll--right {
+    right: 36px;
+  }
+
+  .tabs--addable.tabs__container--horizontal .scroll--right {
+    bottom: 36px;
+  }
 }
 
 .tab--contained {
@@ -49,16 +57,64 @@
     }
   }
 
-  .tabs__tablist {
+  > .tabs__tablist {
     height: fit-content;
     overflow: auto;
     flex-direction: column;
     max-width: 200px;
+    max-height: 100%;
+
+    .tabs {
+      @include hideScrollbar;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: t(padding-xs);
+      overflow: auto;
+      width: 100%;
+    }
+
+    .scroll--left {
+      aspect-ratio: unset;
+      background-image: linear-gradient(to top, c(main, 0), c(main, 1));
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .scroll--right {
+      aspect-ratio: unset;
+      background-image: linear-gradient(to bottom, c(main, 0), c(main, 1));
+      top: auto;
+      bottom: 0;
+      width: 100%;
+      height: 36px;
+      padding: 0;
+      justify-content: center;
+    }
   }
 }
 
 .tabs__container--vertical {
   flex-direction: column;
+
+  > .tabs__tablist {
+    max-width: 100%;
+
+    .tabs {
+      @include hideScrollbar;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      overflow: auto;
+      gap: t(padding-xs);
+    }
+  }
 
   &.tabs__container--spaced {
     flex-direction: column;
@@ -95,8 +151,9 @@
   border: 1px solid c(border);
   gap: t(padding-xs);
   min-width: 100px;
-  overflow: hidden;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .tabs__tab__button {
@@ -119,6 +176,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 0;
+
   &--active,
   &:hover {
     color: c(text);
@@ -133,4 +194,32 @@
   &_add {
     padding: t(padding-sm) t(padding-sm);
   }
+}
+
+.scroll--left {
+  position: absolute;
+  background-image: linear-gradient(to left, c(main, 0), c(main, 1));
+  aspect-ratio: 2 / 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  padding-left: 8px;
+}
+
+.scroll--right {
+  position: absolute;
+  background-image: linear-gradient(to right, c(main, 0), c(main, 1));
+  aspect-ratio: 2 / 1;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  padding-right: 8px;
 }

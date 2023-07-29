@@ -46,6 +46,7 @@ export type ThemeConfigurationFontSizes = {
 export type ThemeConfigurationColorsBase = {
   main: Color;
   mainContrast: Color;
+  mainTertiary: Color;
   border: Color;
   borderContrast: Color;
   borderPrimary: Color;

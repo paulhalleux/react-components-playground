@@ -15,7 +15,7 @@ export type CloseButtonProps = {
 const Sizes = {
   small: 12,
   medium: 15,
-  large: 20,
+  large: 17,
 };
 
 export function CloseButton({
