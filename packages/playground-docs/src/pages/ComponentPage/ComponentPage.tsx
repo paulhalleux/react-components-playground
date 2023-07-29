@@ -71,7 +71,7 @@ export function ComponentPage() {
 
         setTableItems(items);
       }
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(to);
   }, [component]);

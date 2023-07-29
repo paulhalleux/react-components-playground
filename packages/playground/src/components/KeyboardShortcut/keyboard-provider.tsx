@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { Shortcut } from "./types";
 
@@ -22,7 +28,7 @@ export function KeyboardProvider({ children }: { children: React.ReactNode }) {
     RegisteredShortcut[]
   >([]);
 
-  const registerShortcut: RegisterFn = (shortcut, callback) => {
+  const registerShortcut: RegisterFn = useCallback((shortcut, callback) => {
     const shortcutWithCallback = { ...shortcut, callback };
     setRegisteredShortcuts((shortcuts) => [...shortcuts, shortcutWithCallback]);
     return () => {
@@ -30,7 +36,7 @@ export function KeyboardProvider({ children }: { children: React.ReactNode }) {
         shortcuts.filter((s) => s !== shortcutWithCallback),
       );
     };
-  };
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
