@@ -13,7 +13,7 @@ import {
   ContentTableItem,
 } from "../../components";
 import { mdxComponents } from "../../components/Mdx";
-import { Title } from "../../components/Mdx/Title/Title";
+import { ApiType } from "../../components/Mdx/ApiType/ApiType";
 import { SwitchButton } from "../../components/SwitchButton";
 import { FlatComponents, GroupedComponents } from "../index";
 
@@ -64,16 +64,22 @@ export function ComponentPage() {
       if (mdxContainer.current) {
         const headings =
           mdxContainer.current.querySelectorAll<HTMLHeadingElement>(
-            "h1, h2, h3, h4, h5, h6",
+            "h1, h2, h3",
           );
 
         const items: ContentTableItem[] = Array.from(headings)
           .filter((heading) => !!heading.id)
           .map((heading) => {
+            const type = heading.dataset.type;
             const level = parseInt(heading.tagName[1], 10);
-            const name = heading.textContent ?? "";
+            const label = (
+              <>
+                {type && <ApiType small type={type} />}
+                {heading.textContent ?? ""}
+              </>
+            );
             const id = heading.id;
-            return { level, name, id };
+            return { level, label, id };
           });
 
         setTableItems(items);
@@ -107,7 +113,9 @@ export function ComponentPage() {
             items={["Component", componentDefinition.title || undefined]}
           />
           <div className={styles.component__header}>
-            <Title level={1}>{componentDefinition.title}</Title>
+            <h1 className={styles.component__header_title}>
+              {componentDefinition.title}
+            </h1>
             {componentDefinition.sourceUrl && (
               <Badge
                 onClick={() =>

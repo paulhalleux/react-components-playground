@@ -17,11 +17,27 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ### Async
 
-<Example name="Search/Async" highlight="7-20" />
+<Example name="Search/Async" highlight="9-22" />
 
 ## API
 
-### Selector Props
+### \{:component} Search
+
+#### Usage
+
+```tsx
+<Search
+  value={value}
+  onChange={onChange}
+  placeholder="Search"
+  addon={<Icon icon={SearchIcon} />}
+  items={items}
+  onItemSelect={onItemSelect}
+  renderItem={renderItem}
+/>
+```
+
+#### Properties
 
 <Properties properties={[
   { name: 'value', type: 'string', description: 'The value of the search input.' },

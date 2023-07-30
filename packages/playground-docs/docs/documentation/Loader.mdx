@@ -14,7 +14,15 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## API
 
-### Loader
+### \{:component} Loader
+
+#### Usage
+
+```tsx
+<Loader size="medium" orientation="horizontal" color="primary" label="Loading..." />
+```
+
+#### Properties
 
 <Properties properties={[
   { name: 'size', type: 'LoaderSize', description: 'The size of the loader.' },
@@ -24,13 +32,13 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
   { name: 'label', type: 'string', description: 'The label of the loader.' }
 ]} />
 
-### LoaderSize
+### \{:type} LoaderSize
 
 ```ts
 type LoaderSize = 'small' | 'medium' | 'large';
 ```
 
-### LoaderOrientation
+### \{:type} LoaderOrientation
 
 ```ts
 type LoaderOrientation = 'horizontal' | 'vertical';

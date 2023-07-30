@@ -20,7 +20,15 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## API
 
-### Badge Props
+### \{:component} Badge
+
+#### Usage
+
+```tsx
+<Badge variant="primary" size="small">Badge</Badge>
+```
+
+#### Properties
 
 <Properties properties={[
   { name: 'children', type: 'React.ReactNode', description: 'The content of the badge.' },
@@ -32,7 +40,7 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
   { name: 'onClick', type: '() => void', description: 'Callback when the badge is clicked.' },
 ]} />
 
-### BadgeSize type
+### \{:type} BadgeSize
 
 The `BadgeSize` type is an enum with the following values:
 
@@ -40,7 +48,7 @@ The `BadgeSize` type is an enum with the following values:
 type BadgeSize = "small" | "medium" | "large"
 ```
 
-### BadgeVariant type
+### \{:type} BadgeVariant
 
 The `BadgeVariant` type is an enum with the following values:
 

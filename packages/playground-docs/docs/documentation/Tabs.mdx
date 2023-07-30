@@ -32,7 +32,17 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## API
 
-### Tabs Props
+### \{:component} Tabs
+
+#### Usage
+
+```tsx
+<Tabs>
+  {/** Tabs */}
+</Tabs>
+```
+
+#### Properties
 
 <Properties properties={[
   { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },
@@ -46,7 +56,17 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
   { name: 'addButtonLabel', type: 'string', description: 'The label of the add button.', default: '"Add tab"' }
 ]} />
 
-### Tab Props
+### \{:component} Tab
+
+#### Usage
+
+```tsx
+<Tab label="Tab 1" id="tab1">
+  {/** Tab content */}
+</Tab>
+```
+
+#### Properties
 
 <Properties properties={[
   { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },

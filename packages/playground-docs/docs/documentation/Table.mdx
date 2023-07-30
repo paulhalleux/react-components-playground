@@ -27,15 +27,27 @@ You can customize the rendering of the table cells and headers by providing a `r
 
 ## API
 
-### Table Props
+### \{:component} Table
+
+#### Usage
+
+```tsx
+<Table
+  columns={columns}
+  data={data}
+  maxHeight={300}
+/>
+```
+
+#### Properties
 
 <Properties properties={[
-  { name: 'columns', type: 'TableColumn<T>[]', description: 'The columns to display in the table.', required: true },
+  { name: 'columns', type: 'TableColumn\<T\>[]', description: 'The columns to display in the table.', required: true },
   { name: 'data', type: 'T[]', description: 'The data to display in the table.', required: true },
-  { name: 'maxHeight', type: 'string | number', description: 'The maximum height of the table.' },
+  { name: 'maxHeight', type: 'string | number', description: 'The maximum height of the table.' }
 ]} />
 
-### TableColumn Type
+### \{:type} TableColumn Type
 
 ```typescript
 type TableColumn<T extends Record<string, any>> = {

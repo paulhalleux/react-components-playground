@@ -47,5 +47,11 @@ $levels: 6;
         }
       }
     }
+
+    .list__item__content {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
   }
 }

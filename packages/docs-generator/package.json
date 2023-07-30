@@ -21,6 +21,10 @@
     "glob": "^10.3.3",
     "lodash": "^4.17.21",
     "rimraf": "^5.0.1",
-    "ts-loader": "^9.4.4"
+    "ts-loader": "^9.4.4",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.0"
   }
 }

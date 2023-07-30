@@ -1,52 +1,9 @@
-$headings: (
-  h1: 24px,
-  h2: 20px,
-  h3: 18px,
-  h4: 16px,
-  h5: 14px,
-  h6: 12px,
-);
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-@mixin heading($level) {
-  position: relative;
-  font-size: map-get($headings, $level);
-  font-weight: 600;
-  color: c(text);
-  scroll-margin-top: 80px;
-  width: max-content;
-
-  &:hover {
-    .link__button {
-      opacity: 1;
-    }
-  }
-}
-
-.heading {
-  @each $level, $size in $headings {
-    &__#{$level} {
-      @include heading($level);
-    }
-  }
-  &__h2 {
-    margin-top: 20px;
-  }
-  &__h3 {
-    margin-top: 10px;
-  }
-}
-
-.link__button {
-  position: absolute;
-  right: -5px;
-  top: 50%;
-  padding-left: 10px;
-  width: 30px;
-  transform: translateY(-48%) translateX(20px);
-
-  opacity: 0;
-
-  &:hover {
-    opacity: 1;
+  h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 80px;
   }
 }

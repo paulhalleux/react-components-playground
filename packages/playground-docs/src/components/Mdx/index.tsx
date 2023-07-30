@@ -4,6 +4,7 @@ import { InfoIcon } from "@paulhalleux/react-playground";
 import { Example, Features, Properties } from "../../../docs/components";
 import { Alert } from "../Alert";
 
+import { ApiType } from "./ApiType/ApiType";
 import { Code } from "./Code/Code";
 import { Paragraph } from "./Paragraph/Paragraph";
 import { Table } from "./Table/Table";
@@ -16,12 +17,6 @@ type MdxComponentProps =
   | any;
 
 export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
-  h1: (props) => <Title level={1} {...props} />,
-  h2: (props) => <Title level={2} {...props} />,
-  h3: (props) => <Title level={3} {...props} />,
-  h4: (props) => <Title level={4} {...props} />,
-  h5: (props) => <Title level={5} {...props} />,
-  h6: (props) => <Title level={6} {...props} />,
   code: (props) => (
     <Code isBlock={props.className?.startsWith("language-")} {...props} />
   ),
@@ -31,4 +26,6 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   Example,
   Properties,
   Features,
+  ApiType,
+  Title,
 };

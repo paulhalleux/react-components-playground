@@ -14,32 +14,32 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## API
 
-### ToasterProvider
+### \{:component} ToasterProvider
 
 The `ToasterProvider` component is used to display the `Toast` components. It should be placed at the root of your application.
+
+#### Usage
+
+```tsx
+<ToasterProvider>
+  {/* Your application */}
+</ToasterProvider>
+```
+
+#### Properties
 
 <Properties properties={[
   { name: "replace", type: "boolean", description: "Whether new toast should replace previous.", default: "false" },
   { name: "position", type: 'ToasterPosition', description: "The position of the toasts.", default: '"top-right"' },
 ]} />
 
-```tsx
-import { ToasterProvider } from "@paulhalleux/react-playground";
-
-const App = () => (
-  <ToasterProvider>
-    <App />
-  </ToasterProvider>
-);
-```
-
-### ToasterPosition
+### \{:type} ToasterPosition
 
 ```ts
 type ToasterPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 ```
 
-### useToaster
+### \{:function} useToaster
 
 The `useToasts` hook returns a `pushToast` function that can be used to push a new toast to the `ToasterProvider`.
 
@@ -51,14 +51,13 @@ const { pushToast } = useToaster();
 // --> pushToast(toast: ToastType) => void
 ```
 
-### Toast Type
+### \{:type} Toast Type
 
 ```ts
 type Toast = {
   icon?: React.FC<IconProps>;
   title?: string;
   content: string;
-  type?: "primary" | "success" | "warning" | "error" | "default";
   duration?: number;
   closable?: boolean;
   actionLabel?: string;

@@ -5,6 +5,7 @@ import { glob } from "glob";
 import startCase from "lodash/startCase.js";
 
 import { rimraf } from "rimraf";
+import { TitlePlugin } from "./mdx/title-plugin.js";
 import { Config } from "./utils/config.js";
 import { generateExamples } from "./utils/examples.js";
 import { LogMessages } from "./utils/log-messages.js";
@@ -75,6 +76,7 @@ const generateDocs = async () => {
       Fragment: "React.Fragment",
       jsx: true,
       jsxs: true,
+      remarkPlugins: [TitlePlugin],
     });
 
     componentData.jsxCode = jsxCode.toString();
@@ -91,29 +93,27 @@ const generateDocs = async () => {
   const indexParts: string[] = [];
 
   await Promise.all(
-    Array.from(components.entries()).map(
-      async ([componentName, componentData]) => {
-        const importStatement = `import ${
-          componentData.id
-        } from "./documentation/${componentData.filePath.replace("\\", "/")}";`;
-        indexParts.push(importStatement);
+    Array.from(components.entries()).map(async ([_, componentData]) => {
+      const importStatement = `import ${
+        componentData.id
+      } from "./documentation/${componentData.filePath.replace("\\", "/")}";`;
+      indexParts.push(importStatement);
 
-        await mkdir(
-          `${Config.OutputPath}/documentation/${componentData.filePath
-            .split(/[\/\\]/g)
-            .slice(0, -1)
-            .join("\\")}`,
-          { recursive: true },
-        );
+      await mkdir(
+        `${Config.OutputPath}/documentation/${componentData.filePath
+          .split(/[\/\\]/g)
+          .slice(0, -1)
+          .join("\\")}`,
+        { recursive: true },
+      );
 
-        await writeFile(
-          `${Config.OutputPath}/documentation/${componentData.filePath}.jsx`,
-          `${componentData.jsxCode}`,
-        );
+      await writeFile(
+        `${Config.OutputPath}/documentation/${componentData.filePath}.jsx`,
+        `${componentData.jsxCode}`,
+      );
 
-        console.log(LogMessages.Generated(componentData.id));
-      },
-    ),
+      console.log(LogMessages.Generated(componentData.id));
+    }),
   );
 
   indexParts.push(

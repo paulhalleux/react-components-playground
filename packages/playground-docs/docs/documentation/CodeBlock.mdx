@@ -22,7 +22,21 @@ If the height of the code block exceeds the value of `collapseAt` property, it w
 
 ## API
 
-### CodeBlock Props
+### \{:component} CodeBlock
+
+#### Usage
+
+```tsx
+<CodeBlock
+  language="typescript"
+  collapseAt={300}
+  defaultExpanded={false}
+>
+  {`const a = 1;`}
+</CodeBlock>
+```
+
+#### Properties
 
 <Properties properties={[
   { name: 'children', type: 'ReactNode', description: 'The code to be displayed.', required: true },

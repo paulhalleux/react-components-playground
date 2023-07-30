@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@paulhalleux/react-playground";
 import clsx from "clsx";
@@ -6,7 +6,7 @@ import clsx from "clsx";
 import styles from "./ContentTable.module.scss";
 
 export type ContentTableItem = {
-  name: string;
+  label: ReactNode;
   id: string;
   level: number;
 };
@@ -37,7 +37,9 @@ export function ContentTable({ items = [] }: ContentTableProps) {
                 styles[`list__item--level-${item.level}`],
               )}
             >
-              <Link to={`#${item.id}`}>{item.name}</Link>
+              <Link to={`#${item.id}`} className={styles.list__item__content}>
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
