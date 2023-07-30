@@ -2,6 +2,7 @@
 import { compile } from "@mdx-js/mdx";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { glob } from "glob";
+import startCase from "lodash/startCase.js";
 
 import { rimraf } from "rimraf";
 import { Config } from "./utils/config.js";
@@ -10,22 +11,26 @@ import { LogMessages } from "./utils/log-messages.js";
 import { parseMetadata } from "./utils/metadata.js";
 
 export type Meta = Partial<{
+  title: string;
   path: string;
   category: string;
   description: string;
   status: string;
   icon: string;
   sourceUrl: string;
-}> & {
-  fileName: string;
-  title: string;
-};
+}>;
 
 type ComponentData = {
   mdxContent: string;
   meta: Meta;
+  id: string;
+  filePath: string;
   jsxCode: string | undefined;
 };
+
+function cleanFilename(filename: string) {
+  return startCase(filename.replace(/\.mdx$/, "")).replace(/\s/g, "");
+}
 
 const generateDocs = async () => {
   rimraf.sync(Config.OutputPath);
@@ -50,7 +55,9 @@ const generateDocs = async () => {
     const defaultName = file.replace(/\.mdx$/, "");
     let componentData: ComponentData = {
       mdxContent: mdxContent,
-      meta: { title: defaultName, fileName: defaultName },
+      meta: {},
+      id: cleanFilename(defaultName),
+      filePath: defaultName,
       jsxCode: undefined,
     };
 
@@ -58,9 +65,8 @@ const generateDocs = async () => {
       const content = mdxContent.split("---");
       componentData.mdxContent = content[2];
       componentData.meta = {
-        title: defaultName,
+        title: defaultName.split(/[\/\\]/g).pop(),
         ...parseMetadata(content[1]),
-        fileName: defaultName,
       };
     }
 
@@ -79,7 +85,7 @@ const generateDocs = async () => {
       );
     }
 
-    components.set(componentData.meta.fileName, componentData);
+    components.set(componentData.id, componentData);
   }
 
   const indexParts: string[] = [];
@@ -87,22 +93,33 @@ const generateDocs = async () => {
   await Promise.all(
     Array.from(components.entries()).map(
       async ([componentName, componentData]) => {
-        const importStatement = `import ${componentData.meta.fileName} from "./documentation/${componentData.meta.fileName}";`;
+        const importStatement = `import ${
+          componentData.id
+        } from "./documentation/${componentData.filePath.replace("\\", "/")}";`;
         indexParts.push(importStatement);
 
+        await mkdir(
+          `${Config.OutputPath}/documentation/${componentData.filePath
+            .split(/[\/\\]/g)
+            .slice(0, -1)
+            .join("\\")}`,
+          { recursive: true },
+        );
+
         await writeFile(
-          `${Config.OutputPath}/documentation/${componentData.meta.fileName}.jsx`,
+          `${Config.OutputPath}/documentation/${componentData.filePath}.jsx`,
           `${componentData.jsxCode}`,
         );
-        console.log(LogMessages.Generated(componentName));
+
+        console.log(LogMessages.Generated(componentData.id));
       },
     ),
   );
 
   indexParts.push(
     `\nexport const Components = {`,
-    Array.from(components.keys())
-      .map((fileName) => `  ${fileName},`)
+    Array.from(components.entries())
+      .map(([fileName, componentData]) => `  ${componentData.id},`)
       .join("\n"),
     `}`,
     `\nexport * from "./examples";`,
@@ -113,13 +130,14 @@ const generateDocs = async () => {
   await writeFile(
     `${Config.OutputPath}/components.ts`,
     [
-      `export type ComponentMeta = Partial<{\n\tsourceUrl: string;\n\tdescription: string;\n\tpath: string;\n\tcategory: string;\n\tstatus: string;\n\ticon: string;\n}> & { title: string; fileName: string; };`,
+      `export type ComponentMeta = Partial<{\n\tsourceUrl: string;\n\tdescription: string;\n\tpath: string;\n\tcategory: string;\n\tstatus: string;\n\ticon: string;\n}> & { title: string; id: string; };`,
       `export const ComponentList: Record<string, ComponentMeta> = {`,
       ...Array.from(components.entries()).map(
         ([_, componentData]) =>
-          `  ${componentData.meta.fileName}: ${JSON.stringify(
-            componentData.meta,
-          )},`,
+          `  ${componentData.id}: ${JSON.stringify({
+            id: componentData.id,
+            ...componentData.meta,
+          })},`,
       ),
       `}`,
     ].join("\n"),

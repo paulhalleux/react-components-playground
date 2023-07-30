@@ -12,7 +12,7 @@ type DisplayProps = PropsWithChildren<{
   ExampleMetadata["display"];
 
 function Display(
-  { children, onReset, padding, align, direction, grow }: DisplayProps,
+  { children, onReset, padding, align, direction, grow, border }: DisplayProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
@@ -33,6 +33,7 @@ function Display(
         justifyContent: align,
         flexDirection: direction,
         gap: padding ? 24 : undefined,
+        border: border === false ? "none" : undefined,
       }}
     >
       {onReset && (

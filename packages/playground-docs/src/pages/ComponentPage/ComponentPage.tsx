@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo } from "react";
+import React, { JSX, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { useLocation } from "react-use";
 import { Badge, CleanIcon, GithubIcon } from "@paulhalleux/react-playground";
 import { AnimatePresence, motion } from "framer-motion";
+import kebabCase from "lodash/kebabCase";
 
 import { Components } from "../../../docs/__generated__";
 import {
@@ -14,29 +15,41 @@ import {
 import { mdxComponents } from "../../components/Mdx";
 import { Title } from "../../components/Mdx/Title/Title";
 import { SwitchButton } from "../../components/SwitchButton";
-import { ExamplesProvider } from "../../contexts/examples-context";
-import { getComponentPath } from "../../utils/path";
-import { SortedComponents } from "../index";
+import { FlatComponents, GroupedComponents } from "../index";
 
 import styles from "./ComponentPage.module.scss";
 
 export function ComponentPage() {
-  const { component } = useParams<{ component: string }>();
+  const { component, group } = useParams<{
+    component: string;
+    group: keyof typeof GroupedComponents;
+  }>();
+
+  const mdxContainer = useRef<HTMLDivElement>(null);
+  const [tableItems, setTableItems] = useState<ContentTableItem[]>();
+  const { pathname } = useLocation();
 
   const {
     componentDefinition,
     nextComponentDefinition,
     previousComponentDefinition,
   } = useMemo(() => {
-    const componentDefinitionIndex = SortedComponents.findIndex(
-      (value) => getComponentPath(value) === component,
+    if (!component || !group)
+      return {
+        componentDefinition: undefined,
+        nextComponentDefinition: undefined,
+        previousComponentDefinition: undefined,
+      };
+
+    const componentDefinitionIndex = FlatComponents.findIndex(
+      (value) => kebabCase(value.title) === component,
     );
 
-    const componentDefinition = SortedComponents[componentDefinitionIndex];
+    const componentDefinition = FlatComponents[componentDefinitionIndex];
     const nextComponentDefinition =
-      SortedComponents[componentDefinitionIndex + 1];
+      FlatComponents[componentDefinitionIndex + 1];
     const previousComponentDefinition =
-      SortedComponents[componentDefinitionIndex - 1];
+      FlatComponents[componentDefinitionIndex - 1];
 
     return {
       componentDefinition,
@@ -45,14 +58,8 @@ export function ComponentPage() {
     };
   }, [component]);
 
-  // @ts-ignore
-  const MdxComponent = Components[componentDefinition.fileName];
-  const mdxContainer = React.useRef<HTMLDivElement>(null);
-  const [tableItems, setTableItems] = React.useState<ContentTableItem[]>([]);
-
-  const { pathname } = useLocation();
-
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const to = setTimeout(() => {
       if (mdxContainer.current) {
         const headings =
@@ -76,13 +83,14 @@ export function ComponentPage() {
     return () => clearTimeout(to);
   }, [component]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [component]);
-
   if (!componentDefinition) {
     return null;
   }
+
+  const MdxComponent: (props: {
+    components: Record<string, any>;
+  }) => JSX.Element | null =
+    Components[componentDefinition.id as keyof typeof Components];
 
   return (
     <div className={styles.component__container}>
@@ -113,9 +121,7 @@ export function ComponentPage() {
           </div>
           <section className={styles.mdx} ref={mdxContainer}>
             {MdxComponent ? (
-              <ExamplesProvider examples={MdxComponent.Examples}>
-                <MdxComponent components={mdxComponents} />
-              </ExamplesProvider>
+              <MdxComponent components={mdxComponents} />
             ) : (
               <Alert icon={CleanIcon}>
                 No documentation found for{" "}
@@ -143,7 +149,7 @@ export function ComponentPage() {
           exit={{ opacity: 0.3 }}
           className={styles.component__content_table}
         >
-          {tableItems.length ? (
+          {tableItems !== undefined ? (
             <ContentTable items={tableItems} />
           ) : (
             <ContentTable.Skeleton />

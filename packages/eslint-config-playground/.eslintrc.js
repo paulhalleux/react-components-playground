@@ -51,5 +51,15 @@ module.exports = {
         ],
       },
     ],
+    "max-len": [
+      "error",
+      {
+        code: 150,
+        ignoreComments: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true,
+      },
+    ],
   },
 };

@@ -3,6 +3,5 @@ import { getComponentPath } from "../utils/path";
 
 export const Routes = {
   Home: "/",
-  Component: (component: ComponentMeta) =>
-    `/components/${getComponentPath(component)}`,
+  Component: (component: ComponentMeta) => getComponentPath(component),
 };

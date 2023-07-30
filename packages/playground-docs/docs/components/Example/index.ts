@@ -8,6 +8,7 @@ export type ExampleMetadata = {
   controls?: Control[];
   display?: {
     padding?: boolean;
+    border?: boolean;
     align?: "flex-start" | "center" | "flex-end";
     direction?: "row" | "column";
     grow?: boolean;

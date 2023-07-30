@@ -1,0 +1,27 @@
+---
+category: Components
+description: A component to search with autocomplete.
+icon: SelectionFrameIcon
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Separator/Separator.tsx
+---
+
+> This component is an experiment and might never be finished.
+
+
+`Selector` is a component that allows you to select elements in a container.
+It works like a lasso tool, where you click and drag to select elements.
+
+## Example
+
+<Example name="Selector" />
+
+## API
+
+### Selector Props
+
+<Properties properties={[
+  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element to select elements in.", required: true },
+  { name: "color", type: "[number, number, number]", description: "The color of the selector." },
+  { name: "children", type: "React.ReactNode", description: "The elements to select." },
+]} />

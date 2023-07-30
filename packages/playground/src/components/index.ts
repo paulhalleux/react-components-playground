@@ -13,5 +13,6 @@ export * from "./CloseButton";
 export * from "./Skeleton";
 export * from "./Separator";
 export * from "./KeyboardShortcut";
+export * from "./Search";
 
 export * as Icons from "./Icons";

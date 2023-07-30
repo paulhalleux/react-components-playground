@@ -1,6 +1,6 @@
 .playground__container {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 240px calc(100% - 240px);
   grid-template-rows: 1fr;
   height: 100%;
 }

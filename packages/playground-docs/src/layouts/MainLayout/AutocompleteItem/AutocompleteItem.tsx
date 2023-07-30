@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import { Icons } from "@paulhalleux/react-playground";
-import clsx from "clsx";
 
 import { ComponentMeta } from "../../../../docs/__generated__/components";
 import { Routes } from "../../../constants/routes";
-
-import styles from "../MainLayout.module.scss";
 
 type AutocompleteItemProps = {
   component: ComponentMeta;
@@ -21,10 +18,7 @@ export function AutocompleteItem({
     : undefined;
 
   return (
-    <Link
-      to={Routes.Component(component)}
-      className={clsx(styles.search__item, className)}
-    >
+    <Link to={Routes.Component(component)} className={className}>
       {Icon && <Icon width={12} height={12} />}
       {component.title}
     </Link>

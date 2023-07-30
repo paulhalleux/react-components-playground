@@ -9,10 +9,10 @@ import { groupComponents } from "../utils/components";
 import { ComponentPage } from "./ComponentPage";
 import { MainPage } from "./MainPage";
 
-export const ComponentsArray = Object.values(ComponentList);
-export const SortedComponents = Object.values(
-  groupComponents(ComponentList),
-).flat();
+export const GroupedComponents = groupComponents(ComponentList);
+export const FlatComponents = Object.values(GroupedComponents).flatMap(
+  (group) => group.components,
+);
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         children: [
           { path: Routes.Home, element: <MainPage /> },
           {
-            path: "/components/:component",
+            path: `/:group/:component`,
             element: <ComponentPage />,
           },
         ],

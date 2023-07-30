@@ -27,7 +27,11 @@ export function PlaygroundLayout() {
           </div>
           {Object.entries(groupComponents(ComponentList)).map(
             ([group, components]) => (
-              <SidebarGroup title={group} components={components} key={group} />
+              <SidebarGroup
+                title={components.title}
+                components={components.components}
+                key={group}
+              />
             ),
           )}
         </section>

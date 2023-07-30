@@ -1,7 +1,6 @@
-import { KeyboardShortcut } from "@paulhalleux/react-playground";
+import { KeyboardShortcut, Search } from "@paulhalleux/react-playground";
 
 import { ComponentMeta } from "../../../../docs/__generated__/components";
-import { Search } from "../../../components";
 import { AutocompleteItem } from "../AutocompleteItem";
 
 type ComponentSearchProps = {
@@ -18,13 +17,13 @@ export function ComponentSearch({ components }: ComponentSearchProps) {
           onShortcut={() => input.current?.focus()}
         />
       )}
-      autocompleteItems={components.map((component) => ({
+      items={components.map((component) => ({
         ...component,
-        name: component.title,
-        id: component.title,
+        label: component.title,
+        value: component.title,
       }))}
-      renderAutocompleteItem={(component, className) => (
-        <AutocompleteItem component={component} className={className} />
+      renderItem={(item, className) => (
+        <AutocompleteItem component={item} className={className} />
       )}
     />
   );

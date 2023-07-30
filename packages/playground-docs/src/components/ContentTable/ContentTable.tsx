@@ -23,25 +23,31 @@ export function ContentTable({ items = [] }: ContentTableProps) {
     }
   };
 
-  return items.length > 0 ? (
+  return (
     <div className={styles.content__table}>
       <h1 className={styles.title}>Table of Contents</h1>
-      <ul className={styles.list}>
-        {items.map((item) => (
-          <li
-            key={`${item.id}-${item.level}`}
-            onClick={() => onItemClicked(item)}
-            className={clsx(
-              styles.list__item,
-              styles[`list__item--level-${item.level}`],
-            )}
-          >
-            <Link to={`#${item.id}`}>{item.name}</Link>
-          </li>
-        ))}
-      </ul>
+      {items?.length > 0 ? (
+        <ul className={styles.list}>
+          {items.map((item) => (
+            <li
+              key={`${item.id}-${item.level}`}
+              onClick={() => onItemClicked(item)}
+              className={clsx(
+                styles.list__item,
+                styles[`list__item--level-${item.level}`],
+              )}
+            >
+              <Link to={`#${item.id}`}>{item.name}</Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <small className={styles.empty}>
+          No table of contents found in this page.
+        </small>
+      )}
     </div>
-  ) : null;
+  );
 }
 
 ContentTable.Skeleton = function ContentTableSkeleton() {
