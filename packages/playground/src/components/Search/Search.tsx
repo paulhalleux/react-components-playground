@@ -69,15 +69,21 @@ export function Search<T extends SearchItemBase>({
         </div>
       )}
       {opened && (
-        <div className={styles.search__autocomplete__container}>
+        <div className={styles.search__autocomplete__container} tabIndex={-1}>
           {matchingItems?.map((item) => (
             <div
               key={item.value}
               className={clsx(!renderItem && styles.search__autocomplete__item)}
-              tabIndex={renderItem ? 1 : -1}
+              tabIndex={renderItem ? -1 : 0}
               onClick={() => {
                 onSearchChange("");
                 onItemSelect?.(item);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSearchChange("");
+                  onItemSelect?.(item);
+                }
               }}
             >
               {renderItem?.(item, styles.search__autocomplete__item) ??

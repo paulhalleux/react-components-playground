@@ -3,25 +3,26 @@ category: Components
 description: A component to search with autocomplete.
 icon: SelectionFrameIcon
 status: done
-sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Separator/Separator.tsx
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Search/Search.tsx
 ---
 
-> This component is an experiment and might never be finished.
 
-
-`Selector` is a component that allows you to select elements in a container.
-It works like a lasso tool, where you click and drag to select elements.
+`Search` is a component to search with autocomplete.
 
 ## Example
 
-<Example name="Selector" />
+<Example name="Search" highlight="15-19" />
 
 ## API
 
 ### Selector Props
 
 <Properties properties={[
-  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element to select elements in.", required: true },
-  { name: "color", type: "[number, number, number]", description: "The color of the selector." },
-  { name: "children", type: "React.ReactNode", description: "The elements to select." },
+  { name: 'value', type: 'string', description: 'The value of the search input.' },
+  { name: 'onChange', type: '(value: string) => void', description: 'A callback function to be called when the value of the search input changes.' },
+  { name: 'placeholder', type: 'string', description: 'The placeholder of the search input.' },
+  { name: 'addon', type: 'React.ReactNode | ((input: React.RefObject<HTMLInputElement>) => React.ReactNode)', description: 'The addon of the search input.' },
+  { name: 'items', type: 'T[]', description: 'The items to be displayed in the autocomplete.' },
+  { name: 'onItemSelect', type: '(item: T) => void', description: 'A callback function to be called when an item is selected.' },
+  { name: 'renderItem', type: '(item: T, className: string) => React.ReactNode', description: 'A function to render an item.' },
 ]} />

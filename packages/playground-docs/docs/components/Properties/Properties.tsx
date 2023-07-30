@@ -22,6 +22,7 @@ export function Properties({ properties }: PropertiesProps) {
           width: "20%",
           render: (label) => <Code>{label}</Code>,
         },
+        { key: "description", label: "Description", width: "50%" },
         {
           key: "type",
           label: "Type",
@@ -40,7 +41,6 @@ export function Properties({ properties }: PropertiesProps) {
           width: "10%",
           render: (label) => <Code>{label}</Code>,
         },
-        { key: "description", label: "Description", width: "50%" },
       ]}
       data={properties.map((p) => ({ ...p, id: p.name }))}
     />
