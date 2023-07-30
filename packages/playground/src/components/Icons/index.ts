@@ -29,3 +29,5 @@ export { CloseIcon } from "./CloseIcon";
 export { MinusIcon } from "./MinusIcon";
 export { PlusIcon } from "./PlusIcon";
 export { ShortcutIcon } from "./ShortcutIcon";
+export { LoaderIcon } from "./LoaderIcon";
+export { SearchIcon } from "./SearchIcon";
