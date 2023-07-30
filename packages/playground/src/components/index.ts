@@ -14,5 +14,6 @@ export * from "./Skeleton";
 export * from "./Separator";
 export * from "./KeyboardShortcut";
 export * from "./Search";
+export * from "./Loader";
 
 export * as Icons from "./Icons";
