@@ -46,7 +46,8 @@
   border: 1px solid c(border);
   background: c(main);
   overflow: auto;
-  max-height: 300px;
+  max-height: 275px;
+  z-index: 1;
 }
 
 .search__autocomplete__item {

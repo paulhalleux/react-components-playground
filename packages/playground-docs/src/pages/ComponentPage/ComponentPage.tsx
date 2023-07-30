@@ -89,7 +89,7 @@ export function ComponentPage() {
     return () => clearTimeout(to);
   }, [component]);
 
-  if (!componentDefinition) {
+  if (!componentDefinition || !group) {
     return null;
   }
 
@@ -110,7 +110,10 @@ export function ComponentPage() {
           className={styles.component__content}
         >
           <Breadcrumb
-            items={["Component", componentDefinition.title || undefined]}
+            items={[
+              GroupedComponents[group].title,
+              componentDefinition.title || undefined,
+            ]}
           />
           <div className={styles.component__header}>
             <h1 className={styles.component__header_title}>

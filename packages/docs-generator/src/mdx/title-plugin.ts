@@ -53,7 +53,7 @@ export const TitlePlugin = () => (tree: Root) => {
             depth: node.depth,
             data: {
               hProperties: {
-                id: title,
+                id: kebabCase(title),
                 "data-type": titleType,
               },
               wrapped: true,

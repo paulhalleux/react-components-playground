@@ -1,38 +1,38 @@
 ---
 category: Components
-description: A component to display a modal window.
-icon: ModalIcon
+description: A component to display a modal window on the side of the screen.
+icon: DrawerIcon
 status: done
-sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Modal/Modal.tsx
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Drawer/Drawer.tsx
 ---
 
-`Modal` is a component to display a modal window.
+`Drawer` is a component to display a modal window on the side of the screen.
 
 ## Example
 
-<Example name="Modal" highlight="17-33" />
+<Example name="Drawer" highlight="17-33" />
 
 ## API
 
-### \{:component} Modal
+### \{:component} Drawer
 
-Modal component is the main component to display a modal window. It is composed of 3 main sub-components: `Modal.Header`, `Modal.Body` and `Modal.Footer`.
+Drawer component is the main component to display a modal window. It is composed of 3 main sub-components: `Drawer.Header`, `Drawer.Body` and `Drawer.Footer`.
 
 #### Usage
 
 ```tsx
-<Modal>
-  <Modal.Header>
-    <Modal.Title>Modal title</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    <p>Modal body text goes here.</p>
-  </Modal.Body>
-  <Modal.Footer>
+<Drawer>
+  <Drawer.Header>
+    <Drawer.Title>Drawer title</Drawer.Title>
+  </Drawer.Header>
+  <Drawer.Body>
+    <p>Drawer body text goes here.</p>
+  </Drawer.Body>
+  <Drawer.Footer>
     <Button variant="secondary">Close</Button>
     <Button variant="primary">Save changes</Button>
-  </Modal.Footer>
-</Modal>
+  </Drawer.Footer>
+</Drawer>
 ```
 
 #### Properties
@@ -45,18 +45,18 @@ Modal component is the main component to display a modal window. It is composed 
   { name: 'size', type: 'ModalSize', description: 'The size of the modal.', default: 'medium' },
   { name: 'closeOnBackdropClick', type: 'boolean', description: 'Whether the modal should be closed when the backdrop is clicked.', default: 'true' },
   { name: 'minHeight', type: 'number', description: 'The minimum height of the modal.' },
-  { name: 'align', type: 'string', description: 'The alignment of the modal.', default: 'center' },
+  { name: 'position', type: 'DrawerPosition', description: 'The position of the drawer modal.', default: 'right' },
 ]}/>
 
-### \{:component} Modal.Header
+### \{:component} Drawer.Header
 
-`Modal.Header` is a component to display a header in a modal window. It is usually used to display a title and a close button.
+`Drawer.Header` is a component to display a header in a modal window. It is usually used to display a title and a close button.
 It has a default padding to all sides but the bottom.
 
 #### Usage
 
 ```tsx
-<Modal.Header closeable>Header</Modal.Header>
+<Drawer.Header closeable>Header</Drawer.Header>
 ```
 
 #### Properties
@@ -66,15 +66,15 @@ It has a default padding to all sides but the bottom.
   { name: 'className', type: 'string', description: 'Additional class name to apply to the modal header.' },
 ]}/>
 
-### \{:component} Modal.Body
+### \{:component} Drawer.Body
 
-`Modal.Body` is a component to display a body in a modal window. It is usually used to display the main content of the modal.
+`Drawer.Body` is a component to display a body in a modal window. It is usually used to display the main content of the modal.
 By default, the body has padding to all sides.
 
 #### Usage
 
 ```tsx
-<Modal.Body>Body</Modal.Body>
+<Drawer.Body>Body</Drawer.Body>
 ```
 
 #### Properties
@@ -83,15 +83,15 @@ By default, the body has padding to all sides.
   { name: 'className', type: 'string', description: 'Additional class name to apply to the modal body.' },
 ]}/>
 
-### \{:component} Modal.Footer
+### \{:component} Drawer.Footer
 
-`Modal.Footer` is a component to display a footer in a modal window. It is usually used to display buttons.
+`Drawer.Footer` is a component to display a footer in a modal window. It is usually used to display buttons.
 By default, the footer has padding to all sides but the top.
 
 #### Usage
 
 ```tsx
-<Modal.Footer>Footer</Modal.Footer>
+<Drawer.Footer>Footer</Drawer.Footer>
 ```
 
 #### Properties
@@ -100,8 +100,14 @@ By default, the footer has padding to all sides but the top.
   { name: 'className', type: 'string', description: 'Additional class name to apply to the modal footer.' },
 ]}/>
 
-### \{:type} ModalSize
+### \{:type} DrawerSize
 
 ```ts
-type ModalSize = 'small' | 'medium' | 'large' | 'full';
+type DrawerSize = 'small' | 'medium' | 'large' | 'full';
+```
+
+### \{:type} DrawerPosition
+
+```ts
+type DrawerPosition = 'left' | 'right';
 ```

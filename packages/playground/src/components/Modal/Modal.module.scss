@@ -6,7 +6,7 @@ $sizes: (
 );
 
 .modal__container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -40,22 +40,22 @@ $sizes: (
       }
     }
   }
+}
 
-  .modal__header {
-    padding: t(padding-lg) t(padding-lg) 0 t(padding-lg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.modal__header {
+  padding: t(padding-lg) t(padding-lg) 0 t(padding-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .modal__body {
-    padding: t(padding-lg);
-    flex-grow: 1;
-  }
+.modal__body {
+  padding: t(padding-lg);
+  flex-grow: 1;
+}
 
-  .modal__footer {
-    padding: 0 t(padding-lg) t(padding-lg) t(padding-lg);
-  }
+.modal__footer {
+  padding: 0 t(padding-lg) t(padding-lg) t(padding-lg);
 }
 
 :global .no-scroll {

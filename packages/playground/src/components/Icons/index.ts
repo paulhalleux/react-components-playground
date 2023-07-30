@@ -31,3 +31,4 @@ export { PlusIcon } from "./PlusIcon";
 export { ShortcutIcon } from "./ShortcutIcon";
 export { LoaderIcon } from "./LoaderIcon";
 export { SearchIcon } from "./SearchIcon";
+export { DrawerIcon } from "./DrawerIcon";

@@ -1,0 +1,53 @@
+$sizes: (
+  small: 400px,
+  medium: 600px,
+  large: 800px,
+  full: calc(100% - 60px),
+);
+
+.drawer__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .drawer__content {
+    color: c(text);
+    position: absolute;
+    z-index: 1002;
+    background-color: c(main);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 90vw;
+    overflow: auto;
+    height: 100%;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    @each $size, $width in $sizes {
+      &--#{$size} {
+        width: $width;
+      }
+    }
+
+    &--right {
+      border-radius: t(border-radius-md) 0 0 t(border-radius-md);
+      border-left: 1px solid c(border);
+      right: 0;
+    }
+
+    &--left {
+      border-radius: 0 t(border-radius-md) t(border-radius-md) 0;
+      border-right: 1px solid c(border);
+      left: 0;
+    }
+  }
+}
+
+:global .no-scroll {
+  overflow: hidden;
+}

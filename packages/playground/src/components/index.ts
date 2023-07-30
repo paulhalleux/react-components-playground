@@ -17,5 +17,6 @@ export * from "./Search";
 export * from "./Loader";
 export * from "./Modal";
 export * from "./Backdrop";
+export * from "./Drawer";
 
 export * as Icons from "./Icons";
