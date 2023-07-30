@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   Button,
   GithubIcon,
@@ -8,6 +8,7 @@ import {
   ThemeType,
   useTheme,
 } from "@paulhalleux/react-playground";
+import clsx from "clsx";
 
 import { ComponentList } from "../../../docs/__generated__/components";
 import { Anchor, Container, Logo } from "../../components";
@@ -39,17 +40,17 @@ export function MainLayout() {
             <Logo />
           </Link>
           <nav className={styles.layout__header__nav__links}>
-            {/* <NavLink */}
-            {/*   className={({ isActive }) => */}
-            {/*     clsx( */}
-            {/*       styles.layout__header__nav__link, */}
-            {/*       isActive && styles.active, */}
-            {/*     ) */}
-            {/*   } */}
-            {/*   to="/" */}
-            {/* > */}
-            {/*   Components */}
-            {/* </NavLink> */}
+            <NavLink
+              className={({ isActive }) =>
+                clsx(
+                  styles.layout__header__nav__link,
+                  isActive && styles.active,
+                )
+              }
+              to="/"
+            >
+              Dashboard
+            </NavLink>
           </nav>
         </div>
         <div className={styles.layout__header__actions}>

@@ -1,0 +1,107 @@
+---
+category: Components
+description: A component to display a modal window.
+icon: ModalIcon
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Modal/Modal.tsx
+---
+
+`Modal` is a component to display a modal window.
+
+## Example
+
+<Example name="Modal" highlight="17-33" />
+
+## API
+
+### \{:component} Modal
+
+Modal component is the main component to display a modal window. It is composed of 3 sub-components: `Modal.Header`, `Modal.Body` and `Modal.Footer`.
+
+#### Usage
+
+```tsx
+<Modal>
+  <Modal.Header>
+    <Modal.Title>Modal title</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <p>Modal body text goes here.</p>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary">Close</Button>
+    <Button variant="primary">Save changes</Button>
+  </Modal.Footer>
+</Modal>
+```
+
+#### Properties
+
+<Properties properties={[
+  { name: 'children', type: 'ReactNode', description: 'The content of the modal.' },
+  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal.' },
+  { name: 'open', type: 'boolean', description: 'Whether the modal is open or not.' },
+  { name: 'onClose', type: '() => void', description: 'Callback called when the modal is closed.' },
+  { name: 'size', type: 'ModalSize', description: 'The size of the modal.', default: 'medium' },
+  { name: 'closeOnBackdropClick', type: 'boolean', description: 'Whether the modal should be closed when the backdrop is clicked.', default: 'true' },
+  { name: 'minHeight', type: 'number', description: 'The minimum height of the modal.' },
+  { name: 'align', type: 'string', description: 'The alignment of the modal.', default: 'center' },
+]}/>
+
+### \{:component} Modal.Header
+
+`Modal.Header` is a component to display a header in a modal window. It is usually used to display a title and a close button.
+It has a default padding to all sides but the bottom.
+
+#### Usage
+
+```tsx
+<Modal.Header closeable>Header</Modal.Header>
+```
+
+#### Properties
+
+<Properties properties={[
+  { name: 'closeable', type: 'boolean', description: 'Whether the modal is closeable or not.', default: 'false' },
+  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal header.' },
+]}/>
+
+### \{:component} Modal.Body
+
+`Modal.Body` is a component to display a body in a modal window. It is usually used to display the main content of the modal.
+By default, the body has padding to all sides.
+
+#### Usage
+
+```tsx
+<Modal.Body>Body</Modal.Body>
+```
+
+#### Properties
+
+<Properties properties={[
+  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal body.' },
+]}/>
+
+### \{:component} Modal.Footer
+
+`Modal.Footer` is a component to display a footer in a modal window. It is usually used to display buttons.
+By default, the footer has padding to all sides but the top.
+
+#### Usage
+
+```tsx
+<Modal.Footer>Footer</Modal.Footer>
+```
+
+#### Properties
+
+<Properties properties={[
+  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal footer.' },
+]}/>
+
+### \{:type} ModalSize
+
+```ts
+type ModalSize = 'small' | 'medium' | 'large' | 'full';
+```

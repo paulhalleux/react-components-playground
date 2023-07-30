@@ -11,7 +11,9 @@ type FeaturesProps = {
 export function Features({ features }: FeaturesProps) {
   return (
     <div className={styles.features__container}>
-      <Title level={2}>Features</Title>
+      <Title level={2}>
+        <h2 id="features">Features</h2>
+      </Title>
       <ul className={styles.features__list}>
         {features.map((feature) => (
           <li key={feature} className={styles.features__item}>

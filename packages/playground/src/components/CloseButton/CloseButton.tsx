@@ -6,7 +6,7 @@ import { CloseIcon } from "../Icons";
 import styles from "./CloseButton.module.scss";
 
 export type CloseButtonVariant = "default" | "ghost";
-export type CloseButtonSize = "small" | "medium" | "large";
+export type CloseButtonSize = "small" | "medium" | "large" | "x-large";
 
 export type CloseButtonProps = {
   onClick?: () => void;
@@ -19,6 +19,7 @@ const Sizes = {
   small: 12,
   medium: 15,
   large: 17,
+  "x-large": 20,
 };
 
 export function CloseButton({

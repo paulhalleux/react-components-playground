@@ -15,5 +15,7 @@ export * from "./Separator";
 export * from "./KeyboardShortcut";
 export * from "./Search";
 export * from "./Loader";
+export * from "./Modal";
+export * from "./Backdrop";
 
 export * as Icons from "./Icons";
