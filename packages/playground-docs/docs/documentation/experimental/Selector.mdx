@@ -18,10 +18,30 @@ It works like a lasso tool, where you click and drag to select elements.
 
 ## API
 
-### Selector Props
+### \{:component} Selector
+
+#### Usage
+
+```tsx
+<Selector parentRef={parentRef} color={[255, 0, 0]}>
+  {/** Selectable items */}
+</Selector>
+```
+
+#### Properties
 
 <Properties properties={[
-  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "The parent element to select elements in.", required: true },
+  { name: "parentRef", type: "React.RefObject\<HTMLElement\>", description: "The parent element to select elements in.", required: true },
   { name: "color", type: "[number, number, number]", description: "The color of the selector." },
   { name: "children", type: "React.ReactNode", description: "The elements to select." },
 ]} />
+
+### \{:function} selectable
+
+The `selectable` function is a HOC that allows you to make an element selectable. It will register itself to the `Selector` component.
+
+```tsx
+export const SelectableItem = selectable((props) => {
+  return <div {...props} />;
+});
+```

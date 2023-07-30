@@ -48,10 +48,12 @@ import { useToasts } from "@paulhalleux/react-playground";
 
 const { pushToast } = useToaster();
 
-// --> pushToast(toast: ToastType) => void
+// --> pushToast(toast: Toast) => void
 ```
 
 ### \{:type} Toast
+
+The `Toast` type is used to describe the properties of a toast. It is used by the `pushToast` function.
 
 ```ts
 type Toast = {

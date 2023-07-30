@@ -3,9 +3,9 @@ import {
   Selectable,
   selectable,
   Selector,
+  useTheme,
 } from "@paulhalleux/react-playground";
 
-import { useTheme } from "../../../playground/src/theme/theme-context";
 import { ExampleMetadata } from "../components";
 
 function SelectorExample() {

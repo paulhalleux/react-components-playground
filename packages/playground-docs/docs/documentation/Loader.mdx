@@ -34,11 +34,17 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ### \{:type} LoaderSize
 
+The size of the loader. The default value is `medium`.
+
 ```ts
 type LoaderSize = 'small' | 'medium' | 'large';
 ```
 
 ### \{:type} LoaderOrientation
+
+The orientation of the loader. The default value is `horizontal`.
+
+If the orientation is `horizontal`, the loader label will be displayed on the right of the loader. Otherwise, the loader label will be displayed below the loader.
 
 ```ts
 type LoaderOrientation = 'horizontal' | 'vertical';
