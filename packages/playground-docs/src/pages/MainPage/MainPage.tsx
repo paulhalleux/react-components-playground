@@ -44,9 +44,11 @@ export function MainPage() {
             <div key={key} className={styles.main__grid__group}>
               <h2 className={styles.main__grid__title}>{group.title}</h2>
               <div className={styles.main__grid}>
-                {filteredComponents.map((component) => (
-                  <MainItem component={component} key={component.path} />
-                ))}
+                {filteredComponents
+                  .filter((component) => component.status !== "todo")
+                  .map((component) => (
+                    <MainItem component={component} key={component.path} />
+                  ))}
               </div>
             </div>
           );

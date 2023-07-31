@@ -16,11 +16,14 @@
   width: 240px;
   min-width: 240px;
   border-right: 1px solid c(border);
-  padding: 24px 0;
 
   .sidebar__content {
     position: sticky;
-    top: 80px;
+    top: 56px;
+    padding: 24px 0;
+    max-height: calc(100vh - 56px);
+    overflow: auto;
+    scroll-behavior: smooth;
   }
 
   .sidebar__group {
@@ -42,6 +45,12 @@
     display: flex;
     gap: 8px;
     align-items: center;
+
+    .todo {
+      opacity: 0.4;
+      cursor: not-allowed;
+      user-select: none;
+    }
 
     a {
       color: c(text-contrast);

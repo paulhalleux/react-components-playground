@@ -41,15 +41,18 @@ export function ComponentPage() {
         previousComponentDefinition: undefined,
       };
 
-    const componentDefinitionIndex = FlatComponents.findIndex(
+    const FilteredComponents = FlatComponents.filter(
+      (value) => value.status !== "todo",
+    );
+    const componentDefinitionIndex = FilteredComponents.findIndex(
       (value) => kebabCase(value.title) === component,
     );
 
-    const componentDefinition = FlatComponents[componentDefinitionIndex];
+    const componentDefinition = FilteredComponents[componentDefinitionIndex];
     const nextComponentDefinition =
-      FlatComponents[componentDefinitionIndex + 1];
+      FilteredComponents[componentDefinitionIndex + 1];
     const previousComponentDefinition =
-      FlatComponents[componentDefinitionIndex - 1];
+      FilteredComponents[componentDefinitionIndex - 1];
 
     return {
       componentDefinition,

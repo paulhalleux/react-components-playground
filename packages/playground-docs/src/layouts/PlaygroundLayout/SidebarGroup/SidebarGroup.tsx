@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Badge } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import { ComponentMeta } from "../../../../docs/__generated__/components";
@@ -20,25 +19,15 @@ export function SidebarGroup({ title, components }: SidebarGroupProps) {
       <ul className={styles.sidebar__group_items}>
         {components.map((component: ComponentMeta) => (
           <li key={component.id} className={styles.sidebar__group_item}>
-            <NavLink
-              className={({ isActive }) => clsx(isActive && styles.active)}
-              to={Routes.Component(component)}
-            >
-              {component.title}
-            </NavLink>
-            {(component.status || "done") !== "done" && (
-              <Badge
-                size="small"
-                variant={
-                  component.status === "todo"
-                    ? "warning"
-                    : component.status === "in-progress"
-                    ? "warning"
-                    : "default"
-                }
+            {component.status === "todo" ? (
+              <span className={styles.todo}>{component.title}</span>
+            ) : (
+              <NavLink
+                className={({ isActive }) => clsx(isActive && styles.active)}
+                to={Routes.Component(component)}
               >
-                {component.status}
-              </Badge>
+                {component.title}
+              </NavLink>
             )}
           </li>
         ))}

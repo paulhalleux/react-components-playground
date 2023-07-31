@@ -33,7 +33,9 @@ export function groupComponents(components: Record<string, ComponentMeta>) {
     (acc, group) => {
       acc[kebabCase(group)] = {
         title: group,
-        components: groups[group],
+        components: groups[group].sort((a, b) =>
+          a.title.localeCompare(b.title),
+        ),
       };
       return acc;
     },
