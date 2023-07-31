@@ -1,0 +1,50 @@
+@import "../../style/input";
+
+$states: (
+  default: ( border-color: c(border), border-color-hover: c(border-contrast), border-color-focus: c(border-primary) ),
+  error: ( border-color: c(danger), border-color-hover: c(danger, .8), border-color-focus: c(danger) ),
+  success: ( border-color: c(success), border-color-hover: c(success, .8), border-color-focus: c(success) ),
+  warning: ( border-color: c(warning), border-color-hover: c(warning, .8), border-color-focus: c(warning) ),
+);
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  gap: t(padding-sm);
+
+  .input {
+    @include input();
+
+    @each $state, $props in $states {
+      &--#{$state} {
+        border-color: map-get($props, border-color);
+        &:hover {
+          border-color: map-get($props, border-color-hover);
+        }
+        &:focus {
+          border-color: map-get($props, border-color-focus);
+        }
+      }
+    }
+  }
+}
+
+.input__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: t(padding-xs);
+}
+
+.input__message {
+  font-size: t(font-size-xs);
+
+  @each $state, $props in $states {
+    &--#{$state} {
+      color: map-get($props, border-color);
+    }
+  }
+
+  &--default {
+    color: c(text-contrast);
+  }
+}

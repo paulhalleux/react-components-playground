@@ -2,7 +2,7 @@ import kebabCase from "lodash/kebabCase";
 
 import { ComponentMeta } from "../../docs/__generated__/components";
 
-const GroupOrder = ["Resources", "Components", "Experimental"];
+const GroupOrder = ["Resources", "Components", "Form", "Experimental"];
 
 export function groupComponents(components: Record<string, ComponentMeta>) {
   const groups: Record<string, ComponentMeta[]> = {};

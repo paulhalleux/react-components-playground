@@ -1,28 +1,7 @@
+@import "../../style/input";
+
 .search {
-  background: c(main);
-  border: 1px solid c(border);
-  border-radius: t(border-radius-sm);
-  height: 32px;
-  width: 280px;
-  padding: 0 t(padding-md);
-  transition: border-color 0.2s ease-in-out;
-  color: c(text);
-  font-size: t(font-size-sm);
-  position: relative;
-
-  &::placeholder {
-    font-size: t(font-size-sm);
-    color: c(text-contrast);
-  }
-
-  &:hover {
-    border-color: c(border-contrast);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: c(border-primary);
-  }
+  @include input("medium");
 }
 
 .search__container {

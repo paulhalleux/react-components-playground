@@ -18,5 +18,7 @@ export * from "./Loader";
 export * from "./Modal";
 export * from "./Backdrop";
 export * from "./Drawer";
+export * from "./Input";
+export * from "./Label";
 
 export * as Icons from "./Icons";

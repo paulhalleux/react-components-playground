@@ -12,9 +12,9 @@ export const DefaultThemeConfiguration: ThemeConfiguration = {
       textContrast: [255, 255, 255, 0.7],
       primary: [88, 153, 229],
       info: [10, 132, 255],
-      warning: [241, 189, 95],
+      warning: [166, 104, 17],
       danger: [255, 69, 58],
-      success: [76, 217, 100],
+      success: [34, 150, 37],
     },
     light: {
       main: [255, 255, 255],

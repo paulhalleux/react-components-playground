@@ -1,0 +1,11 @@
+.label {
+  display: flex;
+  align-items: center;
+  gap: t(padding-xs);
+  font-size: t(font-size-sm);
+  color: c(text-contrast);
+}
+
+.label__required {
+  color: c(text);
+}

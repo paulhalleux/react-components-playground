@@ -1,0 +1,35 @@
+---
+category: Form
+description: A component to display a field label.
+icon: ModalIcon
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Label/Label.tsx
+---
+
+`Label` is a component to display a field label. For example, it is used in the `Input` component.
+
+## Example
+
+<Example name="Form/Label" />
+
+<Features features={["Can be set as required"]} />
+
+## API
+
+### \{:component} Label
+
+#### Usage
+
+```tsx
+<Label htmlFor="input-id" required>
+  Label
+</Label>
+```
+
+#### Properties
+
+<Properties properties={[
+  { name: 'htmlFor', type: 'string', description: 'The id of the input the label is for.' },
+  { name: 'required', type: 'boolean', description: 'Whether the label is required.', default: 'false' },
+  { name: 'children', type: 'ReactNode', description: 'The label content.' },
+]} />
