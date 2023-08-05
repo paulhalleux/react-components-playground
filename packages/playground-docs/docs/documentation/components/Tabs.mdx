@@ -10,25 +10,9 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## Examples
 
-### Compact Layout Tabs
-
 <Example name="Tabs/Compact" highlight="23-33" />
-
-### Spaced Layout Tabs
-
 <Example name="Tabs/Spaced" highlight="16-26" />
-
-### Horizontal Orientation
-
 <Example name="Tabs/Horizontal" highlight="7-17" />
-
-<Features features={[
-  'Multiple orientations',
-  'Multiple layouts',
-  'Add button',
-  'Closeable tabs',
-  'Supports tab list overflow'
-]} />
 
 ## API
 
@@ -46,17 +30,7 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 #### Properties
 
-<Properties properties={[
-  { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },
-  { name: 'defaultActiveTab', type: 'string', description: 'The default active tab. This is only used if `activeTab` is not set.' },
-  { name: 'orientation', type: '"horizontal" | "vertical"', description: 'The orientation of the component. Can be `horizontal` or `vertical`.', default: '"horizontal"' },
-  { name: 'layout', type: '"compact" | "spaced"', description: 'The layout of the component. Can be `compact` or `spaced`.', default: '"spaced"' },
-  { name: 'renderLabel', type: '(label: string) => ReactNode', description: 'A function to render the label of the tab. The default implementation is to render the label as text.', default: '(label) => label' },
-  { name: 'addButton', type: 'boolean', description: 'Whether or not display an add icon.', default: 'false' },
-  { name: 'onAdd', type: '() => void', description: 'Callback executed when add button is clicked.' },
-  { name: 'addDisabled', type: 'boolean', description: 'Whether or not the add button is disabled.', default: 'false' },
-  { name: 'addButtonLabel', type: 'string', description: 'The label of the add button.', default: '"Add tab"' }
-]} />
+<Properties component="Tabs" />
 
 ### \{:component} Tab
 
@@ -72,13 +46,4 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 #### Properties
 
-<Properties properties={[
-  { name: 'children', type: 'React.Node', description: 'The content of the component.', required: true },
-  { name: 'label', type: 'string', description: 'The label of the tab.', required: true },
-  { name: 'id', type: 'string', description: 'The id of the tab. This is used to identify the tab.', required: true },
-  { name: 'closeable', type: 'boolean', description: 'Whether or not the tab can be closed.', default: 'false' },
-  { name: 'onClose', type: '() => void', description: 'A function that is called when the tab is closed.' },
-  { name: 'disabled', type: 'boolean', description: 'Whether or not the tab is disabled.', default: 'false' },
-  { name: 'closeDisabled', type: 'boolean', description: 'Whether or not the tab close button is disabled.', default: 'false' },
-  { name: 'contained', type: 'boolean', description: 'Whether or not the tab content should be contained.', default: 'false' },
-]} />
+<Properties component="Tab" />

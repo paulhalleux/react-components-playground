@@ -1,6 +1,9 @@
 import { Label } from "@paulhalleux/react-playground";
 
-import { ExampleComponentProps, ExampleMetadata } from "../../components";
+import {
+  ExampleComponentProps,
+  ExampleMetadata,
+} from "../../../src/components/Mdx/Example";
 
 type LabelExampleControls = {
   label: string;

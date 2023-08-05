@@ -4,6 +4,9 @@ import styles from "./Separator.module.scss";
 
 export type SeparatorOrientation = "horizontal" | "vertical";
 export type SeparatorProps = {
+  /**
+   * The orientation of the separator.
+   */
   orientation?: SeparatorOrientation;
 };
 

@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "watch:docs": "onchange \"docs/documentation/**/*.mdx\" \"docs/examples/**/*.example.tsx\" -- yarn generate:docs",
     "generate:docs": "generate-docs",
+    "generate:props": "generate-props ../playground/src/components ./docs/__generated__",
     "deploy:docs": "firebase deploy"
   },
   "dependencies": {

@@ -11,12 +11,7 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## Examples
 
-### Simple
-
 <Example name="Search/Simple" highlight="15-19" />
-
-### Async
-
 <Example name="Search/Async" highlight="9-22" />
 
 ## API
@@ -39,12 +34,4 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 #### Properties
 
-<Properties properties={[
-  { name: 'value', type: 'string', description: 'The value of the search input.' },
-  { name: 'onChange', type: '(value: string) => void', description: 'A callback function to be called when the value of the search input changes.' },
-  { name: 'placeholder', type: 'string', description: 'The placeholder of the search input.' },
-  { name: 'addon', type: 'React.ReactNode | ((input: React.RefObject<HTMLInputElement>) => React.ReactNode)', description: 'The addon of the search input.' },
-  { name: 'items', type: 'T[]', description: 'The items to be displayed in the autocomplete.' },
-  { name: 'onItemSelect', type: '(item: T) => void', description: 'A callback function to be called when an item is selected.' },
-  { name: 'renderItem', type: '(item: T, className: string) => React.ReactNode', description: 'A function to render an item.' },
-]} />
+<Properties component="Search" />

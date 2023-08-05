@@ -1,17 +1,30 @@
 import React from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
+
 import styles from "./Loader.module.scss";
 
 export type LoaderSize = "small" | "medium" | "large";
 export type LoaderOrientation = "vertical" | "horizontal";
 export type LoaderProps = {
+  /**
+   * The size of the loader.
+   */
   size?: LoaderSize;
+  /**
+   * The orientation of the loader.
+   */
   orientation?: LoaderOrientation;
+  /**
+   * The color of the loader.
+   */
   color?: string;
-  className?: string;
+  /**
+   * The label of the loader.
+   */
   label?: string;
-};
+} & BaseProps;
 
 export function Loader({
   size = "medium",

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { BaseProps } from "../../types";
 import { Backdrop } from "../Backdrop";
 import { ModalProvider } from "../Modal/modal-context";
 import { ModalBody } from "../Modal/ModalBody";
@@ -14,14 +15,32 @@ import styles from "./Drawer.module.scss";
 export type DrawerPosition = "left" | "right";
 export type DrawerSize = "small" | "medium" | "large" | "full";
 export type DrawerProps = PropsWithChildren<{
+  /**
+   * Whether the drawer is open.
+   */
   open?: boolean;
+  /**
+   * Callback fired when the drawer is closed.
+   */
   onClose?: () => void;
+  /**
+   * The size of the drawer.
+   */
   size?: DrawerSize;
+  /**
+   * Whether the drawer closes when the backdrop is clicked.
+   */
   closeOnBackdropClick?: boolean;
+  /**
+   * The minimum height of the drawer.
+   */
   minHeight?: number;
+  /**
+   * The position of the drawer.
+   */
   position?: DrawerPosition;
-  className?: string;
-}>;
+}> &
+  BaseProps;
 
 export function Drawer({
   open,

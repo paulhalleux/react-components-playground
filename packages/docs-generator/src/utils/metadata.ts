@@ -1,4 +1,4 @@
-import { Meta } from "../index.js";
+import { Meta } from "../docs.js";
 
 export function parseMetadata(metadata: string): Meta {
   return metadata

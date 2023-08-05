@@ -12,14 +12,39 @@ export type SearchItemBase = {
 };
 
 export type SearchProps<T extends SearchItemBase> = {
+  /**
+   * The value of the search.
+   */
   value?: string;
+  /**
+   * The callback to call when the value changes.
+   * @param value The new value.
+   */
   onChange?: (value: string) => void;
+  /**
+   * The placeholder to display.
+   */
   placeholder?: string;
+  /**
+   * The addon to display.
+   */
   addon?:
     | React.ReactNode
     | ((input: React.RefObject<HTMLInputElement>) => React.ReactNode);
+  /**
+   * The items to display.
+   */
   items?: T[] | ((searchValue: string) => Promise<T[]>);
+  /**
+   * The callback to call when an item is selected.
+   * @param item The selected item.
+   */
   onItemSelect?: (item: T) => void;
+  /**
+   * The callback to call when an item is rendered.
+   * @param item The item to render.
+   * @param className The class name to apply to the item.
+   */
   renderItem?: (item: T, className: string) => React.ReactNode;
 };
 

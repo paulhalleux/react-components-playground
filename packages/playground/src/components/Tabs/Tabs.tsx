@@ -1,7 +1,8 @@
-import React, { ReactNode, useRef, useState } from "react";
+import React, { PropsWithChildren, ReactNode, useRef, useState } from "react";
 import clsx from "clsx";
 
 import { useOverflow } from "../../hooks";
+import { BaseProps } from "../../types";
 import { CloseButton } from "../CloseButton";
 import {
   ArrowDownIcon,
@@ -19,17 +20,42 @@ import styles from "./Tabs.module.scss";
 export type TabLayout = "spaced" | "compact";
 export type TabOrientation = "horizontal" | "vertical";
 
-export type TabsProps = {
-  children: ReactNode;
+export type TabsProps = PropsWithChildren<{
+  /**
+   * The default active tab.
+   */
   defaultActiveTab?: string;
+  /**
+   * The orientation of the tabs.
+   */
   orientation?: TabOrientation;
+  /**
+   * The layout of the tabs.
+   */
   layout?: TabLayout;
+  /**
+   * The callback to call when the active tab changes.
+   * @param label The label of the active tab.
+   */
   renderLabel?: (label: string) => ReactNode;
+  /**
+   * Whether to display the add button.
+   */
   addButton?: boolean;
+  /**
+   * The callback to call when the add button is clicked.
+   */
   onAdd?: () => void;
+  /**
+   * The label of the add button.
+   */
   addButtonLabel?: string;
+  /**
+   * Whether the add button is disabled.
+   */
   addDisabled?: boolean;
-};
+}> &
+  BaseProps;
 
 export function Tabs({
   children,

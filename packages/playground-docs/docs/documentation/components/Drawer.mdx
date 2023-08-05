@@ -8,7 +8,7 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 `Drawer` is a component to display a modal window on the side of the screen.
 
-## Example
+## Examples
 
 <Example name="Drawer" highlight="17-33" />
 
@@ -37,16 +37,7 @@ Drawer component is the main component to display a modal window. It is composed
 
 #### Properties
 
-<Properties properties={[
-  { name: 'children', type: 'ReactNode', description: 'The content of the modal.' },
-  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal.' },
-  { name: 'open', type: 'boolean', description: 'Whether the modal is open or not.' },
-  { name: 'onClose', type: '() => void', description: 'Callback called when the modal is closed.' },
-  { name: 'size', type: 'ModalSize', description: 'The size of the modal.', default: 'medium' },
-  { name: 'closeOnBackdropClick', type: 'boolean', description: 'Whether the modal should be closed when the backdrop is clicked.', default: 'true' },
-  { name: 'minHeight', type: 'number', description: 'The minimum height of the modal.' },
-  { name: 'position', type: 'DrawerPosition', description: 'The position of the drawer modal.', default: 'right' },
-]}/>
+<Properties component="Drawer" />
 
 ### \{:component} Drawer.Header
 
@@ -61,10 +52,7 @@ It has a default padding to all sides but the bottom.
 
 #### Properties
 
-<Properties properties={[
-  { name: 'closeable', type: 'boolean', description: 'Whether the modal is closeable or not.', default: 'false' },
-  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal header.' },
-]}/>
+<Properties component="ModalHeader" />
 
 ### \{:component} Drawer.Body
 
@@ -79,9 +67,8 @@ By default, the body has padding to all sides.
 
 #### Properties
 
-<Properties properties={[
-  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal body.' },
-]}/>
+<Properties component="ModalBody" />
+
 
 ### \{:component} Drawer.Footer
 
@@ -96,9 +83,8 @@ By default, the footer has padding to all sides but the top.
 
 #### Properties
 
-<Properties properties={[
-  { name: 'className', type: 'string', description: 'Additional class name to apply to the modal footer.' },
-]}/>
+<Properties component="ModalFooter" />
+
 
 ### \{:type} DrawerSize
 

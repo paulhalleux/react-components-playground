@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import styles from "./Backdrop.module.scss";
 
 type BackdropProps = {
+  /**
+   * Callback fired when the backdrop is clicked.
+   */
   onClick?: () => void;
 };
 

@@ -14,19 +14,35 @@ import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-typescript";
 
+import { BaseProps } from "../../types";
 import { Button } from "../Button";
 
 import "./theme.scss";
 import styles from "./CodeBlock.module.scss";
 
 export type CodeBlockProps = PropsWithChildren<{
-  className?: string;
+  /**
+   * Whether the code block should be expanded by default.
+   */
   defaultExpanded?: boolean;
+  /**
+   * The language of the code block.
+   */
   language?: string;
+  /**
+   * The height at which the code block should collapse.
+   */
   collapseAt?: number;
+  /**
+   * The maximum height of the code block.
+   */
   maxHeight?: number;
+  /**
+   * The lines to highlight.
+   */
   highlightedLines?: string;
-}>;
+}> &
+  BaseProps;
 
 export function CodeBlock({
   children,

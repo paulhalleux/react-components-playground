@@ -1,6 +1,6 @@
 import { CodeBlock } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../components";
+import { ExampleMetadata } from "../../src/components/Mdx/Example";
 
 function CodeBlockExample() {
   const code = `import { CodeBlock } from "@paulhalleux/react-playground";

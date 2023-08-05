@@ -10,7 +10,13 @@ import { SelectorProvider, useSelectorContext } from "./SelectorContext";
 import styles from "./Selector.module.scss";
 
 export type SelectorProps = PropsWithChildren<{
+  /**
+   * The parent element of the selector.
+   */
   parentRef: React.RefObject<HTMLElement>;
+  /**
+   * The color of the selector.
+   */
   color?: [number, number, number];
 }>;
 

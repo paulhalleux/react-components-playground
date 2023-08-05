@@ -12,6 +12,7 @@ export type ExampleMetadata = {
     align?: "flex-start" | "center" | "flex-end";
     direction?: "row" | "column";
     grow?: boolean;
+    height?: number;
   };
 };
 

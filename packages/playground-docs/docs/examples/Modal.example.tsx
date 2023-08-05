@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../components";
+import { ExampleMetadata } from "../../src/components/Mdx/Example";
 
 import styles from "./Modal.example.module.scss";
 

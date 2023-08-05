@@ -1,5 +1,6 @@
 export * from "./theme";
 export * from "./helpers";
+export * from "./props";
 
 export type Point = {
   x: number;

@@ -1,6 +1,9 @@
 import { Loader } from "@paulhalleux/react-playground";
 
-import { ExampleComponentProps, ExampleMetadata } from "../components";
+import {
+  ExampleComponentProps,
+  ExampleMetadata,
+} from "../../src/components/Mdx/Example";
 
 type LoaderExampleControls = {
   size: "small" | "medium" | "large";

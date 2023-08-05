@@ -3,8 +3,6 @@ import { compile } from "@mdx-js/mdx";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { glob } from "glob";
 import startCase from "lodash/startCase.js";
-
-import { rimraf } from "rimraf";
 import { TitlePlugin } from "./mdx/title-plugin.js";
 import { Config } from "./utils/config.js";
 import { generateExamples } from "./utils/examples.js";
@@ -34,7 +32,7 @@ function cleanFilename(filename: string) {
 }
 
 const generateDocs = async () => {
-  rimraf.sync(Config.OutputPath);
+  // rimraf.sync(Config.OutputPath);
   await mkdir(Config.OutputPath + "/documentation", { recursive: true });
 
   console.log(LogMessages.Discovering());

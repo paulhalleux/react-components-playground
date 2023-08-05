@@ -1,6 +1,9 @@
 import { Input, InputSize, InputState } from "@paulhalleux/react-playground";
 
-import { ExampleComponentProps, ExampleMetadata } from "../../components";
+import {
+  ExampleComponentProps,
+  ExampleMetadata,
+} from "../../../src/components/Mdx/Example";
 
 type InputExampleControls = {
   label: string;

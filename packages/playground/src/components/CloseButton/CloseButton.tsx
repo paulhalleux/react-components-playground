@@ -9,9 +9,21 @@ export type CloseButtonVariant = "default" | "ghost";
 export type CloseButtonSize = "small" | "medium" | "large" | "x-large";
 
 export type CloseButtonProps = {
+  /**
+   * Callback fired when the button is clicked.
+   */
   onClick?: () => void;
+  /**
+   * Whether the button is disabled.
+   */
   disabled?: boolean;
+  /**
+   * The variant of the button.
+   */
   variant?: CloseButtonVariant;
+  /**
+   * The size of the button.
+   */
   size?: CloseButtonSize;
 };
 

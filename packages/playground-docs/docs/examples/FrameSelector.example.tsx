@@ -14,7 +14,7 @@ import {
   useTheme,
 } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata, ExampleRef } from "../components";
+import { ExampleMetadata, ExampleRef } from "../../src/components/Mdx/Example";
 
 const FrameSelectorExample = forwardRef<ExampleRef>(({}, ref) => {
   const { theme } = useTheme();

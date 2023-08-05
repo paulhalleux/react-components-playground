@@ -9,14 +9,9 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 `KeyboardShortcut` is a component that displays a keyboard shortcut. It can also handle the keyboard shortcut when defining a `onShortcut` callback.
 
-## Example
+## Examples
 
 <Example name="KeyboardShortcut" highlight="10-19" />
-
-<Features features={[
-  "Display a keyboard shortcut",
-  "Handle the keyboard shortcut",
-]} />
 
 ## API
 
@@ -47,10 +42,7 @@ The label of the keyboard shortcut is automatically generated from the `shortcut
 
 #### Properties
 
-<Properties properties={[
-  { name: "shortcut", type: "Shortcut", description: "The keyboard shortcut to display.", required: true },
-  { name: "onShortcut", type: "() => void", description: "A callback to call when the keyboard shortcut is pressed." },
-]} />
+<Properties component="KeyboardShortcut" />
 
 ### \{:type} Shortcut
 

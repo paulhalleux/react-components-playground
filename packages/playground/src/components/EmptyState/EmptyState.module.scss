@@ -1,0 +1,48 @@
+.empty-state {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t(padding-lg);
+  padding: t(padding-xxl) 0;
+  border-radius: t(border-radius-md);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: t(padding-md);
+  }
+
+  .title {
+    display: flex;
+    font-size: t(font-size-xxl);
+    color: c(text);
+  }
+
+  .description {
+    display: flex;
+    font-size: t(font-size-md);
+    text-align: center;
+    color: c(text-contrast);
+  }
+
+  .actions {
+    display: flex;
+    gap: t(padding-md);
+    align-items: center;
+    margin-top: t(padding-md);
+  }
+
+  &--default {
+    border: 1px solid c(border);
+    background-image: linear-gradient(to bottom, c(main) 0%, c(main-contrast, .1) 100%);
+  }
+}
+
+.icon {
+  color: c(text);
+}

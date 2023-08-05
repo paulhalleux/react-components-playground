@@ -1,6 +1,6 @@
 import { Skeleton } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../components";
+import { ExampleMetadata } from "../../src/components/Mdx/Example";
 
 function SkeletonExample() {
   return (

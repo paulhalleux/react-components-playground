@@ -10,20 +10,8 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ## Examples
 
-### Simple Table
-
 <Example name="Table/SimpleTable" highlight="13-30" />
-
-### Custom Rendering
-
-You can customize the rendering of the table cells and headers by providing a `render` or `renderHeader` function to the column.
-
 <Example name="Table/CustomRendering" highlight="25-37" />
-
-<Features features={[
-  'Sorting is supported by default.',
-  'Custom rendering of cells and headers.',
-]} />
 
 ## API
 
@@ -41,11 +29,7 @@ You can customize the rendering of the table cells and headers by providing a `r
 
 #### Properties
 
-<Properties properties={[
-  { name: 'columns', type: 'TableColumn\<T\>[]', description: 'The columns to display in the table.', required: true },
-  { name: 'data', type: 'T[]', description: 'The data to display in the table.', required: true },
-  { name: 'maxHeight', type: 'string | number', description: 'The maximum height of the table.' }
-]} />
+<Properties component="Table" />
 
 ### \{:type} TableColumn
 

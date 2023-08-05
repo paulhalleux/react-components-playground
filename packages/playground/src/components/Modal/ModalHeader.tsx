@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
 import { CloseButton } from "../CloseButton";
 
 import { useModal } from "./modal-context";
@@ -8,9 +9,12 @@ import { useModal } from "./modal-context";
 import styles from "./Modal.module.scss";
 
 type ModalHeaderProps = PropsWithChildren<{
-  className?: string;
+  /**
+   * Whether the modal is closeable.
+   */
   closeable?: boolean;
-}>;
+}> &
+  BaseProps;
 
 export function ModalHeader({
   children,

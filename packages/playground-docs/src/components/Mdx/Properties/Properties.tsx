@@ -1,18 +1,30 @@
 import { Table } from "@paulhalleux/react-playground";
 
-import { Code } from "../../../src/components/Mdx/Code/Code";
+import componentsProps from "../../../../docs/__generated__/props.json";
+import { Alert } from "../../Alert";
+import { Code } from "../Code/Code";
 
 type PropertiesProps = {
-  properties: {
-    name: string;
-    type: string;
-    required: boolean;
-    default: string;
-    description: string;
-  }[];
+  component: string;
 };
 
-export function Properties({ properties }: PropertiesProps) {
+export function Properties({ component }: PropertiesProps) {
+  const Props = componentsProps[component as keyof typeof componentsProps] as {
+    name: string;
+    description: string;
+    type: string;
+    required: boolean;
+    defaultValue: any;
+  }[];
+
+  if (!Props) {
+    return (
+      <Alert>
+        Could not find properties for component <Code>{component}</Code>
+      </Alert>
+    );
+  }
+
   return (
     <Table
       columns={[
@@ -36,13 +48,13 @@ export function Properties({ properties }: PropertiesProps) {
           render: (value) => (value ? "Yes" : "No"),
         },
         {
-          key: "default",
+          key: "defaultValue",
           label: "Default",
           width: "10%",
           render: (label) => <Code>{label}</Code>,
         },
       ]}
-      data={properties.map((p) => ({ ...p, id: p.name }))}
+      data={Props.map((p) => ({ ...p, id: p.name }))}
     />
   );
 }

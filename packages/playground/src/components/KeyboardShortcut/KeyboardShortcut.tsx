@@ -1,14 +1,22 @@
 import React, { useEffect } from "react";
 
+import { BaseProps } from "../../types";
+
 import { useKeyboardShortcuts } from "./keyboard-provider";
 import { Shortcut } from "./types";
 
 import styles from "./KeyboardShortcut.module.scss";
 
 export type KeyboardShortcutProps = {
+  /**
+   * The shortcut to display.
+   */
   shortcut: Shortcut;
+  /**
+   * The callback to call when the shortcut is pressed.
+   */
   onShortcut?: () => void;
-};
+} & BaseProps;
 
 export function KeyboardShortcut({
   shortcut,

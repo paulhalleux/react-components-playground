@@ -1,6 +1,7 @@
 import { HTMLProps } from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
 import { Label } from "../Label";
 
 import styles from "./Input.module.scss";
@@ -8,20 +9,56 @@ import styles from "./Input.module.scss";
 export type InputState = "default" | "error" | "success" | "warning";
 export type InputSize = "small" | "medium" | "large";
 export type InputProps = {
+  /**
+   * The label for the input.
+   */
   label?: string;
+  /**
+   * The name of the input.
+   */
   name?: string;
+  /**
+   * The id of the input.
+   */
   id?: string;
+  /**
+   * The value of the input.
+   */
   value: string;
+  /**
+   * Callback fired when the input value changes.
+   * @param value The value of the input.
+   */
   onChange: (value: string) => void;
+  /**
+   * The type of the input.
+   */
   type?: HTMLProps<"input">["type"];
+  /**
+   * The placeholder of the input.
+   */
   placeholder?: string;
+  /**
+   * Whether the input is disabled.
+   */
   disabled?: boolean;
-  className?: string;
+  /**
+   * The state of the input.
+   */
   state?: InputState;
+  /**
+   * The size of the input.
+   */
   size?: InputSize;
+  /**
+   * The message to display below the input.
+   */
   message?: string;
+  /**
+   * Whether the input is required.
+   */
   required?: boolean;
-};
+} & BaseProps;
 
 export function Input({
   label,

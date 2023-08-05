@@ -11,8 +11,38 @@
     margin-top: 25px;
   }
 
-  &--level-3,
+  &--level-3 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
   &--level-4 {
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: c(text-contrast)
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
   }
 }

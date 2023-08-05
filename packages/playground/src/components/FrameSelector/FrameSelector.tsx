@@ -11,13 +11,39 @@ import { useFrameSize } from "./use-frame-size";
 import styles from "./FrameSelector.module.scss";
 
 export type FrameSelectorProps = PropsWithChildren<{
+  /**
+   * The parent element of the frame.
+   */
   parentRef: React.RefObject<HTMLElement>;
+  /**
+   * The size of the frame.
+   */
   size: Size;
+  /**
+   * The minimum size of the frame.
+   */
   minSize?: Size;
+  /**
+   * The maximum size of the frame.
+   */
   maxSize?: Size;
+  /**
+   * Callback fired when the size of the frame changes.
+   * @param size The new size of the frame.
+   */
   onSizeChange: (size: Size) => void;
+  /**
+   * The position of the frame.
+   */
   position: Point;
+  /**
+   * Callback fired when the position of the frame changes.
+   * @param position The new position of the frame.
+   */
   onPositionChange: (position: Point) => void;
+  /**
+   * The color of the frame.
+   */
   color?: [number, number, number];
 }>;
 

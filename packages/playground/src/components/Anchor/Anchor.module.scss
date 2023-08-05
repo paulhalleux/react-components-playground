@@ -1,0 +1,21 @@
+$sizes: (
+  small: ( font-size: t(font-size-sm) ),
+  medium: ( font-size: t(font-size-md) ),
+  large: ( font-size: t(font-size-lg) ),
+);
+
+.anchor {
+  text-decoration: none;
+  color: c(text-contrast);
+  transition: color 0.1s ease-in-out;
+
+  &:hover {
+    color: c(text);
+  }
+
+  @each $size, $properties in $sizes {
+    &--#{$size} {
+      font-size: map-get($properties, font-size);
+    }
+  }
+}

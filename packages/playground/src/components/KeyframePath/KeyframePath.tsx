@@ -15,13 +15,38 @@ import { useMovePath } from "./use-move-path";
 import styles from "./KeyframePath.module.scss";
 
 export type KeyframePathProps = {
+  /**
+   * The parent reference of the keyframe path.
+   */
   parentRef: React.RefObject<HTMLDivElement>;
+  /**
+   * The keyframes to display.
+   */
   keyframes: KeyframeType[];
+  /**
+   * Callback fired when the keyframes change.
+   */
   onKeyframeChange: KeyframeChangeFn;
+  /**
+   * The color of the path.
+   */
   pathColor?: [number, number, number];
+  /**
+   * The selected keyframes.
+   */
   selectedKeyframes?: number[];
+  /**
+   * Callback fired when the keyframes are selected.
+   * @param index The index of the selected keyframes.
+   */
   onKeyframeSelect?: (index: number[]) => void;
+  /**
+   * Whether to enable path move.
+   */
   enableBezier?: boolean;
+  /**
+   * Whether to enable path move.
+   */
   enablePathMove?: boolean;
 };
 

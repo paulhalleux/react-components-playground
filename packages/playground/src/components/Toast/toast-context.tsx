@@ -31,7 +31,13 @@ export type ToasterPosition =
   | "bottom-right";
 
 export type ToastProviderProps = PropsWithChildren<{
+  /**
+   * Whether the toasts should replace each other.
+   */
   replace?: boolean;
+  /**
+   * The position of the toasts.
+   */
   position?: ToasterPosition;
 }>;
 

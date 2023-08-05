@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { CodeBlock, Tabs } from "@paulhalleux/react-playground";
+import kebabCase from "lodash/kebabCase";
 
-import { Alert } from "../../../src/components";
-import { Code } from "../../../src/components/Mdx/Code/Code";
-import { Examples, ExamplesSources } from "../../__generated__";
+import { Examples, ExamplesSources } from "../../../../docs/__generated__";
+import { Alert } from "../../index";
+import { Code } from "../Code/Code";
 import { Display } from "../Display";
+import { Title } from "../Title/Title";
 
 import { BooleanControl } from "./Controls/BooleanControl";
 import { SelectControl } from "./Controls/SelectControl";
@@ -104,16 +106,25 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
   }
 
   return (
-    <Tabs layout="compact">
-      <Tabs.Tab label="Preview" id="preview">
-        {RenderedExample}
-      </Tabs.Tab>
-      <Tabs.Tab label="Code" id="code">
-        <CodeBlock language="tsx" defaultExpanded highlightedLines={highlight}>
-          {sources}
-        </CodeBlock>
-      </Tabs.Tab>
-    </Tabs>
+    <>
+      <Title level={3}>
+        <h3 id={`examples-${kebabCase(example.name)}`}>{example.name}</h3>
+      </Title>
+      <Tabs layout="compact">
+        <Tabs.Tab label="Preview" id="preview">
+          {RenderedExample}
+        </Tabs.Tab>
+        <Tabs.Tab label="Code" id="code">
+          <CodeBlock
+            language="tsx"
+            defaultExpanded
+            highlightedLines={highlight}
+          >
+            {sources}
+          </CodeBlock>
+        </Tabs.Tab>
+      </Tabs>
+    </>
   );
 }
 

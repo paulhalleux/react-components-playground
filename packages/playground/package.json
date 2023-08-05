@@ -7,14 +7,17 @@
     "build:dev": "rimraf dist && tsc && vite build --mode development",
     "build:prod": "rimraf dist && tsc && vite build --mode production",
     "build:watch": "concurrently \"tsc -w\" \"vite build --watch\" --kill-others --success first",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev": "vite"
   },
   "dependencies": {
     "clsx": "^1.2.1",
     "framer-motion": "^10.13.0",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router": "^6.14.2",
+    "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
     "@paulhalleux/eslint-config-playground": "^1.0.0",
@@ -25,6 +28,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "concurrently": "^8.2.0",
     "eslint": "^8.45.0",
+    "react-docgen": "^6.0.2",
     "sass": "^1.63.6",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",

@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
 import { ArrowDownIcon, ArrowDownUpIcon, ArrowUpIcon } from "../Icons";
 
 import styles from "./Table.module.scss";
@@ -17,15 +18,25 @@ export type TableColumn<T extends Record<string, any>> = {
 };
 
 export type TableProps<T extends Record<string, any>> = {
+  /**
+   * The columns to display.
+   */
   columns: TableColumn<T>[];
+  /**
+   * The data to display.
+   */
   data: T[];
+  /**
+   * The maximum height of the table.
+   */
   maxHeight?: string | number;
-};
+} & BaseProps;
 
 export function Table<T extends Record<string, any>>({
   columns,
   data,
   maxHeight,
+  className,
 }: TableProps<T>) {
   const [tableColumns, setTableColumns] = React.useState(columns);
   const [tableData, setTableData] = React.useState(data);
@@ -55,7 +66,10 @@ export function Table<T extends Record<string, any>>({
   };
 
   return (
-    <div className={styles.table__container} style={{ maxHeight }}>
+    <div
+      className={clsx(styles.table__container, className)}
+      style={{ maxHeight }}
+    >
       <table className={styles.table}>
         <thead>
           <tr>

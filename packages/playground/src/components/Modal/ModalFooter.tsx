@@ -1,11 +1,11 @@
 import { PropsWithChildren } from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
+
 import styles from "./Modal.module.scss";
 
-type ModalFooterProps = PropsWithChildren<{
-  className?: string;
-}>;
+type ModalFooterProps = PropsWithChildren & BaseProps;
 
 export function ModalFooter({ children, className }: ModalFooterProps) {
   return (

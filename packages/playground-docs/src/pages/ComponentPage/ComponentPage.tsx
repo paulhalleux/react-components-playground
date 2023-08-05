@@ -14,6 +14,7 @@ import {
 } from "../../components";
 import { mdxComponents } from "../../components/Mdx";
 import { ApiType } from "../../components/Mdx/ApiType/ApiType";
+import { Title } from "../../components/Mdx/Title/Title";
 import { SwitchButton } from "../../components/SwitchButton";
 import { FlatComponents, GroupedComponents } from "../index";
 
@@ -119,9 +120,11 @@ export function ComponentPage() {
             ]}
           />
           <div className={styles.component__header}>
-            <h1 className={styles.component__header_title}>
-              {componentDefinition.title}
-            </h1>
+            <Title level={1}>
+              <h1 id={componentDefinition.title}>
+                {componentDefinition.title}
+              </h1>
+            </Title>
             {componentDefinition.sourceUrl && (
               <Badge
                 onClick={() =>

@@ -16,7 +16,7 @@ The frame can be moved by dragging the center of the frame.
 
 It also accepts a `children` prop that will be rendered inside the frame. In the example below, we use the `CrossHead` component to render a cross inside the frame.
 
-## Example
+## Examples
 
 <Example name="FrameSelector" />
 
@@ -24,17 +24,7 @@ It also accepts a `children` prop that will be rendered inside the frame. In the
 
 ### FrameSelector Props
 
-<Properties properties={[
-  { name: "children", type: "React.ReactNode", description: "Children to render inside the frame." },
-  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "Reference to the parent element of the frame selector.", required: true },
-  { name: "size", type: "Size", description: "Size of the frame.", required: true },
-  { name: "onSizeChange", type: "(size: Size) => void", description: "Callback when the size of the frame changes.", required: true },
-  { name: "position", type: "Point", description: "Position of the frame.", required: true },
-  { name: "onPositionChange", type: "(position: Point) => void", description: "Callback when the position of the frame changes.", required: true },
-  { name: "minSize", type: "Size", description: "Minimum size of the frame." },
-  { name: "maxSize", type: "Size", description: "Maximum size of the frame." },
-  { name: "color", type: "[number, number, number]", description: "Color of the frame." },
-]} />
+<Properties component="FrameSelector" />
 
 ### Point Type
 

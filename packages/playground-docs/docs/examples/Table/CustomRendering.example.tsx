@@ -1,6 +1,6 @@
 import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../../components";
+import { ExampleMetadata } from "../../../src/components/Mdx/Example";
 
 type Person = {
   id: number;

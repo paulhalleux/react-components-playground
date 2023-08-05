@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { BaseProps } from "../../types";
 import { Backdrop } from "../Backdrop";
 
 import { ModalProvider } from "./modal-context";
@@ -13,15 +14,34 @@ import { ModalHeader } from "./ModalHeader";
 import styles from "./Modal.module.scss";
 
 export type ModalSize = "small" | "medium" | "large" | "full";
+export type ModalAlign = "top" | "center" | "bottom";
 export type ModalProps = PropsWithChildren<{
+  /**
+   * Whether the modal is open.
+   */
   open?: boolean;
+  /**
+   * Callback fired when the modal is closed.
+   */
   onClose?: () => void;
+  /**
+   * The size of the modal.
+   */
   size?: ModalSize;
+  /**
+   * Whether the modal closes when the backdrop is clicked.
+   */
   closeOnBackdropClick?: boolean;
+  /**
+   * The minimum height of the modal.
+   */
   minHeight?: number;
-  align?: "top" | "center" | "bottom";
-  className?: string;
-}>;
+  /**
+   * The vertical alignment of the modal.
+   */
+  align?: ModalAlign;
+}> &
+  BaseProps;
 
 export function Modal({
   open,

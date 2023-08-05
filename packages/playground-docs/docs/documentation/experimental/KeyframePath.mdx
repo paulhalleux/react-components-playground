@@ -16,7 +16,7 @@ The interpolation is `linear` by default but can be changed to a `bezier curve`.
 If the `enableBezier` prop is set to `true`, the user can move the bezier handles of the keyframes
 and change the interpolation type to `bezier` by double-clicking on the keyframe.
 
-## Example
+## Examples
 
 <Example name="KeyframePath" />
 
@@ -24,17 +24,7 @@ and change the interpolation type to `bezier` by double-clicking on the keyframe
 
 ### KeyframePath Props
 
-<Properties properties={[
-  { name: "parentRef", type: "React.RefObject<HTMLElement>", description: "Reference of the parent element of the keyframe path.", required: true },
-  { name: "keyframes", type: "Keyframe[]", description: "The keyframes to display.", required: true },
-  { name: "onKeyframeChange", type: "(index: number, partial: Partial<Keyframe>) => void", description: "Callback when a keyframe change.", required: true },
-  { name: "enableBezier", type: "boolean", description: "Whether to enable bezier handles." },
-  { name: "enablePathMove", type: "boolean", description: "Whether to enable moving the path." },
-  { name: "onKeyframeSelect", type: "(indexes: number[]) => void", description: "Callback when a keyframe is selected." },
-  { name: "pathColor", type: "[number, number, number]", description: "The color of the path and keyframes." },
-  { name: "selectedKeyframes", type: "number[]", description: "The indexes of the selected keyframes." },
-]} />
-
+<Properties component="KeyframePath" />
 
 ### Keyframe Type
 
@@ -45,6 +35,8 @@ type Keyframe = {
   interpolation?: Interpolation;
 };
 ```
+
+&nbsp;
 
 > Note that `interpolation` is optional and defaults to `linear`.
 

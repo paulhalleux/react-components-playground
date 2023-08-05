@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 export default ({ mode }: { mode: string }) => {
   const env = mode || process.env.NODE_ENV;
   return defineConfig({
-    plugins: [react()],
+    plugins: [react({ include: [/\.tsx?$/] })],
     css: {
       modules: {
         generateScopedName:
