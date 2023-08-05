@@ -33,8 +33,8 @@ export const TitlePlugin = () => (tree: Root) => {
       );
 
       if (hasMeta !== null) {
-        const titleType = hasMeta.groups.type;
-        const title = hasMeta.groups.title;
+        const titleType = hasMeta.groups?.type;
+        const title = hasMeta.groups?.title;
 
         node.children = [
           {
@@ -58,7 +58,7 @@ export const TitlePlugin = () => (tree: Root) => {
               },
               wrapped: true,
             },
-            children: [{ type: "text", value: title }],
+            children: [{ type: "text", value: title || "" }],
           },
         ];
       }

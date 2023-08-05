@@ -1,0 +1,36 @@
+{
+  "name": "@paulhalleux/react-playground-cli",
+  "version": "0.0.0",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "playground": "dist/index.js"
+  },
+  "scripts": {
+    "build": "webpack --mode=production",
+    "build:watch": "webpack --watch",
+    "build:pre": "yarn build && npm link --force"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^2.3.0",
+    "chalk": "^4.1.2",
+    "glob": "^10.3.3",
+    "lodash": "^4.17.21",
+    "rimraf": "^5.0.1",
+    "unist-util-visit": "^5.0.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@types/mdast": "^4.0.0",
+    "@types/yargs": "^17.0.24",
+    "react-docgen-typescript": "^2.2.2",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

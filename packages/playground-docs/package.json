@@ -10,12 +10,12 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "watch:docs": "onchange \"docs/documentation/**/*.mdx\" \"docs/examples/**/*.example.tsx\" -- yarn generate:docs",
-    "generate:docs": "generate-docs",
-    "generate:props": "generate-props ../playground/src/components ./docs/__generated__",
+    "generate:docs": "playground generate-docs \"./docs/documentation/\" \"./docs/examples/\" \"./docs/__generated__\"",
+    "generate:props": "playground generate-props \"../playground/src/components\" \"./docs/__generated__\"",
     "deploy:docs": "firebase deploy"
   },
   "dependencies": {
-    "@paulhalleux/docs-generator": "^0.0.0",
+    "@paulhalleux/react-playground-cli": "^0.0.0",
     "@paulhalleux/react-playground": "^0.0.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.15.0",
