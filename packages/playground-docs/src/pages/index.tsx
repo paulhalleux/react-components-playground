@@ -1,4 +1,6 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import { CleanIcon, EmptyState } from "@paulhalleux/react-playground";
 
 import { ComponentList } from "../../docs/__generated__/components";
 import { Routes } from "../constants/routes";
@@ -25,6 +27,18 @@ export const router = createBrowserRouter([
           {
             path: `/:group/:component`,
             element: <ComponentPage />,
+          },
+          {
+            path: "*",
+            element: (
+              <EmptyState
+                variant="ghost"
+                icon={CleanIcon}
+                title="Page not found"
+                description="The page you are looking for does not exist."
+                actions={[{ type: "link", label: "Go back home", to: "/" }]}
+              />
+            ),
           },
         ],
       },
