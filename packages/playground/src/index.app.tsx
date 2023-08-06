@@ -1,7 +1,8 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Checkbox } from "./components";
+import { Radio } from "./components/Radio";
+import { Button } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -45,18 +46,21 @@ root.render(
       }}
     >
       <div style={Container}>
-        <Checkbox
+        <Radio
+          size="small"
           id="test"
           name="test"
           label="Checkbox"
-          checked={false}
+          selected="item1"
+          value={"item1"}
           onChange={() => {}}
         />
-        <Checkbox
+        <Radio
           id="test"
           name="test"
           label="Checkbox"
-          checked={true}
+          selected="item1"
+          value={"item2"}
           onChange={() => {}}
         />
       </div>

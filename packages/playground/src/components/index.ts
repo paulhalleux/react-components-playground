@@ -22,5 +22,6 @@ export * from "./Input";
 export * from "./Label";
 export * from "./Anchor";
 export * from "./EmptyState";
+export * from "./Radio";
 
 export * as Icons from "./Icons";

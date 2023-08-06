@@ -35,3 +35,4 @@ export { DrawerIcon } from "./DrawerIcon";
 export { InputIcon } from "./InputIcon";
 export { LabelIcon } from "./LabelIcon";
 export { ButtonIcon } from "./ButtonIcon";
+export { RadioIcon } from "./RadioIcon";
