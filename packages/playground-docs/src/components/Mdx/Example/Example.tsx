@@ -92,6 +92,7 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
                   // @ts-ignore
                   control: control,
                   onChange: (value) => onControlChange(control, value),
+                  id: name,
                 })}
               </div>
             </div>

@@ -63,13 +63,12 @@ export function MainLayout() {
           >
             <GithubIcon height={20} width={20} />
           </Anchor>
-          <Button onClick={onThemeChange} variant="ghost" icon>
-            {theme === ThemeType.Light ? (
-              <MoonIcon height={20} width={20} />
-            ) : (
-              <SunIcon height={20} width={20} />
-            )}
-          </Button>
+          <Button.Icon
+            onClick={onThemeChange}
+            ghost
+            icon={theme === ThemeType.Light ? MoonIcon : SunIcon}
+            iconSize={20}
+          />
         </div>
       </Container>
       <Container as="section" containerClassName={styles.layout__content}>

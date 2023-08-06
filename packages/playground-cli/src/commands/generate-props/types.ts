@@ -5,3 +5,8 @@ export type ComponentProp = {
   required: boolean;
   defaultValue: string;
 };
+
+export type ParsedComponent = {
+  displayName: string;
+  props: ComponentProp[];
+};

@@ -1,46 +1,94 @@
+$sizes: (
+  small: ( height: 24px, padding: 0 t(padding-sm), font-size: t(font-size-sm) ),
+  medium: ( height: 32px, padding: 0 t(padding-md), font-size: t(font-size-sm) ),
+  large: ( height: 40px, padding: 0 t(padding-lg), font-size: t(font-size-md) ),
+);
+
+$colors: ("success", "warning", "danger", "primary");
+
 .button {
   height: 32px;
   padding: 0 16px;
-  border: 1px solid c(border);
+  border: 1px solid transparent;
   border-radius: 4px;
-  background: c(main);
-  color: c(text);
   font-size: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-weight: 600;
+  line-height: 2;
 
-  &:hover {
-    color: c(text-contrast);
+  @each $size, $props in $sizes {
+    &--#{$size} {
+      height: map-get($props, height);
+      padding: map-get($props, padding);
+      font-size: map-get($props, font-size);
+    }
   }
 
-  &--ghost {
-    background: transparent;
-    border: none;
+  &--default {
+    background-color: c(main);
+    border-color: c(border);
+    color: c(text);
+
+    &:hover {
+      background-color: c(main-contrast, .2);
+    }
+
+    &:active {
+      background-color: c(main-contrast, .4);
+    }
+  }
+
+  @each $color in $colors {
+    &--#{$color} {
+      background-color: c(#{$color}, .1);
+      border-color: c(#{$color});
+      color: c(text);
+
+      &:hover {
+        background-color: c(#{$color}, .15);
+      }
+
+      &:active {
+        background-color: c(#{$color}, .20);
+      }
+    }
+  }
+
+  &[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
   }
 
   &--icon {
-    padding: 0;
-    width: 20px;
-    height: 20px;
+    @each $size, $props in $sizes {
+      &.button--#{$size} {
+        width: map-get($props, height);
+        height: map-get($props, height);
+        padding: 0;
+      }
+    }
   }
 
-  &--small:not(.button--icon) {
-    height: 24px;
-    padding: 0 8px;
-    font-size: 12px;
+  &--ghost {
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
+.button__loader {
+  position: relative;
+
+  .label {
+    opacity: 0;
   }
 
-  &--medium:not(.button--icon) {
-    height: 32px;
-    padding: 0 16px;
-    font-size: 14px;
-  }
-
-  &--large:not(.button--icon) {
-    height: 40px;
-    padding: 0 24px;
-    font-size: 16px;
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

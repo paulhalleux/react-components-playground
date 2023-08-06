@@ -11,18 +11,10 @@ export const Messages = {
     ),
   ParsingComponents: chalk.yellow("Parsing components..."),
   WritingPropsFile: chalk.yellow("Writing props file..."),
-  ParsedComponent: (name: string, current: number, total: number) =>
-    chalk.green(
-      `Parsed ${chalk.bold.whiteBright(name)} ${chalk.gray(
-        `(${current}/${total})`,
-      )}`,
-    ),
-  ParsedComponentFailed: (name: string, current: number, total: number) =>
-    chalk.yellow(
-      `No props found for ${chalk.bold.whiteBright(name)} ${chalk.gray(
-        `(${current}/${total})`,
-      )}`,
-    ),
+  ParsedComponent: (name: string) =>
+    chalk.green(`Parsed ${chalk.bold.whiteBright(name)}`),
+  ParsedComponentFailed: (name: string) =>
+    chalk.yellow(`No props found for ${chalk.bold.whiteBright(name)}`),
   Generated: chalk.green("Generated props file"),
 };
 

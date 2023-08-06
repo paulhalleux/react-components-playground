@@ -3,7 +3,7 @@ import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
 import { log, Messages } from "./messages";
 import { ComponentProp } from "./types";
-import { getComponents, getParsedComponent } from "./utils";
+import { getComponents, getParsedComponents } from "./utils";
 
 type GeneratePropsCommandOptions = {
   path: string;
@@ -22,31 +22,18 @@ const handler = async (
 
   // Parsing components
   log(Messages.ParsingComponents);
-  let current = 0;
   for (const component of componentList) {
-    const parsed = await getParsedComponent(component, argv.path);
+    const parsed = await getParsedComponents(component, argv.path);
 
-    if (!parsed) {
-      current++;
-      log(
-        Messages.ParsedComponentFailed(
-          component,
-          current,
-          componentList.length,
-        ),
-      );
+    if (!parsed || parsed.length === 0) {
+      log(Messages.ParsedComponentFailed(component));
       continue;
     }
 
-    components.set(parsed.displayName, parsed.props);
-    current++;
-    log(
-      Messages.ParsedComponent(
-        parsed.displayName,
-        current,
-        componentList.length,
-      ),
-    );
+    for (const component of parsed) {
+      components.set(component.displayName, component.props);
+      log(Messages.ParsedComponent(component.displayName));
+    }
   }
 
   // Write props.json file

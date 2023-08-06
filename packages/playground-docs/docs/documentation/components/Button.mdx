@@ -1,6 +1,54 @@
 ---
 category: Components
 description: A component to display placeholders while loading data.
-icon: ModalIcon
-status: todo
+icon: ButtonIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Button/Button.tsx
+status: done
 ---
+
+## Example
+
+<Example name="Button/Default" />
+<Example name="Button/Icon" />
+
+## API
+
+### \{:component} Button
+
+#### Usage
+
+```tsx
+<Button>Click me</Button>
+```
+
+#### Properties
+
+<Properties component="Button" />
+
+### \{:component} Button.Icon
+
+#### Usage
+
+```tsx
+<Button.Icon icon={CleanIcon} />
+```
+
+#### Properties
+
+<Properties component="Button.Icon" />
+
+### \{:type} ButtonSize
+
+The size of the button. Can be one of the following:
+
+```ts
+type ButtonSize = 'small' | 'medium' | 'large';
+```
+
+### \{:type} ButtonVariant
+
+The variant of the button. Can be one of the following:
+
+```ts
+type ButtonVariant = 'default' | 'primary' | 'danger' | 'success' | 'warning';
+```

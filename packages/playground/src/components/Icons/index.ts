@@ -32,3 +32,6 @@ export { ShortcutIcon } from "./ShortcutIcon";
 export { LoaderIcon } from "./LoaderIcon";
 export { SearchIcon } from "./SearchIcon";
 export { DrawerIcon } from "./DrawerIcon";
+export { InputIcon } from "./InputIcon";
+export { LabelIcon } from "./LabelIcon";
+export { ButtonIcon } from "./ButtonIcon";

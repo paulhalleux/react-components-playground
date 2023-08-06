@@ -1,6 +1,7 @@
 import { glob } from "glob";
 import * as path from "path";
 import { parse } from "react-docgen-typescript";
+import { ParsedComponent } from "./types";
 
 /**
  * Find all components in a directory
@@ -19,29 +20,35 @@ export async function getComponents(path: string): Promise<string[]> {
  * @param root Root path
  * @returns Parsed component
  */
-export async function getParsedComponent(componentPath: string, root: string) {
+export async function getParsedComponents(componentPath: string, root: string) {
   const parsed = parse(path.join(root, componentPath));
 
-  if (!parsed[0]) {
+  if (parsed.length === 0) {
     return null;
   }
 
-  const componentName = parsed[0].displayName;
-  const props = parsed[0].props || {};
+  const components: ParsedComponent[] = [];
 
-  const componentProps = Object.keys(props).map((key) => {
-    const prop = props[key];
-    return {
-      name: key,
-      description: prop.description,
-      type: prop.type.name,
-      required: prop.required,
-      defaultValue: prop.defaultValue?.value,
-    };
-  });
+  for (const component of parsed) {
+    const componentName = component.displayName;
+    const props = component.props || {};
 
-  return {
-    displayName: componentName,
-    props: componentProps,
-  };
+    const componentProps = Object.keys(props).map((key) => {
+      const prop = props[key];
+      return {
+        name: key,
+        description: prop.description,
+        type: prop.type.name,
+        required: prop.required,
+        defaultValue: prop.defaultValue?.value,
+      };
+    });
+
+    components.push({
+      displayName: componentName,
+      props: componentProps,
+    });
+  }
+
+  return components;
 }

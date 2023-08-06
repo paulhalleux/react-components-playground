@@ -1,8 +1,8 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Anchor } from "./components";
-import { ThemeProvider } from "./theme";
+import { Button, CleanIcon } from "./components";
+import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
 
@@ -18,6 +18,21 @@ const Container: CSSProperties = {
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <ThemeProvider>
+    <ThemeContext.Consumer>
+      {({ theme, setTheme }) => (
+        <div style={{ position: "absolute", top: 10, left: 10 }}>
+          <Button
+            onClick={() =>
+              setTheme(
+                theme === ThemeType.Light ? ThemeType.Dark : ThemeType.Light,
+              )
+            }
+          >
+            Switch theme
+          </Button>
+        </div>
+      )}
+    </ThemeContext.Consumer>
     <div
       style={{
         height: "100vh",
@@ -29,9 +44,7 @@ root.render(
       }}
     >
       <div style={Container}>
-        <Anchor target="_blank" to={"https://google.com"}>
-          Google
-        </Anchor>
+        <Button.Icon variant="default" size="medium" icon={CleanIcon} />
       </div>
     </div>
   </ThemeProvider>,
