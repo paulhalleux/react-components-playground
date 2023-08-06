@@ -1,7 +1,12 @@
 import React, { JSX, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { useLocation } from "react-use";
-import { Badge, CleanIcon, GithubIcon } from "@paulhalleux/react-playground";
+import {
+  Badge,
+  CleanIcon,
+  EmptyState,
+  GithubIcon,
+} from "@paulhalleux/react-playground";
 import { AnimatePresence, motion } from "framer-motion";
 import kebabCase from "lodash/kebabCase";
 
@@ -94,7 +99,15 @@ export function ComponentPage() {
   }, [component]);
 
   if (!componentDefinition || !group) {
-    return null;
+    return (
+      <EmptyState
+        variant="ghost"
+        icon={CleanIcon}
+        title="Page not found"
+        description="The page you are looking for does not exist."
+        actions={[{ type: "link", label: "Go back home", to: "/" }]}
+      />
+    );
   }
 
   const MdxComponent: (props: {

@@ -71,7 +71,7 @@ export function EmptyState({
                 {action.label}
               </Button>
             ) : (
-              <Anchor to={action.to} key={index}>
+              <Anchor to={action.to} key={index} underline size="medium" asLink>
                 {action.label}
               </Anchor>
             ),

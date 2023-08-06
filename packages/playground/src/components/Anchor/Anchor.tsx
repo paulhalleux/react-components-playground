@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Link, useInRouterContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
@@ -29,6 +29,10 @@ export type AnchorProps = PropsWithChildren<{
    * Whether the anchor should be underlined.
    */
   underline?: boolean;
+  /**
+   * Whether the anchor should be rendered as a link.
+   */
+  asLink?: boolean;
 }> &
   BaseProps;
 
@@ -38,10 +42,10 @@ export function Anchor({
   variant = "default",
   underline = false,
   children,
+  asLink = false,
   ...rest
 }: AnchorProps) {
-  const isRouterContext = useInRouterContext();
-  const LinkComponent = isRouterContext ? Link : "a";
+  const LinkComponent = asLink ? Link : "a";
 
   return (
     <LinkComponent
@@ -53,8 +57,8 @@ export function Anchor({
         className,
       )}
       {...rest}
-      href={isRouterContext ? undefined : rest.to}
-      to={isRouterContext ? rest.to : undefined!}
+      href={asLink ? undefined : rest.to}
+      to={asLink ? rest.to : undefined!}
     >
       {children}
     </LinkComponent>

@@ -38,6 +38,7 @@ export default ({ mode }) => {
       },
     },
     build: {
+      minify: env === "production",
       sourcemap: true,
       lib: {
         entry: path.resolve(__dirname, "src/index.lib.ts"),
@@ -46,7 +47,7 @@ export default ({ mode }) => {
         fileName: (format) => `index.${format}.js`,
       },
       rollupOptions: {
-        external: ["react", "react-dom"],
+        external: ["react", "react-dom", "react-router-dom", "react-router"],
         output: {
           globals: {
             react: "React",

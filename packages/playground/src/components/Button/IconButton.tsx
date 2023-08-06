@@ -7,7 +7,13 @@ import { Button, ButtonProps } from "./Button";
 import styles from "./Button.module.scss";
 
 export type IconButtonProps = ButtonProps & {
+  /**
+   * Icon to display
+   */
   icon: React.FC<IconProps>;
+  /**
+   * Size of the icon
+   */
   iconSize?: number;
 };
 

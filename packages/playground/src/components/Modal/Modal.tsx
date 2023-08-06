@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useRef } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,6 +10,7 @@ import { ModalProvider } from "./modal-context";
 import { ModalBody } from "./ModalBody";
 import { ModalFooter } from "./ModalFooter";
 import { ModalHeader } from "./ModalHeader";
+import { useNoScroll } from "./use-no-scroll";
 
 import styles from "./Modal.module.scss";
 
@@ -44,7 +45,7 @@ export type ModalProps = PropsWithChildren<{
   BaseProps;
 
 export function Modal({
-  open,
+  open = false,
   children,
   onClose,
   size = "medium",
@@ -57,14 +58,7 @@ export function Modal({
 }: ModalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (open) {
-      document.body.classList.add("no-scroll");
-      containerRef.current?.focus();
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
-  }, [open]);
+  useNoScroll(containerRef, open);
 
   const onKeydown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
