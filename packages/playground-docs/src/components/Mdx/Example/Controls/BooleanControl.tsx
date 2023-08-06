@@ -14,7 +14,6 @@ export function BooleanControl({ id, control, onChange }: BooleanControlProps) {
   return (
     <div className={styles.checkbox__wrapper}>
       <Checkbox
-        variant="ghost"
         id={`${control.property}-${id}`}
         name={control.property}
         checked={control.value}

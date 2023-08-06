@@ -35,7 +35,6 @@ export type TabsProps = PropsWithChildren<{
   layout?: TabLayout;
   /**
    * The callback to call when the active tab changes.
-   * @param label The label of the active tab.
    */
   renderLabel?: (label: string) => ReactNode;
   /**

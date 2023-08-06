@@ -27,7 +27,6 @@ export type InputProps = {
   value: string;
   /**
    * Callback fired when the input value changes.
-   * @param value The value of the input.
    */
   onChange: (value: string) => void;
   /**

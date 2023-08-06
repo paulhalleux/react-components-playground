@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, CleanIcon } from "./components";
+import { Button, Checkbox } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -13,6 +13,7 @@ const Container: CSSProperties = {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  gap: 16,
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -44,7 +45,20 @@ root.render(
       }}
     >
       <div style={Container}>
-        <Button.Icon variant="default" size="medium" icon={CleanIcon} />
+        <Checkbox
+          id="test"
+          name="test"
+          label="Checkbox"
+          checked={false}
+          onChange={() => {}}
+        />
+        <Checkbox
+          id="test"
+          name="test"
+          label="Checkbox"
+          checked={true}
+          onChange={() => {}}
+        />
       </div>
     </div>
   </ThemeProvider>,

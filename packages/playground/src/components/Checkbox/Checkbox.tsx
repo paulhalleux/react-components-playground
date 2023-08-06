@@ -6,7 +6,8 @@ import { Label } from "../Label";
 
 import styles from "./Checkbox.module.scss";
 
-export type CheckboxVariant = "default" | "ghost";
+export type CheckboxVariant = "default";
+export type CheckboxSize = "small" | "medium" | "large";
 export type CheckboxProps = {
   /**
    * The id of the checkbox.
@@ -25,14 +26,21 @@ export type CheckboxProps = {
    */
   checked: boolean;
   /**
+   * Whether the checkbox is required.
+   */
+  required?: boolean;
+  /**
    * Callback fired when the checkbox is changed.
-   * @param checked Whether the checkbox is checked.
    */
   onChange: (checked: boolean) => void;
   /**
    * The variant of the checkbox.
    */
   variant?: CheckboxVariant;
+  /**
+   * The size of the checkbox.
+   */
+  size?: CheckboxSize;
 } & BaseProps;
 
 export function Checkbox({
@@ -40,7 +48,9 @@ export function Checkbox({
   checked,
   onChange,
   variant = "default",
+  size = "medium",
   className,
+  required = false,
   name,
   id,
   ...rest
@@ -50,6 +60,7 @@ export function Checkbox({
       className={clsx(
         styles.checkbox,
         styles[`checkbox--${variant}`],
+        styles[`checkbox--${size}`],
         className,
       )}
       {...rest}
@@ -66,7 +77,12 @@ export function Checkbox({
           [styles["checkbox__box--checked"]]: checked,
         })}
       />
-      <Label htmlFor={id} className={styles.label}>
+      <Label
+        htmlFor={id}
+        className={styles.label}
+        required={required}
+        size={size}
+      >
         {label}
       </Label>
     </label>
