@@ -36,5 +36,12 @@ export const metadata: ExampleMetadata = {
       label: "Required",
       value: false,
     },
+    {
+      type: "select",
+      property: "size",
+      label: "Size",
+      value: "small",
+      options: ["small", "medium", "large"],
+    },
   ],
 };
