@@ -49,8 +49,13 @@ export async function processComponent(
  * @returns JSX code
  */
 async function getJSXCode(mdx: string): Promise<string> {
+  let metadataCleaned = mdx;
+  if (mdx.startsWith("---")) {
+    metadataCleaned = mdx.split("---").slice(2).join("---");
+  }
+
   return (
-    await compile(mdx, {
+    await compile(metadataCleaned, {
       // @ts-ignore
       Fragment: "React.Fragment",
       jsx: true,

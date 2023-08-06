@@ -2,5 +2,40 @@
 title: Anchor
 category: Components
 description: An anchor component. Can be used to link to other pages or to scroll to a specific element on the page.
-status: todo
+icon: LinkIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Anchor/Anchor.tsx
+status: done
 ---
+
+`Anchor` is a component that can be used to link to other pages or to scroll to a specific element on the page. It is a wrapper around the `Link` component from `react-router-dom`
+if a router is present in the application. Otherwise, it is a wrapper around a simple `a` tag.
+
+## Examples
+
+<Example name="Anchor" />
+
+## API
+
+### \{:component} Anchor
+
+#### Usage
+
+```tsx
+<Anchor to="https://www.google.com">Google</Anchor>
+```
+
+#### Properties
+
+<Properties component="Anchor" />
+
+### \{:type} AnchorSize
+
+```ts
+type AnchorSize = 'inherit' | 'small' | 'medium' | 'large';
+```
+
+### \{:type} AnchorVariant
+
+```ts
+type AnchorVariant = 'default' | 'secondary';
+```

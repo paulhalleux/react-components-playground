@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useRef } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,6 +9,7 @@ import { ModalProvider } from "../Modal/modal-context";
 import { ModalBody } from "../Modal/ModalBody";
 import { ModalFooter } from "../Modal/ModalFooter";
 import { ModalHeader } from "../Modal/ModalHeader";
+import { useNoScroll } from "../Modal/use-no-scroll";
 
 import styles from "./Drawer.module.scss";
 
@@ -43,7 +44,7 @@ export type DrawerProps = PropsWithChildren<{
   BaseProps;
 
 export function Drawer({
-  open,
+  open = false,
   children,
   onClose,
   size = "medium",
@@ -51,17 +52,11 @@ export function Drawer({
   minHeight,
   position = "right",
   className,
+  ...rest
 }: DrawerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (open) {
-      document.body.classList.add("no-scroll");
-      containerRef.current?.focus();
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
-  }, [open]);
+  useNoScroll(containerRef, open);
 
   const onKeydown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
@@ -77,6 +72,7 @@ export function Drawer({
           ref={containerRef}
           onKeyDown={onKeydown}
           className={styles.drawer__container}
+          {...rest}
         >
           <Backdrop onClick={closeOnBackdropClick ? onClose : undefined} />
           <ModalProvider onClose={onClose}>

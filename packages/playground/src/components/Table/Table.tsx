@@ -37,6 +37,7 @@ export function Table<T extends Record<string, any>>({
   data,
   maxHeight,
   className,
+  ...rest
 }: TableProps<T>) {
   const [tableColumns, setTableColumns] = React.useState(columns);
   const [tableData, setTableData] = React.useState(data);
@@ -70,7 +71,7 @@ export function Table<T extends Record<string, any>>({
       className={clsx(styles.table__container, className)}
       style={{ maxHeight }}
     >
-      <table className={styles.table}>
+      <table className={styles.table} {...rest}>
         <thead>
           <tr>
             {tableColumns.map((column) => (

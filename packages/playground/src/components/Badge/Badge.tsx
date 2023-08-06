@@ -54,6 +54,8 @@ export function Badge({
   onClose,
   closeable = false,
   onClick,
+  className,
+  ...rest
 }: BadgeProps) {
   return (
     <span
@@ -67,7 +69,9 @@ export function Badge({
           [styles["badge--pill"]]: pill,
           [styles["badge--action"]]: !!onClick,
         },
+        className,
       )}
+      {...rest}
     >
       {children}
       {closeable && (

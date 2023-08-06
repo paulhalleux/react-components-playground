@@ -52,6 +52,8 @@ export function Modal({
   minHeight,
   align = "center",
   className,
+  style,
+  ...rest
 }: ModalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +87,9 @@ export function Modal({
                 : align === "top"
                 ? "flex-start"
                 : "flex-end",
+            ...style,
           }}
+          {...rest}
         >
           <Backdrop onClick={closeOnBackdropClick ? onClose : undefined} />
           <ModalProvider onClose={onClose}>

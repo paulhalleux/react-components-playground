@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useClickAway } from "react-use";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
 import { Loader } from "../Loader";
 
 import styles from "./Search.module.scss";
@@ -46,7 +47,7 @@ export type SearchProps<T extends SearchItemBase> = {
    * @param className The class name to apply to the item.
    */
   renderItem?: (item: T, className: string) => React.ReactNode;
-};
+} & BaseProps;
 
 export function Search<T extends SearchItemBase>({
   value = "",
@@ -56,6 +57,9 @@ export function Search<T extends SearchItemBase>({
   renderItem,
   onItemSelect,
   items,
+  className,
+  dataTestId = "search",
+  ...rest
 }: SearchProps<T>) {
   const [searchValue, setSearchValue] = useState(value);
   const [fetching, setFetching] = useState(false);
@@ -100,7 +104,12 @@ export function Search<T extends SearchItemBase>({
   }, [searchValue, items]);
 
   return (
-    <div className={styles.search__container} ref={containerRef}>
+    <div
+      className={clsx(styles.search__container, className)}
+      ref={containerRef}
+      data-test-id={`${dataTestId}-container`}
+      {...rest}
+    >
       <input
         ref={inputRef}
         type="text"
@@ -108,14 +117,22 @@ export function Search<T extends SearchItemBase>({
         value={searchValue}
         onChange={(e) => onSearchChange(e.target.value)}
         placeholder={placeholder}
+        data-test-id={`${dataTestId}-input`}
       />
       {addon && (
-        <div className={styles.search__addon}>
+        <div
+          className={styles.search__addon}
+          data-test-id={`${dataTestId}-addon`}
+        >
           {typeof addon === "function" ? addon(inputRef) : addon}
         </div>
       )}
       {opened && (
-        <div className={styles.search__autocomplete__container} tabIndex={-1}>
+        <div
+          className={styles.search__autocomplete__container}
+          tabIndex={-1}
+          data-test-id={`${dataTestId}-autocomplete`}
+        >
           {fetching && (
             <div className={styles.search__autocomplete__item}>
               <Loader size="small" />
@@ -133,6 +150,7 @@ export function Search<T extends SearchItemBase>({
                   onSearchChange("");
                   onItemSelect?.(item);
                 }}
+                data-test-id={`${dataTestId}-autocomplete-item`}
                 onKeyDown={
                   !renderItem
                     ? (e) => {

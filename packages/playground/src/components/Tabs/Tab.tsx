@@ -37,15 +37,29 @@ export type TabProps = PropsWithChildren<{
 }> &
   BaseProps;
 
-export function Tab({ children, id, label, contained }: TabProps) {
+export function Tab({
+  children,
+  id,
+  label,
+  contained,
+  className,
+  dataTestId,
+  style,
+}: TabProps) {
   return (
     <div
       role="tabpanel"
       id={id}
       aria-labelledby={label}
-      className={clsx(styles.tab, {
-        [styles["tab--contained"]]: contained,
-      })}
+      className={clsx(
+        styles.tab,
+        {
+          [styles["tab--contained"]]: contained,
+        },
+        className,
+      )}
+      data-test-id={dataTestId}
+      style={style}
     >
       {children}
     </div>

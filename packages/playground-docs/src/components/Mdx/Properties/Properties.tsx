@@ -4,6 +4,8 @@ import componentsProps from "../../../../docs/__generated__/props.json";
 import { Alert } from "../../Alert";
 import { Code } from "../Code/Code";
 
+import styles from "./Properties.module.scss";
+
 type PropertiesProps = {
   component: string;
 };
@@ -27,6 +29,7 @@ export function Properties({ component }: PropertiesProps) {
 
   return (
     <Table
+      className={styles.table}
       columns={[
         {
           key: "name",

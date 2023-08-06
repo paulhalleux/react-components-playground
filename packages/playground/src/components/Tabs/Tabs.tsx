@@ -67,6 +67,8 @@ export function Tabs({
   addButton,
   addDisabled,
   addButtonLabel = "Add tab",
+  className,
+  ...rest
 }: TabsProps) {
   const tabsContainer = useRef<HTMLDivElement>(null);
   const { overflow, onScroll, scroll } = useOverflow(tabsContainer);
@@ -104,7 +106,9 @@ export function Tabs({
         styles[`tabs__container--${orientation}`],
         styles[`tabs__container--${layout}`],
         { [styles["tabs--addable"]]: addButton },
+        className,
       )}
+      {...rest}
     >
       <div className={styles.tabs__tablist}>
         {((overflow.x && scroll.left > 0) ||

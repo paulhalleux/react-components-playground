@@ -1,13 +1,18 @@
+import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { CleanIcon, EmptyState } from "./components";
+import { Anchor } from "./components";
 import { ThemeProvider } from "./theme";
 
 import "./index.app.scss";
 
-const Options = {
+const Container: CSSProperties = {
   width: 1920 / 2,
   height: 1080 / 2,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -23,13 +28,10 @@ root.render(
         backgroundColor: "rgb(var(--color-main))",
       }}
     >
-      <div style={Options}>
-        <EmptyState
-          title="Component not found"
-          description="404"
-          actions={[{ type: "button", onClick: () => {}, label: "Go back" }]}
-          icon={CleanIcon}
-        />
+      <div style={Container}>
+        <Anchor target="_blank" to={"https://google.com"}>
+          Google
+        </Anchor>
       </div>
     </div>
   </ThemeProvider>,

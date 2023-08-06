@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import { BaseProps } from "../../types";
 
 import { SkeletonContainer } from "./SkeletonContainer";
@@ -28,15 +30,20 @@ export function Skeleton({
   height = "16px",
   radius = "3px",
   margin = "0px",
+  className,
+  style,
+  dataTestId,
 }: SkeletonProps) {
   return (
     <div
-      className={styles.skeleton}
+      className={clsx(styles.skeleton, className)}
+      data-test-id={dataTestId}
       style={{
         width,
         height,
         margin,
         borderRadius: radius,
+        ...style,
       }}
     />
   );

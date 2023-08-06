@@ -1,6 +1,8 @@
 import { PropsWithChildren } from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
+
 import styles from "./Button.module.scss";
 
 export type ButtonSize = "small" | "medium" | "large";
@@ -20,14 +22,11 @@ export type ButtonProps = PropsWithChildren<{
    */
   icon?: boolean;
   /**
-   * The class name to add to the button.
-   */
-  className?: string;
-  /**
    * The size of the button.
    */
   size?: ButtonSize;
-}>;
+}> &
+  BaseProps;
 
 export function Button({
   children,
@@ -36,6 +35,7 @@ export function Button({
   icon,
   className,
   size = "medium",
+  ...rest
 }: ButtonProps) {
   return (
     <button
@@ -50,6 +50,7 @@ export function Button({
         },
         className,
       )}
+      {...rest}
     >
       {children}
     </button>

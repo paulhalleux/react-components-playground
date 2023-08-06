@@ -1,6 +1,9 @@
 import React from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
+import { Label } from "../Label";
+
 import styles from "./Checkbox.module.scss";
 
 export type CheckboxVariant = "default" | "ghost";
@@ -30,17 +33,30 @@ export type CheckboxProps = {
    * The variant of the checkbox.
    */
   variant?: CheckboxVariant;
-};
+} & BaseProps;
 
 export function Checkbox({
   label,
   checked,
   onChange,
   variant = "default",
+  className,
+  name,
+  id,
+  ...rest
 }: CheckboxProps) {
   return (
-    <label className={clsx(styles.checkbox, styles[`checkbox--${variant}`])}>
+    <label
+      className={clsx(
+        styles.checkbox,
+        styles[`checkbox--${variant}`],
+        className,
+      )}
+      {...rest}
+    >
       <input
+        name={name}
+        id={id}
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
@@ -50,7 +66,9 @@ export function Checkbox({
           [styles["checkbox__box--checked"]]: checked,
         })}
       />
-      <span className={styles.label}>{label}</span>
+      <Label htmlFor={id} className={styles.label}>
+        {label}
+      </Label>
     </label>
   );
 }

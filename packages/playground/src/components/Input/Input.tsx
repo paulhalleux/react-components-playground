@@ -68,18 +68,27 @@ export function Input({
   message,
   className,
   onChange,
+  dataTestId = "input",
   ...props
 }: InputProps) {
   return (
-    <div className={styles.input__container}>
+    <div
+      className={styles.input__container}
+      data-test-id={`${dataTestId}-container`}
+    >
       {label && (
-        <Label required={required} htmlFor={props.id}>
+        <Label
+          required={required}
+          htmlFor={props.id}
+          dataTestId={`${dataTestId}-label`}
+        >
           {label}
         </Label>
       )}
       <div className={styles.input__wrapper}>
         <input
           onChange={(e) => onChange(e.target.value)}
+          data-test-id={`${dataTestId}-input`}
           className={clsx(
             styles.input,
             styles[`input--${state}`],

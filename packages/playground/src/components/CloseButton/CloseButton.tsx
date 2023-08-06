@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
+import { BaseProps } from "../../types";
 import { CloseIcon } from "../Icons";
 
 import styles from "./CloseButton.module.scss";
@@ -25,7 +26,7 @@ export type CloseButtonProps = {
    * The size of the button.
    */
   size?: CloseButtonSize;
-};
+} & BaseProps;
 
 const Sizes = {
   small: 12,
@@ -39,6 +40,8 @@ export function CloseButton({
   onClick,
   variant = "default",
   size = "small",
+  className,
+  ...rest
 }: CloseButtonProps) {
   const iconSize = Sizes[size];
 
@@ -49,9 +52,11 @@ export function CloseButton({
         styles["close-button"],
         styles[`close-button--${size}`],
         styles[`close-button--${variant}`],
+        className,
       )}
       onClick={onClick}
       disabled={disabled}
+      {...rest}
     >
       <CloseIcon width={iconSize} height={iconSize} />
     </button>

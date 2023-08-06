@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import clsx from "clsx";
 
 import { BaseProps } from "../../types";
 
@@ -30,15 +31,20 @@ export function SkeletonContainer({
   direction,
   alignItems,
   gap,
+  className,
+  style,
+  dataTestId,
 }: SkeletonContainerProps) {
   return (
     <div
-      className={styles.container}
+      className={clsx(styles.container, className)}
+      data-test-id={dataTestId}
       style={{
         justifyContent,
         flexDirection: direction,
         alignItems,
         gap,
+        ...style,
       }}
     >
       {children}

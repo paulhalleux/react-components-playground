@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import clsx from "clsx";
 
 import { BaseProps } from "../../types";
 
@@ -21,6 +22,8 @@ export type KeyboardShortcutProps = {
 export function KeyboardShortcut({
   shortcut,
   onShortcut,
+  className,
+  ...rest
 }: KeyboardShortcutProps) {
   const { registerShortcut } = useKeyboardShortcuts();
   const callbackRef = React.useRef(onShortcut);
@@ -38,7 +41,9 @@ export function KeyboardShortcut({
   }, [shortcut, registerShortcut]);
 
   return (
-    <kbd className={styles["keyboard-shortcut"]}>{parseShortcut(shortcut)}</kbd>
+    <kbd className={clsx(styles["keyboard-shortcut"], className)} {...rest}>
+      {parseShortcut(shortcut)}
+    </kbd>
   );
 }
 

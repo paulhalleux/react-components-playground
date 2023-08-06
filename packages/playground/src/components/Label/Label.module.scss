@@ -1,9 +1,20 @@
+$sizes: (
+  small: ( font-size: t(font-size-sm) ),
+  medium: ( font-size: t(font-size-md) ),
+  large: ( font-size: t(font-size-lg) ),
+);
+
 .label {
   display: flex;
   align-items: center;
   gap: t(padding-xs);
-  font-size: t(font-size-sm);
   color: c(text-contrast);
+
+  @each $size, $properties in $sizes {
+    &--#{$size} {
+      font-size: map-get($properties, font-size);
+    }
+  }
 }
 
 .label__required {

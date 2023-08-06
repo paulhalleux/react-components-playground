@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import {
+  Anchor,
   Button,
   GithubIcon,
   MoonIcon,
@@ -11,7 +12,7 @@ import {
 import clsx from "clsx";
 
 import { ComponentList } from "../../../docs/__generated__/components";
-import { Anchor, Container, Logo } from "../../components";
+import { Container, Logo } from "../../components";
 
 import { ComponentSearch } from "./ComponentSearch";
 
@@ -56,7 +57,8 @@ export function MainLayout() {
         <div className={styles.layout__header__actions}>
           <ComponentSearch components={Object.values(ComponentList)} />
           <Anchor
-            href="https://github.com/paulhalleux/react-playground"
+            variant="secondary"
+            to="https://github.com/paulhalleux/react-playground"
             target="_blank"
           >
             <GithubIcon height={20} width={20} />
@@ -82,7 +84,8 @@ export function MainLayout() {
         <p>
           Visit{" "}
           <Anchor
-            href="https://github.com/paulhalleux/react-playground"
+            underline
+            to="https://github.com/paulhalleux/react-playground"
             target="_blank"
           >
             GitHub

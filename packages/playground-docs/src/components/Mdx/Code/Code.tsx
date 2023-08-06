@@ -15,11 +15,13 @@ export function Code({ isBlock, children, className }: CodeProps) {
   }
 
   return (
-    <CodeBlock
-      language={className?.replace("language-", "")}
-      defaultExpanded={true}
-    >
-      {children}
-    </CodeBlock>
+    <div className={styles.code__container}>
+      <CodeBlock
+        language={className?.replace("language-", "")}
+        defaultExpanded={true}
+      >
+        {children}
+      </CodeBlock>
+    </div>
   );
 }

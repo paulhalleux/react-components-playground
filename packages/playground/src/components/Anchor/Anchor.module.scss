@@ -1,4 +1,5 @@
 $sizes: (
+  inherit: ( font-size: inherit ),
   small: ( font-size: t(font-size-sm) ),
   medium: ( font-size: t(font-size-md) ),
   large: ( font-size: t(font-size-lg) ),
@@ -8,6 +9,7 @@ $sizes: (
   text-decoration: none;
   color: c(text-contrast);
   transition: color 0.1s ease-in-out;
+  display: inline-flex;
 
   &:hover {
     color: c(text);
@@ -17,5 +19,16 @@ $sizes: (
     &--#{$size} {
       font-size: map-get($properties, font-size);
     }
+  }
+
+  &--secondary {
+    color: c(text);
+    &:hover {
+      color: c(text-contrast);
+    }
+  }
+
+  &--underline {
+    text-decoration: underline;
   }
 }

@@ -52,6 +52,7 @@ export function CodeBlock({
   collapseAt = 300,
   highlightedLines,
   maxHeight,
+  ...rest
 }: CodeBlockProps) {
   const blockRef = useRef<HTMLPreElement>(null);
   const baseCodeRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ export function CodeBlock({
       })}
       ref={blockRef}
       style={{ maxHeight }}
+      {...rest}
     >
       <code
         className={clsx(styles.base__code, {

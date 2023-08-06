@@ -32,6 +32,7 @@ export function Loader({
   label,
   color = "currentColor",
   orientation = "horizontal",
+  ...rest
 }: LoaderProps) {
   let pxSize = 16;
   if (size === "medium") {
@@ -48,6 +49,7 @@ export function Loader({
         styles[`loader--${orientation}`],
         className,
       )}
+      {...rest}
     >
       <svg
         version="1.1"
