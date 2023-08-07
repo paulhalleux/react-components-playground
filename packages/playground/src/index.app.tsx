@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button } from "./components";
+import { Button, Tooltip } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -44,7 +44,16 @@ root.render(
         backgroundColor: "rgb(var(--color-main))",
       }}
     >
-      <div style={Container}></div>
+      <div style={Container}>
+        <Tooltip
+          trigger="click"
+          variant="secondary"
+          content="Click me! doaz d zakdpazokd pazpkdoza dpokzap dkap"
+          position="bottom"
+        >
+          <Button>Hover me!</Button>
+        </Tooltip>
+      </div>
     </div>
   </ThemeProvider>,
 );

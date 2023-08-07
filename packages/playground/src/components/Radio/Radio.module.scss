@@ -10,11 +10,19 @@ $sizes: (
   cursor: pointer;
 
   &:hover .radio__box {
-    border-color: c(border-contrast);
-    background-color: c(main-contrast, .1);
+    border-color: c(text);
+    background-color: c(text, .05);
+
+    &--checked {
+      background-color: c(text, .20);
+    }
 
     &:after {
-      background-color: c(main-contrast, .8);
+      background-color: c(text, .20);
+    }
+
+    &--checked:after {
+      background-color: c(text, .6);
     }
   }
 
@@ -26,11 +34,11 @@ $sizes: (
 
   &--default {
     .radio__box {
-      border: 1px solid c(border);
+      border: 1px solid c(text);
     }
 
     .radio__box--checked:after {
-      background-color: c(main-contrast);
+      background-color: c(text);
     }
   }
 
@@ -47,21 +55,18 @@ $sizes: (
     border-radius: 50%;
     cursor: pointer;
     transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    position: relative;
 
-    &--checked {
-      position: relative;
-
-      &:after {
-        content: '';
-        position: absolute;
-        width: 60%;
-        height: 60%;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: background-color 0.2s ease-in-out;
-      }
+    &:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
   }
 

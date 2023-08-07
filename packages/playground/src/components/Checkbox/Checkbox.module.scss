@@ -10,12 +10,11 @@ $sizes: (
   cursor: pointer;
 
   &:hover .checkbox__box:not(.checkbox__box--checked) {
-    border-color: c(border-contrast);
-    background-color: c(main-contrast, .1);
+    background-color: c(text, .05);
   }
 
   &:hover .checkbox__box--checked {
-    background-color: c(main-contrast, .8);
+    background-color: c(text, .20);
   }
 
   .label {
@@ -26,11 +25,11 @@ $sizes: (
 
   &--default {
     .checkbox__box {
-      border: 1px solid c(border);
+      border: 1px solid c(text);
     }
 
     .checkbox__box--checked {
-      background-color: c(main-contrast);
+      background-color: c(text, .15);
     }
   }
 
@@ -49,11 +48,12 @@ $sizes: (
     transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
     &--checked {
-      &:after {
+      &:before {
         content: '';
         display: block;
         height: 20%;
         width: 50%;
+        z-index: 1000;
         border: 1px solid c(text);
         border-top: none;
         border-right: none;

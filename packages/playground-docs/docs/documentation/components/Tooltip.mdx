@@ -2,5 +2,63 @@
 title: Tooltip
 category: Components
 description: A tooltip component.
-status: todo
+icon: LabelIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Tooltip/Tooltip.tsx
+status: done
 ---
+
+`Tooltip` is a component that displays a tooltip when the user hovers over it.
+
+## Example
+
+<Example name="Tooltip" />
+
+## API
+
+### \{:component} Tooltip
+
+Wrap the content you want to display in a tooltip with the `Tooltip` component.
+
+#### Usage
+
+```tsx
+<Tooltip content="This is a tooltip">
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+#### Props
+
+<Properties component="Tooltip" />
+
+### \{:type} TooltipPosition
+
+The position of the tooltip relative to the content.
+
+```ts
+type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
+```
+
+### \{:type} TooltipAlignment
+
+The alignment of the tooltip relative to the content.
+
+```ts
+type TooltipAlignment = 'start' | 'center' | 'end';
+```
+
+### \{:type} TooltipTrigger
+
+The event that triggers the tooltip to appear. Node that `click` will ignore the `delay` prop for the enter animation.
+
+```ts
+type TooltipTrigger = 'hover' | 'click';
+```
+
+### \{:type} TooltipVariant
+
+The variant of the tooltip.
+
+```ts
+type TooltipVariant = 'default' | 'secondary';
+```

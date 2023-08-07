@@ -1,0 +1,48 @@
+.tooltip__wrapper {
+  position: relative;
+}
+
+.tooltip__container {
+  position: absolute;
+  z-index: 1;
+  width: max-content;
+
+  &.tooltip--top {
+    padding-bottom: 5px;
+  }
+
+  &.tooltip--bottom {
+    padding-top: 5px;
+  }
+
+  &.tooltip--left {
+    padding-right: 5px;
+  }
+
+  &.tooltip--right {
+    padding-left: 5px;
+  }
+}
+
+.tooltip {
+  border-radius: t(border-radius-sm);
+  font-size: t(font-size-sm);
+  color: c(text);
+  padding: t(padding-xs) t(padding-sm);
+  max-width: 200px;
+  width: 100%;
+
+  &--default {
+    background: c(main-contrast, .5);
+  }
+
+  &--secondary {
+    background: c(main);
+    border: 1px solid c(border);
+  }
+}
+
+.tooltip__children {
+  position: relative;
+  z-index: 2;
+}
