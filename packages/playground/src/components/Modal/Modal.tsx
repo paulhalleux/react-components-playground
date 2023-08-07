@@ -36,7 +36,7 @@ export type ModalProps = PropsWithChildren<{
   /**
    * The minimum height of the modal.
    */
-  minHeight?: number;
+  minHeight?: number | "auto";
   /**
    * The vertical alignment of the modal.
    */

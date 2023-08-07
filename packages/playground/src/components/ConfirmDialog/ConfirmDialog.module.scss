@@ -1,0 +1,42 @@
+.dialog__footer {
+  display: flex;
+  justify-content: center;
+  gap: t(padding-md);
+  padding: 0 t(padding-xl) t(padding-xl);
+
+  .confirm__button {
+    width: 100%;
+  }
+}
+
+.dialog__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t(padding-sm);
+  padding: t(padding-xxl) 0;
+
+  .confirm__title {
+    font-size: t(font-size-xl);
+    font-weight: 600;
+  }
+
+  .confirm__description {
+    font-size: t(font-size-md);
+    font-weight: 400;
+    color: c(text-contrast);
+  }
+}
+
+.confirm__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: c(text, .1);
+  outline: 8px solid c(text, .05);
+  color: c(text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: t(padding-xl);
+}

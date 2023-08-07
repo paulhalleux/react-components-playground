@@ -1,7 +1,6 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Radio } from "./components/Radio";
 import { Button } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
@@ -45,25 +44,7 @@ root.render(
         backgroundColor: "rgb(var(--color-main))",
       }}
     >
-      <div style={Container}>
-        <Radio
-          size="small"
-          id="test"
-          name="test"
-          label="Checkbox"
-          selected="item1"
-          value={"item1"}
-          onChange={() => {}}
-        />
-        <Radio
-          id="test"
-          name="test"
-          label="Checkbox"
-          selected="item1"
-          value={"item2"}
-          onChange={() => {}}
-        />
-      </div>
+      <div style={Container}></div>
     </div>
   </ThemeProvider>,
 );

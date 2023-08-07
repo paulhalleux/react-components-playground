@@ -1,6 +1,66 @@
 ---
-title: Confirm Dialog
+title: ConfirmDialog
 category: Components
 description: A confirm dialog component.
-status: todo
+icon: ConfirmIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/ConfirmDialog/ConfirmDialog.tsx
+status: done
 ---
+
+`ConfirmDialog` is a component that displays a dialog with a title, a message and two buttons: one to confirm and one to cancel.
+
+## Examples
+
+<Example name="ConfirmDialog" />
+
+## API
+
+### \{:component} ConfirmProvider
+
+Context provider for the confirm dialog. It will provide the state used by the `useConfirm` hook.
+
+#### Usage
+
+```tsx
+<ConfirmProvider>
+  <App />
+</ConfirmProvider>
+```
+
+### \{:function} useConfirm
+
+Hook to use the confirm dialog.
+
+#### Usage
+
+```ts
+const { confirm } = useConfirm();
+
+confirm({
+  title: "Confirm",
+  description: "Are you sure?",
+  onConfirm: () => console.log("confirmed"),
+  onCancel: () => console.log("cancelled"),
+});
+```
+
+### \{:type} ConfirmData
+
+Data used by the confirm dialog.
+
+Node that the `onConfirm` and `onCancel` callbacks can be async and dialog will wait for them to complete before closing.
+
+```ts
+type ConfirmData = {
+  title: string;
+  description?: string;
+  confirmText?: string;
+  cancelText?: string;
+  onConfirm: (() => void) | (() => Promise<void>);
+  onCancel: (() => void) | (() => Promise<void>);
+  confirmStyle?: ButtonVariant;
+  cancelStyle?: ButtonVariant;
+  size?: ModalSize;
+  icon?: React.FC<IconProps>;
+};
+```

@@ -23,5 +23,6 @@ export * from "./Label";
 export * from "./Anchor";
 export * from "./EmptyState";
 export * from "./Radio";
+export * from "./ConfirmDialog";
 
 export * as Icons from "./Icons";
