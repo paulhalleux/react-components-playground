@@ -10,11 +10,12 @@ $sizes: (
   cursor: pointer;
 
   &:hover .checkbox__box:not(.checkbox__box--checked) {
-    background-color: c(text, .05);
+    background-color: c(main-contrast, .15);
+    border: 1px solid c(border, .8);
   }
 
   &:hover .checkbox__box--checked {
-    background-color: c(text, .20);
+    background-color: c(main-contrast, .4);
   }
 
   .label {
@@ -25,11 +26,11 @@ $sizes: (
 
   &--default {
     .checkbox__box {
-      border: 1px solid c(text);
+      border: 1px solid c(border);
     }
 
     .checkbox__box--checked {
-      background-color: c(text, .15);
+      background-color: c(main-contrast, .5);
     }
   }
 

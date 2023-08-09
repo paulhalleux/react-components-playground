@@ -1,0 +1,30 @@
+.popover__wrapper {
+  position: relative;
+}
+
+.popover__container {
+  position: absolute;
+  z-index: 1;
+  width: max-content;
+
+  &.popover--top {
+    padding-bottom: 5px;
+  }
+
+  &.popover--bottom {
+    padding-top: 5px;
+  }
+
+  &.popover--left {
+    padding-right: 5px;
+  }
+
+  &.popover--right {
+    padding-left: 5px;
+  }
+}
+
+.popover__children {
+  position: relative;
+  z-index: 2;
+}

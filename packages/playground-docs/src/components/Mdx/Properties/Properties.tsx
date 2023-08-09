@@ -6,18 +6,24 @@ import { Code } from "../Code/Code";
 
 import styles from "./Properties.module.scss";
 
-type PropertiesProps = {
-  component: string;
+type ComponentProp = {
+  name: string;
+  description: string;
+  type: string;
+  required: boolean;
+  defaultValue: any;
 };
 
-export function Properties({ component }: PropertiesProps) {
-  const Props = componentsProps[component as keyof typeof componentsProps] as {
-    name: string;
-    description: string;
-    type: string;
-    required: boolean;
-    defaultValue: any;
-  }[];
+type PropertiesProps = {
+  component: string;
+  omit?: string[];
+  additional?: ComponentProp[];
+};
+
+export function Properties({ component, omit, additional }: PropertiesProps) {
+  const Props = componentsProps[
+    component as keyof typeof componentsProps
+  ] as ComponentProp[];
 
   if (!Props) {
     return (
@@ -57,7 +63,10 @@ export function Properties({ component }: PropertiesProps) {
           render: (label) => <Code>{label}</Code>,
         },
       ]}
-      data={Props.map((p) => ({ ...p, id: p.name }))}
+      data={[
+        ...Props.filter((p) => omit === undefined || !omit.includes(p.name)),
+        ...(additional || []),
+      ].map((p) => ({ ...p, id: p.name }))}
     />
   );
 }

@@ -1,4 +1,4 @@
-import { TooltipAlignment, TooltipPosition } from "./Tooltip";
+import { PopoverAlignment, PopoverPosition } from "./Popover";
 
 const AnimationMap = {
   top: {
@@ -24,8 +24,8 @@ const AnimationMap = {
 };
 
 export function getAnimation(
-  position: TooltipPosition,
-  alignment: TooltipAlignment,
+  position: PopoverPosition,
+  alignment: PopoverAlignment,
 ) {
   const animation = AnimationMap[position];
   if (position === "top" || position === "bottom") {

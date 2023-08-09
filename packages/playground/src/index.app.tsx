@@ -46,7 +46,6 @@ root.render(
     >
       <div style={Container}>
         <Tooltip
-          trigger="click"
           variant="secondary"
           content="Click me! doaz d zakdpazokd pazpkdoza dpokzap dkap"
           position="bottom"

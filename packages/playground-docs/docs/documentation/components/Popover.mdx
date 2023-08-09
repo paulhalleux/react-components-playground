@@ -2,5 +2,62 @@
 title: Popover
 category: Components
 description: A popover component.
-status: todo
+icon: TooltipIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Popover/Popover.tsx
+status: done
 ---
+
+`Popover` is a component that displays a popover relative to a target element. It is similar to a `Tooltip`, but it can contain more complex content.
+(Tooltip is built on top of Popover.)
+
+## Examples
+
+<Example name="Popover" />
+
+## API
+
+### \{:component} Popover
+
+#### Usage
+
+```tsx
+<Popover
+  content={<div>Content</div>}
+  placement="bottom"
+  trigger="click"
+  visible={visible}
+  onVisibleChange={setVisible}
+>
+  <Button>Click me</Button>
+</Popover>
+```
+
+#### Properties
+
+<Properties component="Popover" />
+
+Node that `delay` will be ignored if `trigger` is set to `click`.
+
+### \{:type} PopoverPosition
+
+The position of the popover relative to the target.
+
+```ts
+type PopoverPosition = 'top' | 'bottom' | 'left' | 'right';
+```
+
+### \{:type} PopoverAlignment
+
+The alignment of the popover relative to the target.
+
+```ts
+type PopoverAlignment = 'start' | 'center' | 'end';
+```
+
+### \{:type} PopoverTrigger
+
+The action that triggers the popover to show.
+
+```ts
+type PopoverTrigger = 'click' | 'hover';
+```

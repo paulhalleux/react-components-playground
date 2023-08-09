@@ -7,7 +7,7 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 status: done
 ---
 
-`Tooltip` is a component that displays a tooltip when the user hovers over it.
+`Tooltip` is a component that displays a tooltip when the user hovers over it. It is build around the `Popover` component.
 
 ## Example
 
@@ -29,31 +29,9 @@ Wrap the content you want to display in a tooltip with the `Tooltip` component.
 
 #### Props
 
-<Properties component="Tooltip" />
-
-### \{:type} TooltipPosition
-
-The position of the tooltip relative to the content.
-
-```ts
-type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
-```
-
-### \{:type} TooltipAlignment
-
-The alignment of the tooltip relative to the content.
-
-```ts
-type TooltipAlignment = 'start' | 'center' | 'end';
-```
-
-### \{:type} TooltipTrigger
-
-The event that triggers the tooltip to appear. Node that `click` will ignore the `delay` prop for the enter animation.
-
-```ts
-type TooltipTrigger = 'hover' | 'click';
-```
+<Properties component="Popover" omit={["trigger", "content"]} additional={[
+  { name: "content", type: "ReactNode", default: "undefined", description: "The content of the tooltip.", required: true },
+]} />
 
 ### \{:type} TooltipVariant
 

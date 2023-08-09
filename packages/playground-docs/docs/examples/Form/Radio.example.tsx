@@ -18,24 +18,27 @@ function RadioExample({
 
   return (
     <>
-      <Radio
-        label="Item 1"
-        id="item1"
-        name="test"
-        selected={selected}
-        value="item1"
-        onChange={setSelected}
-        {...controls}
-      />
-      <Radio
-        label="Item 2"
-        id="item2"
-        name="test"
-        selected={selected}
-        value="item2"
-        onChange={setSelected}
-        {...controls}
-      />
+      <div>
+        <Radio
+          label="Item 1"
+          id="item1"
+          name="test"
+          selected={selected}
+          value="item1"
+          onChange={setSelected}
+          {...controls}
+          style={{ marginBottom: "6px" }}
+        />
+        <Radio
+          label="Item 2"
+          id="item2"
+          name="test"
+          selected={selected}
+          value="item2"
+          onChange={setSelected}
+          {...controls}
+        />
+      </div>
       <span>
         Selected: <strong>{selected}</strong>
       </span>

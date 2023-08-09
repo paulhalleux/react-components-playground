@@ -10,19 +10,19 @@ $sizes: (
   cursor: pointer;
 
   &:hover .radio__box {
-    border-color: c(text);
-    background-color: c(text, .05);
+    border-color: c(border, .8);
+    background-color: c(main-contrast, .15);
 
     &--checked {
-      background-color: c(text, .20);
+      background-color: c(main-contrast, .4);
     }
 
     &:after {
-      background-color: c(text, .20);
+      background-color: c(text, .4);
     }
 
     &--checked:after {
-      background-color: c(text, .6);
+      background-color: c(text, .5);
     }
   }
 
@@ -34,11 +34,11 @@ $sizes: (
 
   &--default {
     .radio__box {
-      border: 1px solid c(text);
+      border: 1px solid c(border);
     }
 
     .radio__box--checked:after {
-      background-color: c(text);
+      background-color: c(text, .6);
     }
   }
 

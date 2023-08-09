@@ -1,10 +1,9 @@
 import {
   Button,
+  Popover,
   PopoverAlignment,
   PopoverPosition,
   PopoverTrigger,
-  Tooltip,
-  TooltipVariant,
 } from "@paulhalleux/react-playground";
 
 import {
@@ -16,34 +15,34 @@ type TooltipExampleControls = {
   position: PopoverPosition;
   alignment: PopoverAlignment;
   trigger: PopoverTrigger;
-  variant: TooltipVariant;
-  content: string;
+  closeOnClickOutside: boolean;
 };
 
-function TooltipExample({
+function PopoverExample({
   controls,
 }: ExampleComponentProps<TooltipExampleControls>) {
   return (
-    <Tooltip {...controls}>
-      <Button>Hover me!</Button>
-    </Tooltip>
+    <Popover
+      content={
+        <div>
+          <p>Popover content</p>
+        </div>
+      }
+      {...controls}
+    >
+      <Button>{controls.trigger === "hover" ? "Hover" : "Click"} me!</Button>
+    </Popover>
   );
 }
 
 export const metadata: ExampleMetadata = {
-  name: "Tooltip",
-  component: TooltipExample,
+  name: "Popover",
+  component: PopoverExample,
   display: {
     padding: true,
     align: "center",
   },
   controls: [
-    {
-      type: "string",
-      label: "Content",
-      property: "content",
-      value: "Click me!",
-    },
     {
       type: "select",
       label: "Position",
@@ -66,11 +65,10 @@ export const metadata: ExampleMetadata = {
       value: "hover",
     },
     {
-      type: "select",
-      label: "Variant",
-      property: "variant",
-      options: ["default", "secondary"],
-      value: "default",
+      type: "boolean",
+      label: "Close on click outside",
+      property: "closeOnClickOutside",
+      value: true,
     },
   ],
 };
