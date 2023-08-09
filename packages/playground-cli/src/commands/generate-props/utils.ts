@@ -6,10 +6,14 @@ import { ParsedComponent } from "./types";
 /**
  * Find all components in a directory
  * @param path Path to the directory
+ * @param pattern Pattern to match
  * @returns List of components
  */
-export async function getComponents(path: string): Promise<string[]> {
-  return await glob("**/*.tsx", {
+export async function getComponents(
+  path: string,
+  pattern: string,
+): Promise<string[]> {
+  return await glob(pattern, {
     cwd: path,
   });
 }

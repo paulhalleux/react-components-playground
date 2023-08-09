@@ -5,6 +5,6 @@ export type BaseCommand<ArgsType = any> = {
   command: string;
   describe: string;
   positional?: { [key: string]: PositionalOptions };
-  options?: Options[];
+  options?: Record<string, Options>;
   handler: (argv: ArgumentsCamelCase<ArgsType>) => void;
 };

@@ -36,3 +36,5 @@ export { InputIcon } from "./InputIcon";
 export { LabelIcon } from "./LabelIcon";
 export { ButtonIcon } from "./ButtonIcon";
 export { RadioIcon } from "./RadioIcon";
+export { DividerIcon } from "./DividerIcon";
+export { TooltipIcon } from "./TooltipIcon";

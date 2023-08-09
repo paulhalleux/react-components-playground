@@ -11,7 +11,7 @@ export * from "./Toast";
 export * from "./Checkbox";
 export * from "./CloseButton";
 export * from "./Skeleton";
-export * from "./Separator";
+export * from "./Divider";
 export * from "./KeyboardShortcut";
 export * from "./Search";
 export * from "./Loader";

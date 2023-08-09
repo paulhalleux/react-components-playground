@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useOverflow } from "../../hooks";
 import { BaseProps } from "../../types";
 import { CloseButton } from "../CloseButton";
+import { Divider } from "../Divider";
 import {
   ArrowDownIcon,
   ArrowLeftIcon,
@@ -11,7 +12,6 @@ import {
   ArrowUpIcon,
   PlusIcon,
 } from "../Icons";
-import { Separator } from "../Separator";
 
 import { Tab, TabProps } from "./Tab";
 
@@ -170,7 +170,7 @@ export function Tabs({
         )}
         {addButton && (
           <>
-            <Separator orientation={orientation} />
+            <Divider orientation={orientation} />
             <button
               onClick={onAdd}
               disabled={addDisabled}

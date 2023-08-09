@@ -38,11 +38,17 @@ export class YargsCommandManager implements CommandManager {
     // Add each registered command to yargs.
     for (const command of this.commands) {
       const builder = (y: Argv) => {
+        // Configure positional arguments
         command.positional &&
           Object.keys(command.positional).forEach((k) =>
             y.positional(k, command.positional![k]),
           );
-        command.options?.forEach(y.options);
+
+        // Configure options
+        command.options &&
+          Object.keys(command.options).forEach((k) =>
+            y.options(k, command.options![k]),
+          );
       };
 
       y.command(command.command, command.describe, builder, command.handler);

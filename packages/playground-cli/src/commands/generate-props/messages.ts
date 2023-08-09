@@ -3,10 +3,10 @@ import chalk from "chalk";
 export const Messages = {
   Prefix: chalk.gray("[generate-props]"),
   FindingComponents: chalk.yellow("Finding components..."),
-  FoundComponents: (count: number) =>
+  FoundComponents: (count: number, pattern: string) =>
     chalk.green(
       `Found ${chalk.gray(count)} components using ${chalk.gray(
-        "**/*.tsx",
+        pattern,
       )} pattern`,
     ),
   ParsingComponents: chalk.yellow("Parsing components..."),
