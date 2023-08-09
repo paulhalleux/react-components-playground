@@ -1,4 +1,4 @@
-import { HTMLProps } from "react";
+import React, { ForwardedRef, HTMLProps, useImperativeHandle } from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
@@ -57,19 +57,43 @@ export type InputProps = {
    * Whether the input is required.
    */
   required?: boolean;
+  /**
+   * Whether the input should autofocus.
+   */
+  autoFocus?: boolean;
 } & BaseProps;
 
-export function Input({
-  label,
-  state = "default",
-  size = "medium",
-  required,
-  message,
-  className,
-  onChange,
-  dataTestId = "input",
-  ...props
-}: InputProps) {
+export type InputRef = {
+  focus: () => void;
+};
+
+function Input(
+  {
+    label,
+    state = "default",
+    size = "medium",
+    required,
+    message,
+    className,
+    onChange,
+    dataTestId = "input",
+    autoFocus,
+    ...props
+  }: InputProps,
+  ref: ForwardedRef<InputRef>,
+) {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: () => {
+        inputRef.current?.focus();
+      },
+    }),
+    [],
+  );
+
   return (
     <div
       className={styles.input__container}
@@ -86,6 +110,8 @@ export function Input({
       )}
       <div className={styles.input__wrapper}>
         <input
+          ref={inputRef}
+          autoFocus={autoFocus}
           onChange={(e) => onChange(e.target.value)}
           data-test-id={`${dataTestId}-input`}
           className={clsx(
@@ -110,3 +136,6 @@ export function Input({
     </div>
   );
 }
+
+const ForwardedInput = React.forwardRef(Input);
+export { ForwardedInput as Input };

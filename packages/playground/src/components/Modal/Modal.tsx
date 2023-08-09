@@ -41,6 +41,10 @@ export type ModalProps = PropsWithChildren<{
    * The vertical alignment of the modal.
    */
   align?: ModalAlign;
+  /**
+   * Callback fired when the modal is opened.
+   */
+  onOpened?: () => void;
 }> &
   BaseProps;
 
@@ -54,6 +58,7 @@ export function Modal({
   align = "center",
   className,
   style,
+  onOpened,
   ...rest
 }: ModalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,6 +100,7 @@ export function Modal({
                 scale: { duration: 0.2 },
                 opacity: { duration: 0.1 },
               }}
+              onAnimationComplete={() => open && onOpened?.()}
               className={clsx(
                 styles.modal__content,
                 styles[`modal__content--${size}`],

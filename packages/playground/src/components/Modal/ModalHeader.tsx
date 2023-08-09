@@ -20,11 +20,12 @@ export function ModalHeader({
   children,
   className,
   closeable,
+  ...rest
 }: ModalHeaderProps) {
   const { onClose } = useModal();
 
   return (
-    <div className={clsx(styles.modal__header)}>
+    <div className={clsx(styles.modal__header)} {...rest}>
       <div className={className}>{children}</div>
       {closeable && (
         <CloseButton onClick={onClose} size="x-large" variant="default" />

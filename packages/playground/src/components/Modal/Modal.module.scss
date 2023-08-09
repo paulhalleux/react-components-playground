@@ -56,6 +56,10 @@ $sizes: (
 
 .modal__footer {
   padding: 0 t(padding-lg) t(padding-lg) t(padding-lg);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: t(padding-sm);
 }
 
 :global .no-scroll {
