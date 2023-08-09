@@ -2,5 +2,48 @@
 title: Breadcrumb
 category: Components
 description: A breadcrumb is a secondary navigation scheme that reveals the user's location in a website or web application.
-status: todo
+icon: DashIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Breadcrumb/Breadcrumb.tsx
+status: done
 ---
+
+`Breadcrumb` is a secondary navigation scheme that reveals the user's location in a website or web application.
+
+## Examples
+
+<Example name="Breadcrumb" />
+
+## API
+
+### \{:component} Breadcrumb
+
+#### Usage
+
+```tsx
+<Breadcrumb
+  items={[
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Product 1', href: '/products/1' },
+  ]}
+/>
+```
+
+#### Properties
+
+<Properties component="Breadcrumb" />
+
+### \{:type} BreadcrumbSize
+
+```ts
+type BreadcrumbSize = 'small' | 'medium' | 'large';
+```
+
+### \{:type} BreadcrumbItem
+
+```ts
+type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+```

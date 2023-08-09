@@ -38,3 +38,5 @@ export { ButtonIcon } from "./ButtonIcon";
 export { RadioIcon } from "./RadioIcon";
 export { DividerIcon } from "./DividerIcon";
 export { TooltipIcon } from "./TooltipIcon";
+export { DashIcon } from "./DashIcon";
+export { ComponentIcon } from "./ComponentIcon";

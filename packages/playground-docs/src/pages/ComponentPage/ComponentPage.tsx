@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useLocation } from "react-use";
 import {
   Badge,
+  Breadcrumb,
   CleanIcon,
   EmptyState,
   GithubIcon,
@@ -11,12 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import kebabCase from "lodash/kebabCase";
 
 import { Components } from "../../../docs/__generated__";
-import {
-  Alert,
-  Breadcrumb,
-  ContentTable,
-  ContentTableItem,
-} from "../../components";
+import { Alert, ContentTable, ContentTableItem } from "../../components";
 import { mdxComponents } from "../../components/Mdx";
 import { ApiType } from "../../components/Mdx/ApiType/ApiType";
 import { Title } from "../../components/Mdx/Title/Title";
@@ -127,9 +123,10 @@ export function ComponentPage() {
           className={styles.component__content}
         >
           <Breadcrumb
+            size="small"
             items={[
-              GroupedComponents[group].title,
-              componentDefinition.title || undefined,
+              { label: GroupedComponents[group].title },
+              { label: componentDefinition.title },
             ]}
           />
           <div className={styles.component__header}>

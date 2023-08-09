@@ -26,5 +26,6 @@ export * from "./Radio";
 export * from "./ConfirmDialog";
 export * from "./Tooltip";
 export * from "./Popover";
+export * from "./Breadcrumb";
 
 export * as Icons from "./Icons";

@@ -1,10 +1,21 @@
+$sizes: (
+  small: 'sm',
+  medium: 'md',
+  large: 'lg',
+);
+
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
+
+  @each $size, $value in $sizes {
+    &--#{$size} .breadcrumb__item {
+      font-size: t(font-size-#{$value});
+    }
+  }
 }
 
 .breadcrumb__item {
-  font-size: 13px;
   color: c(text-contrast);
   text-decoration: none;
   display: flex;
