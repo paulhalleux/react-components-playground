@@ -2,5 +2,29 @@
 title: EditInline
 category: Form
 description: An inline field that can be edited.
-status: todo
+icon: InputIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/EditInline/EditInline.tsx
+status: done
 ---
+
+`EditInline` is a text that can be edited inline. It is a controlled component, so you need to provide the `value` and `onChange` props.
+
+Double-clicking on the text will make it editable. Pressing `Enter` will validate the new value, pressing `Escape` will cancel the edit.
+
+## Example
+
+<Example name="Form/EditInline" />
+
+## API
+
+### \{:component} EditInline
+
+#### Usage
+
+```tsx
+<EditInline value={value} onChange={onChange} />
+```
+
+#### Properties
+
+<Properties component="EditInline" />

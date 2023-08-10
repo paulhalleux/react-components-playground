@@ -1,7 +1,8 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, PopConfirm } from "./components";
+import { EditInline } from "./components/EditInline";
+import { Button, Tabs } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -45,14 +46,15 @@ root.render(
       }}
     >
       <div style={Container}>
-        <PopConfirm
-          title="Are you sure?"
-          onConfirm={() => {}}
-          onCancel={() => {}}
-          description="This action cannot be undone."
-        >
-          <Button>Click me</Button>
-        </PopConfirm>
+        <EditInline value="He" onChange={() => {}} />
+        <Tabs tabsRename>
+          <Tabs.Tab id="tab1" label="Tab 1">
+            Tab 1 content here ... Lorem ipsum dolor sit amet consectetur
+          </Tabs.Tab>
+          <Tabs.Tab id="tab2" label="Tab 2">
+            Tab 1 content here ... Lorem ipsum dolor sit amet consectetur
+          </Tabs.Tab>
+        </Tabs>
       </div>
     </div>
   </ThemeProvider>,

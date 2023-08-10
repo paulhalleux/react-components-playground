@@ -5,6 +5,7 @@ import { useOverflow } from "../../hooks";
 import { BaseProps } from "../../types";
 import { CloseButton } from "../CloseButton";
 import { Divider } from "../Divider";
+import { EditInline } from "../EditInline";
 import {
   ArrowDownIcon,
   ArrowLeftIcon,
@@ -53,6 +54,14 @@ export type TabsProps = PropsWithChildren<{
    * Whether the add button is disabled.
    */
   addDisabled?: boolean;
+  /**
+   * Whether the tabs are closable.
+   */
+  tabsRename?: boolean;
+  /**
+   * The callback to call when a tab is closed.
+   */
+  onRename?: (id: string, label: string) => void;
 }> &
   BaseProps;
 
@@ -67,6 +76,8 @@ export function Tabs({
   addDisabled,
   addButtonLabel = "Add tab",
   className,
+  tabsRename,
+  onRename,
   ...rest
 }: TabsProps) {
   const tabsContainer = useRef<HTMLDivElement>(null);
@@ -141,7 +152,14 @@ export function Tabs({
                 aria-selected={id === activeTab}
                 aria-controls={id}
               >
-                {renderLabel(label)}
+                {tabsRename ? (
+                  <EditInline
+                    value={label}
+                    onChange={(value) => onRename?.(id, value)}
+                  />
+                ) : (
+                  renderLabel(label)
+                )}
                 {closeable && (
                   <CloseButton
                     size="medium"

@@ -28,5 +28,6 @@ export * from "./Tooltip";
 export * from "./Popover";
 export * from "./Breadcrumb";
 export * from "./PopConfirm";
+export * from "./EditInline";
 
 export * as Icons from "./Icons";
