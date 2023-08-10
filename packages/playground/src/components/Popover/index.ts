@@ -4,4 +4,5 @@ export type {
   PopoverTrigger,
   PopoverAlignment,
   PopoverPosition,
+  PopoverRef,
 } from "./Popover";

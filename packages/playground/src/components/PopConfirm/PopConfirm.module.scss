@@ -1,0 +1,43 @@
+@use "../ConfirmDialog/ConfirmDialog.module" as *;
+@use "../Modal/Modal.module" as *;
+
+.confirm {
+  color: c(text);
+  position: relative;
+  z-index: 1002;
+  background-color: c(main);
+  border: 1px solid c(border);
+  border-radius: t(border-radius-md);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+}
+
+.confirm__footer {
+  @extend .dialog__footer;
+  gap: t(padding-sm);
+  padding: 0 t(padding-md) t(padding-md) t(padding-md);
+  width: 100%;
+
+  button {
+    width: 100%;
+  }
+}
+
+.confirm__body {
+  padding: t(padding-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .confirm__title {
+    font-size: t(font-size-lg);
+    font-weight: 600;
+    margin-bottom: t(padding-xs);
+  }
+
+  .confirm__description {
+    font-size: t(font-size-md);
+    font-weight: 400;
+    color: c(text-contrast);
+  }
+}

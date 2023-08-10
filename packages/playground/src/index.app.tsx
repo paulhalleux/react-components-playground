@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Tooltip } from "./components";
+import { Button, PopConfirm } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -45,13 +45,14 @@ root.render(
       }}
     >
       <div style={Container}>
-        <Tooltip
-          variant="secondary"
-          content="Click me! doaz d zakdpazokd pazpkdoza dpokzap dkap"
-          position="bottom"
+        <PopConfirm
+          title="Are you sure?"
+          onConfirm={() => {}}
+          onCancel={() => {}}
+          description="This action cannot be undone."
         >
-          <Button>Hover me!</Button>
-        </Tooltip>
+          <Button>Click me</Button>
+        </PopConfirm>
       </div>
     </div>
   </ThemeProvider>,

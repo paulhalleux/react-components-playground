@@ -27,5 +27,6 @@ export * from "./ConfirmDialog";
 export * from "./Tooltip";
 export * from "./Popover";
 export * from "./Breadcrumb";
+export * from "./PopConfirm";
 
 export * as Icons from "./Icons";

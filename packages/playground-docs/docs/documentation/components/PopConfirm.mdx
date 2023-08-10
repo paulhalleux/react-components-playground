@@ -2,5 +2,46 @@
 title: PopConfirm
 category: Components
 description: A confirm dialog component based on Popover.
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/PopConfirm/PopConfirm.tsx
+icon: TooltipIcon
+status: done
 ---
+
+`PopConfirm` is a confirm dialog component based on `Popover`. It is used to confirm an action or ask for a confirmation before an action.
+
+It is similar to `ConfirmDialog` but it is based on `Popover` instead of `Modal`. It is more suitable for inline actions.
+
+## Examples
+
+<Example name="PopConfirm" />
+
+## API
+
+### \{:component} PopConfirm
+
+#### Usage
+
+```tsx
+<PopConfirm
+  title="Are you sure to delete this task?"
+  description="This action cannot be undone."
+  onConfirm={() => console.log('confirmed')}
+  onCancel={() => console.log('canceled')}
+>
+  <Button>Delete</Button>
+</PopConfirm>
+```
+
+#### Properties
+
+<Properties component="PopConfirm" additional={[
+  { name: "title", type: "string", description: "The title of the confirm dialog." },
+  { name: "description", type: "string", description: "The description of the confirm dialog." },
+  { name: "confirmText", type: "string", description: "The text of the confirm button." },
+  { name: "cancelText", type: "string", description: "The text of the cancel button." },
+  { name: "onConfirm", type: "(() => void) | (() => Promise\<void\>)", description: "The callback when the confirm button is clicked." },
+  { name: "onCancel", type: "(() => void) | (() => Promise\<void\>)", description: "The callback when the cancel button is clicked." },
+  { name: "confirmStyle", type: "ButtonVariant", description: "The style of the confirm button." },
+  { name: "cancelStyle", type: "ButtonVariant", description: "The style of the cancel button." },
+  { name: "size", type: "ButtonSize", description: "The size of the buttons." },
+]} />

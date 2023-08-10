@@ -1,4 +1,11 @@
-import { PropsWithChildren, ReactNode, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  PropsWithChildren,
+  ReactNode,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { useClickAway } from "react-use";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -40,18 +47,25 @@ export type PopoverProps = PropsWithChildren<{
 }> &
   BaseProps;
 
-export function Popover({
-  content,
-  children,
-  dataTestId,
-  className,
-  alignment = "center",
-  position = "top",
-  trigger = "hover",
-  closeOnClickOutside = true,
-  delay = 0,
-  ...rest
-}: PopoverProps) {
+export type PopoverRef = {
+  close: () => void;
+};
+
+function Popover(
+  {
+    content,
+    children,
+    dataTestId,
+    className,
+    alignment = "center",
+    position = "top",
+    trigger = "hover",
+    closeOnClickOutside = true,
+    delay = 0,
+    ...rest
+  }: PopoverProps,
+  ref: React.Ref<PopoverRef>,
+) {
   const popoverRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -81,6 +95,10 @@ export function Popover({
     if (contentRef.current?.contains(event.target as Node)) return;
     setActive(false);
   });
+
+  useImperativeHandle(ref, () => ({
+    close: () => setActive(false),
+  }));
 
   return (
     <div
@@ -121,3 +139,7 @@ export function Popover({
     </div>
   );
 }
+
+const ForwardedPopover = forwardRef(Popover);
+
+export { ForwardedPopover as Popover };
