@@ -6,7 +6,10 @@ import {
   useTheme,
 } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata, ExampleRef } from "../../../../src/components/Mdx/Example";
+import {
+  ExampleMetadata,
+  ExampleRef,
+} from "../../../../src/components/Mdx/Example";
 
 export const KeyframePathExample = forwardRef<ExampleRef>(({}, ref) => {
   const { theme } = useTheme();

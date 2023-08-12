@@ -3,5 +3,94 @@ type: component
 title: ContextMenu
 category: Components
 description: A context menu component for displaying a list of actions or options.
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/ContextMenu/ContextMenu.tsx
+status: done
 ---
+
+A context menu component for displaying a list of actions or options.
+
+## Examples
+
+<Example name="components/General/ContextMenu" />
+
+## API
+
+### \{:component} ContextMenu
+
+Context menu component. Renders a list of actions or options.
+
+#### Usage
+
+```tsx
+<ContextMenu onSelect={(id) => console.log(id)}>
+  <ContextMenu.Item id="item1">Item 1</ContextMenu.Item>
+  <ContextMenu.Item id="item2">Item 2</ContextMenu.Item>
+  <ContextMenu.Item id="item3">Item 3</ContextMenu.Item>
+</ContextMenu>
+```
+
+#### Properties
+
+<Properties component="ContextMenu" />
+
+### \{:component} ContextMenu.Trigger
+
+Trigger component for the context menu. If used, the context menu will be wrapped in a `Popper` component and will be displayed when the trigger is clicked.
+
+This component should be places inside the `ContextMenu` component. Omitting this component will display the context menu directly. Which is useful to customize the trigger behavior.
+
+#### Usage
+
+```tsx
+<ContextMenu.Trigger>
+  <Button>Open context menu</Button>
+</ContextMenu.Trigger>
+```
+
+### \{:component} ContextMenu.Item
+
+Item component for the context menu. Renders a clickable item in the context menu.
+
+If the `id` prop is provided, the `onSelect` prop of the `ContextMenu` component will be called with the `id` when the item is clicked.
+Otherwise, the `onClick` prop can be used to handle the click event.
+
+#### Usage
+
+```tsx
+<ContextMenu.Item>Item 1</ContextMenu.Item>
+```
+
+#### Properties
+
+<Properties component="ContextMenu.Item" />
+
+### \{:component} ContextMenu.Sub
+
+Sub context menu component. Renders a sub menu in the context menu. The sub menu will be displayed when the item is hovered or clicked depending on the `trigger` prop.
+
+#### Usage
+
+```tsx
+<ContextMenu.Sub trigger="hover">
+  <ContextMenu.Item>Item 1</ContextMenu.Item>
+  <ContextMenu.Item>Item 2</ContextMenu.Item>
+  <ContextMenu.Item>Item 3</ContextMenu.Item>
+</ContextMenu.Sub>
+```
+
+#### Properties
+
+<Properties component="ContextMenu.Item" omit={["onClick"]} additional={[
+  { name: 'trigger', type: 'PopoverTrigger', defaultValue: 'hover', description: 'Trigger type for the sub menu.' },
+  { name: 'label', type: 'ReactNode', description: 'Label for the sub menu.' },
+]} />
+
+### \{:component} ContextMenu.Divider
+
+Divider component for the context menu. Renders a divider in the context menu.
+
+#### Usage
+
+```tsx
+<ContextMenu.Divider />
+```

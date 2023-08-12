@@ -40,3 +40,7 @@ export { DividerIcon } from "./DividerIcon";
 export { TooltipIcon } from "./TooltipIcon";
 export { DashIcon } from "./DashIcon";
 export { ComponentIcon } from "./ComponentIcon";
+export { ChevronDownIcon } from "./ChevronDownIcon";
+export { ChevronUpIcon } from "./ChevronUpIcon";
+export { ChevronLeftIcon } from "./ChevronLeftIcon";
+export { ChevronRightIcon } from "./ChevronRightIcon";

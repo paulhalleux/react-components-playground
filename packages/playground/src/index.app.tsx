@@ -1,8 +1,13 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { EditInline } from "./components/EditInline";
-import { Button, Tabs } from "./components";
+import {
+  Button,
+  CleanIcon,
+  ContextMenu,
+  InfoIcon,
+  PlusIcon,
+} from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -46,15 +51,36 @@ root.render(
       }}
     >
       <div style={Container}>
-        <EditInline value="He" onChange={() => {}} />
-        <Tabs tabsRename>
-          <Tabs.Tab id="tab1" label="Tab 1">
-            Tab 1 content here ... Lorem ipsum dolor sit amet consectetur
-          </Tabs.Tab>
-          <Tabs.Tab id="tab2" label="Tab 2">
-            Tab 1 content here ... Lorem ipsum dolor sit amet consectetur
-          </Tabs.Tab>
-        </Tabs>
+        <ContextMenu
+          id="example"
+          reserveIconsSpace
+          closeOnSelect
+          onSelect={console.log}
+        >
+          <ContextMenu.Trigger>
+            <Button>Open context menu</Button>
+          </ContextMenu.Trigger>
+          <ContextMenu.Item addon={<CleanIcon height={14} width={14} />}>
+            Item 1
+          </ContextMenu.Item>
+          <ContextMenu.Item id="Item 2">Item 2</ContextMenu.Item>
+          <ContextMenu.Item id="Item 3">Item 3</ContextMenu.Item>
+          <ContextMenu.Divider />
+          <ContextMenu.Sub addon={<PlusIcon />} label="Sub menu">
+            <ContextMenu.Item id="Item 1">Item 1</ContextMenu.Item>
+            <ContextMenu.Item id="Item 2">Item 2</ContextMenu.Item>
+            <ContextMenu.Item id="Item 3">Item 3</ContextMenu.Item>
+            <ContextMenu.Sub
+              addon={<InfoIcon height={14} width={14} />}
+              label="Sub menu"
+              variant="danger"
+            >
+              <ContextMenu.Item id="Item 1">Item 1</ContextMenu.Item>
+              <ContextMenu.Item id="Item 2">Item 2</ContextMenu.Item>
+              <ContextMenu.Item id="Item 3">Item 3</ContextMenu.Item>
+            </ContextMenu.Sub>
+          </ContextMenu.Sub>
+        </ContextMenu>
       </div>
     </div>
   </ThemeProvider>,

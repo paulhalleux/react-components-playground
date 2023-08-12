@@ -2,11 +2,13 @@ import React, {
   forwardRef,
   PropsWithChildren,
   ReactNode,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from "react";
-import { useClickAway } from "react-use";
+import { createPortal } from "react-dom";
+import { useClickAway, useWindowSize } from "react-use";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -48,6 +50,14 @@ export type PopoverProps = PropsWithChildren<{
    * The offset of the popover.
    */
   offset?: number;
+  /**
+   * Whether to use a portal for the popover.
+   */
+  usePortal?: boolean;
+  /**
+   * The id of the portal.
+   */
+  portalId?: string;
 }> &
   BaseProps;
 
@@ -67,16 +77,35 @@ function Popover(
     closeOnClickOutside = true,
     offset = 5,
     delay = 0,
+    usePortal = false,
     style,
+    portalId,
   }: PopoverProps,
   ref: React.Ref<PopoverRef>,
 ) {
+  const triggerRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const enterTimout = useRef<NodeJS.Timeout>();
   const exitTimout = useRef<NodeJS.Timeout>();
   const [active, setActive] = useState(false);
+
+  const [portalPosition, setPortalPosition] = useState({
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+  });
+
+  const windowSize = useWindowSize();
+  useEffect(() => {
+    if (!triggerRef.current || !popoverRef.current) return;
+    const { x, y, width, height } = triggerRef.current.getBoundingClientRect();
+    const top = y + window.scrollY;
+    const left = x + window.scrollX;
+    setPortalPosition({ top, left, width, height });
+  }, [active, windowSize]);
 
   const onMouseLeave = () => {
     if (trigger !== "hover") return;
@@ -90,13 +119,11 @@ function Popover(
     enterTimout.current = setTimeout(() => setActive(true), delay);
   };
 
-  const onClick = () => {
-    if (trigger !== "click") return;
-    setActive((prev) => !prev);
-  };
+  const onClick = () => setActive((prev) => !prev);
 
   useClickAway(popoverRef, (event) => {
     if (!closeOnClickOutside) return;
+    console.log(contentRef.current, event.target);
     if (contentRef.current?.contains(event.target as Node)) return;
     setActive(false);
   });
@@ -104,6 +131,35 @@ function Popover(
   useImperativeHandle(ref, () => ({
     close: () => setActive(false),
   }));
+
+  const Content = (
+    <AnimatePresence mode="wait">
+      {active && (
+        <motion.div
+          ref={contentRef}
+          className={clsx(
+            styles.popover__container,
+            styles[`popover--${position}`],
+            className,
+          )}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={getAnimation(position, alignment)}
+          style={
+            {
+              "--offset": `${offset}px`,
+              ...style,
+            } as React.CSSProperties
+          }
+        >
+          {typeof content === "function"
+            ? content(() => setActive(false))
+            : content}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   return (
     <div
@@ -113,33 +169,23 @@ function Popover(
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <AnimatePresence mode="wait">
-        {active && (
-          <motion.div
-            ref={contentRef}
-            className={clsx(
-              styles.popover__container,
-              styles[`popover--${position}`],
-              className,
-            )}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={getAnimation(position, alignment)}
-            style={
-              {
-                "--offset": `${offset}px`,
-                ...style,
-              } as React.CSSProperties
-            }
-          >
-            {typeof content === "function"
-              ? content(() => setActive(false))
-              : content}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {usePortal
+        ? createPortal(
+            <div
+              style={{
+                position: "absolute",
+                ...portalPosition,
+              }}
+            >
+              {Content}
+            </div>,
+            portalId
+              ? document.getElementById(`popover-portal-${portalId}`)!
+              : document.body,
+          )
+        : Content}
       <div
+        ref={triggerRef}
         data-test-id={`${dataTestId}-children`}
         className={styles.popover__children}
         onClick={onClick}

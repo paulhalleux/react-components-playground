@@ -29,5 +29,6 @@ export * from "./Popover";
 export * from "./Breadcrumb";
 export * from "./PopConfirm";
 export * from "./EditInline";
+export * from "./ContextMenu";
 
 export * as Icons from "./Icons";
