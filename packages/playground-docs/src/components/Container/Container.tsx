@@ -5,23 +5,33 @@ import styles from "./Container.module.scss";
 
 type ContainerProps = PropsWithChildren<{
   as?: keyof JSX.IntrinsicElements;
-  containerClassName?: string;
+  wrapperClassName?: string;
   className?: string;
+  wrapped?: boolean;
 }>;
 
 export function Container({
   as: Component = "div",
   children,
   className,
-  containerClassName,
+  wrapperClassName,
+  wrapped = false,
 }: ContainerProps) {
-  const containerProps = {
-    className: containerClassName,
-  };
+  if (wrapped) {
+    const containerProps = {
+      className: wrapperClassName,
+    };
+
+    return (
+      <Component {...containerProps}>
+        <div className={clsx(styles.container, className)}>{children}</div>
+      </Component>
+    );
+  }
 
   return (
-    <Component {...containerProps}>
-      <div className={clsx(styles.container, className)}>{children}</div>
+    <Component className={clsx(styles.container, className)}>
+      {children}
     </Component>
   );
 }

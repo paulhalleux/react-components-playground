@@ -4,7 +4,7 @@ import { glob } from "glob";
 import startCase from "lodash/startCase";
 import * as path from "path";
 import { TitlePlugin } from "./title-plugin";
-import { ComponentData, ComponentMeta } from "./types";
+import { DocumentationData, DocumentationMeta, ParsingError } from "./types";
 
 /**
  * Get all documentation files in a directory
@@ -23,16 +23,21 @@ export async function getDocumentationFiles(path: string): Promise<string[]> {
  * @param root Root path of the component
  * @returns Component data
  */
-export async function processComponent(
+export async function processDocumentationFile(
   file: string,
   root: string,
-): Promise<ComponentData> {
+): Promise<DocumentationData> {
   const mdxContent = await getMDXContent(path.join(root, file));
   const defaultTitle = file.replace(/\.mdx$/, "");
   const jsxCode = await getJSXCode(mdxContent);
+  const metadata = getMetadata(mdxContent);
+
+  if (!metadata.type) {
+    throw new ParsingError("'type' missing in metadata", "metadata");
+  }
 
   return {
-    id: getComponentId(defaultTitle),
+    id: getDocumentationId(defaultTitle),
     raw: mdxContent,
     meta: {
       title: defaultTitle.split(/[\/\\]/g).pop(),
@@ -75,21 +80,23 @@ async function getMDXContent(file: string): Promise<string> {
 }
 
 /**
- * Get the component ID from the file path
- * @param filePath Path to the component file
- * @returns Component ID
+ * Get the documentation ID from the file path
+ * @param filePath Path to the documentation file
+ * @returns Documentation ID
  */
-function getComponentId(filePath: string): string {
+function getDocumentationId(filePath: string): string {
   return startCase(filePath.replace(/\.mdx$/, "")).replace(/\s/g, "");
 }
 
 /**
- * Parse the metadata of a component
+ * Parse the metadata of a documentation file
  * @param mdx MDX content
  * @returns Metadata
  */
-function getMetadata(mdx: string): ComponentMeta {
-  if (!mdx.startsWith("---") || mdx.split("---").length < 3) return {};
+function getMetadata(mdx: string): DocumentationMeta {
+  if (!mdx.startsWith("---") || mdx.split("---").length < 3)
+    throw new ParsingError("Metadata not found", "metadata");
+
   const metadata = mdx.split("---")[1];
   return metadata
     .split("\n")
@@ -98,29 +105,31 @@ function getMetadata(mdx: string): ComponentMeta {
       const indexOfKey = line.indexOf(":");
       const key = line.slice(0, indexOfKey);
       const value = line.slice(indexOfKey + 1);
-      acc[key.trim() as keyof ComponentMeta] = value.trim();
+      acc[key.trim() as keyof DocumentationMeta] = value.trim();
       return acc;
-    }, {} as ComponentMeta);
+    }, {} as DocumentationMeta);
 }
 
 /**
  * Get the index file content
- * @param components List of components
+ * @param documentations List of documentations
  * @returns Index file content
  */
-export function getIndexFile(components: Map<string, ComponentData>): string {
+export function getIndexFile(
+  documentations: Map<string, DocumentationData>,
+): string {
   const indexParts: string[] = [];
 
-  components.forEach((componentData) => {
+  documentations.forEach((componentData) => {
     const importStatement = `import ${
       componentData.id
-    } from "./documentation/${componentData.filePath.replace("\\", "/")}";`;
+    } from "./documentation/${componentData.filePath.replace(/\\/g, "/")}";`;
     indexParts.push(importStatement);
   });
 
   indexParts.push(
     `\nexport const Components = {`,
-    Array.from(components.entries())
+    Array.from(documentations.entries())
       .map(([_, componentData]) => `  ${componentData.id},`)
       .join("\n"),
     `}`,
@@ -147,8 +156,8 @@ export async function getExamplesFile(examplesPath: string) {
     files.map(async (file) => {
       const name = file
         .replace(/\.example\.[jt]sx?$/, "")
-        .replace(/[\\\/]/, "");
-      const filename = file.replace(/[\\]/, "/").replace(/\.[jt]sx?$/, "");
+        .replace(/[\\\/]/g, "");
+      const filename = file.replace(/[\\]/g, "/").replace(/\.[jt]sx?$/, "");
 
       const source = await fs.readFile(`${examplesPath}/${file}`, "utf-8");
 
@@ -171,16 +180,18 @@ export async function getExamplesFile(examplesPath: string) {
 }
 
 /**
- * Get the components file content
- * @param components List of components
+ * Get the registry file content
+ * @param documentations List of documentations
  * @returns Components file content
  */
-export function getComponentsFile(components: Map<string, ComponentData>) {
+export function getRegistryFile(
+  documentations: Map<string, DocumentationData>,
+) {
   return [
-    `export type ComponentMeta = Partial<{\n\tsourceUrl: string;\n\tdescription: string;\n\tpath: string;\n\tcategory: string;\n\tstatus: string;\n\ticon: string;\n}> & { title: string; id: string; };`,
-    `export const ComponentList: Record<string, ComponentMeta> = {`,
-    ...Array.from(components.entries()).map(
-      ([_, componentData]) =>
+    "import { DocumentationPage } from '../../src/types/documentation';",
+    `export const Registry: Record<string, DocumentationPage<any>> = {`,
+    ...Array.from(documentations.entries()).map(
+      ([, componentData]) =>
         `  ${componentData.id}: ${JSON.stringify({
           id: componentData.id,
           ...componentData.meta,

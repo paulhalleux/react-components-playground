@@ -1,0 +1,18 @@
+.footer__container {
+  height: 80px;
+  border-top: 1px solid c(border);
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: t(font-size-sm);
+  color: c(text-contrast);
+  width: 100%;
+
+  background: c(main, .80);
+  backdrop-filter: blur(5px);
+}

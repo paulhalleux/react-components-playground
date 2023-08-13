@@ -4,6 +4,8 @@ export const DefaultThemeConfiguration: ThemeConfiguration = {
   colors: {
     dark: {
       main: [9, 9, 11],
+      mainHover: [14, 14, 16],
+      mainActive: [18, 18, 20],
       mainContrast: [39, 39, 42],
       border: [39, 39, 42],
       borderContrast: [39, 39, 42, 0.7],
@@ -18,6 +20,8 @@ export const DefaultThemeConfiguration: ThemeConfiguration = {
     },
     light: {
       main: [255, 255, 255],
+      mainHover: [250, 250, 250],
+      mainActive: [245, 245, 245],
       mainContrast: [230, 230, 230],
       border: [220, 220, 220],
       borderContrast: [220, 220, 220, 0.7],
