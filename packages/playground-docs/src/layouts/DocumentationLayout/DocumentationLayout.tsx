@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { Badge } from "@paulhalleux/react-playground";
 
 import { Container } from "../../components";
 import { Sidebar } from "../../components/Sidebar";
@@ -35,6 +36,7 @@ export function DocumentationLayout({
             return (
               <Sidebar.Item key={item.path} path={item.path}>
                 {item.title}
+                {item.disabled && <Badge size="small">Planned</Badge>}
               </Sidebar.Item>
             );
           }
@@ -48,6 +50,7 @@ export function DocumentationLayout({
                   disabled={item.disabled}
                 >
                   {item.title}
+                  {item.disabled && <Badge size="small">Planned</Badge>}
                 </Sidebar.Item>
               ))}
             </Sidebar.Group>

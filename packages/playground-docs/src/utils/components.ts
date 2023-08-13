@@ -2,7 +2,13 @@ import kebabCase from "lodash/kebabCase";
 
 import { ComponentMeta, DocumentationPage } from "../types/documentation";
 
-const GroupOrder = ["Resources", "Components", "Form", "Experimental"];
+const GroupOrder = [
+  "Resources",
+  "Components",
+  "Form",
+  "Layout",
+  "Experimental",
+];
 
 export function groupComponents(
   components: Record<string, DocumentationPage<ComponentMeta>>,

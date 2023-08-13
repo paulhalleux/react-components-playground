@@ -5,10 +5,13 @@
   gap: 8px;
   align-items: center;
 
-  .todo {
-    opacity: 0.4;
+  .disabled {
+    opacity: 0.45;
     cursor: not-allowed;
     user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   a {

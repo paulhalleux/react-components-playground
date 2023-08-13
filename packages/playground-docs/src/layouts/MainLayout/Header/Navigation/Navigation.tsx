@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
+import { Badge } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import { Logo } from "../../../../components";
 import {
+  ComponentDocumentations,
   HookDocumentations,
   UtilityDocumentations,
 } from "../../../../utils/documentation";
@@ -31,7 +33,14 @@ export function Navigation() {
           }
           to="/components"
         >
-          Components
+          Components{" "}
+          <Badge size="small">
+            {
+              Object.values(ComponentDocumentations).filter(
+                (v) => v.status !== "todo",
+              ).length
+            }
+          </Badge>
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -42,6 +51,13 @@ export function Navigation() {
           )}`}
         >
           Hooks
+          <Badge size="small">
+            {
+              Object.values(HookDocumentations).filter(
+                (v) => v.status !== "todo",
+              ).length
+            }
+          </Badge>
         </NavLink>
         <NavLink
           className={({ isActive }) =>
@@ -52,6 +68,13 @@ export function Navigation() {
           )}`}
         >
           Utilities
+          <Badge size="small">
+            {
+              Object.values(UtilityDocumentations).filter(
+                (v) => v.status !== "todo",
+              ).length
+            }
+          </Badge>
         </NavLink>
       </nav>
     </div>

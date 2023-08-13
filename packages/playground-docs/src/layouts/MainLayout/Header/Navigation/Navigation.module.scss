@@ -24,6 +24,10 @@
   border-radius: t(border-radius-sm);
   transition: background-color 0.2s ease-in-out;
 
+  display: flex;
+  align-items: center;
+  gap: t(padding-sm);
+
   &:hover {
     background-color: c(main-contrast, .2);
   }

@@ -13,7 +13,7 @@ export function SidebarItem({ path, disabled, children }: SidebarItemProps) {
   return (
     <li className={styles.sidebar__item}>
       {disabled ? (
-        <span className={styles.todo}>{children}</span>
+        <span className={styles.disabled}>{children}</span>
       ) : (
         <NavLink
           className={({ isActive }) => clsx(isActive && styles.active)}
