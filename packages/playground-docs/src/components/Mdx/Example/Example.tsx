@@ -131,12 +131,8 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
 }
 
 function getExampleInfo(name: string) {
-  const exampleName = name.replace(/\//g, "");
-
-  console.log(Examples);
-
-  const example = Examples[exampleName as keyof typeof Examples];
-  const sources = ExamplesSources[exampleName as keyof typeof Examples];
+  const example = Examples[name as keyof typeof Examples];
+  const sources = ExamplesSources[name as keyof typeof Examples];
 
   if (!example) throw new Error(`Example ${name} not found`);
 

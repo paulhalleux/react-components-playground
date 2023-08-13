@@ -149,27 +149,27 @@ export async function getExamplesFile(examplesPath: string) {
     cwd: examplesPath,
   });
 
-  const exports: string[] = [];
+  const exports: [string, string][] = [];
   const sources: string[] = [];
 
   const examples = await Promise.all(
     files.map(async (file) => {
+      const source = await fs.readFile(`${examplesPath}/${file}`, "utf-8");
+      const filename = file.replace(/[\\]/g, "/").replace(/\.[jt]sx?$/, "");
       const name = file
         .replace(/\.example\.[jt]sx?$/, "")
         .replace(/[\\\/]/g, "");
-      const filename = file.replace(/[\\]/g, "/").replace(/\.[jt]sx?$/, "");
 
-      const source = await fs.readFile(`${examplesPath}/${file}`, "utf-8");
-
-      sources.push(`${name}: \`${source.replace(/`/g, "\\`")}\`,`);
-      exports.push(name);
+      const id = filename.replace(".example", "");
+      sources.push(`'${id}': \`${source.replace(/`/g, "\\`")}\`,`);
+      exports.push([name, id]);
 
       return `import * as ${name} from "./examples/${filename}";`;
     }),
   );
 
   const exportedObject = `export const Examples = {\n${exports
-    .map((name) => `\t${name},`)
+    .map(([name, id]) => `\t'${id}': ${name},`)
     .join("\n")}\n};`;
 
   const exportedSources = `export const ExamplesSources = {\n${sources

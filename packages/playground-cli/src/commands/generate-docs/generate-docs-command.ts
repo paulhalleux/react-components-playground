@@ -49,6 +49,7 @@ const handler = async (
 
   // Write documentation files
   log(Messages.WritingMdxFiles);
+  await rimraf(`${argv.output}/documentation`);
   await mkdir(`${argv.output}/documentation`, { recursive: true });
   for (const documentationData of documentations.values()) {
     await mkdir(

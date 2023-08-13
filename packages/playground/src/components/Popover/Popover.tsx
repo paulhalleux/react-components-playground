@@ -151,5 +151,6 @@ function Popover(
 }
 
 const ForwardedPopover = forwardRef(Popover);
+ForwardedPopover.displayName = "Popover";
 
 export { ForwardedPopover as Popover };
