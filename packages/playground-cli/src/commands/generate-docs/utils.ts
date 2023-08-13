@@ -164,7 +164,7 @@ export async function getExamplesFile(examplesPath: string) {
       sources.push(`${name}: \`${source.replace(/`/g, "\\`")}\`,`);
       exports.push(name);
 
-      return `import * as ${name} from "../examples/${filename}";`;
+      return `import * as ${name} from "./examples/${filename}";`;
     }),
   );
 
@@ -188,7 +188,7 @@ export function getRegistryFile(
   documentations: Map<string, DocumentationData>,
 ) {
   return [
-    "import { DocumentationPage } from '../../src/types/documentation';",
+    "import { DocumentationPage } from '../src/types/documentation';",
     `export const Registry: Record<string, DocumentationPage<any>> = {`,
     ...Array.from(documentations.entries()).map(
       ([, componentData]) =>

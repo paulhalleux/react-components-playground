@@ -1,3 +1,5 @@
+import * as path from "path";
+
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
@@ -16,6 +18,11 @@ export default ({ mode }: { mode: string }) => {
         },
       },
     },
-    assetsInclude: ["public/**"],
+    resolve: {
+      alias: {
+        "@/generated": path.resolve(__dirname, "./.generated"),
+        "@/fonts": path.resolve(__dirname, "./public/fonts"),
+      },
+    },
   });
 };

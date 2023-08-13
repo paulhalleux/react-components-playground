@@ -4,7 +4,8 @@ import { Badge, Breadcrumb, GithubIcon } from "@paulhalleux/react-playground";
 import { AnimatePresence, motion } from "framer-motion";
 import kebabCase from "lodash/kebabCase";
 
-import { Components } from "../../../docs/__generated__";
+import { Components } from "@/generated";
+
 import { DocumentationPage } from "../../types/documentation";
 import { ContentTable, ContentTableItem } from "../ContentTable";
 import { Markdown } from "../Markdown";
