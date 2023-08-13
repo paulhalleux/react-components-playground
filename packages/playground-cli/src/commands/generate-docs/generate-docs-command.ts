@@ -53,7 +53,8 @@ const handler = async (
       `${argv.output}/documentation/${documentationData.filePath
         .split(/[\/\\]/g)
         .slice(0, -1)
-        .join("\\")}`,
+        .join("\\")
+        .replace(/\\/g, "/")}`,
       { recursive: true },
     );
     await writeFile(
