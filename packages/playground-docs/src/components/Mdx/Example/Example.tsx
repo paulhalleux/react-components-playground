@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import { CodeBlock, Tabs } from "@paulhalleux/react-playground";
 import kebabCase from "lodash/kebabCase";
 
-import { Examples, ExamplesSources } from "../../../../docs/__generated__";
+import { Examples, ExamplesSources } from "@/generated";
+
 import { Alert } from "../../index";
 import { Code } from "../Code/Code";
 import { Display } from "../Display";
@@ -131,6 +132,8 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
 
 function getExampleInfo(name: string) {
   const exampleName = name.replace(/\//g, "");
+
+  console.log(Examples);
 
   const example = Examples[exampleName as keyof typeof Examples];
   const sources = ExamplesSources[exampleName as keyof typeof Examples];

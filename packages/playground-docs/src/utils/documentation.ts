@@ -1,4 +1,5 @@
-import { Registry } from "../../docs/__generated__/registry";
+import { Registry } from "@/generated/registry";
+
 import {
   ComponentMeta,
   DocumentationPage,

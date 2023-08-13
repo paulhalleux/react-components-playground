@@ -15,11 +15,15 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "paths": {
+      "@/generated/*": ["./.generated/*"],
+      "@/generated": ["./.generated"],
+    }
   },
   "include": [
     "src",
     "vite.config.ts",
-    "docs/__generated__"
+    ".generated"
   ],
   "references": [{ "path": "./tsconfig.node.json"}]
 }
