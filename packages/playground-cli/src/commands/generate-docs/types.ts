@@ -1,17 +1,22 @@
-export type ComponentMeta = Partial<{
+export type DocumentationMeta = Partial<{
   title: string;
-  path: string;
-  category: string;
-  description: string;
-  status: string;
-  icon: string;
-  sourceUrl: string;
+  type: string;
+  [key: string]: string;
 }>;
 
-export type ComponentData = {
+export type DocumentationData = {
   id: string;
   raw: string;
-  meta: ComponentMeta;
+  meta: DocumentationMeta;
   filePath: string;
   jsxCode: string;
 };
+
+export class ParsingError extends Error {
+  constructor(
+    message: string,
+    public type: "metadata",
+  ) {
+    super(message);
+  }
+}

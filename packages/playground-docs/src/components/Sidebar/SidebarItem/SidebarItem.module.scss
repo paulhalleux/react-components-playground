@@ -1,0 +1,27 @@
+.sidebar__item {
+  list-style: none;
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .todo {
+    opacity: 0.4;
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  a {
+    color: c(text-contrast);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .active {
+    color: c(text);
+    text-decoration: underline;
+  }
+}

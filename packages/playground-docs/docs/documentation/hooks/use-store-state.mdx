@@ -1,0 +1,49 @@
+---
+type: hook
+title: useStoreState
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/hooks/use-store-state.ts
+---
+
+`useStoreState` is a hook that allows you to store the state value in local storage.
+
+We can use the hook to store the value of the state in local storage. This way, when the user refreshes the page, the value will be restored.
+
+## Usage
+
+The hook takes two arguments: `key` and `initialValue`.
+The `key` is the key that will be used to store the value in local storage.
+The `initialValue` is the value that will be used if there is no value in local storage.
+
+The hook will handle the conversion between the value and the string that is stored in local storage.
+
+```tsx
+import { useStoreState } from '@paulhalleux/react-playground';
+
+const App = () => {
+  const [value, setValue] = useStoreState('my-key', 'initial value');
+
+  return (
+    <div>
+      <input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Type something"
+      />
+      <p>{value}</p>
+    </div>
+  );
+};
+```
+
+## Reference
+
+The hooks works like the `useState` hook, but it takes an additional `key` argument.
+
+```tsx
+const [value, setValue] = useStoreState<T>(key, initialValue);
+```
+
+### Arguments
+
+- `key` - The key that will be used to store the value in local storage.
+- `initialValue` - The value that will be used if there is no value in local storage.

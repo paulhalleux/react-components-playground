@@ -44,6 +44,10 @@ export type PopoverProps = PropsWithChildren<{
    * Close the popover when clicking outside.
    */
   closeOnClickOutside?: boolean;
+  /**
+   * The offset of the popover.
+   */
+  offset?: number;
 }> &
   BaseProps;
 
@@ -61,8 +65,9 @@ function Popover(
     position = "top",
     trigger = "hover",
     closeOnClickOutside = true,
+    offset = 5,
     delay = 0,
-    ...rest
+    style,
   }: PopoverProps,
   ref: React.Ref<PopoverRef>,
 ) {
@@ -121,7 +126,12 @@ function Popover(
             animate="animate"
             exit="exit"
             variants={getAnimation(position, alignment)}
-            {...rest}
+            style={
+              {
+                "--offset": `${offset}px`,
+                ...style,
+              } as React.CSSProperties
+            }
           >
             {typeof content === "function"
               ? content(() => setActive(false))

@@ -34,11 +34,11 @@ $colors: ("success", "warning", "danger", "primary");
     color: c(text);
 
     &:hover {
-      background-color: c(main-contrast, .2);
+      background-color: c(main-hover);
     }
 
     &:active {
-      background-color: c(main-contrast, .4);
+      background-color: c(main-active);
     }
   }
 
