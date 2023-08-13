@@ -1,4 +1,6 @@
+import { copy } from "fs-extra";
 import { mkdir, writeFile } from "fs/promises";
+import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
 import { log, Messages } from "./messages";
@@ -65,6 +67,11 @@ const handler = async (
 
   // Generate examples.ts file
   log(Messages.WritingExamplesFile);
+
+  await rimraf(`${argv.output}/examples`);
+  await mkdir(`${argv.output}/examples`, { recursive: true });
+  await copy(argv.examples, `${argv.output}/examples`);
+
   const examplesFile = await getExamplesFile(argv.examples);
   await writeFile(`${argv.output}/examples.ts`, examplesFile);
 

@@ -1,6 +1,7 @@
 import { Table } from "@paulhalleux/react-playground";
 
-import componentsProps from "../../../../docs/__generated__/props.json";
+import componentsProps from "@/generated/props.json";
+
 import { Alert } from "../../Alert";
 import { Code } from "../Code/Code";
 
