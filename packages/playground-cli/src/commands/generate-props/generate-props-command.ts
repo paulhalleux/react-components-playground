@@ -22,7 +22,6 @@ const handler = async (
     argv.pattern,
     argv.ignore,
   );
-  console.log(componentList);
   log(Messages.FoundComponents(componentList.length, argv.pattern));
 
   const components = new Map<string, ComponentProp[]>();
