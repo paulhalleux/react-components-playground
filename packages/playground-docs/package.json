@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "watch:docs": "onchange \"docs/documentation/**/*.mdx\" \"docs/examples/**/*.example.tsx\" -- yarn generate:docs",
     "generate:docs": "playground generate-docs \"./docs/documentation/\" \"./docs/examples/\" \"./docs/__generated__\"",
-    "generate:props": "playground generate-props --pattern=\"**/*.tsx\" \"../playground/src/components\" \"./docs/__generated__\"",
+    "generate:props": "playground generate-props --ignore=Icons/**/* --pattern=\"**/*.tsx\" \"../playground/src/components\" \"./docs/__generated__\"",
     "deploy:docs": "firebase deploy"
   },
   "dependencies": {

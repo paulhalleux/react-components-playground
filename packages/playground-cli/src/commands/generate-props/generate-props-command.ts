@@ -9,6 +9,7 @@ type GeneratePropsCommandOptions = {
   path: string;
   output: string;
   pattern: string;
+  ignore?: string;
 };
 
 const handler = async (
@@ -16,7 +17,12 @@ const handler = async (
 ): Promise<void> => {
   // Find all components
   log(Messages.FindingComponents);
-  const componentList = await getComponents(argv.path, argv.pattern);
+  const componentList = await getComponents(
+    argv.path,
+    argv.pattern,
+    argv.ignore,
+  );
+  console.log(componentList);
   log(Messages.FoundComponents(componentList.length, argv.pattern));
 
   const components = new Map<string, ComponentProp[]>();
@@ -75,6 +81,11 @@ export const GeneratePropsCommand: BaseCommand<GeneratePropsCommandOptions> = {
       alias: "p",
       describe: "Pattern to match the component files",
       default: "**/*.tsx",
+    },
+    ignore: {
+      type: "string",
+      alias: "i",
+      describe: "Pattern to ignore the component files",
     },
   },
   handler,

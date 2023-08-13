@@ -7,14 +7,17 @@ import { ParsedComponent } from "./types";
  * Find all components in a directory
  * @param path Path to the directory
  * @param pattern Pattern to match
+ * @param ignore Pattern to ignore
  * @returns List of components
  */
 export async function getComponents(
   path: string,
   pattern: string,
+  ignore?: string,
 ): Promise<string[]> {
   return await glob(pattern, {
     cwd: path,
+    ignore: ignore ? [ignore] : [],
   });
 }
 

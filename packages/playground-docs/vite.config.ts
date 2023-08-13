@@ -16,5 +16,6 @@ export default ({ mode }: { mode: string }) => {
         },
       },
     },
+    assetsInclude: ["public/**"],
   });
 };
