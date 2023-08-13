@@ -8,19 +8,19 @@
   width: max-content;
 
   &.popover--top {
-    padding-bottom: 5px;
+    padding-bottom: var(--offset);
   }
 
   &.popover--bottom {
-    padding-top: 5px;
+    padding-top: var(--offset);
   }
 
   &.popover--left {
-    padding-right: 5px;
+    padding-right: var(--offset);
   }
 
   &.popover--right {
-    padding-left: 5px;
+    padding-left: var(--offset);
   }
 }
 

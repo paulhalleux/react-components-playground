@@ -1,47 +1,66 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { CleanIcon, EmptyState } from "@paulhalleux/react-playground";
 
-import { ComponentList } from "../../docs/__generated__/components";
 import { Routes } from "../constants/routes";
 import { MainLayout } from "../layouts";
-import { PlaygroundLayout } from "../layouts/PlaygroundLayout";
-import { groupComponents } from "../utils/components";
 
-import { ComponentPage } from "./ComponentPage";
+import { ComponentsPage } from "./ComponentsPage";
+import { HooksPage } from "./HooksPage";
 import { MainPage } from "./MainPage";
+import { NotFoundPage } from "./NotFoundPage";
+import { UtilitiesPage } from "./UtilitiesPage";
 
-export const GroupedComponents = groupComponents(ComponentList);
-export const FlatComponents = Object.values(GroupedComponents).flatMap(
-  (group) => group.components,
-);
+const NotFoundRoute = {
+  path: "*",
+  element: <NotFoundPage />,
+};
 
 export const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
       {
-        element: <PlaygroundLayout />,
+        path: Routes.Root,
+        element: <MainPage />,
+      },
+      {
+        path: Routes.Components,
+        element: <ComponentsPage />,
         children: [
-          { path: Routes.Home, element: <MainPage /> },
           {
-            path: `/:group/:component`,
-            element: <ComponentPage />,
+            path: "",
+            element: <ComponentsPage.Main />,
           },
           {
-            path: "*",
-            element: (
-              <EmptyState
-                variant="ghost"
-                icon={CleanIcon}
-                title="Page not found"
-                description="The page you are looking for does not exist."
-                actions={[{ type: "link", label: "Go back home", to: "/" }]}
-              />
-            ),
+            path: Routes.ComponentMask,
+            element: <ComponentsPage.Component />,
           },
+          NotFoundRoute,
         ],
       },
+      {
+        path: Routes.Hooks,
+        element: <HooksPage />,
+        children: [
+          {
+            path: Routes.HookMask,
+            element: <HooksPage.Hook />,
+          },
+          NotFoundRoute,
+        ],
+      },
+      {
+        path: Routes.Utilities,
+        element: <UtilitiesPage />,
+        children: [
+          {
+            path: Routes.UtilityMask,
+            element: <UtilitiesPage.Utility />,
+          },
+          NotFoundRoute,
+        ],
+      },
+      NotFoundRoute,
     ],
   },
 ]);

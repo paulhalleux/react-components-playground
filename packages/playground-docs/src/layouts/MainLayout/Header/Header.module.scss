@@ -1,0 +1,22 @@
+.header__container {
+  height: 56px;
+  border-bottom: 1px solid c(border);
+  display: flex;
+  align-items: center;
+  font-size: t(font-size-md);
+  color: c(text);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  background: c(main, .80);
+  backdrop-filter: blur(5px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}

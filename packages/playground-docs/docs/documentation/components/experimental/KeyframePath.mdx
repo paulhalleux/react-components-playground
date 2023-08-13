@@ -1,0 +1,58 @@
+---
+type: component
+category: Experimental
+description: A component to display a path with keyframes
+icon: PointerIcon
+status: draft
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/KeyframePath/KeyframePath.tsx
+---
+
+> This component is an experiment and might never be finished.
+
+`KeyframePath` is a component that allows you to display a path of keyframes that can be moved around and edited.
+A keyframe is an object with a position and a time. The position is relative to the parent element of the keyframe path.
+The time is a number that can be used to interpolate between keyframes.
+The interpolation is `linear` by default but can be changed to a `bezier curve`.
+
+If the `enableBezier` prop is set to `true`, the user can move the bezier handles of the keyframes
+and change the interpolation type to `bezier` by double-clicking on the keyframe.
+
+## Examples
+
+<Example name="components/Experimental/KeyframePath" />
+
+## API
+
+### KeyframePath Props
+
+<Properties component="KeyframePath" />
+
+### Keyframe Type
+
+```ts
+type Keyframe = {
+  position: { x: number; y: number };
+  time: number;
+  interpolation?: Interpolation;
+};
+```
+
+&nbsp;
+
+> Note that `interpolation` is optional and defaults to `linear`.
+
+### Interpolation Type
+
+```ts
+type LinearInterpolation = {
+  type: "linear";
+};
+
+type BezierInterpolation = {
+  type: "bezier";
+  p1: { x: number; y: number };
+  p2: { x: number; y: number };
+};
+
+type Interpolation = LinearInterpolation | BezierInterpolation;
+```

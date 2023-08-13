@@ -2,17 +2,17 @@ import { mkdir, writeFile } from "fs/promises";
 import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
 import { log, Messages } from "./messages";
-import { ComponentData } from "./types";
+import { DocumentationData } from "./types";
 import {
-  getComponentsFile,
   getDocumentationFiles,
   getExamplesFile,
   getIndexFile,
-  processComponent,
+  getRegistryFile,
+  processDocumentationFile,
 } from "./utils";
 
 type GenerateDocsCommandOptions = {
-  components: string;
+  documentation: string;
   examples: string;
   output: string;
 };
@@ -20,65 +20,73 @@ type GenerateDocsCommandOptions = {
 const handler = async (
   argv: ArgumentsCamelCase<GenerateDocsCommandOptions>,
 ): Promise<void> => {
-  // Find all components
-  log(Messages.FindingComponents);
-  const componentsFiles = await getDocumentationFiles(argv.components);
-  log(Messages.FoundComponents(componentsFiles.length));
+  // Find all documentation files
+  log(Messages.FindingDocs);
+  const documentationFiles = await getDocumentationFiles(argv.documentation);
+  log(Messages.FoundDocs(documentationFiles.length));
 
-  // Map of components data
-  const components = new Map<string, ComponentData>();
+  // Map of documentation data
+  const documentations = new Map<string, DocumentationData>();
 
-  // Process each component
-  log(Messages.ProcessingComponents);
-  for (const file of componentsFiles) {
-    const componentData = await processComponent(file, argv.components);
-    components.set(componentData.id, componentData);
-    log(Messages.ProcessedComponent(componentData.meta.title));
+  // Process each documentation file
+  log(Messages.ProcessingDocs);
+  for (const file of documentationFiles) {
+    try {
+      const documentationData = await processDocumentationFile(
+        file,
+        argv.documentation,
+      );
+
+      documentations.set(documentationData.id, documentationData);
+      log(Messages.ProcessedDocFile(documentationData.meta.title));
+    } catch (error) {
+      log(Messages.ProcessingError(file, error as Error));
+    }
   }
-  log(Messages.ProcessedComponents);
+  log(Messages.ProcessedDocs);
 
   // Write documentation files
-  log(Messages.WritingDocumentationFiles);
+  log(Messages.WritingMdxFiles);
   await mkdir(`${argv.output}/documentation`, { recursive: true });
-  for (const component of components.values()) {
+  for (const documentationData of documentations.values()) {
     await mkdir(
-      `${argv.output}/documentation/${component.filePath
+      `${argv.output}/documentation/${documentationData.filePath
         .split(/[\/\\]/g)
         .slice(0, -1)
         .join("\\")}`,
       { recursive: true },
     );
     await writeFile(
-      `${argv.output}/documentation/${component.filePath}.jsx`,
-      `${component.jsxCode}`,
+      `${argv.output}/documentation/${documentationData.filePath}.jsx`,
+      `${documentationData.jsxCode}`,
     );
   }
 
   // Generate examples.ts file
   log(Messages.WritingExamplesFile);
-  const examplesContent = await getExamplesFile(argv.examples);
-  await writeFile(`${argv.output}/examples.ts`, examplesContent);
+  const examplesFile = await getExamplesFile(argv.examples);
+  await writeFile(`${argv.output}/examples.ts`, examplesFile);
 
   // Generate index.ts file
   log(Messages.WritingIndexFile);
-  const indexContent = getIndexFile(components);
-  await writeFile(`${argv.output}/index.ts`, indexContent);
+  const indexFile = getIndexFile(documentations);
+  await writeFile(`${argv.output}/index.ts`, indexFile);
 
-  // Generate components.ts file
-  log(Messages.WritingComponentsFile);
-  const componentsContent = getComponentsFile(components);
-  await writeFile(`${argv.output}/components.ts`, componentsContent);
+  // Generate registry.ts file
+  log(Messages.WritingRegistryFile);
+  const registryFile = getRegistryFile(documentations);
+  await writeFile(`${argv.output}/registry.ts`, registryFile);
 
   log(Messages.Generated);
 };
 
 export const GenerateDocsCommand: BaseCommand<GenerateDocsCommandOptions> = {
   trigger: "generate-docs",
-  command: "generate-docs <components> <examples> <output>",
-  describe: "Generate documentation for the components",
+  command: "generate-docs <documentation> <examples> <output>",
+  describe: "Generate documentation from the markdown documentation files",
   positional: {
-    components: {
-      describe: "Components folder",
+    documentation: {
+      describe: "Documentation folder",
       type: "string",
       demandOption: true,
     },

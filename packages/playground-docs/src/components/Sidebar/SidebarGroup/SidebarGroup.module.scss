@@ -1,0 +1,18 @@
+.sidebar__group {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar__group_title {
+  font-size: 16px;
+  font-weight: 600;
+  color: c(text);
+}
+
+.sidebar__group_items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

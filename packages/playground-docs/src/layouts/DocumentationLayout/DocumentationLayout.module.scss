@@ -1,0 +1,23 @@
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  border-right: 1px solid c(border);
+}
+
+.sidebar__content {
+  position: sticky;
+  top: 56px;
+  max-height: calc(100vh - 56px);
+}
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.content {
+  padding: 24px 0 24px 24px;
+  flex-grow: 1;
+  overflow: hidden;
+}

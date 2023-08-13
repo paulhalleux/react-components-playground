@@ -1,0 +1,41 @@
+---
+type: component
+title: Checkbox
+category: Form
+description: A checkbox component.
+icon: CheckIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Checkbox/Checkbox.tsx
+status: done
+---
+
+`Checkbox` is a component that allows the user to select one or more options from a set of options.
+
+## Examples
+
+<Example name="components/Form/Checkbox" />
+
+## API
+
+### \{:component} Checkbox
+
+#### Usage
+
+```tsx
+<Checkbox
+  label="Checkbox"
+  checked={checked}
+  onChange={onChange}
+/>
+```
+
+#### Properties
+
+<Properties component="Checkbox" />
+
+### \{:type} CheckboxSize
+
+The size of the checkbox.
+
+```ts
+type CheckboxSize = 'small' | 'medium' | 'large';
+```

@@ -1,11 +1,13 @@
 import kebabCase from "lodash/kebabCase";
 
-import { ComponentMeta } from "../../docs/__generated__/components";
+import { ComponentMeta, DocumentationPage } from "../types/documentation";
 
 const GroupOrder = ["Resources", "Components", "Form", "Experimental"];
 
-export function groupComponents(components: Record<string, ComponentMeta>) {
-  const groups: Record<string, ComponentMeta[]> = {};
+export function groupComponents(
+  components: Record<string, DocumentationPage<ComponentMeta>>,
+) {
+  const groups: Record<string, DocumentationPage<ComponentMeta>[]> = {};
   Object.values(components).forEach((component) => {
     const group = component.category ?? "Uncategorized";
     if (!groups[group]) {
@@ -43,7 +45,7 @@ export function groupComponents(components: Record<string, ComponentMeta>) {
       string,
       {
         title: string;
-        components: ComponentMeta[];
+        components: DocumentationPage<ComponentMeta>[];
       }
     >,
   );
