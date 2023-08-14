@@ -6,6 +6,7 @@ const GroupOrder = [
   "Resources",
   "Components",
   "Form",
+  "Navigation",
   "Layout",
   "Experimental",
 ];

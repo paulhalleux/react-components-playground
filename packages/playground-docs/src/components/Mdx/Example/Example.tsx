@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { CodeBlock, Tabs } from "@paulhalleux/react-playground";
 import kebabCase from "lodash/kebabCase";
 
@@ -33,11 +33,12 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
   const exampleRef = useRef<ExampleRef>();
 
   const { example, sources } = getExampleInfo(name);
-  const [controls, setControls] = React.useState<Control[] | undefined>(
-    example.controls,
+
+  const [controls, setControls] = useState<Control[] | undefined>(
+    example?.controls,
   );
 
-  if (!example.component) {
+  if (!example?.component || !sources) {
     return (
       <Alert>
         Example <Code>{name}</Code> not found
@@ -134,7 +135,11 @@ function getExampleInfo(name: string) {
   const example = Examples[name as keyof typeof Examples];
   const sources = ExamplesSources[name as keyof typeof Examples];
 
-  if (!example) throw new Error(`Example ${name} not found`);
+  if (!example)
+    return {
+      example: undefined,
+      sources: undefined,
+    };
 
   return {
     example: example.metadata,
