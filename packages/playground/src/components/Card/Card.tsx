@@ -22,11 +22,29 @@ export type CardVariant =
 export type CardOrientation = "horizontal" | "vertical";
 export type CardPaddingSize = "sm" | "md" | "lg";
 export type CardProps<AsProps> = PropsWithChildren<{
+  /**
+   * The component used for the root node.
+   */
   as?: ElementType;
+  /**
+   * Defines the variant of the card.
+   */
   variant?: CardVariant;
+  /**
+   * Adds a shadow to the card.
+   */
   shadow?: boolean;
+  /**
+   * Defines the orientation of the card.
+   */
   orientation?: CardOrientation;
+  /**
+   * Defines the padding size of the card.
+   */
   paddingSize?: CardPaddingSize;
+  /**
+   * Defines the maximum height of the card.
+   */
 }> &
   BaseProps &
   AsProps;
