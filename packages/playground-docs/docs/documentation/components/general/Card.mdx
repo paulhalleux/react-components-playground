@@ -1,0 +1,177 @@
+---
+type: component
+title: Card
+category: Components
+description: A card component.
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Card/Card.tsx
+status: done
+---
+
+`Card` is a component that displays content in a styled container. It can be used to display a variety of content types, such as text, images, and icons.
+
+## Examples
+
+<Example name="components/General/Card/Default" />
+<Example name="components/General/Card/Group" />
+
+## API
+
+### \{:component} Card
+
+Main card component.
+
+#### Usage
+
+```tsx
+<Card>
+  <Card.Header>
+    Card Header
+  </Card.Header>
+  <Card.Body>
+    Some quick example text to build on the card title and make up the bulk of the card's content.
+  </Card.Body>
+  <Card.Footer>
+    <Button variant="primary">Go somewhere</Button>
+  </Card.Footer>
+</Card>
+```
+
+#### Properties
+
+<Properties component="Card" />
+
+### \{:component} Card.Header
+
+Header of the card.
+
+#### Usage
+
+```tsx
+<Card.Header>
+  Card Header
+</Card.Header>
+```
+
+#### Properties
+
+<Properties component="Card.Header" />
+
+### \{:component} Card.Body
+
+Body of the card.
+
+#### Usage
+
+```tsx
+<Card.Body>
+  Some quick example text to build on the card title and make up the bulk of the card's content.
+</Card.Body>
+```
+
+#### Properties
+
+<Properties component="Card.Body" />
+
+### \{:component} Card.Footer
+
+Footer of the card.
+
+#### Usage
+
+```tsx
+<Card.Footer>
+  <Button variant="primary">Go somewhere</Button>
+</Card.Footer>
+```
+
+#### Properties
+
+<Properties component="Card.Footer" />
+
+### \{:component} Card.Thumbnail
+
+Thumbnail of the card.
+
+#### Usage
+
+```tsx
+<Card.Thumbnail>
+  <img src="https://picsum.photos/200/300" alt="Card image cap" />
+</Card.Thumbnail>
+```
+
+#### Properties
+
+<Properties component="Card.Thumbnail" />
+
+### \{:component} Card.Group
+
+Group of cards.
+
+#### Usage
+
+```tsx
+<Card.Group>
+  <Card>
+    <Card.Header>
+      Card Header
+    </Card.Header>
+    <Card.Body>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </Card.Body>
+    <Card.Footer>
+      <Button variant="primary">Go somewhere</Button>
+    </Card.Footer>
+  </Card>
+  <Card>
+    <Card.Header>
+      Card Header
+    </Card.Header>
+    <Card.Body>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </Card.Body>
+    <Card.Footer>
+      <Button variant="primary">Go somewhere</Button>
+    </Card.Footer>
+  </Card>
+  <Card>
+    <Card.Header>
+      Card Header
+    </Card.Header>
+    <Card.Body>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </Card.Body>
+    <Card.Footer>
+      <Button variant="primary">Go somewhere</Button>
+    </Card.Footer>
+  </Card>
+</Card.Group>
+```
+
+#### Properties
+
+<Properties component="Card.Group" />
+
+### \{:type} CardVariant
+
+The variant of the card.
+
+```ts
+type CardVariant = 'default' | 'secondary' | 'primary' |  'success' | 'danger' | 'warning'
+```
+
+### \{:type} CardOrientation
+
+The orientation of the card.
+
+```ts
+type CardOrientation = 'horizontal' | 'vertical'
+```
+
+### \{:type} CardPaddingSize
+
+The padding size of the card.
+
+```ts
+type CardPaddingSize = 'sm' | 'md' | 'lg'
+```

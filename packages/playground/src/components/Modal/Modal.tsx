@@ -1,10 +1,11 @@
-import React, { PropsWithChildren, useRef } from "react";
+import React, { ComponentProps, PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { BaseProps } from "../../types";
 import { Backdrop } from "../Backdrop";
+import { Card } from "../Card";
 
 import { ModalProvider } from "./modal-context";
 import { ModalBody } from "./ModalBody";
@@ -92,7 +93,8 @@ export function Modal({
         >
           <Backdrop onClick={closeOnBackdropClick ? onClose : undefined} />
           <ModalProvider onClose={onClose}>
-            <motion.div
+            <Card<ComponentProps<typeof motion.div>>
+              as={motion.div}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
@@ -107,9 +109,10 @@ export function Modal({
                 className,
               )}
               style={{ minHeight }}
+              shadow
             >
               {children}
-            </motion.div>
+            </Card>
           </ModalProvider>
         </div>
       )}
