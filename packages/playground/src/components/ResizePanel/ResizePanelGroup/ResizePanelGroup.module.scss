@@ -1,0 +1,13 @@
+.resize-panel__group {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+}

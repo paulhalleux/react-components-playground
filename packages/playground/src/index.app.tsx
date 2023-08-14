@@ -1,8 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { EditInline } from "./components/EditInline";
-import { Button, Tabs } from "./components";
+import { Button, ResizePanel } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -15,6 +14,10 @@ const Container: CSSProperties = {
   alignItems: "center",
   justifyContent: "center",
   gap: 16,
+};
+
+const Panel: CSSProperties = {
+  background: "rgba(255, 0, 0, 0.1)",
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -46,15 +49,28 @@ root.render(
       }}
     >
       <div style={Container}>
-        <EditInline value="He" onChange={() => {}} />
-        <Tabs tabsRename>
-          <Tabs.Tab id="tab1" label="Tab 1">
-            Tab 1 content here ... Lorem ipsum dolor sit amet consectetur
-          </Tabs.Tab>
-          <Tabs.Tab id="tab2" label="Tab 2">
-            Tab 1 content here ... Lorem ipsum dolor sit amet consectetur
-          </Tabs.Tab>
-        </Tabs>
+        <ResizePanel.Group id="G1">
+          <ResizePanel.Panel id="P1" style={Panel}>
+            Panel 1
+          </ResizePanel.Panel>
+          <ResizePanel.Panel id="P2" style={Panel}>
+            <ResizePanel.Group id="G2" direction="vertical">
+              <ResizePanel.Panel id="P2.1" style={Panel}>
+                Panel 2.1
+              </ResizePanel.Panel>
+              <ResizePanel.Panel id="P2.2" style={Panel}>
+                <ResizePanel.Group id="G3">
+                  <ResizePanel.Panel id="P2.2.1" style={Panel}>
+                    Panel 2.2.1
+                  </ResizePanel.Panel>
+                  <ResizePanel.Panel id="P2.2.2" style={Panel}>
+                    Panel 2.2.2
+                  </ResizePanel.Panel>
+                </ResizePanel.Group>
+              </ResizePanel.Panel>
+            </ResizePanel.Group>
+          </ResizePanel.Panel>
+        </ResizePanel.Group>
       </div>
     </div>
   </ThemeProvider>,
