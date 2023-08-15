@@ -20,7 +20,7 @@ export type CheckboxProps = {
   /**
    * The label of the checkbox.
    */
-  label: React.ReactNode;
+  label?: React.ReactNode;
   /**
    * Whether the checkbox is checked.
    */
@@ -29,6 +29,10 @@ export type CheckboxProps = {
    * Whether the checkbox is required.
    */
   required?: boolean;
+  /**
+   * Whether the checkbox is disabled.
+   */
+  disabled?: boolean;
   /**
    * Callback fired when the checkbox is changed.
    */
@@ -47,6 +51,7 @@ export function Checkbox({
   label,
   checked,
   onChange,
+  disabled,
   variant = "default",
   size = "medium",
   className,
@@ -61,6 +66,9 @@ export function Checkbox({
         styles.checkbox,
         styles[`checkbox--${variant}`],
         styles[`checkbox--${size}`],
+        {
+          [styles["checkbox--disabled"]]: disabled,
+        },
         className,
       )}
       {...rest}
@@ -68,6 +76,7 @@ export function Checkbox({
       <input
         name={name}
         id={id}
+        disabled={disabled}
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
@@ -77,14 +86,16 @@ export function Checkbox({
           [styles["checkbox__box--checked"]]: checked,
         })}
       />
-      <Label
-        htmlFor={id}
-        className={styles.label}
-        required={required}
-        size={size}
-      >
-        {label}
-      </Label>
+      {label && (
+        <Label
+          htmlFor={id}
+          className={styles.label}
+          required={required}
+          size={size}
+        >
+          {label}
+        </Label>
+      )}
     </label>
   );
 }

@@ -9,6 +9,7 @@ $sizes: (
   align-items: center;
   gap: t(padding-xs);
   color: c(text-contrast);
+  cursor: pointer;
 
   @each $size, $properties in $sizes {
     &--#{$size} {

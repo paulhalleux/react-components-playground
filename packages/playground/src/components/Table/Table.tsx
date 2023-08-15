@@ -64,8 +64,6 @@ export function Table<T extends Record<string, any>>({
       return column.sortFn!(a, b, newSort);
     });
 
-    console.log(newTableData);
-
     setTableColumns(newColumns);
     setTableData(newTableData);
   };

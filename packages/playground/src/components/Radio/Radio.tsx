@@ -24,7 +24,7 @@ export type RadioProps = {
   /**
    * The label of the radio.
    */
-  label: React.ReactNode;
+  label?: React.ReactNode;
   /**
    * Whether the radio is checked.
    */
@@ -45,6 +45,10 @@ export type RadioProps = {
    * The size of the radio.
    */
   size?: RadioSize;
+  /**
+   * Whether the radio is disabled.
+   */
+  disabled?: boolean;
 } & BaseProps;
 
 export function Radio({
@@ -55,6 +59,7 @@ export function Radio({
   size = "medium",
   className,
   required = false,
+  disabled,
   value,
   name,
   id,
@@ -66,6 +71,9 @@ export function Radio({
         styles.radio,
         styles[`radio--${variant}`],
         styles[`radio--${size}`],
+        {
+          [styles[`radio--disabled`]]: disabled,
+        },
         className,
       )}
       {...rest}
@@ -76,6 +84,7 @@ export function Radio({
         type="radio"
         value={value}
         checked={selected === value}
+        disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
       />
       <div
@@ -83,14 +92,16 @@ export function Radio({
           [styles["radio__box--checked"]]: selected === value,
         })}
       />
-      <Label
-        htmlFor={id}
-        className={styles.label}
-        required={required}
-        size={size}
-      >
-        {label}
-      </Label>
+      {label && (
+        <Label
+          htmlFor={id}
+          className={styles.label}
+          required={required}
+          size={size}
+        >
+          {label}
+        </Label>
+      )}
     </label>
   );
 }

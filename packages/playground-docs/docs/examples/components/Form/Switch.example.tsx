@@ -1,27 +1,27 @@
 import * as React from "react";
-import { Checkbox, CheckboxSize } from "@paulhalleux/react-playground";
+import { CheckboxSize, Switch } from "@paulhalleux/react-playground";
 
 import {
   ExampleComponentProps,
   ExampleMetadata,
 } from "../../../../src/components/Mdx/Example";
 
-type CheckboxExampleControls = {
+type SwitchExampleControls = {
   label: string;
   required: boolean;
   disabled: boolean;
   size: CheckboxSize;
 };
 
-function CheckboxExample({
+function SwitchExample({
   controls,
-}: ExampleComponentProps<CheckboxExampleControls>) {
+}: ExampleComponentProps<SwitchExampleControls>) {
   const [checked, setChecked] = React.useState(false);
 
   return (
-    <Checkbox
-      id="example"
-      name="example"
+    <Switch
+      id="switch"
+      name="switch"
       checked={checked}
       onChange={setChecked}
       {...controls}
@@ -30,8 +30,8 @@ function CheckboxExample({
 }
 
 export const metadata: ExampleMetadata = {
-  name: "Checkbox",
-  component: CheckboxExample,
+  name: "Switch",
+  component: SwitchExample,
   display: {
     padding: true,
     align: "center",

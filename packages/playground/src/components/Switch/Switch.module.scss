@@ -1,0 +1,78 @@
+$sizes: (
+  small: (height: 16px, width: 28px),
+  medium: (height: 20px, width: 36px),
+  large: (height: 24px, width: 44px),
+);
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: .5;
+  }
+
+  @each $size, $value in $sizes {
+    &--#{$size} {
+      .switch__slider {
+        height: map-get($value, height);
+        width: map-get($value, width);
+
+        &:before {
+          height: map-get($value, height) - 6px;
+          width: map-get($value, height) - 6px;
+        }
+
+        &--checked {
+          &:before {
+            transform: translateX(map-get($value, width) - map-get($value, height));
+          }
+        }
+      }
+    }
+  }
+
+  input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+
+    &:focus-visible + .switch__slider {
+      border-color: c(border-primary);
+      outline: 2px solid c(border-primary, .2);
+    }
+  }
+
+  .switch__slider--checked {
+    background-color: c(main-contrast, .4);
+
+    &:before {
+      background: c(text, .5);
+    }
+  }
+}
+
+.switch__slider {
+  background-color: c(main-contrast, .2);
+  border: 1px solid c(border);
+  border-radius: 34px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  &:before {
+    transition: background-color .2s ease-in-out, transform .2s ease-in-out;
+    background-color: c(main-contrast, .8);
+    border-radius: 50%;
+    bottom: 2px;
+    content: "";
+    left: 2px;
+    position: absolute;
+  }
+}

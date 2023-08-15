@@ -30,5 +30,6 @@ export * from "./Card";
 export * from "./Flex";
 export * from "./Navigation";
 export * from "./Header";
+export * from "./Switch";
 
 export * as Icons from "./Icons";

@@ -1,7 +1,7 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Header, Navigation } from "./components";
+import { Button, Switch } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -14,6 +14,20 @@ const Container: CSSProperties = {
   alignItems: "center",
   justifyContent: "center",
   gap: 16,
+};
+
+const App = () => {
+  const [checked, setChecked] = useState(false);
+  return (
+    <Switch
+      size="medium"
+      id="test"
+      name="test"
+      label="Switch"
+      checked={checked}
+      onChange={setChecked}
+    />
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
@@ -45,16 +59,7 @@ root.render(
       }}
     >
       <div style={Container}>
-        <Header layout="3-column">
-          <Header.Logo>
-            <img src="https://placekitten.com/100/100" alt="Logo" />
-          </Header.Logo>
-          <Header.Navigation>
-            <Navigation.Link href="/">Home</Navigation.Link>
-            <Navigation.Link href="/docs">Docs</Navigation.Link>
-            <Navigation.Link href="/playground">Playground</Navigation.Link>
-          </Header.Navigation>
-        </Header>
+        <App />
       </div>
     </div>
   </ThemeProvider>,

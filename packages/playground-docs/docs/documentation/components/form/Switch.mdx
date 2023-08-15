@@ -3,5 +3,44 @@ type: component
 title: Switch
 category: Form
 description: A component to toggle between two states.
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Switch/Switch.tsx
+icon: ToggleRightIcon
+status: done
 ---
+
+`Switch` is a component to toggle between two states.
+
+## Example
+
+<Example name="components/Form/Switch" />
+
+## API
+
+### \{:component} Switch
+
+#### Usage
+
+```tsx
+<Switch
+  id="switch"
+  name="switch"
+  checked={checked}
+  onChange={onChange}
+  size={size}
+  disabled={disabled}
+  label={label}
+  {/* ... */}
+/>
+```
+
+#### Properties
+
+<Properties component="Switch" />
+
+### \{:type} SwitchSize
+
+The size of the switch.
+
+```ts
+type SwitchSize = 'small' | 'medium' | 'large';
+```

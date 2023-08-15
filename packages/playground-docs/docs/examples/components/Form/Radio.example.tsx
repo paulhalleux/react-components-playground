@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Radio, RadioSize } from "@paulhalleux/react-playground";
 
 import {
@@ -8,6 +8,7 @@ import {
 
 type RadioExampleControls = {
   required: boolean;
+  disabled: boolean;
   size: RadioSize;
 };
 
@@ -60,6 +61,12 @@ export const metadata: ExampleMetadata = {
       property: "required",
       value: false,
       label: "Required",
+    },
+    {
+      type: "boolean",
+      property: "disabled",
+      value: false,
+      label: "Disabled",
     },
     {
       type: "select",
