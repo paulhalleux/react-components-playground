@@ -18,7 +18,7 @@ export function Alert({
     <p className={clsx(styles.alert, variant && styles[`alert--${variant}`])}>
       {Icon && (
         <div className={styles.alert__icon}>
-          <Icon height={20} width={20} />
+          <Icon size={20} />
         </div>
       )}
       <div>{children}</div>

@@ -1,7 +1,7 @@
 import {
   Anchor,
   Button,
-  GithubIcon,
+  GithubFillIcon,
   MoonIcon,
   SunIcon,
   ThemeType,
@@ -28,7 +28,7 @@ export function HeaderActions() {
         to="https://github.com/paulhalleux/react-playground"
         target="_blank"
       >
-        <GithubIcon height={20} width={20} />
+        <GithubFillIcon size={20} />
       </Anchor>
       <Button.Icon
         onClick={onThemeChange}

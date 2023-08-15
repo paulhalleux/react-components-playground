@@ -26,12 +26,7 @@ const IconSize = {
 export function IconButton({ icon: Icon, iconSize, ...rest }: IconButtonProps) {
   return (
     <Button className={styles[`button--icon`]} {...rest}>
-      {Icon && (
-        <Icon
-          width={iconSize ?? IconSize[rest.size ?? "medium"]}
-          height={iconSize ?? IconSize[rest.size ?? "medium"]}
-        />
-      )}
+      {Icon && <Icon size={iconSize ?? IconSize[rest.size ?? "medium"]} />}
     </Button>
   );
 }

@@ -18,6 +18,8 @@ export function MainItem({ component }: MainItemProps) {
     ? Icons[component.icon as keyof typeof Icons]
     : undefined;
 
+  console.log(Icons);
+
   return (
     <Link
       className={styles.main__grid_item}
@@ -25,7 +27,7 @@ export function MainItem({ component }: MainItemProps) {
       title={`${component.title}\n${component.description}`}
     >
       <header className={styles.main__grid_item__header}>
-        {Icon && <Icon width={24} height={24} />}
+        {Icon && <Icon size={24} />}
       </header>
       <div className={styles.main__grid_item__content}>
         <h2 className={styles.item__title}>{component.title}</h2>

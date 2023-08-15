@@ -2,7 +2,11 @@ import React from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
-import { ArrowDownIcon, ArrowDownUpIcon, ArrowUpIcon } from "../Icons";
+import {
+  ArrowTightDownIcon,
+  ArrowTightUpDownIcon,
+  ArrowTightUpIcon,
+} from "../Icons";
 
 import styles from "./Table.module.scss";
 
@@ -90,11 +94,11 @@ export function Table<T extends Record<string, any>>({
                       onClick={() => onSort(column)}
                     >
                       {column.sort === "asc" ? (
-                        <ArrowUpIcon height={14} width={14} />
+                        <ArrowTightUpIcon size={14} />
                       ) : column.sort === "desc" ? (
-                        <ArrowDownIcon height={14} width={14} />
+                        <ArrowTightDownIcon size={14} />
                       ) : (
-                        <ArrowDownUpIcon height={14} width={14} />
+                        <ArrowTightUpDownIcon size={14} />
                       )}
                     </button>
                   )}

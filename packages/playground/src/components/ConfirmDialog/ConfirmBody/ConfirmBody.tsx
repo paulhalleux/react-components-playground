@@ -19,7 +19,7 @@ export function ConfirmBody({
     <>
       {Icon && (
         <div className={styles.confirm__icon}>
-          <Icon width={24} height={24} />
+          <Icon size={24} />
         </div>
       )}
       <h2 className={styles.confirm__title}>{title}</h2>

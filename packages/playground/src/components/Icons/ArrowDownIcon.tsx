@@ -1,12 +1,23 @@
 import { IconProps } from "./types";
 
-export function ArrowDownIcon({ height = 20, width = 20 }: IconProps) {
+export function ArrowDownIcon({
+  size = 20,
+  color = "currentColor",
+}: IconProps) {
   return (
-    <svg fill="currentColor" viewBox="0 0 16 16" height={height} width={width}>
-      <path
-        fillRule="evenodd"
-        d="M8 1a.5.5 0 01.5.5v11.793l3.146-3.147a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 01.708-.708L7.5 13.293V1.5A.5.5 0 018 1z"
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      height={size}
+      width={size}
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
     </svg>
   );
 }

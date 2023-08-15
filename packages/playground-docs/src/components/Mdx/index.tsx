@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { InfoIcon } from "@paulhalleux/react-playground";
+import { Anchor, InfoIcon } from "@paulhalleux/react-playground";
 
 import { Alert } from "../Alert";
 
@@ -24,6 +24,16 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   ),
   table: Table,
   p: Paragraph,
+  a: (props) => (
+    <Anchor
+      to={props.href}
+      {...props}
+      underline
+      asLink={!props.href.includes("http")}
+      variant="secondary"
+      target={props.href.includes("http") ? "_blank" : undefined}
+    />
+  ),
   ul: (props) => <UnorderedList {...props} />,
   blockquote: (props) => <Alert icon={InfoIcon} {...props} />,
   Example,

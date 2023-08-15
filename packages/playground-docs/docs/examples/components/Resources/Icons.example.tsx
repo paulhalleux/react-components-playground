@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Icons, Search } from "@paulhalleux/react-playground";
+import { Badge, Icons, Search } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../../../src/components/Mdx/Example";
 
-import styles from "../General/Icons.example.module.scss";
+import styles from "./Icons.example.module.scss";
 
 function IconsExample() {
   const [search, setSearch] = useState<string>("");
@@ -14,6 +14,15 @@ function IconsExample() {
         placeholder="Search icon..."
         value={search}
         onChange={setSearch}
+        addon={
+          <Badge size="small">
+            {
+              Object.values(Icons).filter((icon) =>
+                icon.name.toLowerCase().includes(search.toLowerCase()),
+              ).length
+            }
+          </Badge>
+        }
       />
       <div className={styles.icons__container}>
         {Object.keys(Icons)
@@ -23,7 +32,7 @@ function IconsExample() {
 
             return (
               <div key={icon} className={styles.icon}>
-                <Icon width={24} height={24} />
+                <Icon size={24} />
                 <div className={styles.icon__label} title={icon}>
                   {icon.replace(/Icon$/, "")}
                 </div>

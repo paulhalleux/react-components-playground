@@ -1,8 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { CardGroup } from "./components/Card/CardGroup";
-import { Button, Card, CleanIcon } from "./components";
+import { Button } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -45,40 +44,7 @@ root.render(
         backgroundColor: "rgb(var(--color-main))",
       }}
     >
-      <div style={Container}>
-        <CardGroup>
-          <Card
-            orientation="vertical"
-            variant="default"
-            style={{ minHeight: 150, width: 300 }}
-          >
-            <Card.Thumbnail maxHeight={150}>
-              <img src="https://picsum.photos/800/800" alt="thumbnail" />
-            </Card.Thumbnail>
-            <Card.Header border>Header</Card.Header>
-            <Card.Body>Hello world</Card.Body>
-            <Card.Footer border>
-              <Button size="small">Click me</Button>
-              <Button.Icon size="small" icon={CleanIcon} />
-            </Card.Footer>
-          </Card>
-          <Card
-            orientation="vertical"
-            variant="default"
-            style={{ minHeight: 150, width: 300 }}
-          >
-            <Card.Thumbnail maxHeight={150}>
-              <img src="https://picsum.photos/800/800" alt="thumbnail" />
-            </Card.Thumbnail>
-            <Card.Header border>Header</Card.Header>
-            <Card.Body>Hello world</Card.Body>
-            <Card.Footer border>
-              <Button size="small">Click me</Button>
-              <Button.Icon size="small" icon={CleanIcon} />
-            </Card.Footer>
-          </Card>
-        </CardGroup>
-      </div>
+      <div style={Container}></div>
     </div>
   </ThemeProvider>,
 );

@@ -56,7 +56,7 @@ export function EmptyState({
     >
       {Icon && (
         <div className={styles.icon}>
-          <Icon width={64} height={64} />
+          <Icon size={64} />
         </div>
       )}
       <div className={styles.content}>

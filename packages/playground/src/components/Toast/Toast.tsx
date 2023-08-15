@@ -26,11 +26,7 @@ export function Toast({
 }: ToastProps) {
   return (
     <div className={styles.toast}>
-      {Icon && (
-        <div className={styles.toast__icon}>
-          {<Icon height={16} width={16} />}
-        </div>
-      )}
+      {Icon && <div className={styles.toast__icon}>{<Icon size={16} />}</div>}
       <div className={styles.toast__content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.content}>{content}</p>

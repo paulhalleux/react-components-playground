@@ -1,0 +1,9 @@
+import { IconProps } from "./types";
+
+export function {{ iconName }}({ size = {{ defaultIconSize }}, color = "currentColor" }: IconProps) {
+  return (
+    <svg {{ props }} height={size} width={size}>
+      {{ iconContent }}
+    </svg>
+  );
+}

@@ -1,9 +1,20 @@
 import { IconProps } from "./types";
 
-export function PlusIcon({ height = 20, width = 20 }: IconProps) {
+export function PlusIcon({ size = 20, color = "currentColor" }: IconProps) {
   return (
-    <svg fill="currentColor" viewBox="0 0 16 16" width={width} height={height}>
-      <path d="M8 4a.5.5 0 01.5.5v3h3a.5.5 0 010 1h-3v3a.5.5 0 01-1 0v-3h-3a.5.5 0 010-1h3v-3A.5.5 0 018 4z" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      height={size}
+      width={size}
+    >
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
     </svg>
   );
 }
