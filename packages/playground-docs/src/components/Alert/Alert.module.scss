@@ -1,9 +1,8 @@
 @use "../Mdx/Code/Code.module" as *;
 
 .alert {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
+  border-radius: t(border-radius-md);
+  padding: t(padding-lg);
   background: c(main-contrast, .2);
   border: 1px solid c(border);
   color: c(text-contrast);

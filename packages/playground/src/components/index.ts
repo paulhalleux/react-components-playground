@@ -29,5 +29,6 @@ export * from "./EditInline";
 export * from "./Card";
 export * from "./Flex";
 export * from "./Navigation";
+export * from "./Header";
 
 export * as Icons from "./Icons";

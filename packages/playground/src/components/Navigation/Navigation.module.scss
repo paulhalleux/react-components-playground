@@ -23,12 +23,12 @@
   gap: t(padding-sm);
 
   &:hover {
-    background-color: c(main-hover);
+    background-color: c(main-contrast, .2);
   }
 
   &:active,
   &--active {
     color: rgb(var(--color-text));
-    background-color: c(main-active);
+    background-color: c(main-contrast, .3);
   }
 }

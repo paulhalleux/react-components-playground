@@ -1,12 +1,11 @@
 import React, { PropsWithChildren } from "react";
-import { Anchor, InfoIcon } from "@paulhalleux/react-playground";
+import { Anchor, InfoIcon, Table } from "@paulhalleux/react-playground";
 
 import { Alert } from "../Alert";
 
 import { ApiType } from "./ApiType/ApiType";
 import { Code } from "./Code/Code";
 import { Paragraph } from "./Paragraph/Paragraph";
-import { Table } from "./Table/Table";
 import { Title } from "./Title/Title";
 import { UnorderedList } from "./UnorderedList/UnorderedList";
 import { Example } from "./Example";
@@ -22,7 +21,6 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   code: (props) => (
     <Code isBlock={props.className?.startsWith("language-")} {...props} />
   ),
-  table: Table,
   p: Paragraph,
   a: (props) => (
     <Anchor
@@ -40,4 +38,5 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
   Properties,
   ApiType,
   Title,
+  Table: (props) => <Table {...props} />,
 };

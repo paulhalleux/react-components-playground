@@ -22,8 +22,10 @@ export function MainPage() {
       <section>
         {Object.entries(groupComponents(ComponentDocumentations)).map(
           ([key, group]) => {
-            const filteredComponents = group.components.filter((component) =>
-              component.title.toLowerCase().includes(search.toLowerCase()),
+            const filteredComponents = group.components.filter(
+              (component) =>
+                component.title.toLowerCase().includes(search.toLowerCase()) &&
+                component.status !== "todo",
             );
 
             if (filteredComponents.length === 0) {

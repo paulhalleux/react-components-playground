@@ -1,0 +1,107 @@
+---
+type: component
+category: Layout
+title: Header
+icon: LayoutIcon
+description: Header component.
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Header/Header.tsx
+status: done
+---
+
+`Header` component is used to display a header. It can contain a logo, a navigation and more.
+
+## Examples
+
+<Example name="components/Layout/Header/Start" />
+<Example name="components/Layout/Header/End" />
+<Example name="components/Layout/Header/Centered" />
+<Example name="components/Layout/Header/Spaced" />
+<Example name="components/Layout/Header/2Column" />
+<Example name="components/Layout/Header/3Column" />
+
+## API
+
+### \{:component} Header
+
+#### Usage
+
+```tsx
+<Header>
+  {/* ... */}
+</Header>
+```
+
+#### Properties
+
+<Properties component="Header" />
+
+### \{:component} Header.Logo
+
+#### Usage
+
+```tsx
+<Header.Logo>
+  <img src="https://placehold.it/100x100" alt="Logo" />
+</Header.Logo>
+```
+
+#### Properties
+
+<Properties component="Header.Logo" />
+
+### \{:component} Header.Navigation
+
+A simple wrapper around the `Navigation` component. However, is does not allow to define the `size` of the navigation.
+
+#### Usage
+
+```tsx
+<Header.Navigation>
+  <Navigation.Item>Home</Navigation.Item>
+  <Navigation.Item>Products</Navigation.Item>
+  <Navigation.Item>Company</Navigation.Item>
+</Header.Navigation>
+```
+
+#### Properties
+
+<Properties component="Header.Navigation" />
+
+### \{:component} Header.Actions
+
+Will display the children with a `flex` layout and a gap between each element.
+
+#### Usage
+
+```tsx
+<Header.Actions>
+  <Button>Sign in</Button>
+  <Button variant="primary">Sign up</Button>
+</Header.Actions>
+```
+
+#### Properties
+
+<Properties component="Header.Actions" />
+
+### \{:type} HeaderLayout
+
+`HeaderLayout` is a type that can be used to define the layout of the header.
+
+```ts
+type HeaderLayout = "start" | "3-column" | "2-column" | "centered" | "end" | "spaced";
+```
+
+<br/>
+
+<Table columns={[
+  { label: "Layout", key: "layout" },
+  { label: "Description", key: "description" }
+]} data={[
+  { layout: "start", description: "Everything on the left" },
+  { layout: "3-column", description: "First element on the left, second element in the center, third element on the right (only works with 3 elements)" },
+  { layout: "2-column", description: "Everything on the left, except the last element on the right" },
+  { layout: "centered", description: "Everything in the center" },
+  { layout: "end", description: "Everything on the right" },
+  { layout: "spaced", description: "Elements are spaced evenly" }
+]} />
