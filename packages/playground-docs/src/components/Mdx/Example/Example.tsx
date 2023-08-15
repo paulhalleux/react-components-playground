@@ -10,6 +10,7 @@ import { Display } from "../Display";
 import { Title } from "../Title/Title";
 
 import { BooleanControl } from "./Controls/BooleanControl";
+import { NumberControl } from "./Controls/NumberControl";
 import { SelectControl } from "./Controls/SelectControl";
 import { StringControl } from "./Controls/StringControl";
 import { Control, ExampleRef } from "./index";
@@ -20,6 +21,7 @@ const ControlMap = {
   select: SelectControl,
   string: StringControl,
   boolean: BooleanControl,
+  number: NumberControl,
 };
 
 type ExampleProps = {
