@@ -22,11 +22,13 @@ type PropertiesProps = {
 };
 
 export function Properties({ component, omit, additional }: PropertiesProps) {
-  const Props = componentsProps[
-    component as keyof typeof componentsProps
-  ] as ComponentProp[];
+  const Props = component
+    ? (componentsProps[
+        component as keyof typeof componentsProps
+      ] as ComponentProp[])
+    : [];
 
-  if (!Props) {
+  if (!Props && !additional) {
     return (
       <Alert>
         Could not find properties for component <Code>{component}</Code>

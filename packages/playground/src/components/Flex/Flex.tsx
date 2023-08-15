@@ -7,12 +7,31 @@ import {
   PropsWithChildren,
 } from "react";
 
-import { ForwardedComponent } from "../../types";
+import { BaseProps, ForwardedComponent } from "../../types";
 
 import { FlexItemProps } from "./FlexItem";
 import { FlexItem } from "./index";
 
-export type FlexProps = PropsWithChildren<{
+export const flexProps = [
+  "flexDirection",
+  "flexWrap",
+  "flexGrow",
+  "flexShrink",
+  "flexBasis",
+  "order",
+  "alignSelf",
+  "justifySelf",
+  "justifyContent",
+  "alignItems",
+  "alignContent",
+  "gap",
+  "rowGap",
+  "columnGap",
+  "inline",
+  "grow",
+];
+
+export type FlexProps<TProps = object> = PropsWithChildren<{
   as?: ElementType;
   flexDirection?: CSSProperties["flexDirection"];
   flexWrap?: CSSProperties["flexWrap"];
@@ -24,13 +43,12 @@ export type FlexProps = PropsWithChildren<{
   columnGap?: number;
   inline?: boolean;
   grow?: boolean;
-  className?: string;
-  style?: CSSProperties;
-  "data-test-id"?: string;
-}>;
+}> &
+  BaseProps &
+  TProps;
 
-function Flex<T extends HTMLElement = HTMLDivElement>(
-  { children, ...props }: FlexProps,
+function Flex<T extends HTMLElement = HTMLDivElement, TProps = object>(
+  { children, ...props }: FlexProps<TProps>,
   ref: ForwardedRef<T>,
 ) {
   return (

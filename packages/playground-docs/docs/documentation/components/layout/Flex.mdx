@@ -2,6 +2,137 @@
 type: component
 category: Layout
 title: Flex
+icon: LayoutIcon
 description: A flex component used to layout content in a page.
-status: todo
+status: done
 ---
+
+`Flex` is a component used to layout content in a page. It is based on the [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) layout model.
+
+## Examples
+
+<Example name="components/Layout/Flex/Default" />
+
+## API
+
+### \{:component} Flex
+
+#### Usage
+
+```tsx
+<Flex>
+  <Flex.Item>Item 1</Flex.Item>
+  <Flex.Item>Item 2</Flex.Item>
+  <Flex.Item>Item 3</Flex.Item>
+</Flex>
+```
+
+#### Properties
+
+<Properties additional={[
+  {
+    name: "as",
+    type: "ElementType",
+    description: "The HTML element to use for the root node.",
+    default: "div"
+  },
+  {
+    name: "flexDirection",
+    type: "CSSProperties[\"flexDirection\"]",
+    description: "The direction of the flex container.",
+    default: "row"
+  },
+  {
+    name: "flexWrap",
+    type: "CSSProperties[\"flexWrap\"]",
+    description: "The wrapping behavior of the flex container.",
+    default: "nowrap"
+  },
+  {
+    name: "justifyContent",
+    type: "CSSProperties[\"justifyContent\"]",
+    description: "The content justification.",
+    default: "flex-start"
+  },
+  {
+    name: "alignItems",
+    type: "CSSProperties[\"alignItems\"]",
+    description: "The item alignment on the cross axis.",
+    default: "stretch"
+  },
+  {
+    name: "alignContent",
+    type: "CSSProperties[\"alignContent\"]",
+    description: "The content alignment on the cross axis.",
+    default: "stretch"
+  },
+  {
+    name: "gap",
+    type: "number",
+    description: "The gap between the flex items.",
+    default: "0"
+  },
+  {
+    name: "rowGap",
+    type: "number",
+    description: "The row-gap between the flex items.",
+    default: "0"
+  },
+  {
+    name: "columnGap",
+    type: "number",
+    description: "The column-gap between the flex items.",
+    default: "0"
+  },
+  {
+    name: "inline",
+    type: "boolean",
+    description: "If true, the flex container will be inline.",
+    default: "false"
+  },
+  {
+    name: "grow",
+    type: "boolean",
+    description: "If true, the flex container will grow to fill the available space.",
+    default: "false"
+  }
+]} />
+
+### \{:component} Flex.Item
+
+#### Properties
+
+All the properties of the `Flex` component are available. Plus the following:
+
+<Properties additional={[
+  {
+    name: "order",
+    type: "CSSProperties[\"order\"]",
+    description: "The order of the flex item.",
+    default: "0"
+  },
+  {
+    name: "flexGrow",
+    type: "CSSProperties[\"flexGrow\"]",
+    description: "The flex grow factor of the flex item.",
+    default: "0"
+  },
+  {
+    name: "flexShrink",
+    type: "CSSProperties[\"flexShrink\"]",
+    description: "The flex shrink factor of the flex item.",
+    default: "1"
+  },
+  {
+    name: "flexBasis",
+    type: "CSSProperties[\"flexBasis\"]",
+    description: "The flex basis of the flex item.",
+    default: "auto"
+  },
+  {
+    name: "alignSelf",
+    type: "CSSProperties[\"alignSelf\"]",
+    description: "The item alignment on the cross axis.",
+    default: "auto"
+  }
+]} />

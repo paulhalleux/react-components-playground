@@ -1,17 +1,20 @@
 import { CSSProperties, ForwardedRef, forwardRef } from "react";
+import omit from "lodash/omit";
+import pick from "lodash/pick";
 
-import { FlexProps } from "./Flex";
+import { FlexProps, flexProps } from "./Flex";
 
-export type FlexItemProps = {
+export type FlexItemProps<TProps = object> = {
   order?: CSSProperties["order"];
   flexGrow?: CSSProperties["flexGrow"];
   flexShrink?: CSSProperties["flexShrink"];
   flexBasis?: CSSProperties["flexBasis"];
   alignSelf?: CSSProperties["alignSelf"];
-} & FlexProps;
+} & FlexProps &
+  TProps;
 
-function FlexItem<T extends HTMLElement = HTMLDivElement>(
-  props: FlexItemProps,
+function FlexItem<T extends HTMLElement = HTMLDivElement, TProps = object>(
+  props: FlexItemProps<TProps>,
   ref: ForwardedRef<T>,
 ) {
   const {
@@ -21,15 +24,15 @@ function FlexItem<T extends HTMLElement = HTMLDivElement>(
     inline,
     grow = true,
     style: baseStyle,
-    "data-test-id": dataTestId,
+    dataTestId,
     ...rest
   } = props;
 
   const style: CSSProperties = {
     display: inline ? "inline-flex" : "flex",
     width: grow ? "100%" : undefined,
+    ...pick(rest, flexProps),
     ...baseStyle,
-    ...rest,
   };
 
   return (
@@ -38,6 +41,7 @@ function FlexItem<T extends HTMLElement = HTMLDivElement>(
       style={style}
       className={className}
       data-test-id={dataTestId}
+      {...omit(rest, flexProps)}
     >
       {children}
     </Component>
