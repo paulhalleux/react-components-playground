@@ -5,7 +5,7 @@ import styles from "./SelectControl.module.scss";
 type SelectControlProps = {
   id: string;
   control: NumberControlType;
-  onChange: (value: string) => void;
+  onChange: (value: number) => void;
 };
 
 export function NumberControl({ id, control, onChange }: SelectControlProps) {

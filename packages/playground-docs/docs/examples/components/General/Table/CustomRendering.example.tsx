@@ -31,7 +31,7 @@ function CustomRenderingExample() {
                 gap: 8,
               }}
             >
-              <ArrowRightIcon width={16} height={16} />
+              <ArrowRightIcon size={16} />
               {value}
             </span>
           ),
