@@ -1,7 +1,8 @@
 import { mkdir, writeFile } from "fs/promises";
 import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
-import { log, Messages } from "./messages";
+import { clearLog, logMessage } from "../../utils/logging";
+import { Messages } from "./messages";
 import { ComponentProp } from "./types";
 import { getComponents, getParsedComponents } from "./utils";
 
@@ -16,34 +17,48 @@ const handler = async (
   argv: ArgumentsCamelCase<GeneratePropsCommandOptions>,
 ): Promise<void> => {
   // Find all components
-  log(Messages.FindingComponents);
+  logMessage(Messages.FindingComponents, { prefix: Messages.Prefix });
   const componentList = await getComponents(
     argv.path,
     argv.pattern,
     argv.ignore,
   );
-  log(Messages.FoundComponents(componentList.length, argv.pattern));
+  logMessage(Messages.FoundComponents(componentList.length, argv.pattern), {
+    prefix: Messages.Prefix,
+  });
 
   const components = new Map<string, ComponentProp[]>();
 
   // Parsing components
-  log(Messages.ParsingComponents);
+  logMessage(Messages.ParsingComponents, { prefix: Messages.Prefix });
+  let index = 1;
   for (const component of componentList) {
     const parsed = await getParsedComponents(component, argv.path);
 
     if (!parsed || parsed.length === 0) {
-      log(Messages.ParsedComponentFailed(component));
+      logMessage(Messages.ParsedComponentFailed(component), {
+        prefix: Messages.Prefix,
+      });
       continue;
     }
 
     for (const component of parsed) {
       components.set(component.displayName, component.props);
-      log(Messages.ParsedComponent(component.displayName));
+      logMessage(
+        Messages.ParsedComponent(
+          component.displayName,
+          index,
+          componentList.length,
+        ),
+        { prefix: Messages.Prefix, replace: true },
+      );
     }
+    index++;
   }
+  clearLog();
 
   // Write props.json file
-  log(Messages.WritingPropsFile);
+  logMessage(Messages.WritingPropsFile, { prefix: Messages.Prefix });
   await mkdir(`${argv.output}`, { recursive: true });
   await writeFile(
     `${argv.output}/props.json`,
@@ -55,7 +70,7 @@ const handler = async (
     ),
     "utf8",
   );
-  log(Messages.Generated);
+  logMessage(Messages.Generated, { prefix: Messages.Prefix });
 };
 
 export const GeneratePropsCommand: BaseCommand<GeneratePropsCommandOptions> = {

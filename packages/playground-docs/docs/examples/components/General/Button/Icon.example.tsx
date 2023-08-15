@@ -2,7 +2,7 @@ import {
   Button,
   ButtonSize,
   ButtonVariant,
-  ClickIcon,
+  MousePointerIcon,
 } from "@paulhalleux/react-playground";
 
 import {
@@ -20,7 +20,7 @@ type ButtonExampleControls = {
 function IconExample({
   controls,
 }: ExampleComponentProps<ButtonExampleControls>) {
-  return <Button.Icon icon={ClickIcon} {...controls} />;
+  return <Button.Icon icon={MousePointerIcon} {...controls} />;
 }
 
 export const metadata: ExampleMetadata = {

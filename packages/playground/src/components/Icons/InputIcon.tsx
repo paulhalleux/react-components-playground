@@ -1,12 +1,26 @@
 import { IconProps } from "./types";
 
-export function InputIcon({ height = 20, width = 20 }: IconProps) {
+export function InputIcon({ size = 20, color = "currentColor" }: IconProps) {
   return (
-    <svg fill="currentColor" viewBox="0 0 16 16" height={height} width={width}>
-      <path d="M10 5h4a1 1 0 011 1v4a1 1 0 01-1 1h-4v1h4a2 2 0 002-2V6a2 2 0 00-2-2h-4v1zM6 5V4H2a2 2 0 00-2 2v4a2 2 0 002 2h4v-1H2a1 1 0 01-1-1V6a1 1 0 011-1h4z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      width={size}
+    >
       <path
-        fillRule="evenodd"
-        d="M8 1a.5.5 0 01.5.5v13a.5.5 0 01-1 0v-13A.5.5 0 018 1z"
+        d="M19 7H5C3.89543 7 3 8.11929 3 9.5V14.5C3 15.8807 3.89543 17 5 17H19C20.1046 17 21 15.8807 21 14.5V9.5C21 8.11929 20.1046 7 19 7Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8.07153 10.36L7 13.7313"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
       />
     </svg>
   );

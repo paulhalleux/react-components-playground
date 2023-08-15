@@ -1,7 +1,7 @@
 import chalk from "chalk";
 
 export const Messages = {
-  Prefix: chalk.gray("[generate-docs]"),
+  Prefix: chalk.gray("[generate-docs] "),
   FindingDocs: chalk.yellow("Finding documentation files..."),
   FoundDocs: (count: number) =>
     chalk.green(
@@ -25,7 +25,3 @@ export const Messages = {
       )}`,
     ),
 };
-
-export function log(message: string): void {
-  console.log(`${Messages.Prefix} ${message}`);
-}

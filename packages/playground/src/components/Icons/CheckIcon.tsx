@@ -1,9 +1,19 @@
 import { IconProps } from "./types";
 
-export function CheckIcon({ height = 20, width = 20 }: IconProps) {
+export function CheckIcon({ size = 20, color = "currentColor" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" height={height} width={width}>
-      <path d="M10 15.586l-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      height={size}
+      width={size}
+    >
+      <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
   );
 }

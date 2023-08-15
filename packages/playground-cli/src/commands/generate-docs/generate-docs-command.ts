@@ -3,7 +3,8 @@ import { mkdir, writeFile } from "fs/promises";
 import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
-import { log, Messages } from "./messages";
+import { clearLog, logMessage } from "../../utils/logging";
+import { Messages } from "./messages";
 import { DocumentationData } from "./types";
 import {
   getDocumentationFiles,
@@ -23,15 +24,17 @@ const handler = async (
   argv: ArgumentsCamelCase<GenerateDocsCommandOptions>,
 ): Promise<void> => {
   // Find all documentation files
-  log(Messages.FindingDocs);
+  logMessage(Messages.FindingDocs, { prefix: Messages.Prefix });
   const documentationFiles = await getDocumentationFiles(argv.documentation);
-  log(Messages.FoundDocs(documentationFiles.length));
+  logMessage(Messages.FoundDocs(documentationFiles.length), {
+    prefix: Messages.Prefix,
+  });
 
   // Map of documentation data
   const documentations = new Map<string, DocumentationData>();
 
   // Process each documentation file
-  log(Messages.ProcessingDocs);
+  logMessage(Messages.ProcessingDocs, { prefix: Messages.Prefix });
   for (const file of documentationFiles) {
     try {
       const documentationData = await processDocumentationFile(
@@ -40,15 +43,21 @@ const handler = async (
       );
 
       documentations.set(documentationData.id, documentationData);
-      log(Messages.ProcessedDocFile(documentationData.meta.title));
+      logMessage(Messages.ProcessedDocFile(documentationData.meta.title), {
+        prefix: Messages.Prefix,
+        replace: true,
+      });
     } catch (error) {
-      log(Messages.ProcessingError(file, error as Error));
+      logMessage(Messages.ProcessingError(file, error as Error), {
+        prefix: Messages.Prefix,
+      });
     }
   }
-  log(Messages.ProcessedDocs);
+  clearLog();
+  logMessage(Messages.ProcessedDocs, { prefix: Messages.Prefix });
 
   // Write documentation files
-  log(Messages.WritingMdxFiles);
+  logMessage(Messages.WritingMdxFiles, { prefix: Messages.Prefix });
   await rimraf(`${argv.output}/documentation`);
   await mkdir(`${argv.output}/documentation`, { recursive: true });
   for (const documentationData of documentations.values()) {
@@ -67,7 +76,7 @@ const handler = async (
   }
 
   // Generate examples.ts file
-  log(Messages.WritingExamplesFile);
+  logMessage(Messages.WritingExamplesFile, { prefix: Messages.Prefix });
 
   await rimraf(`${argv.output}/examples`);
   await mkdir(`${argv.output}/examples`, { recursive: true });
@@ -77,16 +86,16 @@ const handler = async (
   await writeFile(`${argv.output}/examples.ts`, examplesFile);
 
   // Generate index.ts file
-  log(Messages.WritingIndexFile);
+  logMessage(Messages.WritingIndexFile, { prefix: Messages.Prefix });
   const indexFile = getIndexFile(documentations);
   await writeFile(`${argv.output}/index.ts`, indexFile);
 
   // Generate registry.ts file
-  log(Messages.WritingRegistryFile);
+  logMessage(Messages.WritingRegistryFile, { prefix: Messages.Prefix });
   const registryFile = getRegistryFile(documentations);
   await writeFile(`${argv.output}/registry.ts`, registryFile);
 
-  log(Messages.Generated);
+  logMessage(Messages.Generated, { prefix: Messages.Prefix });
 };
 
 export const GenerateDocsCommand: BaseCommand<GenerateDocsCommandOptions> = {

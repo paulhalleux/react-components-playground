@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Badge, Breadcrumb, GithubIcon } from "@paulhalleux/react-playground";
+import {
+  Badge,
+  Breadcrumb,
+  GithubFillIcon,
+} from "@paulhalleux/react-playground";
 import { AnimatePresence, motion } from "framer-motion";
 import kebabCase from "lodash/kebabCase";
 
@@ -102,7 +106,7 @@ export function Documentation({
             </h1>
             {page.sourceUrl && (
               <Badge onClick={() => window.open(page.sourceUrl, "_blank")}>
-                <GithubIcon width={14} height={14} />
+                <GithubFillIcon size={14} />
                 View source
               </Badge>
             )}

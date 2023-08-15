@@ -1,10 +1,21 @@
 import { IconProps } from "./types";
 
-export function InfoIcon({ height = 20, width = 20 }: IconProps) {
+export function InfoIcon({ size = 20, color = "currentColor" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" height={height} width={width}>
-      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
-      <path d="M11 11h2v6h-2zm0-4h2v2h-2z" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      height={size}
+      width={size}
+    >
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
     </svg>
   );
 }

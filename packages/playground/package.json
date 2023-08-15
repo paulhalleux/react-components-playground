@@ -7,6 +7,7 @@
     "build:dev": "rimraf dist && tsc && vite build --mode development",
     "build:prod": "rimraf dist && tsc && vite build --mode production",
     "build:watch": "concurrently \"tsc -w\" \"vite build --watch\" --kill-others --success first",
+    "generate:icons": "playground generate-icons \"./src/icons\" \"./src/components/Icons\"",
     "preview": "vite preview",
     "dev": "vite"
   },

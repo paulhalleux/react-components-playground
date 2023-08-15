@@ -129,9 +129,9 @@ export function Tabs({
             onClick={() => onScrollClick("left")}
           >
             {orientation === "horizontal" ? (
-              <ArrowUpIcon width={16} height={16} />
+              <ArrowUpIcon size={16} />
             ) : (
-              <ArrowLeftIcon width={16} height={16} />
+              <ArrowLeftIcon size={16} />
             )}
           </div>
         )}
@@ -180,9 +180,9 @@ export function Tabs({
             onClick={() => onScrollClick("right")}
           >
             {orientation === "horizontal" ? (
-              <ArrowDownIcon width={16} height={16} />
+              <ArrowDownIcon size={16} />
             ) : (
-              <ArrowRightIcon width={16} height={16} />
+              <ArrowRightIcon size={16} />
             )}
           </div>
         )}
@@ -197,7 +197,7 @@ export function Tabs({
                 styles.tabs__tab__button_add,
               )}
             >
-              <PlusIcon width={15} height={15} />
+              <PlusIcon size={15} />
               {orientation === "horizontal" && addButtonLabel}
             </button>
           </>
