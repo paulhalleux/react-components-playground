@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button } from "./components";
+import { Button, Navigation } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -44,7 +44,13 @@ root.render(
         backgroundColor: "rgb(var(--color-main))",
       }}
     >
-      <div style={Container}></div>
+      <div style={Container}>
+        <Navigation size="small">
+          <Navigation.Link href="/">Home</Navigation.Link>
+          <Navigation.Link href="/docs">Docs</Navigation.Link>
+          <Navigation.Link href="/playground">Playground</Navigation.Link>
+        </Navigation>
+      </div>
     </div>
   </ThemeProvider>,
 );

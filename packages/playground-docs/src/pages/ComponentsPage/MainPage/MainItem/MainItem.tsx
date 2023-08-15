@@ -18,8 +18,6 @@ export function MainItem({ component }: MainItemProps) {
     ? Icons[component.icon as keyof typeof Icons]
     : undefined;
 
-  console.log(Icons);
-
   return (
     <Link
       className={styles.main__grid_item}

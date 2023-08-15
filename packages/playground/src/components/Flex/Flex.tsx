@@ -9,8 +9,7 @@ import {
 
 import { BaseProps, ForwardedComponent } from "../../types";
 
-import { FlexItemProps } from "./FlexItem";
-import { FlexItem } from "./index";
+import { FlexItem, FlexItemProps } from "./FlexItem";
 
 export const flexProps = [
   "flexDirection",

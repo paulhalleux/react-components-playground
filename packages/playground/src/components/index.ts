@@ -28,5 +28,6 @@ export * from "./PopConfirm";
 export * from "./EditInline";
 export * from "./Card";
 export * from "./Flex";
+export * from "./Navigation";
 
 export * as Icons from "./Icons";

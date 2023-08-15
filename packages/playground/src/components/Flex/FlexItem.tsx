@@ -1,4 +1,4 @@
-import { CSSProperties, ForwardedRef, forwardRef } from "react";
+import { CSSProperties } from "react";
 import omit from "lodash/omit";
 import pick from "lodash/pick";
 
@@ -13,10 +13,7 @@ export type FlexItemProps<TProps = object> = {
 } & FlexProps &
   TProps;
 
-function FlexItem<T extends HTMLElement = HTMLDivElement, TProps = object>(
-  props: FlexItemProps<TProps>,
-  ref: ForwardedRef<T>,
-) {
+export function FlexItem<TProps = object>(props: FlexItemProps<TProps>) {
   const {
     as: Component = "div",
     children,
@@ -37,7 +34,6 @@ function FlexItem<T extends HTMLElement = HTMLDivElement, TProps = object>(
 
   return (
     <Component
-      ref={ref}
       style={style}
       className={className}
       data-test-id={dataTestId}
@@ -47,6 +43,3 @@ function FlexItem<T extends HTMLElement = HTMLDivElement, TProps = object>(
     </Component>
   );
 }
-
-const ForwardFlexItem = forwardRef(FlexItem);
-export { ForwardFlexItem as FlexItem };

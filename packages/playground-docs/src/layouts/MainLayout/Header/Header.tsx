@@ -1,7 +1,7 @@
 import { Container } from "../../../components";
 
 import { HeaderActions } from "./HeaderActions";
-import { Navigation } from "./Navigation";
+import { HeaderNavigation } from "./HeaderNavigation";
 
 import styles from "./Header.module.scss";
 
@@ -13,7 +13,7 @@ export function Header() {
       wrapperClassName={styles.header__container}
       className={styles.header}
     >
-      <Navigation />
+      <HeaderNavigation />
       <HeaderActions />
     </Container>
   );
