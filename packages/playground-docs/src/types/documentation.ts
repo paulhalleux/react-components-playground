@@ -1,16 +1,3 @@
-export enum DocumentationType {
-  Component = "component",
-  Hook = "hook",
-  Utility = "utility",
-}
-
-export type DocumentationPage<TMeta = BaseMeta> = {
-  id: string;
-  title: string;
-  type: DocumentationType;
-  path?: string;
-} & TMeta;
-
 export type BaseMeta = {
   sourceUrl: string;
   description: string;

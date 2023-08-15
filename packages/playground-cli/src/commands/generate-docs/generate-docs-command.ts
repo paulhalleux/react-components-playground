@@ -1,13 +1,16 @@
 import { copy } from "fs-extra";
 import { mkdir, writeFile } from "fs/promises";
+import * as path from "path";
 import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
+import { writeTemplate } from "../../utils/liquid";
 import { clearLog, logMessage } from "../../utils/logging";
 import { Messages } from "./messages";
 import { DocumentationData } from "./types";
 import {
   getDocumentationFiles,
+  getDocumentationTypesList,
   getExamplesFile,
   getIndexFile,
   getRegistryFile,
@@ -18,6 +21,10 @@ type GenerateDocsCommandOptions = {
   documentation: string;
   examples: string;
   output: string;
+};
+
+const templates = {
+  types: require("raw-loader!./templates/types.liquid").default,
 };
 
 const handler = async (
@@ -84,6 +91,19 @@ const handler = async (
 
   const examplesFile = await getExamplesFile(argv.examples);
   await writeFile(`${argv.output}/examples.ts`, examplesFile);
+
+  // Generate additional files
+  logMessage(Messages.WritingAdditionalFiles, { prefix: Messages.Prefix });
+  await writeTemplate(
+    templates.types,
+    {
+      types: getDocumentationTypesList(documentations),
+    },
+    {
+      output: path.join(argv.output, "types.ts"),
+      prettier: true,
+    },
+  );
 
   // Generate index.ts file
   logMessage(Messages.WritingIndexFile, { prefix: Messages.Prefix });

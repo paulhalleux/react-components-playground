@@ -1,0 +1,12 @@
+export enum DocumentationType {
+  {%- for type in types -%}
+  {{ type | capitalize }} = '{{ type }}',
+  {%- endfor -%}
+}
+
+export type DocumentationPage<TMeta = object> = {
+  id: string;
+  title: string;
+  type: DocumentationType;
+  path?: string;
+} & TMeta;

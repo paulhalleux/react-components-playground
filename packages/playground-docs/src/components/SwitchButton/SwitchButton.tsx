@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeftIcon, ArrowRightIcon } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
-import { DocumentationPage } from "../../types/documentation";
+import { DocumentationPage } from "@/generated";
 
 import styles from "./SwitchButton.module.scss";
 

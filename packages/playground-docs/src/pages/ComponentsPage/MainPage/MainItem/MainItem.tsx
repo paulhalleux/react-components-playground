@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { Icons } from "@paulhalleux/react-playground";
 
+import { DocumentationPage } from "@/generated";
+
 import { Routes } from "../../../../constants/routes";
-import {
-  ComponentMeta,
-  DocumentationPage,
-} from "../../../../types/documentation";
+import { ComponentMeta } from "../../../../types/documentation";
 
 import styles from "../MainPage.module.scss";
 

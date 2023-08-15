@@ -1,15 +1,13 @@
 import * as fs from "fs/promises";
 import { glob } from "glob";
-import { Liquid } from "liquidjs";
 import * as path from "path";
-import prettier from "prettier";
 import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
 import { BaseCommand } from "../../types";
+import { writeTemplate } from "../../utils/liquid";
 import { clearLog, logMessage } from "../../utils/logging";
 import { Messages } from "./messages";
 import {
-  cleanEndOfLine,
   getIconContent,
   getIconName,
   getSvgContent,
@@ -26,8 +24,6 @@ type GeneratePropsCommandOptions = {
   output: string;
   defaultIconSize: number;
 };
-
-const Engine = new Liquid();
 
 const handler = async (
   argv: ArgumentsCamelCase<GeneratePropsCommandOptions>,
@@ -59,20 +55,17 @@ const handler = async (
       const props = getSvgProps(svg);
       const content = getSvgContent(svg);
 
-      const component = await Engine.parseAndRender(templates.icon, {
-        iconName,
-        defaultIconSize: argv.defaultIconSize,
-        props: props.join(" ").replace('"currentColor"', "{color}"),
-        iconContent: content.replace('"currentColor"', "{color}"),
-      });
-
-      await fs.writeFile(
-        path.join(argv.output, `${iconName}.tsx`),
-        cleanEndOfLine(
-          await prettier.format(component, { parser: "typescript" }),
-        ),
+      await writeTemplate(
+        templates.icon,
         {
-          encoding: "utf-8",
+          iconName,
+          defaultIconSize: argv.defaultIconSize,
+          props: props.join(" ").replace('"currentColor"', "{color}"),
+          iconContent: content.replace('"currentColor"', "{color}"),
+        },
+        {
+          output: path.join(argv.output, `${iconName}.tsx`),
+          prettier: true,
         },
       );
 
@@ -96,12 +89,12 @@ const handler = async (
 
   // Write additional files
   logMessage(Messages.WriteAdditionalFiles, { prefix: Messages.Prefix });
-  const typesFile = await Engine.parseAndRender(templates.types);
-  await fs.writeFile(
-    path.join(argv.output, "types.ts"),
-    cleanEndOfLine(typesFile),
+  await writeTemplate(
+    templates.types,
+    {},
     {
-      encoding: "utf-8",
+      output: path.join(argv.output, "types.ts"),
+      prettier: true,
     },
   );
 

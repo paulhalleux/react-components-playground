@@ -8,9 +8,9 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import kebabCase from "lodash/kebabCase";
 
-import { Components } from "@/generated";
+import { Components, DocumentationPage } from "@/generated";
 
-import { DocumentationPage } from "../../types/documentation";
+import { BaseMeta } from "../../types/documentation";
 import { ContentTable, ContentTableItem } from "../ContentTable";
 import { Markdown } from "../Markdown";
 import { ApiType } from "../Mdx/ApiType/ApiType";
@@ -21,10 +21,10 @@ import styles from "./Documentation.module.scss";
 
 type DocumentationProps = {
   type: string;
-  page?: DocumentationPage;
-  previousPage?: DocumentationPage;
-  nextPage?: DocumentationPage;
-  getRoute: (page: DocumentationPage) => string;
+  page?: DocumentationPage<BaseMeta>;
+  previousPage?: DocumentationPage<BaseMeta>;
+  nextPage?: DocumentationPage<BaseMeta>;
+  getRoute: (page: DocumentationPage<BaseMeta>) => string;
 };
 
 export function Documentation({

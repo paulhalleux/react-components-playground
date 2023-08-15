@@ -1,12 +1,7 @@
+import { DocumentationPage, DocumentationType } from "@/generated";
 import { Registry } from "@/generated/registry";
 
-import {
-  ComponentMeta,
-  DocumentationPage,
-  DocumentationType,
-  HookMeta,
-  UtilityMeta,
-} from "../types/documentation";
+import { ComponentMeta, HookMeta, UtilityMeta } from "../types/documentation";
 
 export const ComponentDocumentations = getDocumentationsOfType<ComponentMeta>(
   DocumentationType.Component,

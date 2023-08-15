@@ -132,8 +132,9 @@ export function getIndexFile(
     Array.from(documentations.entries())
       .map(([_, componentData]) => `  ${componentData.id},`)
       .join("\n"),
-    `}`,
-    `\nexport * from "./examples";`,
+    `}\n`,
+    `export * from "./examples";\n`,
+    `export * from "./types";`,
   );
 
   return indexParts.join("\n");
@@ -188,7 +189,7 @@ export function getRegistryFile(
   documentations: Map<string, DocumentationData>,
 ) {
   return [
-    "import { DocumentationPage } from '../src/types/documentation';",
+    "import { DocumentationPage } from './types';",
     `export const Registry: Record<string, DocumentationPage<any>> = {`,
     ...Array.from(documentations.entries()).map(
       ([, componentData]) =>
@@ -199,4 +200,17 @@ export function getRegistryFile(
     ),
     `}`,
   ].join("\n");
+}
+
+/**
+ * Get the list of documentation types
+ * @param documentations List of documentations
+ * @returns List of documentation types
+ */
+export function getDocumentationTypesList(
+  documentations: Map<string, DocumentationData>,
+) {
+  return Array.from(documentations.values())
+    .map((componentData) => componentData.meta.type)
+    .filter((type, index, self) => self.indexOf(type) === index);
 }

@@ -1,6 +1,8 @@
 import kebabCase from "lodash/kebabCase";
 
-import { ComponentMeta, DocumentationPage } from "../types/documentation";
+import { DocumentationPage } from "@/generated";
+
+import { ComponentMeta } from "../types/documentation";
 
 const GroupOrder = [
   "Resources",

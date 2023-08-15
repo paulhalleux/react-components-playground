@@ -1,4 +1,5 @@
-import { DocumentationPage } from "../types/documentation";
+import { DocumentationPage } from "@/generated";
+
 import { getDocumentationPath } from "../utils/path";
 
 export const Routes = {

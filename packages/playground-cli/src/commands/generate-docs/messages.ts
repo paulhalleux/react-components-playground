@@ -24,4 +24,5 @@ export const Messages = {
         error.message,
       )}`,
     ),
+  WritingAdditionalFiles: chalk.yellow("Writing additional files..."),
 };
