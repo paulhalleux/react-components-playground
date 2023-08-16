@@ -3,6 +3,10 @@ name: Deploy documentation
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  TOKEN: '${{ secrets.TOKEN }}'
 
 jobs:
   build:

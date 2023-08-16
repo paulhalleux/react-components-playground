@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@mdx-js/mdx": "^2.3.0",
-    "@paulhalleux/cli": "^1.0.2",
+    "@paulhalleux/cli": "^1.0.0",
     "chalk": "^4.1.2",
     "glob": "^10.3.3",
     "liquidjs": "^10.8.4",

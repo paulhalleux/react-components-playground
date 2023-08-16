@@ -1585,10 +1585,10 @@
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
 
-"@paulhalleux/cli@^1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@paulhalleux/cli/1.0.2/761344fa238e08f44ea4236b1433d0c5d9f6efc5#761344fa238e08f44ea4236b1433d0c5d9f6efc5"
-  integrity sha512-z/gZJTfYZxXt60Sjk7srNbxkhuvbeioXwo37Q2QuWMUIJtyN1orGH7I0jw7PXMT9/QiqcAxdMrVNJHLohb1uxA==
+"@paulhalleux/cli@^1.0.0":
+  version "1.0.0"
+  resolved "https://npm.pkg.github.com/download/@paulhalleux/cli/1.0.0/100ea88d99e60d905ec41280ce588ecc41b4c3af#100ea88d99e60d905ec41280ce588ecc41b4c3af"
+  integrity sha512-YPFlcijlyyfG+xdbMX78+jPTm7R5dNd0yZMVPOJiMh0IH8SiwXxFjcNdYkmYk2x0oYiRAUJC7rEErOA0oKbiaw==
   dependencies:
     liquidjs "^10.8.4"
     prettier "^3.0.2"
