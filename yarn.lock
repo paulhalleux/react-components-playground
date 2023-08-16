@@ -1585,6 +1585,15 @@
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
 
+"@paulhalleux/cli@^1.0.2":
+  version "1.0.2"
+  resolved "https://npm.pkg.github.com/download/@paulhalleux/cli/1.0.2/761344fa238e08f44ea4236b1433d0c5d9f6efc5#761344fa238e08f44ea4236b1433d0c5d9f6efc5"
+  integrity sha512-z/gZJTfYZxXt60Sjk7srNbxkhuvbeioXwo37Q2QuWMUIJtyN1orGH7I0jw7PXMT9/QiqcAxdMrVNJHLohb1uxA==
+  dependencies:
+    liquidjs "^10.8.4"
+    prettier "^3.0.2"
+    yargs "^17.7.1"
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
@@ -7051,6 +7060,11 @@ prettier@^3.0.1:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.1.tgz#65271fc9320ce4913c57747a70ce635b30beaa40"
   integrity sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==
 
+prettier@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.2.tgz#78fcecd6d870551aa5547437cdae39d4701dca5b"
+  integrity sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==
+
 pretty-format@^29.6.1:
   version "29.6.1"
   resolved "https://registry.npmjs.org/pretty-format/-/pretty-format-29.6.1.tgz"
@@ -9023,7 +9037,7 @@ yargs@16.2.0, yargs@^16.2.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yargs@^17.6.2, yargs@^17.7.2:
+yargs@^17.6.2, yargs@^17.7.1, yargs@^17.7.2:
   version "17.7.2"
   resolved "https://registry.npmjs.org/yargs/-/yargs-17.7.2.tgz"
   integrity sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==

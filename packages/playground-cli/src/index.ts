@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+import { YargsCommandManager } from "@paulhalleux/cli";
 import {
   GenerateDocsCommand,
   GenerateIconsCommand,
   GeneratePropsCommand,
-  YargsCommandManager,
 } from "./commands";
 
 (async () => {

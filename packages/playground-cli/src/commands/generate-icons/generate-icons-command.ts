@@ -1,11 +1,14 @@
+import {
+  BaseCommand,
+  clearLog,
+  logMessage,
+  writeTemplate,
+} from "@paulhalleux/cli";
 import * as fs from "fs/promises";
 import { glob } from "glob";
 import * as path from "path";
 import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
-import { BaseCommand } from "../../types";
-import { writeTemplate } from "../../utils/liquid";
-import { clearLog, logMessage } from "../../utils/logging";
 import { Messages } from "./messages";
 import {
   getIconContent,

@@ -1,11 +1,14 @@
+import {
+  BaseCommand,
+  clearLog,
+  logMessage,
+  writeTemplate,
+} from "@paulhalleux/cli";
 import { copy } from "fs-extra";
 import { mkdir, writeFile } from "fs/promises";
 import * as path from "path";
 import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
-import { BaseCommand } from "../../types";
-import { writeTemplate } from "../../utils/liquid";
-import { clearLog, logMessage } from "../../utils/logging";
 import { Messages } from "./messages";
 import { DocumentationData } from "./types";
 import {

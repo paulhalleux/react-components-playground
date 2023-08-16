@@ -1,7 +1,6 @@
+import { BaseCommand, clearLog, logMessage } from "@paulhalleux/cli";
 import { mkdir, writeFile } from "fs/promises";
 import { ArgumentsCamelCase } from "yargs";
-import { BaseCommand } from "../../types";
-import { clearLog, logMessage } from "../../utils/logging";
 import { Messages } from "./messages";
 import { ComponentProp } from "./types";
 import { getComponents, getParsedComponents } from "./utils";
