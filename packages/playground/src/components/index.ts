@@ -31,5 +31,6 @@ export * from "./Flex";
 export * from "./Navigation";
 export * from "./Header";
 export * from "./Switch";
+export * from "./Textarea";
 
 export * as Icons from "./Icons";

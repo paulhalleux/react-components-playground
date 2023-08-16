@@ -7,7 +7,8 @@ $states: (
   warning: ( border-color: c(warning), border-color-hover: c(warning, .8), border-color-focus: c(warning) ),
 );
 
-.input {
+.textarea {
+  padding: calc(#{t(padding-md)} * 0.75) t(padding-md);
   @include input();
 
   @each $state, $props in $states {

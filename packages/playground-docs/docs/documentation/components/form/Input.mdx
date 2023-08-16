@@ -21,7 +21,6 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 ```tsx
 <Input
-  label="Label"
   placeholder="Placeholder"
   size="medium"
   state="default"
@@ -32,7 +31,12 @@ sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/pl
 
 #### Properties
 
-<Properties component="Input" />
+Properties are the same as the native `textarea` element, with the following exceptions:
+
+- `size` is of type `InputSize` and represents the size of the input field.
+- `state` is of type `InputState` and represents the state of the input field.
+- `value` is of type `string` and represents the value of the input field.
+- `onChange` is of type `(value: string) => void` and represents the callback when the value of the input field changes.
 
 ### \{:type} InputSize
 

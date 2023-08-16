@@ -1,39 +1,31 @@
 import * as React from "react";
-import { Input, InputSize, InputState } from "@paulhalleux/react-playground";
+import { InputState, Textarea } from "@paulhalleux/react-playground";
 
 import {
   ExampleComponentProps,
   ExampleMetadata,
 } from "../../../../src/components/Mdx/Example";
 
-type InputExampleControls = {
-  size: InputSize;
+type TextareaExampleControls = {
   state: InputState;
   disabled: boolean;
 };
 
-function InputExample({
+function TextareaExample({
   controls,
-}: ExampleComponentProps<InputExampleControls>) {
+}: ExampleComponentProps<TextareaExampleControls>) {
   const [value, setValue] = React.useState("value");
-  return <Input {...controls} value={value} onChange={setValue} />;
+  return <Textarea {...controls} value={value} onChange={setValue} />;
 }
 
 export const metadata: ExampleMetadata = {
-  name: "Input",
-  component: InputExample,
+  name: "Textarea",
+  component: TextareaExample,
   display: {
     padding: true,
     align: "center",
   },
   controls: [
-    {
-      type: "select",
-      property: "size",
-      label: "Size",
-      value: "medium",
-      options: ["small", "medium", "large"],
-    },
     {
       type: "select",
       property: "state",

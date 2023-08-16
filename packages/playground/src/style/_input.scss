@@ -33,6 +33,7 @@ $sizes: (
   }
 
   &:focus {
+    outline: 2px solid c(border-primary, .2);
     border-color: c(border-primary);
   }
 

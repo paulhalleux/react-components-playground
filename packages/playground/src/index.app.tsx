@@ -1,7 +1,8 @@
 import { CSSProperties, useState } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Switch } from "./components";
+import { Textarea } from "./components/Textarea/Textarea";
+import { Button } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -19,13 +20,11 @@ const Container: CSSProperties = {
 const App = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <Switch
-      size="medium"
+    <Textarea
       id="test"
       name="test"
-      label="Switch"
-      checked={checked}
-      onChange={setChecked}
+      value="test"
+      onChange={() => setChecked(!checked)}
     />
   );
 };

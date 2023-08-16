@@ -3,5 +3,38 @@ type: component
 title: Textarea
 category: Form
 description: A textarea component.
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Textarea/Textarea.tsx
+icon: TypeIcon
+status: done
 ---
+
+`Textarea` is a component that renders a textarea element. It is a wrapper around the native textarea element, with some additional styling and functionality.
+
+## Example
+
+<Example name="components/Form/Textarea" />
+
+## API
+
+### \{:component} Textarea
+
+#### Usage
+
+```tsx
+<Textarea
+  value={value}
+  onChange={onChange}
+  placeholder="Placeholder"
+  disabled={false}
+  name="textarea"
+  id="textarea"
+/>
+```
+
+#### Properties
+
+Properties are the same as the native `textarea` element, with the following exceptions:
+
+- `value` is of type `string` instead of using the children prop.
+- `onChange` is of type `(value: string) => void` instead of using the event object.
+- `status` is of type `InputStatus` and can be used to display an error or success state.
