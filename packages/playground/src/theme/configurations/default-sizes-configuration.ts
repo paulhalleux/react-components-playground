@@ -18,6 +18,12 @@ export const DefaultSizesConfiguration: ThemeConfiguration["sizes"] = {
     xl: 12,
   },
   fontSize: {
+    h1: 48,
+    h2: 36,
+    h3: 28,
+    h4: 24,
+    h5: 20,
+    h6: 16,
     xs: 10,
     sm: 12,
     md: 14,

@@ -7,7 +7,7 @@ import styles from "./Badge.module.scss";
 
 export type BadgeShape = "default" | "pill";
 export type BadgeSize = "small" | "large";
-export type BadgeState =
+export type BadgeVariant =
   | "default"
   | "secondary"
   | "info"
@@ -22,9 +22,9 @@ export type BadgeProps = PropsWithChildren<{
    */
   size?: BadgeSize;
   /**
-   * The state of the badge.
+   * The variant of the badge.
    */
-  state?: BadgeState;
+  variant?: BadgeVariant;
   /**
    * The shape of the badge.
    */
@@ -39,8 +39,8 @@ export type BadgeProps = PropsWithChildren<{
 export function Badge({
   children,
   size = "large",
-  state = "default",
   shape = "default",
+  variant = "default",
   onClick,
   className,
   ...rest
@@ -52,7 +52,7 @@ export function Badge({
       className={clsx(
         styles.badge,
         styles[`badge--size-${size}`],
-        styles[`badge--state-${state}`],
+        styles[`badge--variant-${variant}`],
         styles[`badge--shape-${shape}`],
         {
           [styles["badge--clickable"]]: onClick,

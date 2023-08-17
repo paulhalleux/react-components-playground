@@ -3,5 +3,61 @@ type: component
 title: Text
 category: Components
 description: A text component.
-status: todo
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Text/Text.tsx
+icon: TypeIcon
 ---
+
+`Text` is a component that displays text. It can be used to display headings or paragraphs.
+
+## Examples
+
+<Example name="components/General/Text" />
+
+## API
+
+### \{:component} Text
+
+#### Usage
+
+```tsx
+<Text type="h1" variant="primary">Hello World</Text>
+```
+
+#### Properties
+
+<Properties component="Text" />
+
+### \{:type} TextType
+
+The type of text to display.
+
+```ts
+type TextType =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "text-xs"
+  | "text-sm"
+  | "text-md"
+  | "text-lg"
+  | "text-xl";
+```
+
+### \{:type} TextVariant
+
+The variant of text to display.
+
+```ts
+type TextVariant =
+  | "default"
+  | "secondary"
+  | "info"
+  | "primary"
+  | "success"
+  | "warning"
+  | "danger";
+```

@@ -1,10 +1,4 @@
-$states: (
-  success: 'success',
-  danger: 'danger',
-  warning: 'warning',
-  primary: 'primary',
-  info: 'info',
-);
+$colors: ("success", "warning", "danger", "primary", "info");
 
 .card {
   height: 100%;
@@ -34,12 +28,12 @@ $states: (
     background-color: c(main-hover);
   }
 
-  @each $color, $value in $states {
+  @each $color in $colors {
     &--#{$color} {
-      --border-color: #{c(#{$value}, .35)};
-      --background-color: #{c(#{$value}, .05)};
-      border-color: c(#{$value}, .35);
-      background-color: c(#{$value}, .08);
+      --border-color: #{c(#{$color}, .35)};
+      --background-color: #{c(#{$color}, .05)};
+      border-color: c(#{$color}, .35);
+      background-color: c(#{$color}, .08);
     }
   }
 }

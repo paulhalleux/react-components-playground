@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Badge, BadgeSize, Button, Flex } from "./components";
+import { Button, Flex, Text } from "./components";
 import { ThemeContext, ThemeProvider } from "./theme";
 
 import "./index.app.scss";
@@ -16,63 +16,20 @@ const Container: CSSProperties = {
   gap: 16,
 };
 
-const Size = ({ size }: { size: BadgeSize }) => (
-  <Flex
-    flexDirection="column"
-    alignItems="center"
-    gap={10}
-    style={{
-      width: 200,
-    }}
-  >
-    <Badge size={size}>Default</Badge>
-    <Badge size={size} state="secondary">
-      Secondary
-    </Badge>
-    <Badge size={size} state="info">
-      Info
-    </Badge>
-    <Badge size={size} state="primary">
-      Primary
-    </Badge>
-    <Badge size={size} state="success">
-      Success
-    </Badge>
-    <Badge size={size} state="warning">
-      Warning
-    </Badge>
-    <Badge size={size} state="danger">
-      Danger
-    </Badge>
-    <Badge size={size} shape="pill">
-      Pill
-    </Badge>
-    <Badge size={size} shape="pill" state="secondary">
-      Secondary
-    </Badge>
-    <Badge size={size} shape="pill" state="info">
-      Info
-    </Badge>
-    <Badge size={size} shape="pill" state="primary">
-      Primary
-    </Badge>
-    <Badge size={size} shape="pill" state="success">
-      Success
-    </Badge>
-    <Badge size={size} shape="pill" state="warning">
-      Warning
-    </Badge>
-    <Badge size={size} shape="pill" state="danger">
-      Danger
-    </Badge>
-  </Flex>
-);
-
 const App = () => {
   return (
-    <Flex flexDirection="row" gap={10} justifyContent="center">
-      <Size size="small" />
-      <Size size="large" />
+    <Flex flexDirection="column" gap={10} alignItems="center">
+      <Text type="h1">Hello world</Text>
+      <Text type="h2">Hello world</Text>
+      <Text type="h3">Hello world</Text>
+      <Text type="h4">Hello world</Text>
+      <Text type="h5">Hello world</Text>
+      <Text type="h6">Hello world</Text>
+      <Text type="text-xs">Hello world</Text>
+      <Text type="text-sm">Hello world</Text>
+      <Text type="text-md">Hello world</Text>
+      <Text type="text-lg">Hello world</Text>
+      <Text type="text-xl">Hello world</Text>
     </Flex>
   );
 };

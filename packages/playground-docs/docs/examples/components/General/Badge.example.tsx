@@ -1,4 +1,4 @@
-import { Badge, BadgeState, Flex } from "@paulhalleux/react-playground";
+import { Badge, BadgeVariant, Flex } from "@paulhalleux/react-playground";
 import { BadgeShape } from "@paulhalleux/react-playground/src/components/Badge/Badge";
 
 import {
@@ -7,7 +7,7 @@ import {
 } from "../../../../src/components/Mdx/Example";
 
 type BadgeExampleControls = {
-  state: BadgeState;
+  variant: BadgeVariant;
   shape: BadgeShape;
 };
 
@@ -31,10 +31,10 @@ export const metadata: ExampleMetadata = {
   component: BadgeExample,
   controls: [
     {
-      label: "State",
+      label: "Variant",
       type: "select",
       value: "default",
-      property: "state",
+      property: "variant",
       options: [
         "default",
         "secondary",

@@ -1,9 +1,12 @@
 import { PropsWithChildren } from "react";
-
-import styles from "./Paragraph.module.scss";
+import { Text } from "@paulhalleux/react-playground";
 
 type ParagraphProps = PropsWithChildren;
 
 export function Paragraph({ children }: ParagraphProps) {
-  return <p className={styles.paragraph}>{children}</p>;
+  return (
+    <Text type="text-md" variant="secondary">
+      {children}
+    </Text>
+  );
 }

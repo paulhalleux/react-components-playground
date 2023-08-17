@@ -3,13 +3,7 @@ $sizes: (
   large: (height: 20px, font-size: t(font-size-sm), padding: t(padding-sm)),
 );
 
-$states: (
-  info: "info",
-  primary: "primary",
-  success: "success",
-  warning: "warning",
-  danger: "danger",
-);
+$colors: ("success", "warning", "danger", "primary", "info");
 
 .badge {
   display: flex;
@@ -30,24 +24,24 @@ $states: (
     }
   }
 
-  /* States */
+  /* Variants */
 
-  &--state-default {
+  &--variant-default {
     background-color: c(main);
     border: 1px solid c(border);
     color: c(text-contrast);
   }
 
-  &--state-secondary {
+  &--variant-secondary {
     background-color: c(main-contrast, .5);
     border: 1px solid c(border);
   }
 
-  @each $state, $state-props in $states {
-    &--state-#{$state} {
-      background-color: c(#{$state-props}, t(constant-background-alpha));
-      border: 1px solid c(#{$state-props}, .25);
-      color: c(text-#{$state-props});
+  @each $color in $colors {
+    &--variant-#{$color} {
+      background-color: c(#{$color}, t(constant-background-alpha));
+      border: 1px solid c(#{$color}, .25);
+      color: c(text-#{$color});
     }
   }
 
