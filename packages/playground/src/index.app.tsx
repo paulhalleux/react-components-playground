@@ -1,7 +1,7 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Select } from "./components";
+import { Badge, Button, StatusIndicator } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -17,24 +17,10 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
-  const [value, setValue] = useState<string | undefined>("option-1");
   return (
-    <div>
-      <Select
-        value={value}
-        onChange={setValue}
-        options={[
-          { label: "Option 1", value: "option-1" },
-          { label: "Option 2", value: "option-2" },
-          { label: "Option 3", value: "option-3" },
-          { label: "Option 4", value: "option-4" },
-          { label: "Option 5", value: "option-5" },
-          { label: "Option 6", value: "option-6" },
-          { label: "Option 7", value: "option-7" },
-          { label: "Option 8", value: "option-8" },
-        ]}
-      />
-    </div>
+    <Badge>
+      <StatusIndicator /> Hello world!
+    </Badge>
   );
 };
 

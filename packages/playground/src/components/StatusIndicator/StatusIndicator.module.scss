@@ -1,0 +1,21 @@
+$variants: (
+  default: "text-contrast",
+  primary: "primary",
+  info: "info",
+  success: "success",
+  warning: "warning",
+  danger: "danger",
+);
+
+.status-indicator {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: c(text);
+
+  @each $variant, $color in $variants {
+    &--#{$variant} {
+      background-color: c(#{$color});
+    }
+  }
+}

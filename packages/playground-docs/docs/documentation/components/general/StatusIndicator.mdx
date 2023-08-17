@@ -1,0 +1,36 @@
+---
+type: component
+category: Components
+description: A status indicator is used to show the status of an object.
+icon: TargetIcon
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/StatusIndicator/StatusIndicator.tsx
+---
+
+`StatusIndicator` is used to show the status of an object. It can be used to show the status of a task, a user, a product, etc.
+
+## Examples
+
+<Example name="components/General/StatusIndicator" />
+
+## API
+
+### \{:component} StatusIndicator
+
+#### Usage
+
+```tsx
+<StatusIndicator variant="success" />
+```
+
+#### Properties
+
+<Properties component="StatusIndicator" />
+
+### \{:type} StatusIndicatorVariant
+
+The variant of the status indicator.
+
+```ts
+type StatusIndicatorVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+```

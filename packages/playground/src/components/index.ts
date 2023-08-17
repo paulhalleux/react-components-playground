@@ -33,5 +33,6 @@ export * from "./Header";
 export * from "./Switch";
 export * from "./Textarea";
 export * from "./Select";
+export * from "./StatusIndicator";
 
 export * as Icons from "./Icons";
