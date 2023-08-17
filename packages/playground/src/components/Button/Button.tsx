@@ -12,6 +12,8 @@ import styles from "./Button.module.scss";
 export type ButtonSize = "small" | "medium" | "large";
 export type ButtonVariant =
   | "default"
+  | "secondary"
+  | "info"
   | "success"
   | "warning"
   | "danger"

@@ -11,17 +11,17 @@ import {
 } from "../../../../../src/components/Mdx/Example";
 
 type DefaultExampleControls = {
-  variant: CardVariant;
+  state: CardVariant;
 };
 
 function DefaultExample({
   controls,
 }: ExampleComponentProps<DefaultExampleControls>) {
   return (
-    <Card variant={controls.variant}>
+    <Card variant={controls.state}>
       <Card.Header>
-        <Badge variant={controls.variant as any}>Default</Badge> Lorem ipsum
-        dolor sit amet, consectetur
+        <Badge state={controls.state as any}>Default</Badge> Lorem ipsum dolor
+        sit amet, consectetur
       </Card.Header>
       <Card.Body>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra,
@@ -32,7 +32,7 @@ function DefaultExample({
         quis aliquam nunc nunc vitae nunc.
       </Card.Body>
       <Card.Footer border variant="secondary">
-        <Button variant={controls.variant as any} size="small">
+        <Button variant={controls.state} size="small">
           Button
         </Button>
       </Card.Footer>
@@ -50,13 +50,14 @@ export const metadata: ExampleMetadata = {
   controls: [
     {
       type: "select",
-      property: "variant",
-      label: "Variant",
+      property: "state",
+      label: "State",
       value: "default",
       options: [
         "default",
-        "primary",
         "secondary",
+        "info",
+        "primary",
         "success",
         "danger",
         "warning",

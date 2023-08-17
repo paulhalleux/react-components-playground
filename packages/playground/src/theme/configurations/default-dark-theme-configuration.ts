@@ -4,13 +4,13 @@ import { DefaultSizesConfiguration } from "./default-sizes-configuration";
 
 export const DefaultDarkThemeConfiguration: ThemeConfiguration = {
   constants: {
-    backgroundAlpha: 0.2,
+    backgroundAlpha: 0.1,
   },
   colors: {
     main: [23, 23, 23],
     mainHover: [27, 27, 27],
     mainActive: [31, 31, 31],
-    mainContrast: [40, 40, 40],
+    mainContrast: [45, 45, 45],
     border: [54, 54, 54],
     text: [255, 255, 255],
     textContrast: [195, 195, 195],

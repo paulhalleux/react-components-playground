@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  ThemeConfigurationColors,
+  useTheme,
+} from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import styles from "./ApiType.module.scss";
@@ -9,11 +13,14 @@ type ApiTypeProps = {
 };
 
 export function ApiType({ type, small }: ApiTypeProps) {
+  const { currentConfiguration } = useTheme();
   const { label, color } = getType(type);
   if (!label || !color) return null;
 
   const style = {
-    "--color": `${color.join(",")}`,
+    "--color": `${currentConfiguration!.colors![
+      color as keyof ThemeConfigurationColors
+    ]?.join(",")}`,
   } as React.CSSProperties;
 
   return (
@@ -28,10 +35,10 @@ export function ApiType({ type, small }: ApiTypeProps) {
   );
 }
 
-const TypeMap: Record<string, [string, [number, number, number]]> = {
-  function: ["F", [255, 152, 0]],
-  type: ["T", [33, 150, 243]],
-  component: ["C", [76, 175, 80]],
+const TypeMap: Record<string, [string, string]> = {
+  function: ["F", "warning"],
+  type: ["T", "primary"],
+  component: ["C", "success"],
 };
 
 export function getType(type: string) {

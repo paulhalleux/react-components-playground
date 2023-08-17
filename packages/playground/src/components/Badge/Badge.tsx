@@ -2,21 +2,19 @@ import React, { PropsWithChildren } from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
-import { CloseButton } from "../CloseButton";
 
 import styles from "./Badge.module.scss";
 
-export type BadgeVariant =
-  | "primary"
-  | "secondary"
+export type BadgeShape = "default" | "pill";
+export type BadgeSize = "small" | "large";
+export type BadgeState =
   | "default"
-  | "warning"
-  | "danger"
-  | "success"
+  | "secondary"
   | "info"
-  | "ghost";
-
-export type BadgeSize = "small" | "medium" | "large";
+  | "primary"
+  | "success"
+  | "warning"
+  | "danger";
 
 export type BadgeProps = PropsWithChildren<{
   /**
@@ -24,23 +22,15 @@ export type BadgeProps = PropsWithChildren<{
    */
   size?: BadgeSize;
   /**
-   * Whether the badge is closeable.
+   * The state of the badge.
    */
-  closeable?: boolean;
+  state?: BadgeState;
   /**
-   * Callback fired when the badge is closed.
+   * The shape of the badge.
    */
-  onClose?: () => void;
+  shape?: BadgeShape;
   /**
-   * The variant of the badge.
-   */
-  variant?: BadgeVariant;
-  /**
-   * Whether the badge is pill-shaped.
-   */
-  pill?: boolean;
-  /**
-   * Callback fired when the badge is clicked.
+   * The click handler.
    */
   onClick?: () => void;
 }> &
@@ -48,11 +38,9 @@ export type BadgeProps = PropsWithChildren<{
 
 export function Badge({
   children,
-  size = "medium",
-  variant = "default",
-  pill = false,
-  onClose,
-  closeable = false,
+  size = "large",
+  state = "default",
+  shape = "default",
   onClick,
   className,
   ...rest
@@ -63,20 +51,17 @@ export function Badge({
       role={onClick ? "button" : undefined}
       className={clsx(
         styles.badge,
-        styles[`badge--${size}`],
-        styles[`badge--${variant}`],
+        styles[`badge--size-${size}`],
+        styles[`badge--state-${state}`],
+        styles[`badge--shape-${shape}`],
         {
-          [styles["badge--pill"]]: pill,
-          [styles["badge--action"]]: !!onClick,
+          [styles["badge--clickable"]]: onClick,
         },
         className,
       )}
       {...rest}
     >
       {children}
-      {closeable && (
-        <CloseButton size={size} variant="ghost" onClick={onClose} />
-      )}
     </span>
   );
 }

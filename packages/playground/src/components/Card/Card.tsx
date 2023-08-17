@@ -14,6 +14,7 @@ import styles from "./Card.module.scss";
 export type CardVariant =
   | "default"
   | "secondary"
+  | "info"
   | "primary"
   | "success"
   | "danger"

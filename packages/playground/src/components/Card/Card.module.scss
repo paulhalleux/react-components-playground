@@ -1,8 +1,9 @@
-$colors: (
+$states: (
   success: 'success',
   danger: 'danger',
   warning: 'warning',
   primary: 'primary',
+  info: 'info',
 );
 
 .card {
@@ -33,7 +34,7 @@ $colors: (
     background-color: c(main-hover);
   }
 
-  @each $color, $value in $colors {
+  @each $color, $value in $states {
     &--#{$color} {
       --border-color: #{c(#{$value}, .35)};
       --background-color: #{c(#{$value}, .05)};

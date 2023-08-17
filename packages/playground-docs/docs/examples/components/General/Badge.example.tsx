@@ -1,42 +1,28 @@
-import { Badge } from "@paulhalleux/react-playground";
+import { Badge, BadgeState, Flex } from "@paulhalleux/react-playground";
+import { BadgeShape } from "@paulhalleux/react-playground/src/components/Badge/Badge";
 
 import {
   ExampleComponentProps,
   ExampleMetadata,
 } from "../../../../src/components/Mdx/Example";
 
-const GroupStyle = {
-  display: "flex",
-  gap: 24,
-  alignItems: "center",
-};
-
 type BadgeExampleControls = {
-  variant: "default" | "primary" | "secondary" | "warning";
-  pill: "badge" | "pill";
+  state: BadgeState;
+  shape: BadgeShape;
 };
 
 function BadgeExample({
   controls,
 }: ExampleComponentProps<BadgeExampleControls>) {
   return (
-    <>
-      <div style={GroupStyle}>
-        <Badge size="small" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="medium" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-      <div style={GroupStyle}>
-        <Badge size="large" {...controls} pill={controls.pill === "pill"}>
-          Badge content
-        </Badge>
-      </div>
-    </>
+    <Flex alignItems="center" justifyContent="center" gap={10}>
+      <Badge size="small" {...controls}>
+        Badge content
+      </Badge>
+      <Badge size="large" {...controls}>
+        Badge content
+      </Badge>
+    </Flex>
   );
 }
 
@@ -45,33 +31,26 @@ export const metadata: ExampleMetadata = {
   component: BadgeExample,
   controls: [
     {
-      label: "Status",
+      label: "State",
       type: "select",
       value: "default",
-      property: "variant",
+      property: "state",
       options: [
         "default",
-        "primary",
         "secondary",
+        "info",
+        "primary",
+        "success",
         "warning",
         "danger",
-        "success",
-        "info",
-        "ghost",
       ],
     },
     {
-      label: "Type",
+      label: "Shape",
       type: "select",
-      value: "badge",
-      property: "pill",
-      options: ["badge", "pill"],
-    },
-    {
-      label: "Closeable",
-      type: "boolean",
-      value: false,
-      property: "closeable",
+      value: "default",
+      property: "shape",
+      options: ["default", "pill"],
     },
   ],
   display: {

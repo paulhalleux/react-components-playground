@@ -43,7 +43,15 @@ export const metadata: ExampleMetadata = {
       property: "variant",
       label: "Variant",
       value: "default",
-      options: ["default", "primary", "success", "danger", "warning"],
+      options: [
+        "default",
+        "secondary",
+        "info",
+        "primary",
+        "success",
+        "danger",
+        "warning",
+      ],
     },
     {
       type: "boolean",

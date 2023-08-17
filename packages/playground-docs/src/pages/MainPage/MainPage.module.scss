@@ -6,12 +6,12 @@
   align-items: center;
   gap: t(padding-xl);
   background-image:
-    radial-gradient(circle at 50% 50%, rgba(0, 34, 255, 0.09) 0%, transparent 75%, transparent 100%);
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 75%, transparent 100%);
 }
 
-:global(.light) .main__container {
+:global(.Light) .main__container {
   background-image:
-    radial-gradient(circle at 50% 50%, rgba(0, 89, 255, 0.15) 0%, transparent 75%, transparent 100%);
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.1) 0%, transparent 75%, transparent 100%);
 }
 
 .title {

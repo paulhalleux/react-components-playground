@@ -4,7 +4,7 @@ $sizes: (
   large: ( height: 40px, padding: 0 t(padding-lg), font-size: t(font-size-md) ),
 );
 
-$colors: ("success", "warning", "danger", "primary");
+$colors: ("success", "warning", "danger", "primary", "info");
 
 .button {
   height: 32px;
@@ -28,6 +28,7 @@ $colors: ("success", "warning", "danger", "primary");
     }
   }
 
+  &--secondary,
   &--default {
     background-color: c(main);
     border-color: c(border);
@@ -46,6 +47,12 @@ $colors: ("success", "warning", "danger", "primary");
       border-color: c(primary);
       z-index: 1;
     }
+  }
+
+  &--secondary {
+    background-color: c(main-contrast, .5);
+    border-color: c(border);
+    color: c(text);
   }
 
   @each $color in $colors {

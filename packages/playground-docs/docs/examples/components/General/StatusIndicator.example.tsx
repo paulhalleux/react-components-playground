@@ -19,7 +19,7 @@ function StatusIndicatorExample({
 }: ExampleComponentProps<StatusIndicatorControls>) {
   if (controls.badge)
     return (
-      <Badge pill variant={controls.status}>
+      <Badge shape="pill">
         <StatusIndicator {...controls} /> Status
       </Badge>
     );

@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext } from "react";
+import { createContext, PropsWithChildren, useContext, useMemo } from "react";
 
 import { StorageKeys } from "../constants/storage-keys";
 import { useStoreState } from "../hooks";
@@ -19,12 +19,14 @@ export type ThemeContextType = {
   theme: string;
   setTheme: (theme: string) => void;
   availableThemes: Record<string, ThemeConfiguration>;
+  currentConfiguration?: ThemeConfiguration;
 };
 
 const defaultValue: ThemeContextType = {
   theme: getSystemTheme(),
   setTheme: () => {},
   availableThemes: Themes,
+  currentConfiguration: {},
 };
 
 export const ThemeContext = createContext<ThemeContextType>(defaultValue);
@@ -47,12 +49,16 @@ export function ThemeProvider({
     actualDefaultTheme,
   );
 
-  useConfiguration(
-    merge(
-      Themes[actualDefaultTheme as keyof typeof Themes],
-      availableThemes[theme],
-    ) as RecursiveFull<ThemeConfiguration>,
+  const currentConfiguration = useMemo(
+    () =>
+      merge(
+        Themes[actualDefaultTheme as keyof typeof Themes],
+        availableThemes[theme],
+      ),
+    [theme, availableThemes, actualDefaultTheme],
   );
+
+  useConfiguration(currentConfiguration as RecursiveFull<ThemeConfiguration>);
 
   return (
     <ThemeContext.Provider
@@ -60,6 +66,7 @@ export function ThemeProvider({
         theme,
         setTheme,
         availableThemes,
+        currentConfiguration,
       }}
     >
       <div className={theme}>{children}</div>
