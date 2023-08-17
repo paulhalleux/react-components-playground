@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function Minimize2Icon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function Minimize2Icon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="4 14 10 14 10 20"></polyline>
       <polyline points="20 10 14 10 14 4"></polyline>

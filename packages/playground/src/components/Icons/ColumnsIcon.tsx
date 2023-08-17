@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function ColumnsIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function ColumnsIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function ColumnsIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
     </svg>

@@ -1,0 +1,131 @@
+@import "../../style/input";
+
+$states: (
+  default: ( border-color: c(border), border-color-hover: c(border-contrast), border-color-focus: c(border-primary) ),
+  error: ( border-color: c(danger), border-color-hover: c(danger, .8), border-color-focus: c(danger) ),
+  success: ( border-color: c(success), border-color-hover: c(success, .8), border-color-focus: c(success) ),
+  warning: ( border-color: c(warning), border-color-hover: c(warning, .8), border-color-focus: c(warning) ),
+);
+
+.select__hidden {
+  height: 0;
+  width: 0;
+  z-index: -1;
+  position: absolute;
+  opacity: 0;
+}
+
+.select {
+  position: relative;
+  user-select: none;
+  width: 200px;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: .5;
+
+    .select__selected {
+      cursor: not-allowed;
+      outline: none!important;
+      border-color: c(border)!important;
+    }
+  }
+
+  &--open  {
+    .select__selected {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .select__icon {
+      transform: translateY(-48%) rotate(180deg);
+    }
+  }
+
+  &--small .select__dropdown__item {
+    padding: t(padding-xs) t(padding-sm);
+  }
+
+  &--large .select__dropdown__item {
+    padding: t(padding-sm) t(padding-md);
+  }
+}
+
+.select__selected {
+  @include input;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  position: relative;
+  width: 100%;
+
+  &--small .select__icon {
+    right: t(padding-sm);
+  }
+
+  &--large .select__icon {
+    right: t(padding-md);
+  }
+
+  @each $state, $props in $states {
+    &--#{$state} {
+      border-color: map-get($props, border-color);
+      &:hover {
+        border-color: map-get($props, border-color-hover);
+      }
+      &:focus {
+        border-color: map-get($props, border-color-focus);
+      }
+    }
+  }
+}
+
+.select__icon {
+  position: absolute;
+  top: 50%;
+  right: t(padding-sm);
+  transform: translateY(-48%);
+  pointer-events: none;
+}
+
+.select__dropdown {
+  position: absolute;
+  background: c(main);
+  border: 1px solid c(border);
+  border-top: none;
+  border-bottom-left-radius: t(border-radius-sm);
+  border-bottom-right-radius: t(border-radius-sm);
+  top: 100%;
+  width: 100%;
+  list-style: none;
+  z-index: 1;
+
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.select__dropdown__item {
+  padding: t(padding-sm) t(padding-md);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  color: c(text-contrast);
+  font-size: t(font-size-sm);
+  display: flex;
+  align-items: center;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: .5;
+  }
+
+  &:focus,
+  &:hover {
+    outline: none;
+    background: c(main-contrast, .2);
+  }
+
+  &--selected {
+    background: c(main-contrast, .2);
+    color: c(text);
+  }
+}

@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function CodesandboxIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function CodesandboxIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
       <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>

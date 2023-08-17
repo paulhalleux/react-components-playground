@@ -14,7 +14,7 @@ export function BooleanControl({ id, control, onChange }: BooleanControlProps) {
   return (
     <div className={styles.checkbox__wrapper}>
       <Checkbox
-        id={`${control.property}-${id}`}
+        id={id}
         name={control.property}
         checked={control.value}
         onChange={onChange}

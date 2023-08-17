@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function WatchIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function WatchIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function WatchIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="7"></circle>
       <polyline points="12 9 12 12 13.5 13.5"></polyline>

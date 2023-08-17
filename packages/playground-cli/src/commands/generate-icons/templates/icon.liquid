@@ -1,8 +1,8 @@
 import { IconProps } from "./types";
 
-export function {{ iconName }}({ size = {{ defaultIconSize }}, color = "currentColor" }: IconProps) {
+export function {{ iconName }}({ size = {{ defaultIconSize }}, color = "currentColor", className }: IconProps) {
   return (
-    <svg {{ props }} height={size} width={size}>
+    <svg {{ props }} height={size} width={size} className={className}>
       {{ iconContent }}
     </svg>
   );

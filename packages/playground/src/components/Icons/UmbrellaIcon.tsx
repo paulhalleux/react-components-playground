@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function UmbrellaIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function UmbrellaIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function UmbrellaIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path>
     </svg>

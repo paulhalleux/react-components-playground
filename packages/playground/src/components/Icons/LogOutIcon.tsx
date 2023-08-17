@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function LogOutIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function LogOutIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function LogOutIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
       <polyline points="16 17 21 12 16 7"></polyline>

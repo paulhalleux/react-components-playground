@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function ArrowUpLeftIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function ArrowUpLeftIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="17" y1="17" x2="7" y2="7"></line>
       <polyline points="7 17 7 7 17 7"></polyline>

@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function TruckIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function TruckIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function TruckIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <rect x="1" y="3" width="15" height="13"></rect>
       <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>

@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function PlusCircleIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function PlusCircleIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="12" y1="8" x2="12" y2="16"></line>

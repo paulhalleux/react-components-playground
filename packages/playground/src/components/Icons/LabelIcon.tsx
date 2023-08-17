@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function LabelIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function LabelIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -8,6 +12,7 @@ export function LabelIcon({ size = 20, color = "currentColor" }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       height={size}
       width={size}
+      className={className}
     >
       <path
         d="M15.7059 7H5.11765C3.9481 7 3 8.11929 3 9.5V14.5C3 15.8807 3.9481 17 5.11765 17H15.7059C16.8754 17 21 13.3807 21 12C21 10.6193 16.8754 7 15.7059 7Z"

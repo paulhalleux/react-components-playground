@@ -12,7 +12,7 @@ export function NumberControl({ id, control, onChange }: SelectControlProps) {
   return (
     <input
       className={styles.example__controls__select}
-      id={`${control.property}-${id}`}
+      id={id}
       value={control.value}
       type="number"
       min={control.min}

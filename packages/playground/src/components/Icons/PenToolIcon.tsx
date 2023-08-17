@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function PenToolIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function PenToolIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function PenToolIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
       <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>

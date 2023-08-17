@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function PlayCircleIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function PlayCircleIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <polygon points="10 8 16 12 10 16 10 8"></polygon>

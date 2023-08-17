@@ -3,5 +3,48 @@ type: component
 title: Select
 category: Form
 description: A select component.
-status: todo
+icon: ChevronDownIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Select/Select.tsx
+status: done
 ---
+
+`Select` is a component that renders a select input. It is a styled version of the `select` HTML element.
+For multiple selection, use the `MultipleSelect` component.
+
+## Examples
+
+<Example name="components/Form/Select" />
+
+## API
+
+### \{:component} Select
+
+#### Usage
+
+```tsx
+<Select
+  value={value}
+  onChange={onChange}
+  options={[
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' },
+    { value: '3', label: 'Option 3' },
+  ]}
+/>
+```
+
+#### Properties
+
+<Properties component="Select" />
+
+### \{:type} SelectOption
+
+Represents an option in the select input.
+
+```ts
+type SelectOption = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+};
+```

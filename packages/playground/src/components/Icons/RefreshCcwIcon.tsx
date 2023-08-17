@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function RefreshCcwIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function RefreshCcwIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="1 4 1 10 7 10"></polyline>
       <polyline points="23 20 23 14 17 14"></polyline>

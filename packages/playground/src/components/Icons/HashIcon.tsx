@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function HashIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function HashIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function HashIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="4" y1="9" x2="20" y2="9"></line>
       <line x1="4" y1="15" x2="20" y2="15"></line>

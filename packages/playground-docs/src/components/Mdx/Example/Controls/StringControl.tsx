@@ -1,6 +1,6 @@
-import { StringControl as StringControlType } from "../index";
+import { Input } from "@paulhalleux/react-playground";
 
-import styles from "./SelectControl.module.scss";
+import { StringControl as StringControlType } from "../index";
 
 type SelectControlProps = {
   id: string;
@@ -9,12 +9,5 @@ type SelectControlProps = {
 };
 
 export function StringControl({ id, control, onChange }: SelectControlProps) {
-  return (
-    <input
-      className={styles.example__controls__select}
-      id={`${control.property}-${id}`}
-      value={control.value}
-      onChange={(e) => onChange(e.target.value)}
-    />
-  );
+  return <Input id={id} value={control.value} onChange={onChange} />;
 }

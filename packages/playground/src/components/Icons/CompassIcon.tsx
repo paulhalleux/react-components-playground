@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function CompassIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function CompassIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function CompassIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>

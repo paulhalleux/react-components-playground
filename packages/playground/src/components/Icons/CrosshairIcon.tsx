@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function CrosshairIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function CrosshairIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="22" y1="12" x2="18" y2="12"></line>

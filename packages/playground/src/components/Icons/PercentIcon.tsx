@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function PercentIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function PercentIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function PercentIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="19" y1="5" x2="5" y2="19"></line>
       <circle cx="6.5" cy="6.5" r="2.5"></circle>

@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function VideoIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function VideoIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function VideoIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polygon points="23 7 16 12 23 17 23 7"></polygon>
       <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>

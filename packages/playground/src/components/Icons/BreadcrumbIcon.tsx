@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function BreadcrumbIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -11,6 +12,7 @@ export function BreadcrumbIcon({
       xmlns="http://www.w3.org/2000/svg"
       height={size}
       width={size}
+      className={className}
     >
       <path
         d="M3 13H8.29412"

@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function CornerUpRightIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function CornerUpRightIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="15 14 20 9 15 4"></polyline>
       <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>

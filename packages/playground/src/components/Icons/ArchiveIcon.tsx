@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function ArchiveIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function ArchiveIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function ArchiveIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="21 8 21 21 3 21 3 8"></polyline>
       <rect x="1" y="3" width="22" height="5"></rect>

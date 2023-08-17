@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function CpuIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function CpuIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function CpuIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
       <rect x="9" y="9" width="6" height="6"></rect>

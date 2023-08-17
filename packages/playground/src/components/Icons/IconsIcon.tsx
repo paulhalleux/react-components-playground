@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function IconsIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function IconsIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function IconsIcon({ size = 20, color = "currentColor" }: IconProps) {
       viewBox="0 0 24 24"
       height={size}
       width={size}
+      className={className}
     >
       <path stroke="none" d="M0 0h24v24H0z" />
       <path d="M10 6.5 A3.5 3.5 0 0 1 6.5 10 A3.5 3.5 0 0 1 3 6.5 A3.5 3.5 0 0 1 10 6.5 z" />

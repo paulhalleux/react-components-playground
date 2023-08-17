@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function ServerIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function ServerIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function ServerIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
       <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>

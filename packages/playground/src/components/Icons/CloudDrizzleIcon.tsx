@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function CloudDrizzleIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function CloudDrizzleIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="8" y1="19" x2="8" y2="21"></line>
       <line x1="8" y1="13" x2="8" y2="15"></line>

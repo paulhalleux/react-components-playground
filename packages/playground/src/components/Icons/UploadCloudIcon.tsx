@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function UploadCloudIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function UploadCloudIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="16 16 12 12 8 16"></polyline>
       <line x1="12" y1="12" x2="12" y2="21"></line>

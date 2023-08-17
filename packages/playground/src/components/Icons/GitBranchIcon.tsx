@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function GitBranchIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function GitBranchIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="6" y1="3" x2="6" y2="15"></line>
       <circle cx="18" cy="6" r="3"></circle>

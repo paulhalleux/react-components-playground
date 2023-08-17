@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function SunsetIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function SunsetIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function SunsetIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M17 18a5 5 0 0 0-10 0"></path>
       <line x1="12" y1="9" x2="12" y2="2"></line>

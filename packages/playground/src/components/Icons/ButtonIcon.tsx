@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function ButtonIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function ButtonIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -8,6 +12,7 @@ export function ButtonIcon({ size = 20, color = "currentColor" }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       height={size}
       width={size}
+      className={className}
     >
       <rect
         x="3"

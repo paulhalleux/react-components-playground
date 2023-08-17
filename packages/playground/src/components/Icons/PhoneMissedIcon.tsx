@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function PhoneMissedIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function PhoneMissedIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="23" y1="1" x2="17" y2="7"></line>
       <line x1="17" y1="1" x2="23" y2="7"></line>

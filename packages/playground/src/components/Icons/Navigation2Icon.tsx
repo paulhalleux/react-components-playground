@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function Navigation2Icon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function Navigation2Icon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
     </svg>

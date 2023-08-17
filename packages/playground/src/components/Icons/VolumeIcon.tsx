@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function VolumeIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function VolumeIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function VolumeIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
     </svg>

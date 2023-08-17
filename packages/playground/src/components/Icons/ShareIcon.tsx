@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function ShareIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function ShareIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function ShareIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
       <polyline points="16 6 12 2 8 6"></polyline>

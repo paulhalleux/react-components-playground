@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function ShoppingBagIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function ShoppingBagIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
       <line x1="3" y1="6" x2="21" y2="6"></line>

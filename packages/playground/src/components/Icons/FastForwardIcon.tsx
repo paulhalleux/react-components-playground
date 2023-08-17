@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function FastForwardIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function FastForwardIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polygon points="13 19 22 12 13 5 13 19"></polygon>
       <polygon points="2 19 11 12 2 5 2 19"></polygon>

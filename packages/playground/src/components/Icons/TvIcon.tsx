@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function TvIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function TvIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function TvIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
       <polyline points="17 2 12 7 7 2"></polyline>

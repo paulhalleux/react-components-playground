@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function CloudRainIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function CloudRainIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="16" y1="13" x2="16" y2="21"></line>
       <line x1="8" y1="13" x2="8" y2="21"></line>

@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function ChevronUpIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function ChevronUpIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>

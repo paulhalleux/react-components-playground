@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function UserMinusIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function UserMinusIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
       <circle cx="8.5" cy="7" r="4"></circle>

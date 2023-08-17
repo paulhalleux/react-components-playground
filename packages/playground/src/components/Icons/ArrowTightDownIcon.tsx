@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function ArrowTightDownIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -11,6 +12,7 @@ export function ArrowTightDownIcon({
       xmlns="http://www.w3.org/2000/svg"
       height={size}
       width={size}
+      className={className}
     >
       <path
         d="M12 5L12 19"

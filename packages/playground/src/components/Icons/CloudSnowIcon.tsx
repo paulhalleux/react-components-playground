@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function CloudSnowIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function CloudSnowIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"></path>
       <line x1="8" y1="16" x2="8.01" y2="16"></line>

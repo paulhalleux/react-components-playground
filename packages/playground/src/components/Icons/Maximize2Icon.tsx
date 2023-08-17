@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function Maximize2Icon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function Maximize2Icon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="15 3 21 3 21 9"></polyline>
       <polyline points="9 21 3 21 3 15"></polyline>

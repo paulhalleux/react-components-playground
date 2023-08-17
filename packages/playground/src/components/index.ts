@@ -32,5 +32,6 @@ export * from "./Navigation";
 export * from "./Header";
 export * from "./Switch";
 export * from "./Textarea";
+export * from "./Select";
 
 export * as Icons from "./Icons";

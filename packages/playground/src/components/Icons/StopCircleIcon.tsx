@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function StopCircleIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function StopCircleIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <rect x="9" y="9" width="6" height="6"></rect>

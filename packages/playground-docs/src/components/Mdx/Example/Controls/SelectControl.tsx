@@ -1,3 +1,5 @@
+import { Select } from "@paulhalleux/react-playground";
+
 import { SelectControl as SelectControlType } from "../index";
 
 import styles from "./SelectControl.module.scss";
@@ -9,18 +11,30 @@ type SelectControlProps = {
 };
 
 export function SelectControl({ id, control, onChange }: SelectControlProps) {
+  // return (
+  //   <select
+  //     className={styles.example__controls__select}
+  //     id={`${control.property}-${id}`}
+  //     value={control.value}
+  //     onChange={(e) => onChange(e.target.value)}
+  //   >
+  //     {control.options.map((option) => (
+  //       <option key={option} value={option}>
+  //         {option}
+  //       </option>
+  //     ))}
+  //   </select>
+  // );
   return (
-    <select
+    <Select
       className={styles.example__controls__select}
-      id={`${control.property}-${id}`}
+      id={id}
       value={control.value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {control.options.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
+      onChange={onChange}
+      options={control.options.map((option) => ({
+        label: option,
+        value: option,
+      }))}
+    />
   );
 }

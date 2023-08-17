@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function VoicemailIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function VoicemailIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="5.5" cy="11.5" r="4.5"></circle>
       <circle cx="18.5" cy="11.5" r="4.5"></circle>

@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function AlignJustifyIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function AlignJustifyIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="21" y1="10" x2="3" y2="10"></line>
       <line x1="21" y1="6" x2="3" y2="6"></line>

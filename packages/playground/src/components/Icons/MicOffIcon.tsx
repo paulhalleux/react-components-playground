@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function MicOffIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function MicOffIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function MicOffIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="1" y1="1" x2="23" y2="23"></line>
       <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path>

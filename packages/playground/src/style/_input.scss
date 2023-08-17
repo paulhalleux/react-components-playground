@@ -1,7 +1,7 @@
 $sizes: (
   small: ( height: 24px, padding: 0 t(padding-sm), font-size: t(font-size-xt) ),
   medium: ( height: 32px, padding: 0 t(padding-md), font-size: t(font-size-sm) ),
-  large: ( height: 40px, padding: 0 t(padding-lg), font-size: t(font-size-md) ),
+  large: ( height: 40px, padding: 0 t(padding-md), font-size: t(font-size-md) ),
 );
 
 @mixin input($size: null) {
@@ -14,7 +14,6 @@ $sizes: (
   outline: none;
   transition: border-color 0.2s ease-in-out;
   font-size: t(font-size-sm);
-  min-width: 250px;
 
   @if $size != null {
     height: map-get(map-get($sizes, $size), height);

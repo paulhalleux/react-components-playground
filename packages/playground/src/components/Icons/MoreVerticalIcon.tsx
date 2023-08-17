@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function MoreVerticalIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function MoreVerticalIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="1"></circle>
       <circle cx="12" cy="5" r="1"></circle>

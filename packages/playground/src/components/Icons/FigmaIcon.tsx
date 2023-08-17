@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function FigmaIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function FigmaIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function FigmaIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
       <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>

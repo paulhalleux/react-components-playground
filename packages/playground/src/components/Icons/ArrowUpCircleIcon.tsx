@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function ArrowUpCircleIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function ArrowUpCircleIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <polyline points="16 12 12 8 8 12"></polyline>

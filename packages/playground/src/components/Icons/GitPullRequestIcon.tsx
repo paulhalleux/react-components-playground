@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function GitPullRequestIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function GitPullRequestIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <circle cx="18" cy="18" r="3"></circle>
       <circle cx="6" cy="6" r="3"></circle>

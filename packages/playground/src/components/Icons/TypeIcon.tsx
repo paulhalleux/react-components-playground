@@ -1,6 +1,10 @@
 import { IconProps } from "./types";
 
-export function TypeIcon({ size = 20, color = "currentColor" }: IconProps) {
+export function TypeIcon({
+  size = 20,
+  color = "currentColor",
+  className,
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,6 +16,7 @@ export function TypeIcon({ size = 20, color = "currentColor" }: IconProps) {
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="4 7 4 4 20 4 20 7"></polyline>
       <line x1="9" y1="20" x2="15" y2="20"></line>

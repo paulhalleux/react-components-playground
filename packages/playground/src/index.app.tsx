@@ -1,8 +1,7 @@
 import { CSSProperties, useState } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Textarea } from "./components/Textarea/Textarea";
-import { Button } from "./components";
+import { Button, Select } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -18,14 +17,24 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
-  const [checked, setChecked] = useState(false);
+  const [value, setValue] = useState<string | undefined>("option-1");
   return (
-    <Textarea
-      id="test"
-      name="test"
-      value="test"
-      onChange={() => setChecked(!checked)}
-    />
+    <div>
+      <Select
+        value={value}
+        onChange={setValue}
+        options={[
+          { label: "Option 1", value: "option-1" },
+          { label: "Option 2", value: "option-2" },
+          { label: "Option 3", value: "option-3" },
+          { label: "Option 4", value: "option-4" },
+          { label: "Option 5", value: "option-5" },
+          { label: "Option 6", value: "option-6" },
+          { label: "Option 7", value: "option-7" },
+          { label: "Option 8", value: "option-8" },
+        ]}
+      />
+    </div>
   );
 };
 

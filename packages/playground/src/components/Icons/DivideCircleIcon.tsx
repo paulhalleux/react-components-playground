@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function DivideCircleIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function DivideCircleIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <line x1="8" y1="12" x2="16" y2="12"></line>
       <line x1="12" y1="16" x2="12" y2="16"></line>

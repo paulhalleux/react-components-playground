@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import {
   AlertCircleIcon,
   CodeBlock,
+  Label,
   Tabs,
 } from "@paulhalleux/react-playground";
 import kebabCase from "lodash/kebabCase";
@@ -89,18 +90,18 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
               key={control.property}
               className={styles.example__controls__item}
             >
-              <label
+              <Label
                 className={styles.example__controls__label}
-                htmlFor={control.property}
+                htmlFor={`${control.property}-${name}`}
               >
                 {control.label}
-              </label>
+              </Label>
               <div className={styles.control}>
                 {ControlMap[control.type as keyof typeof ControlMap]({
                   // @ts-ignore
                   control: control,
                   onChange: (value) => onControlChange(control, value),
-                  id: name,
+                  id: `${control.property}-${name}`,
                 })}
               </div>
             </div>

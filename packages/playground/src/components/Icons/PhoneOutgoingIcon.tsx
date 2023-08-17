@@ -3,6 +3,7 @@ import { IconProps } from "./types";
 export function PhoneOutgoingIcon({
   size = 20,
   color = "currentColor",
+  className,
 }: IconProps) {
   return (
     <svg
@@ -15,6 +16,7 @@ export function PhoneOutgoingIcon({
       stroke-linejoin="round"
       height={size}
       width={size}
+      className={className}
     >
       <polyline points="23 7 23 1 17 1"></polyline>
       <line x1="16" y1="8" x2="23" y2="1"></line>
