@@ -10,6 +10,11 @@ $sizes: (
   gap: t(padding-xs);
   color: c(text-contrast);
   cursor: pointer;
+  user-select: none;
+
+  &--selectable {
+    user-select: auto;
+  }
 
   @each $size, $properties in $sizes {
     &--#{$size} {

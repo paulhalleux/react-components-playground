@@ -19,7 +19,7 @@
 
 .search__autocomplete__container {
   position: absolute;
-  top: calc(100% + t(padding-xs));
+  top: 100%;
   border-radius: t(border-radius-sm);
   width: 100%;
   border: 1px solid c(border);

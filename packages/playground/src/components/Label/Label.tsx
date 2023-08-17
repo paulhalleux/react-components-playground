@@ -19,6 +19,10 @@ export type LabelProps = PropsWithChildren<{
    * The size of the label.
    */
   size?: LabelSize;
+  /**
+   * Whether the label is selectable.
+   */
+  selectable?: boolean;
 }> &
   BaseProps;
 
@@ -27,12 +31,20 @@ export function Label({
   required = false,
   children,
   className,
+  selectable,
   size = "small",
   ...rest
 }: LabelProps) {
   return (
     <label
-      className={clsx(styles.label, styles[`label--${size}`], className)}
+      className={clsx(
+        styles.label,
+        styles[`label--${size}`],
+        {
+          [styles["label--selectable"]]: selectable,
+        },
+        className,
+      )}
       htmlFor={htmlFor}
       {...rest}
     >

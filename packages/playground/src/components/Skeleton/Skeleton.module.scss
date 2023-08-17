@@ -1,5 +1,5 @@
 .skeleton {
-  background-color: c(main-contrast, .4);
+  background-color: c(main-contrast, .5);
   animation: pulse 2s infinite linear;
 }
 
@@ -8,7 +8,7 @@
     opacity: 1;
   }
   50% {
-    opacity: .4;
+    opacity: .5;
   }
   100% {
     opacity: 1;

@@ -44,8 +44,8 @@ $sizes: (
     z-index: -1;
 
     &:focus-visible + .switch__slider {
-      border-color: c(border-primary);
-      outline: 2px solid c(border-primary, .2);
+      border-color: c(primary);
+      outline: 2px solid c(primary, .2);
     }
   }
 

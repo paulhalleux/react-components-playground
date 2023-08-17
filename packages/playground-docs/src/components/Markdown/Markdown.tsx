@@ -2,8 +2,6 @@ import { ForwardedRef, forwardRef, JSX } from "react";
 
 import { mdxComponents } from "../Mdx";
 
-import styles from "./Markdown.module.scss";
-
 type MarkdownComponents = Record<string, any>;
 type MarkdownProps = {
   content: (props: { components: MarkdownComponents }) => JSX.Element | null;
@@ -15,7 +13,7 @@ function Markdown(
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <div ref={ref} className={styles.markdown__container}>
+    <div ref={ref}>
       <MarkdownRenderer
         components={{
           ...mdxComponents,

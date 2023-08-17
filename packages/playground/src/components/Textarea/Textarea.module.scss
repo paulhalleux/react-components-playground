@@ -1,7 +1,7 @@
 @import "../../style/input";
 
 $states: (
-  default: ( border-color: c(border), border-color-hover: c(border-contrast), border-color-focus: c(border-primary) ),
+  default: ( border-color: c(border), border-color-hover: c(border, .7), border-color-focus: c(primary) ),
   error: ( border-color: c(danger), border-color-hover: c(danger, .8), border-color-focus: c(danger) ),
   success: ( border-color: c(success), border-color-hover: c(success, .8), border-color-focus: c(success) ),
   warning: ( border-color: c(warning), border-color-hover: c(warning, .8), border-color-focus: c(warning) ),

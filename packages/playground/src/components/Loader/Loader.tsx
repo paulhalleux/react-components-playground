@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
+import { Label } from "../Label";
 
 import styles from "./Loader.module.scss";
 
@@ -75,7 +76,7 @@ export function Loader({
           d="M122 61C122 44.8218 115.573 29.3062 104.134 17.8665C92.6938 6.42677 77.1782 1.22142e-06 61 0C44.8218 -1.22142e-06 29.3062 6.42676 17.8665 17.8665C6.42677 29.3062 2.44284e-06 44.8218 0 61L10.364 61C10.364 47.5705 15.6989 34.6911 25.195 25.195C34.6911 15.6989 47.5705 10.364 61 10.364C74.4295 10.364 87.3089 15.6989 96.805 25.195C106.301 34.6911 111.636 47.5705 111.636 61H122Z"
         />
       </svg>
-      {label}
+      <Label size={size}>{label}</Label>
     </div>
   );
 }

@@ -4,4 +4,9 @@
   border: none;
   color: currentColor;
   height: auto;
+
+  &:focus {
+    outline: 2px solid c(primary, .2);
+    border: 1px solid c(primary);
+  }
 }

@@ -28,12 +28,12 @@ $sizes: (
   }
 
   &:hover {
-    border-color: c(border-contrast);
+    border-color: c(border, .7);
   }
 
   &:focus {
-    outline: 2px solid c(border-primary, .2);
-    border-color: c(border-primary);
+    outline: 2px solid c(primary, .2);
+    border-color: c(primary);
   }
 
   &[disabled] {

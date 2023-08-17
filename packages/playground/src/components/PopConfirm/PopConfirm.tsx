@@ -44,6 +44,7 @@ export function PopConfirm({
       trigger="click"
       dataTestId={dataTestId}
       closeOnClickOutside={false}
+      offset={10}
       content={
         <div className={clsx(styles.confirm, className)}>
           <div className={styles.confirm__body}>

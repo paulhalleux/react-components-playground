@@ -82,8 +82,8 @@ $sizes: (
     width: 0;
 
     &:focus-visible + .radio__box {
-      outline: 2px solid c(border-primary, .2);
-      border-color: c(border-primary) !important;
+      outline: 2px solid c(primary, .2);
+      border-color: c(primary) !important;
     }
   }
 }

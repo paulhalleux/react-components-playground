@@ -1,13 +1,10 @@
 import { RecursivePartial } from "./helpers";
 
-export type ColorTriplet =
-  | [number, number, number]
-  | [number, number, number, number];
-
-export type Color = string | ColorTriplet;
+export type Color = [number, number, number];
 
 export type ThemeConfiguration = RecursivePartial<{
   colors: ThemeConfigurationColors;
+  constants: ThemeConfigurationConstants;
   sizes: {
     padding: ThemeConfigurationPadding;
     borderRadius: ThemeConfigurationBorderRadius;
@@ -43,7 +40,7 @@ export type ThemeConfigurationFontSizes = {
   xxl: number;
 };
 
-export type ThemeConfigurationColorsBase = {
+export type ThemeConfigurationColors = {
   main: Color;
   mainHover: Color;
   mainActive: Color;
@@ -54,6 +51,11 @@ export type ThemeConfigurationColorsBase = {
   borderPrimary: Color;
   text: Color;
   textContrast: Color;
+  textPrimary: Color;
+  textInfo: Color;
+  textWarning: Color;
+  textDanger: Color;
+  textSuccess: Color;
   primary: Color;
   info: Color;
   success: Color;
@@ -61,7 +63,6 @@ export type ThemeConfigurationColorsBase = {
   danger: Color;
 };
 
-export type ThemeConfigurationColors = {
-  light: ThemeConfigurationColorsBase;
-  dark: ThemeConfigurationColorsBase;
+export type ThemeConfigurationConstants = {
+  backgroundAlpha: number;
 };

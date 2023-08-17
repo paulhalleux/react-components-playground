@@ -8,7 +8,6 @@ import {
   MoonIcon,
   Navigation,
   SunIcon,
-  ThemeType,
   useTheme,
 } from "@paulhalleux/react-playground";
 
@@ -24,10 +23,10 @@ export function MainHeader() {
   const { theme, setTheme } = useTheme();
 
   const onThemeChange = () => {
-    if (theme === ThemeType.Dark) {
-      setTheme(ThemeType.Light);
+    if (theme === "Dark") {
+      setTheme("Light");
     } else {
-      setTheme(ThemeType.Dark);
+      setTheme("Dark");
     }
   };
 
@@ -95,7 +94,7 @@ export function MainHeader() {
         <Button.Icon
           onClick={onThemeChange}
           ghost
-          icon={theme === ThemeType.Light ? MoonIcon : SunIcon}
+          icon={theme === "Light" ? MoonIcon : SunIcon}
           iconSize={20}
         />
       </Header.Actions>

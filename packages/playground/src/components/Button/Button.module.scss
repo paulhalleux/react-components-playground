@@ -43,7 +43,7 @@ $colors: ("success", "warning", "danger", "primary");
 
     &:focus {
       outline: 2px solid c(primary, .2);
-      border-color: c(border-primary);
+      border-color: c(primary);
       z-index: 1;
     }
   }

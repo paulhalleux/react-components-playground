@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
 import { Button, Flex, PlayIcon } from "./components";
-import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
+import { ThemeContext, ThemeProvider } from "./theme";
 
 import "./index.app.scss";
 
@@ -40,11 +40,7 @@ root.render(
       {({ theme, setTheme }) => (
         <div style={{ position: "absolute", top: 10, left: 10 }}>
           <Button
-            onClick={() =>
-              setTheme(
-                theme === ThemeType.Light ? ThemeType.Dark : ThemeType.Light,
-              )
-            }
+            onClick={() => setTheme(theme === "Light" ? "Dark" : "Light")}
           >
             Switch theme
           </Button>

@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useMemo } from "react";
+import { createContext, PropsWithChildren, useContext } from "react";
 
 import { StorageKeys } from "../constants/storage-keys";
 import { useStoreState } from "../hooks";
@@ -6,65 +6,60 @@ import { RecursiveFull, ThemeConfiguration } from "../types";
 import { merge } from "../utils/object";
 import { getSystemTheme } from "../utils/theme";
 
-import { DefaultThemeConfiguration } from "./default-theme-configuration";
+import { DefaultDarkThemeConfiguration } from "./configurations/default-dark-theme-configuration";
+import { DefaultLightThemeConfiguration } from "./configurations/default-light-theme-configuration";
 import { useConfiguration } from "./use-configuration";
 
-export enum ThemeType {
-  Light = "light",
-  Dark = "dark",
-  System = "system",
-}
-
-export type Theme = Exclude<ThemeType, ThemeType.System>;
+export const Themes = {
+  Light: DefaultLightThemeConfiguration,
+  Dark: DefaultDarkThemeConfiguration,
+};
 
 export type ThemeContextType = {
-  themeType: ThemeType;
-  theme: Theme;
-  setTheme: (theme: ThemeType) => void;
-  configuration?: ThemeConfiguration;
+  theme: string;
+  setTheme: (theme: string) => void;
+  availableThemes: Record<string, ThemeConfiguration>;
 };
 
 const defaultValue: ThemeContextType = {
-  themeType: ThemeType.System,
   theme: getSystemTheme(),
   setTheme: () => {},
-  configuration: DefaultThemeConfiguration,
+  availableThemes: Themes,
 };
 
 export const ThemeContext = createContext<ThemeContextType>(defaultValue);
 
 type ThemeProviderProps = PropsWithChildren<{
-  configuration?: ThemeConfiguration;
+  availableThemes?: Record<string, ThemeConfiguration>;
+  systemDefault?: boolean;
+  defaultTheme?: string;
 }>;
 
 export function ThemeProvider({
   children,
-  configuration = defaultValue.configuration!,
+  availableThemes = defaultValue.availableThemes,
+  systemDefault = true,
+  defaultTheme = "Light",
 }: ThemeProviderProps) {
-  const [themeType, setThemeType] = useStoreState<ThemeType>(
+  const actualDefaultTheme = systemDefault ? getSystemTheme() : defaultTheme;
+  const [theme, setTheme] = useStoreState<keyof typeof availableThemes>(
     StorageKeys.Theme,
-    defaultValue.theme,
-  );
-
-  const theme = useMemo(
-    () => (themeType === ThemeType.System ? getSystemTheme() : themeType),
-    [themeType],
+    actualDefaultTheme,
   );
 
   useConfiguration(
     merge(
-      defaultValue.configuration,
-      configuration,
+      Themes[actualDefaultTheme as keyof typeof Themes],
+      availableThemes[theme],
     ) as RecursiveFull<ThemeConfiguration>,
-    theme,
   );
 
   return (
     <ThemeContext.Provider
       value={{
-        themeType: ThemeType.System,
-        theme: theme,
-        setTheme: setThemeType,
+        theme,
+        setTheme,
+        availableThemes,
       }}
     >
       <div className={theme}>{children}</div>
