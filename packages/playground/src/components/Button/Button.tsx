@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { BaseProps } from "../../types";
 import { Loader } from "../Loader";
 
+import { ButtonGroup } from "./ButtonGroup";
 import { IconButton } from "./IconButton";
 
 import styles from "./Button.module.scss";
@@ -89,3 +90,4 @@ export function Button({
 }
 
 Button.Icon = IconButton;
+Button.Group = ButtonGroup;

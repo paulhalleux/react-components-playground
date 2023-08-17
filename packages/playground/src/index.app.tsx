@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Badge, Button, StatusIndicator } from "./components";
+import { Button, Flex, PlayIcon } from "./components";
 import { ThemeContext, ThemeProvider, ThemeType } from "./theme";
 
 import "./index.app.scss";
@@ -18,9 +18,18 @@ const Container: CSSProperties = {
 
 const App = () => {
   return (
-    <Badge>
-      <StatusIndicator /> Hello world!
-    </Badge>
+    <Flex flexDirection="column" alignItems="center" gap={16}>
+      <Button.Group>
+        <Button.Icon icon={PlayIcon} />
+        <Button.Icon icon={PlayIcon} />
+        <Button.Icon icon={PlayIcon} />
+      </Button.Group>
+      <Button.Group orientation="vertical">
+        <Button.Icon icon={PlayIcon} />
+        <Button.Icon icon={PlayIcon} />
+        <Button.Icon icon={PlayIcon} />
+      </Button.Group>
+    </Flex>
   );
 };
 

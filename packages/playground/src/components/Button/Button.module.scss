@@ -40,6 +40,12 @@ $colors: ("success", "warning", "danger", "primary");
     &:active {
       background-color: c(main-active);
     }
+
+    &:focus {
+      outline: 2px solid c(primary, .2);
+      border-color: c(border-primary);
+      z-index: 1;
+    }
   }
 
   @each $color in $colors {
@@ -54,6 +60,12 @@ $colors: ("success", "warning", "danger", "primary");
 
       &:active {
         background-color: c(#{$color}, .20);
+      }
+
+      &:focus {
+        outline: 2px solid c(#{$color}, .2);
+        border-color: c(#{$color});
+        z-index: 1;
       }
     }
   }
@@ -91,5 +103,43 @@ $colors: ("success", "warning", "danger", "primary");
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+.button__group {
+  display: flex;
+
+  &--vertical {
+    flex-direction: column;
+
+    .button {
+      &:not(:last-child) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &:not(:first-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: -1px;
+      }
+    }
+  }
+
+  &--horizontal {
+    flex-direction: row;
+
+    .button {
+      &:not(:last-child) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin-left: -1px;
+      }
+    }
   }
 }
