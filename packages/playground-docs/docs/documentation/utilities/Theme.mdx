@@ -1,5 +1,83 @@
 ---
 type: utility
 title: Theme
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/theme
+status: done
 ---
+
+The theme is a set of colors, sizes and fonts that are used throughout the application. It can be enabled through the `ThemeProvider` component.
+
+## Usage
+
+### Enabling the theme
+
+Wrap your application with the `ThemeProvider` component.
+
+```tsx
+export const App = () => (
+  <ThemeProvider>
+    <MyApp />
+  </ThemeProvider>
+);
+```
+
+The provider will wrap you application in a class `light` or `dark` depending on the theme type. You can use this class to style your application.
+It will also define the css variables that will be used to style your application.
+
+The default theme type is `system`. This means that the theme type will be set to `dark` if the user has enabled dark mode in their operating system.
+
+### Defining the theme configuration
+
+The `ThemeProvider` component accepts a `configuration` prop. This prop is used to define the theme configuration.
+
+## Reference
+
+### \{:component} ThemeProvider
+
+The `ThemeProvider` component is used to enable the theme. It will make the theme available to all components that use the `useTheme` hook.
+
+```tsx
+<ThemeProvider>
+  <App />
+</ThemeProvider>
+```
+
+### \{:function} useTheme
+
+The `useTheme` hook is used to access the theme. It returns an object with the following properties:
+
+- `themeType`: The current theme type. Can be either `light`, `dark` or `system`.
+- `theme`: The current theme. Can be either `light` or `dark`.
+- `setTheme`: A function to set the theme type. It accepts a single argument, the theme type.
+- `configuration`: The current theme configuration. This is the configuration that is used to generate the theme.
+
+```tsx
+const { themeType, theme, setTheme, configuration } = useTheme();
+```
+
+### \{:type} ThemeConfiguration
+
+The `ThemeConfiguration` type is used to define the theme configuration.
+
+```ts
+type ThemeConfiguration = {
+  colors: ThemeConfigurationColors;
+  sizes: {
+    padding: ThemeConfigurationPadding;
+    borderRadius: ThemeConfigurationBorderRadius;
+    fontSize: ThemeConfigurationFontSizes;
+  };
+};
+```
+
+### \{:type} ThemeConfigurationColors
+
+The `ThemeConfigurationColors` type is used to define the colors of the theme. It accepts two properties, `light` and `dark`. Each of these properties is an object that defines the colors for the theme type.
+
+```ts
+type ThemeConfigurationColors = {
+  light: ThemeConfigurationColorsBase;
+  dark: ThemeConfigurationColorsBase;
+};
+```
+
