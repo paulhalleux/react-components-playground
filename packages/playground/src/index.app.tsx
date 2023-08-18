@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button } from "./components";
+import { Button, Progress } from "./components";
 import { ThemeContext, ThemeProvider } from "./theme";
 
 import "./index.app.scss";
@@ -17,7 +17,7 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
-  return <></>;
+  return <Progress progress={50} variant="default" style={{ width: 100 }} />;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);

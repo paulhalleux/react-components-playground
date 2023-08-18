@@ -2,6 +2,7 @@ export * from "./types";
 export * from "./TabsIcon";
 export * from "./RectangleIcon";
 export * from "./RadioInputIcon";
+export * from "./ProgressIcon";
 export * from "./PopupIcon";
 export * from "./PopoverIcon";
 export * from "./PopoverActionIcon";

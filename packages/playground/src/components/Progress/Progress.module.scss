@@ -1,0 +1,53 @@
+$colors: (
+  "info",
+  "success",
+  "warning",
+  "danger",
+  "primary",
+);
+
+$sizes: (
+  small: 8px,
+  medium: 12px,
+  large: 16px,
+);
+
+.progress {
+  border-radius: 20px;
+  width: 100%;
+  overflow: hidden;
+  background-color: c(main-contrast, .5);
+
+  /* Variants */
+
+  &--variant-default {
+    border: 1px solid c(main-contrast, .9);
+    .progress__bar {
+      background-color: c(text-contrast);
+    }
+  }
+
+  @each $color in $colors {
+    &--variant-#{$color} {
+      background-color: c(#{$color}, t(constant-background-alpha));
+
+      .progress__bar {
+        background-color: c(#{$color});
+      }
+    }
+  }
+
+  /* Sizes */
+
+  @each $size, $value in $sizes {
+    &--size-#{$size} {
+      height: $value;
+    }
+  }
+}
+
+.progress__bar {
+  height: calc(100%);
+  border-radius: 20px;
+  transition: width .2s ease-in-out;
+}

@@ -3,5 +3,49 @@ type: component
 title: Progress
 category: Components
 description: A progress bar indicates the status of a process.
-status: todo
+icon: ProgressIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Progress/Progress.tsx
+status: done
 ---
+
+`Progress` is a component that indicates the status of a process. It can be used to show the progress of a file upload, a download, an installation, or any other process that is not instantaneous.
+
+## Examples
+
+<Example name="components/General/Progress" />
+
+## API
+
+### \{:component} Progress
+
+#### Usage
+
+```tsx
+<Progress value={33} />
+```
+
+#### Properties
+
+<Properties component="Progress" />
+
+### \{:type} ProgressVariant
+
+The variant of the progress bar.
+
+```ts
+type ProgressVariant =
+  | "default"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger"
+  | "primary";
+```
+
+### \{:type} ProgressSize
+
+The size of the progress bar.
+
+```ts
+export type ProgressSize = "small" | "medium" | "large";
+```

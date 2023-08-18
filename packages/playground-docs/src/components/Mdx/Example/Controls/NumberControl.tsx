@@ -1,3 +1,5 @@
+import { Input } from "@paulhalleux/react-playground";
+
 import { NumberControl as NumberControlType } from "../index";
 
 import styles from "./SelectControl.module.scss";
@@ -10,15 +12,15 @@ type SelectControlProps = {
 
 export function NumberControl({ id, control, onChange }: SelectControlProps) {
   return (
-    <input
+    <Input
       className={styles.example__controls__select}
       id={id}
-      value={control.value}
+      value={control.value.toString()}
       type="number"
       min={control.min}
       max={control.max}
       step={control.step}
-      onChange={(e) => onChange(parseInt(e.target.value || "0", 10))}
+      onChange={(e) => onChange(parseInt(e, 10))}
     />
   );
 }
