@@ -6,12 +6,18 @@ type TreeContextType = {
   expanded: string[];
   onExpand: (id: string) => void;
   isExpanded: (id: string) => boolean;
+  orderedNodes?: string[];
 } & TreeActionProps;
 
 const defaultValues: TreeContextType = {
   expanded: [],
   onExpand: () => {},
   isExpanded: () => false,
+  orderedNodes: [],
+  onNodeCollapse: () => {},
+  onNodeExpand: () => {},
+  onNodeClick: () => {},
+  onNodeDoubleClick: () => {},
 };
 
 export const TreeContext = createContext<TreeContextType>(defaultValues);
@@ -47,8 +53,30 @@ export function TreeProvider({
     [expanded],
   );
 
+  const orderedNodes = React.useMemo(() => {
+    const Children = React.Children.toArray(children);
+    const orderedNodes: string[] = [];
+
+    const traverse = (children: React.ReactNode) => {
+      React.Children.forEach(children, (child) => {
+        if (React.isValidElement(child)) {
+          orderedNodes.push(child.props.id);
+          if (expanded.includes(child.props.id) && child.props.children) {
+            traverse(child.props.children);
+          }
+        }
+      });
+    };
+
+    traverse(Children);
+
+    return orderedNodes;
+  }, [children, expanded]);
+
   return (
-    <TreeContext.Provider value={{ expanded, onExpand, isExpanded, ...rest }}>
+    <TreeContext.Provider
+      value={{ expanded, onExpand, isExpanded, orderedNodes, ...rest }}
+    >
       {children}
     </TreeContext.Provider>
   );

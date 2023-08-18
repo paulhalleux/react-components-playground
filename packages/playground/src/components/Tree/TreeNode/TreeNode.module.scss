@@ -16,8 +16,8 @@
   font-size: var(--node-font-size);
   user-select: none;
   overflow: hidden;
+  border: 1px solid transparent;
 
-  border: none;
   border-radius: t(border-radius-sm);
   padding: 0 var(--node-base-padding);
 
@@ -32,6 +32,11 @@
 
   &--hold {
     padding-left: calc(var(--node-base-padding) * 2 + 16px);
+  }
+
+  &:focus {
+    outline: 2px solid c(primary, .2);
+    border: 1px solid c(primary);
   }
 }
 
