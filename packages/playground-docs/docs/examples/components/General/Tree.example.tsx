@@ -3,13 +3,21 @@ import {
   FileIcon,
   FolderIcon,
   Tree,
+  TreeSize,
 } from "@paulhalleux/react-playground";
 
-import { ExampleMetadata } from "../../../../src/components/Mdx/Example";
+import {
+  ExampleComponentProps,
+  ExampleMetadata,
+} from "../../../../src/components/Mdx/Example";
 
-function TreeExample() {
+type TreeExampleControls = {
+  size: TreeSize;
+};
+
+function TreeExample({ controls }: ExampleComponentProps<TreeExampleControls>) {
   return (
-    <Tree>
+    <Tree size={controls.size}>
       <Tree.Node
         id="1"
         label="Node 1"
@@ -65,4 +73,13 @@ export const metadata: ExampleMetadata = {
     align: "flex-start",
     grow: true,
   },
+  controls: [
+    {
+      type: "select",
+      label: "Size",
+      property: "size",
+      options: ["small", "large"],
+      value: "small",
+    },
+  ],
 };

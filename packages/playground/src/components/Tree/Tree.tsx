@@ -27,7 +27,12 @@ export type TreeActionProps = {
   onNodeCollapse?: (id: string) => void;
 };
 
-export type TreeProps = PropsWithChildren<TreeActionProps> & BaseProps;
+export type TreeSize = "small" | "large";
+export type TreeProps = PropsWithChildren<{
+  size?: TreeSize;
+}> &
+  TreeActionProps &
+  BaseProps;
 
 export function Tree({
   children,
@@ -36,12 +41,16 @@ export function Tree({
   onNodeDoubleClick,
   onNodeExpand,
   onNodeCollapse,
+  size = "small",
   ...rest
 }: TreeProps) {
   const [expanded, setExpanded] = useState<string[]>([]);
 
   return (
-    <div className={clsx(styles.tree, className)} {...rest}>
+    <div
+      className={clsx(styles.tree, styles[`tree--${size}`], className)}
+      {...rest}
+    >
       <TreeProvider
         expanded={expanded}
         setExpanded={setExpanded}

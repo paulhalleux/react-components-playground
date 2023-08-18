@@ -19,7 +19,7 @@ const Container: CSSProperties = {
 const App = () => {
   return (
     <Card style={{ padding: 8 }} variant="secondary">
-      <Tree>
+      <Tree size="large">
         <Tree.Node
           id="1"
           label="Node 1"

@@ -6,24 +6,24 @@
 }
 
 .tree__node__label {
-  height: 20px;
+  height: var(--node-height);
   width: 100%;
 
   color: c(text-contrast);
   text-align: left;
   cursor: pointer;
   font-weight: 500;
-  font-size: t(font-size-sm);
+  font-size: var(--node-font-size);
   user-select: none;
   overflow: hidden;
 
   border: none;
   border-radius: t(border-radius-sm);
-  padding: 0 t(padding-xxs);
+  padding: 0 var(--node-base-padding);
 
   display: flex;
   align-items: center;
-  gap: t(padding-xxs);
+  gap: var(--node-base-padding);
 
   &:hover {
     background: c(main-active);
@@ -31,7 +31,7 @@
   }
 
   &--hold {
-    padding-left: calc(#{t(padding-xxs)} * 2 + 16px);
+    padding-left: calc(var(--node-base-padding) * 2 + 16px);
   }
 }
 
@@ -81,5 +81,5 @@
 .tree__node__text {
   display: flex;
   align-items: center;
-  gap: t(padding-xs);
+  gap: calc(var(--node-base-padding) * 2);
 }

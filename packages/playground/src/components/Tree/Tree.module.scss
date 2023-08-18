@@ -3,4 +3,16 @@
   display: flex;
   flex-direction: column;
   gap: t(padding-xs);
+
+  &--small {
+    --node-height: 20px;
+    --node-font-size: #{t(font-size-sm)};
+    --node-base-padding: #{t(padding-xxs)};
+  }
+
+  &--large {
+    --node-height: 26px;
+    --node-font-size: 13px;
+    --node-base-padding: #{t(padding-xs)};
+  }
 }
