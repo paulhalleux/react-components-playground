@@ -10,7 +10,6 @@ export * from "./CloseButton";
 export * from "./Skeleton";
 export * from "./Divider";
 export * from "./KeyboardShortcut";
-export * from "./Search";
 export * from "./Loader";
 export * from "./Modal";
 export * from "./Backdrop";
