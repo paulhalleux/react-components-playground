@@ -12,6 +12,7 @@
   overflow: auto;
   border-radius: 4px;
   border: 1px solid c(border);
+  background: c(main-contrast, .2);
 
   .code__block__expand__wrapper {
     display: flex;
@@ -34,7 +35,6 @@
   display: block;
   padding: 10px 0;
   font-size: 14px;
-  background: c(main-contrast, .2);
   width: 100%;
   font-family: "Fira Code", monospace !important;
   color: c(text);

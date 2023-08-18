@@ -9,5 +9,12 @@ type SelectControlProps = {
 };
 
 export function StringControl({ id, control, onChange }: SelectControlProps) {
-  return <Input id={id} value={control.value} onChange={onChange} />;
+  return (
+    <Input
+      id={id}
+      value={control.value}
+      onChange={onChange}
+      style={{ width: "100%" }}
+    />
+  );
 }

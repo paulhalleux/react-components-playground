@@ -40,3 +40,19 @@
   font-size: t(font-size-lg);
   line-height: 1.5;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 10vw;
+    margin-bottom: 24px;
+
+    span {
+      font-size: 3vw;
+      top: 16.5vw;
+    }
+  }
+
+  .description {
+    width: 100%;
+  }
+}

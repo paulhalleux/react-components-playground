@@ -11,6 +11,10 @@
   flex-grow: 1;
   overflow: hidden;
   padding: 24px 0 24px 24px;
+
+  @media (max-width: 768px) {
+    padding: 24px 0;
+  }
 }
 
 .main__grid {
@@ -19,6 +23,15 @@
   grid-template-rows: 1fr;
   gap: 24px;
   margin-bottom: 24px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, calc(50% - 12.5px));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 100%);
+    gap: 12px;
+  }
 }
 
 .main__grid__group {

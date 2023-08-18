@@ -6,6 +6,7 @@
   border-radius: 4px;
   position: relative;
   display: flex;
+  overflow: auto;
 
   &--grow {
     height: auto;

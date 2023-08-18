@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Input } from "@paulhalleux/react-playground";
+import { Flex, Input } from "@paulhalleux/react-playground";
 
+import { SidebarTrigger } from "../../../components/Documentation/SidebarTrigger";
 import { groupComponents } from "../../../utils/components";
 import { ComponentDocumentations } from "../../../utils/documentation";
+import { useComponentsSidebar } from "../use-components-sidebar";
 
 import { MainItem } from "./MainItem";
 
@@ -11,14 +13,19 @@ import styles from "./MainPage.module.scss";
 
 export function MainPage() {
   const [search, setSearch] = useState<string>("");
+  const { sidebarItems } = useComponentsSidebar();
+
   return (
     <div className={styles.main__container}>
       <Helmet title="Components" />
-      <Input
-        placeholder="Search components"
-        value={search}
-        onChange={setSearch}
-      />
+      <Flex alignItems="center" gap={12}>
+        <SidebarTrigger sidebarItems={sidebarItems} />
+        <Input
+          placeholder="Search components"
+          value={search}
+          onChange={setSearch}
+        />
+      </Flex>
       <section>
         {Object.entries(groupComponents(ComponentDocumentations)).map(
           ([key, group]) => {

@@ -1,22 +1,12 @@
 import { Outlet } from "react-router";
 
-import { Routes } from "../../constants/routes";
 import { DocumentationLayout } from "../../layouts/DocumentationLayout";
-import { UtilityDocumentations } from "../../utils/documentation";
 
+import { useUtilitiesSidebar } from "./use-utilities-sidebar";
 import { UtilityPage } from "./UtilityPage";
 
 export function UtilitiesPage() {
-  const sidebarItems = [
-    {
-      title: "Utilities",
-      items: Object.values(UtilityDocumentations).map((utility) => ({
-        title: utility.title,
-        path: Routes.getUtilityRoute(utility),
-        disabled: utility.status === "todo",
-      })),
-    },
-  ];
+  const { sidebarItems } = useUtilitiesSidebar();
 
   return (
     <DocumentationLayout sidebarItems={sidebarItems}>

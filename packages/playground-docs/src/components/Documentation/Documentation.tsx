@@ -3,19 +3,27 @@ import { Helmet } from "react-helmet";
 import {
   Badge,
   Breadcrumb,
+  Flex,
   GithubFillIcon,
+  WindowSize,
 } from "@paulhalleux/react-playground";
 import { AnimatePresence, motion } from "framer-motion";
 import kebabCase from "lodash/kebabCase";
 
 import { Components, DocumentationPage } from "@/generated";
 
+import {
+  DocumentationSidebarGroup,
+  DocumentationSidebarItem,
+} from "../../layouts/DocumentationLayout/DocumentationSidebar";
 import { BaseMeta } from "../../types/documentation";
 import { ContentTable, ContentTableItem } from "../ContentTable";
 import { Markdown } from "../Markdown";
 import { ApiType } from "../Mdx/ApiType/ApiType";
 import { NotFoundState } from "../NotFoundState";
 import { SwitchButton } from "../SwitchButton";
+
+import { SidebarTrigger } from "./SidebarTrigger";
 
 import styles from "./Documentation.module.scss";
 
@@ -25,6 +33,7 @@ type DocumentationProps = {
   previousPage?: DocumentationPage<BaseMeta>;
   nextPage?: DocumentationPage<BaseMeta>;
   getRoute: (page: DocumentationPage<BaseMeta>) => string;
+  sidebarItems: (DocumentationSidebarItem | DocumentationSidebarGroup)[];
 };
 
 export function Documentation({
@@ -33,10 +42,11 @@ export function Documentation({
   previousPage,
   page,
   getRoute,
+  sidebarItems,
 }: DocumentationProps) {
   const mdxContainer = useRef<HTMLDivElement>(null);
   const [tableItems, setTableItems] = useState<ContentTableItem[]>();
-  // const { pathname } = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -93,10 +103,13 @@ export function Documentation({
       <Helmet title={page.title} />
       <section className={styles.documentation__content}>
         <header className={styles.documentation__header}>
-          <Breadcrumb
-            size="small"
-            items={[{ label: type }, { label: page.title }]}
-          />
+          <Flex alignItems="center" gap={12}>
+            <SidebarTrigger sidebarItems={sidebarItems} />
+            <Breadcrumb
+              size="small"
+              items={[{ label: type }, { label: page.title }]}
+            />
+          </Flex>
           <div className={styles.documentation__title}>
             <h1
               className={styles.title}
@@ -128,21 +141,23 @@ export function Documentation({
           </section>
         </footer>
       </section>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={page.id}
-          initial={{ opacity: 0.3 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0.3 }}
-          className={styles["content-table__container"]}
-        >
-          {tableItems !== undefined ? (
-            <ContentTable items={tableItems} />
-          ) : (
-            <ContentTable.Skeleton />
-          )}
-        </motion.div>
-      </AnimatePresence>
+      <WindowSize minWidth={1000}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={page.id}
+            initial={{ opacity: 0.3 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0.3 }}
+            className={styles["content-table__container"]}
+          >
+            {tableItems !== undefined ? (
+              <ContentTable items={tableItems} />
+            ) : (
+              <ContentTable.Skeleton />
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </WindowSize>
     </div>
   );
 }

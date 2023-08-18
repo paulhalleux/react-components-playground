@@ -7,11 +7,17 @@ import styles from "./SidebarItem.module.scss";
 type SidebarItemProps = PropsWithChildren<{
   path: string;
   disabled?: boolean;
+  onClick?: () => void;
 }>;
 
-export function SidebarItem({ path, disabled, children }: SidebarItemProps) {
+export function SidebarItem({
+  path,
+  disabled,
+  children,
+  onClick,
+}: SidebarItemProps) {
   return (
-    <li className={styles.sidebar__item}>
+    <li className={styles.sidebar__item} onClick={onClick}>
       {disabled ? (
         <span className={styles.disabled}>{children}</span>
       ) : (

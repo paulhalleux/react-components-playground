@@ -107,6 +107,10 @@ export function Select({
     >
       <select
         onFocus={() => !disabled && setOpen(true)}
+        onChange={(e) => {
+          onChange?.(e.target.value);
+          setOpen(false);
+        }}
         className={styles.select__hidden}
         value={value}
         disabled={disabled}

@@ -25,8 +25,8 @@ export function ModalHeader({
   const { onClose } = useModal();
 
   return (
-    <div className={clsx(styles.modal__header)} {...rest}>
-      <div className={className}>{children}</div>
+    <div className={clsx(styles.modal__header, className)} {...rest}>
+      {children}
       {closeable && (
         <CloseButton onClick={onClose} size="x-large" variant="default" />
       )}

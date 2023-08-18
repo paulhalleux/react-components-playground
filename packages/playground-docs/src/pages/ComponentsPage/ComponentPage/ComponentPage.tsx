@@ -6,9 +6,11 @@ import { Routes } from "../../../constants/routes";
 import { groupComponents } from "../../../utils/components";
 import { ComponentDocumentations } from "../../../utils/documentation";
 import { getDocumentationPath } from "../../../utils/path";
+import { useComponentsSidebar } from "../use-components-sidebar";
 
 export function ComponentPage() {
   const { component } = useParams<{ component: string }>();
+  const { sidebarItems } = useComponentsSidebar();
 
   const { page, nextPage, previousPage } = useMemo(() => {
     if (!component)
@@ -46,6 +48,7 @@ export function ComponentPage() {
       nextPage={nextPage}
       previousPage={previousPage}
       getRoute={Routes.getComponentRoute}
+      sidebarItems={sidebarItems}
     />
   );
 }

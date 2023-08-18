@@ -5,9 +5,11 @@ import { Documentation } from "../../../components/Documentation";
 import { Routes } from "../../../constants/routes";
 import { HookDocumentations } from "../../../utils/documentation";
 import { getDocumentationPath } from "../../../utils/path";
+import { useHooksSidebar } from "../use-hooks-sidebar";
 
 export function HookPage() {
   const { hook } = useParams<{ hook: string }>();
+  const { sidebarItems } = useHooksSidebar();
 
   const { page, nextPage, previousPage } = useMemo(() => {
     if (!hook)
@@ -43,6 +45,7 @@ export function HookPage() {
       nextPage={nextPage}
       previousPage={previousPage}
       getRoute={Routes.getHookRoute}
+      sidebarItems={sidebarItems}
     />
   );
 }

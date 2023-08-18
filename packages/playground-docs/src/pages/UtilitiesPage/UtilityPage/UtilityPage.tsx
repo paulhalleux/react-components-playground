@@ -5,9 +5,11 @@ import { Documentation } from "../../../components/Documentation";
 import { Routes } from "../../../constants/routes";
 import { UtilityDocumentations } from "../../../utils/documentation";
 import { getDocumentationPath } from "../../../utils/path";
+import { useUtilitiesSidebar } from "../use-utilities-sidebar";
 
 export function UtilityPage() {
   const { utility } = useParams<{ utility: string }>();
+  const { sidebarItems } = useUtilitiesSidebar();
 
   const { page, nextPage, previousPage } = useMemo(() => {
     if (!utility)
@@ -43,6 +45,7 @@ export function UtilityPage() {
       nextPage={nextPage}
       previousPage={previousPage}
       getRoute={Routes.getUtilityRoute}
+      sidebarItems={sidebarItems}
     />
   );
 }

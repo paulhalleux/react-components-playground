@@ -11,20 +11,6 @@ type SelectControlProps = {
 };
 
 export function SelectControl({ id, control, onChange }: SelectControlProps) {
-  // return (
-  //   <select
-  //     className={styles.example__controls__select}
-  //     id={`${control.property}-${id}`}
-  //     value={control.value}
-  //     onChange={(e) => onChange(e.target.value)}
-  //   >
-  //     {control.options.map((option) => (
-  //       <option key={option} value={option}>
-  //         {option}
-  //       </option>
-  //     ))}
-  //   </select>
-  // );
   return (
     <Select
       className={styles.example__controls__select}

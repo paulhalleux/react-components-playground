@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 48px;
+  gap: t(padding-lg);
 }
 
 .documentation__header {
@@ -30,6 +31,10 @@
   h1, h2, h3, h4, h5, h6 {
     scroll-margin-top: 80px;
   }
+
+  @media (max-width: 768px) {
+    padding: 24px 0;
+  }
 }
 
 .documentation__container {
@@ -38,6 +43,10 @@
   display: grid;
   grid-template-columns: 1fr 250px;
   gap: t(padding-lg);
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .content-table__container {
@@ -54,4 +63,8 @@
   justify-content: center;
   width: 100%;
   flex-grow: 1;
+}
+
+.sidebar__header {
+  padding-inline: 24px;
 }
