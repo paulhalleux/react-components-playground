@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Search } from "@paulhalleux/react-playground";
+import { Input } from "@paulhalleux/react-playground";
 
 import { groupComponents } from "../../../utils/components";
 import { ComponentDocumentations } from "../../../utils/documentation";
@@ -14,7 +14,7 @@ export function MainPage() {
   return (
     <div className={styles.main__container}>
       <Helmet title="Components" />
-      <Search
+      <Input
         placeholder="Search components"
         value={search}
         onChange={setSearch}

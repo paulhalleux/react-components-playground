@@ -3,5 +3,57 @@ type: component
 title: Tree
 category: Components
 description: A tree component for displaying hierarchical data.
-status: todo
+status: done
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Tree/Tree.tsx
+icon: AlignRightIcon
 ---
+
+`Tree` is a component for displaying hierarchical data.
+
+## Examples
+
+<Example name="components/General/Tree" />
+
+## API
+
+### \{:component} Tree
+
+It is a container for `TreeNode` components.
+
+#### Usage
+
+```tsx
+<Tree>
+  {/* ... */}
+</Tree>
+```
+
+#### Properties
+
+<Properties component="Tree" />
+
+### \{:component} Tree.Node
+
+Represents a node in the tree.
+
+#### Usage
+
+```tsx
+<Tree>
+  <Tree.Node id="node-1" label="Node 1">
+    {/* Sub nodes */}
+  </Tree.Node>
+</Tree>
+```
+
+#### Properties
+
+<Properties component="Tree.Node" />
+
+### \{:type} TreeNodeAddonVisibility
+
+Defines the visibility of the node's addon.
+
+```ts
+type TreeNodeAddonVisibility = 'always' | 'hover';
+```

@@ -36,5 +36,6 @@ export * from "./StatusIndicator";
 export * from "./Text";
 export * from "./Pagination";
 export * from "./Progress";
+export * from "./Tree";
 
 export * as Icons from "./Icons";

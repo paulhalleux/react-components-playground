@@ -1,0 +1,85 @@
+.tree__node {
+  display: flex;
+  flex-direction: column;
+  gap: t(padding-xs);
+  width: 100%;
+}
+
+.tree__node__label {
+  height: 20px;
+  width: 100%;
+
+  color: c(text-contrast);
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: t(font-size-sm);
+  user-select: none;
+  overflow: hidden;
+
+  border: none;
+  border-radius: t(border-radius-sm);
+  padding: 0 t(padding-xxs);
+
+  display: flex;
+  align-items: center;
+  gap: t(padding-xxs);
+
+  &:hover {
+    background: c(main-active);
+    color: c(text);
+  }
+
+  &--hold {
+    padding-left: calc(#{t(padding-xxs)} * 2 + 16px);
+  }
+}
+
+.tree__node__expand {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  border-radius: t(border-radius-sm);
+
+  &:hover {
+    background: c(main-contrast, .5);
+    color: c(text);
+  }
+}
+
+.tree__node__children {
+  margin-left: calc(#{t(padding-xs)} * 2 + 16px);
+  border-left: 1px solid c(border);
+  padding-left: t(padding-xs);
+  display: flex;
+  flex-direction: column;
+  gap: t(padding-xs);
+}
+
+.tree__node__addon {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  &.tree__node__addon--hover {
+    display: none;
+
+    .tree__node__label:hover & {
+      display: flex;
+    }
+  }
+}
+
+.tree__node__text {
+  display: flex;
+  align-items: center;
+  gap: t(padding-xs);
+}
