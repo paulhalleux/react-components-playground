@@ -1,0 +1,9 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  color: c(text-contrast);
+  font-size: t(font-size-md);
+}

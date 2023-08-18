@@ -3,5 +3,69 @@ type: component
 title: Pagination
 category: Navigation
 description: A pagination component for navigating through pages of content.
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Pagination/Pagination.tsx
+icon: ChevronRightIcon
+status: done
 ---
+
+`Pagination` is a component for navigating through pages of content. It is used to split up a long list of content into multiple pages, with control over which page is currently visible.
+
+## Examples
+
+<Example name="components/Navigation/Pagination" />
+
+## API
+
+### \{:component} Pagination
+
+This is the main component. Is will take as children the `Pagination.Data` and/or `Pagination.Navigation` components.
+It will handle the placement of the navigation component and the data component.
+
+#### Usage
+
+```tsx
+<Pagination>
+  {/* ... */}
+</Pagination>
+```
+
+#### Properties
+
+<Properties component="Pagination" additional={[
+  {
+    name: 'children',
+    type: 'React.ReactNode',
+    description: 'The children of the component.',
+    required: true,
+  },
+]} />
+
+### \{:component} Pagination.Data
+
+This component is used to display the data of the current page.
+
+#### Usage
+
+```tsx
+<Pagination.Data page={1} perPage={10} total={100}>
+  {/* Optional content */}
+</Pagination.Data>
+```
+
+#### Properties
+
+<Properties component="Pagination.Data"  />
+
+### \{:component} Pagination.Navigation
+
+This component is used to display the navigation of the pagination.
+
+#### Usage
+
+```tsx
+<Pagination.Navigation pageAmount={10} currentPage={1} />
+```
+
+#### Properties
+
+<Properties component="Pagination.Navigation"  />

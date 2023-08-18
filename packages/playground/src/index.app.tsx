@@ -1,13 +1,13 @@
 import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Flex, Text } from "./components";
+import { Button } from "./components";
 import { ThemeContext, ThemeProvider } from "./theme";
 
 import "./index.app.scss";
 
 const Container: CSSProperties = {
-  width: "100%",
+  width: 1920 / 2,
   height: 1080 / 2,
   display: "flex",
   flexDirection: "column",
@@ -17,21 +17,7 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
-  return (
-    <Flex flexDirection="column" gap={10} alignItems="center">
-      <Text type="h1">Hello world</Text>
-      <Text type="h2">Hello world</Text>
-      <Text type="h3">Hello world</Text>
-      <Text type="h4">Hello world</Text>
-      <Text type="h5">Hello world</Text>
-      <Text type="h6">Hello world</Text>
-      <Text type="text-xs">Hello world</Text>
-      <Text type="text-sm">Hello world</Text>
-      <Text type="text-md">Hello world</Text>
-      <Text type="text-lg">Hello world</Text>
-      <Text type="text-xl">Hello world</Text>
-    </Flex>
-  );
+  return <></>;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);

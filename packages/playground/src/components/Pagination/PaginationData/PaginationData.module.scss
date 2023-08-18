@@ -1,0 +1,15 @@
+.pagination__data {
+  display: flex;
+  align-items: center;
+  gap: t(padding-sm);
+}
+
+.pagination__data__current {
+  display: flex;
+  align-items: center;
+  gap: t(padding-sm);
+}
+
+.pagination__data__edit {
+  text-align: center;
+}

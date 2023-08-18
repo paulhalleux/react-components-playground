@@ -20,7 +20,7 @@ function DefaultExample({
   return (
     <Card variant={controls.state}>
       <Card.Header>
-        <Badge state={controls.state as any}>Default</Badge> Lorem ipsum dolor
+        <Badge variant={controls.state as any}>Default</Badge> Lorem ipsum dolor
         sit amet, consectetur
       </Card.Header>
       <Card.Body>

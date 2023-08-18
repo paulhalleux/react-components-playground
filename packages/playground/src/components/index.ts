@@ -35,5 +35,6 @@ export * from "./Textarea";
 export * from "./Select";
 export * from "./StatusIndicator";
 export * from "./Text";
+export * from "./Pagination";
 
 export * as Icons from "./Icons";

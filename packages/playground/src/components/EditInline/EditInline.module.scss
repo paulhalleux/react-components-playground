@@ -4,6 +4,7 @@
   border: none;
   color: currentColor;
   height: auto;
+  border-radius: t(border-radius-sm);
 
   &:focus {
     outline: 2px solid c(primary, .2);

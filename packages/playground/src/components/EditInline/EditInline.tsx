@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useClickAway } from "react-use";
+import clsx from "clsx";
 
 import { BaseProps } from "../../types";
 
@@ -18,12 +19,24 @@ export type EditInlineProps = {
    * The maximum width of the input
    */
   maxWidth?: number;
+  /**
+   * The trigger to start editing
+   */
+  trigger?: "click" | "double-click";
+  /**
+   * The class name of the input
+   */
+  inputClassName?: string;
 } & BaseProps;
 
 export function EditInline({
   value,
   onChange,
+  trigger = "double-click",
   maxWidth = 300,
+  className,
+  inputClassName,
+  ...rest
 }: EditInlineProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const widthProviderRef = useRef<HTMLSpanElement>(null);
@@ -32,14 +45,19 @@ export function EditInline({
   const [editValue, setEditValue] = useState(value);
   const [editing, setEditing] = useState(false);
 
-  useClickAway(inputRef, () => setEditing(false));
+  const onClose = () => {
+    setEditing(false);
+    setWidth(0);
+  };
+
+  useClickAway(inputRef, onClose);
 
   useEffect(() => {
     setEditValue(value);
   }, [value]);
 
   useEffect(() => {
-    setWidth(widthProviderRef.current?.offsetWidth || 0);
+    setWidth((widthProviderRef.current?.offsetWidth || 0) + 5);
   }, [editValue]);
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -55,21 +73,23 @@ export function EditInline({
     }
   };
 
-  const onDoubleClick = () => {
+  const onClick = () => {
+    if (trigger !== "click") return;
     setEditing(true);
     setEditValue(value);
   };
 
-  const onClose = () => {
-    setEditing(false);
-    setWidth(0);
+  const onDoubleClick = () => {
+    if (trigger !== "double-click") return;
+    setEditing(true);
+    setEditValue(value);
   };
 
   const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEditValue(e.target.value);
 
   return (
-    <div ref={inputRef}>
+    <div ref={inputRef} className={className} {...rest}>
       {editing ? (
         <>
           <span
@@ -86,7 +106,7 @@ export function EditInline({
           </span>
           <input
             autoFocus
-            className={styles.edit__input}
+            className={clsx(styles.edit__input, inputClassName)}
             type="text"
             value={editValue}
             onChange={onValueChange}
@@ -100,7 +120,11 @@ export function EditInline({
           />
         </>
       ) : (
-        <span className={styles.edit__value} onDoubleClick={onDoubleClick}>
+        <span
+          className={styles.edit__value}
+          onDoubleClick={onDoubleClick}
+          onClick={onClick}
+        >
           {value}
         </span>
       )}
