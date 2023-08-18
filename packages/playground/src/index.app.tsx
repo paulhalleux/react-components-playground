@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 import ReactDOM from "react-dom/client";
 
 import { Badge, Button, Card, FileIcon, FolderIcon, Tree } from "./components";
@@ -17,9 +17,15 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
+  const [selected, setSelected] = useState<string[]>([]);
   return (
     <Card style={{ padding: 8 }} variant="secondary">
-      <Tree size="large">
+      <Tree
+        size="large"
+        selected={selected}
+        onSelectionChange={setSelected}
+        selectable
+      >
         <Tree.Node
           id="1"
           label="Node 1"

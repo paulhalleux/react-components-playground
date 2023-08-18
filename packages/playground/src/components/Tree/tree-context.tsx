@@ -1,12 +1,21 @@
-import React, { createContext, PropsWithChildren } from "react";
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 
 import { TreeActionProps } from "./Tree";
+
+import styles from "./Tree.module.scss";
 
 type TreeContextType = {
   expanded: string[];
   onExpand: (id: string) => void;
   isExpanded: (id: string) => boolean;
   orderedNodes?: string[];
+  selected?: string[];
+  onSelectionChange?: (selected: string[]) => void;
 } & TreeActionProps;
 
 const defaultValues: TreeContextType = {
@@ -18,22 +27,36 @@ const defaultValues: TreeContextType = {
   onNodeExpand: () => {},
   onNodeClick: () => {},
   onNodeDoubleClick: () => {},
+  selected: [],
+  onSelectionChange: () => {},
 };
 
 export const TreeContext = createContext<TreeContextType>(defaultValues);
 
 type TreeProviderProps = PropsWithChildren<{
-  expanded: string[];
-  setExpanded: React.Dispatch<React.SetStateAction<string[]>>;
+  id?: string;
+  name?: string;
+  selectable?: boolean;
+  selected?: string[];
+  onSelectionChange?: (selected: string[]) => void;
 }> &
   TreeActionProps;
 
 export function TreeProvider({
+  id,
+  name,
   children,
-  expanded,
-  setExpanded,
+  selectable,
+  selected,
+  onSelectionChange,
+  onNodeClick,
   ...rest
 }: TreeProviderProps) {
+  const [selectedNodes, setSelectedNodes] = React.useState<string[]>(
+    selected || [],
+  );
+  const [expanded, setExpanded] = useState<string[]>([]);
+
   const onExpand = React.useCallback((id: string) => {
     setExpanded((prev) => {
       if (prev.includes(id)) {
@@ -73,10 +96,60 @@ export function TreeProvider({
     return orderedNodes;
   }, [children, expanded]);
 
+  const onSelectionChangeCallback = React.useCallback(
+    (selected: string[]) => {
+      setSelectedNodes(selected);
+      onSelectionChange?.(selected);
+    },
+    [onSelectionChange],
+  );
+
+  const onClick = React.useCallback(
+    (id: string, event: React.MouseEvent) => {
+      onNodeClick?.(id, event);
+      if (selectable) {
+        if (selected?.includes(id) && event.ctrlKey) {
+          onSelectionChangeCallback?.(selected.filter((item) => item !== id));
+        } else if (event.ctrlKey) {
+          onSelectionChangeCallback?.([...(selected || []), id]);
+        } else {
+          onSelectionChangeCallback?.([id]);
+        }
+      }
+    },
+    [onNodeClick, selectable, onSelectionChangeCallback, selected],
+  );
+
+  useEffect(() => {
+    if (!selectable) {
+      setSelectedNodes([]);
+    }
+  }, [selectable]);
+
   return (
     <TreeContext.Provider
-      value={{ expanded, onExpand, isExpanded, orderedNodes, ...rest }}
+      value={{
+        expanded,
+        onExpand,
+        isExpanded,
+        orderedNodes,
+        onNodeClick: onClick,
+        selected: selectedNodes,
+        onSelectionChange: onSelectionChangeCallback,
+        ...rest,
+      }}
     >
+      {selectable && (
+        <input
+          id={id}
+          name={name}
+          type="text"
+          className={styles["tree__backing-input"]}
+          placeholder="Search"
+          value={selected ? selected.join(",") : ""}
+          readOnly
+        />
+      )}
       {children}
     </TreeContext.Provider>
   );

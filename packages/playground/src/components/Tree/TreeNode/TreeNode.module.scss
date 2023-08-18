@@ -25,18 +25,27 @@
   align-items: center;
   gap: var(--node-base-padding);
 
+  &--hold {
+    padding-left: calc(var(--node-base-padding) * 2 + 16px);
+  }
+
   &:hover {
     background: c(main-active);
     color: c(text);
   }
 
-  &--hold {
-    padding-left: calc(var(--node-base-padding) * 2 + 16px);
-  }
-
   &:focus {
     outline: 2px solid c(primary, .2);
     border: 1px solid c(primary);
+  }
+
+  &--selected {
+    background: c(main-contrast, .5);
+    color: c(text);
+
+    &:hover {
+      background: c(main-contrast, .3);
+    }
   }
 }
 

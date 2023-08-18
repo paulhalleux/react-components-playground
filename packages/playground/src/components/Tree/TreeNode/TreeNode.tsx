@@ -42,12 +42,18 @@ export function TreeNode({
   addonVisibility = "hover",
   ...rest
 }: TreeNodeProps) {
-  const { orderedNodes, isExpanded, onExpand, onNodeClick, onNodeDoubleClick } =
-    useTreeContext();
+  const {
+    selected,
+    orderedNodes,
+    isExpanded,
+    onExpand,
+    onNodeClick,
+    onNodeDoubleClick,
+  } = useTreeContext();
 
-  const onDoubleClick = () => {
+  const onDoubleClick = (event: React.MouseEvent) => {
     onExpand(id);
-    onNodeDoubleClick?.(id);
+    onNodeDoubleClick?.(id, event);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -55,7 +61,7 @@ export function TreeNode({
     event.stopPropagation();
 
     if (event.key === "Enter") {
-      onNodeClick?.(id);
+      onNodeClick?.(id, {} as React.MouseEvent);
     } else if (
       (event.key === "ArrowRight" ||
         event.key === "ArrowLeft" ||
@@ -82,7 +88,11 @@ export function TreeNode({
     }
   };
 
-  const onExpandButtonClick = () => onExpand(id);
+  const onExpandButtonClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+    onExpand(id);
+  };
 
   return (
     <div className={clsx(styles.tree__node, className)} {...rest}>
@@ -90,13 +100,14 @@ export function TreeNode({
         data-node-id={id}
         role="treeitem"
         tabIndex={0}
-        onClick={() => onNodeClick?.(id)}
+        onClick={(event) => onNodeClick?.(id, event)}
         onDoubleClick={onDoubleClick}
         onKeyDown={onKeyDown}
         aria-expanded={!!children}
         id={id}
         className={clsx(styles.tree__node__label, {
           [styles["tree__node__label--hold"]]: !children,
+          [styles["tree__node__label--selected"]]: selected?.includes(id),
         })}
       >
         {children && (

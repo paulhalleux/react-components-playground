@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Badge,
   FileIcon,
@@ -13,11 +14,19 @@ import {
 
 type TreeExampleControls = {
   size: TreeSize;
+  selectable: boolean;
 };
 
 function TreeExample({ controls }: ExampleComponentProps<TreeExampleControls>) {
+  const [selected, setSelected] = React.useState<string[]>([]);
+
   return (
-    <Tree size={controls.size}>
+    <Tree
+      size={controls.size}
+      selectable={controls.selectable}
+      selected={selected}
+      onSelectionChange={setSelected}
+    >
       <Tree.Node
         id="1"
         label="Node 1"
@@ -80,6 +89,12 @@ export const metadata: ExampleMetadata = {
       property: "size",
       options: ["small", "large"],
       value: "small",
+    },
+    {
+      type: "boolean",
+      label: "Selectable",
+      property: "selectable",
+      value: false,
     },
   ],
 };
