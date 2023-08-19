@@ -57,6 +57,8 @@ export function TreeNode({
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Tab") return;
+
     event.preventDefault();
     event.stopPropagation();
 

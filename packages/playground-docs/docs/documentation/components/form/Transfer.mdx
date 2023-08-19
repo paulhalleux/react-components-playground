@@ -3,5 +3,40 @@ type: component
 title: Transfer
 category: Form
 description: A transfer component that can be used to transfer items between two lists.
-status: todo
+icon: ChevronsRightIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Transfer/Transfer.tsx
+status: done
 ---
+
+`Transfer` is a component that can be used to transfer items between two lists.
+
+## Examples
+
+<Example name="components/Form/Transfer" />
+
+## API
+
+### \{:component} Transfer
+
+#### Usage
+
+```tsx
+<Transfer
+  items={items}
+  value={value}
+  onChange={onChange}
+/>
+```
+
+#### Properties
+
+<Properties component="Transfer" />
+
+### \{:type} TransferItem
+
+```ts
+type TransferItem = {
+  id: string;
+  label: string;
+};
+```

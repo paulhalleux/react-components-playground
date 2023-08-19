@@ -39,5 +39,6 @@ export * from "./Progress";
 export * from "./Tree";
 export * from "./WindowSize";
 export * from "./Rating";
+export * from "./Transfer";
 
 export * as Icons from "./Icons";
