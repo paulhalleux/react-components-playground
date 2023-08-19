@@ -3,5 +3,38 @@ type: component
 title: Rating
 category: Form
 description: A star rating component.
-status: todo
+icon: StarIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/Rating/Rating.tsx
+status: done
 ---
+
+`Rating` is a component that allows users to rate something by clicking on stars.
+
+## Examples
+
+<Example name="components/Form/Rating" />
+
+## API
+
+### \{:component} Rating
+
+#### Usage
+
+```tsx
+<Rating
+  value={3}
+  onChange={value => console.log(value)}
+/>
+```
+
+#### Properties
+
+<Properties component="Rating" />
+
+### \{:type} RatingSize
+
+The size of the rating component.
+
+```ts
+type RatingSize = 'small' | 'medium' | 'large';
+```

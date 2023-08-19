@@ -1,0 +1,10 @@
+.star__container {
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: .5;
+  }
+}

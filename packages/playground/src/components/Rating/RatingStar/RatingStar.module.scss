@@ -1,0 +1,46 @@
+$sizes: (
+  small: 16px,
+  medium: 20px,
+  large: 24px,
+);
+
+.star {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible .star__shape {
+    stroke: c(primary);
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+
+  .star__shape {
+    stroke: c(border);
+    fill: c(main-contrast, .2);
+  }
+
+  &--active .star__shape,
+  &:hover ~ .star .star__shape,
+  &:hover .star__shape {
+    fill: c(text);
+    stroke: c(text);
+  }
+
+  &--active:hover .star__shape {
+    fill: c(text-contrast);
+    stroke: c(text-contrast);
+  }
+
+
+  @each $size, $value in $sizes {
+    &--size-#{$size} {
+      width: $value;
+      height: $value;
+    }
+  }
+}

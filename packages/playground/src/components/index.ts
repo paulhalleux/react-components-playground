@@ -38,5 +38,6 @@ export * from "./Pagination";
 export * from "./Progress";
 export * from "./Tree";
 export * from "./WindowSize";
+export * from "./Rating";
 
 export * as Icons from "./Icons";
