@@ -1,5 +1,37 @@
 ---
 type: hook
 title: useEventListener
-status: todo
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/hooks/use-event-listener.ts
 ---
+
+A React hook to add event listeners to the window or the given element.
+
+## Usage
+
+```tsx
+import { useEventListener } from '@paulhalleux/react-playground';
+
+const MyComponent = () => {
+  const [count, setCount] = useState(0);
+
+  useEventListener('click', () => setCount(count + 1));
+
+  return <div>Clicked {count} times</div>;
+};
+```
+
+## Reference
+
+```tsx
+function useEventListener(
+  eventName: string,
+  handler: (event: Event) => void,
+  element?: HTMLElement | Window,
+): void;
+```
+
+### Parameters
+
+- `eventName`: The name of the event to listen to.
+- `handler`: The function to call when the event is triggered.
+- `element`: The element to add the event listener to. Defaults to `window`.

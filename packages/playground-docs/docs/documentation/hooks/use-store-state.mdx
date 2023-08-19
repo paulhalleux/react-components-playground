@@ -40,7 +40,10 @@ const App = () => {
 The hooks works like the `useState` hook, but it takes an additional `key` argument.
 
 ```tsx
-const [value, setValue] = useStoreState<T>(key, initialValue);
+function useStoreState<T>(
+  key: string,
+  defaultValue: T,
+): [T, (newValue: T | ((oldValue: T) => T)) => void];
 ```
 
 ### Arguments

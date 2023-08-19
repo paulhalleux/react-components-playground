@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { useWindowSize } from "../../hooks/use-window-size";
+import { useWindowSize } from "../../hooks";
 
 export type WindowSizeProps = PropsWithChildren<
   | {
