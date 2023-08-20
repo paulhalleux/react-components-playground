@@ -23,12 +23,14 @@ export function Tooltip({
   className,
   variant = "default",
   delay = 300,
+  noPointerEvents,
   ...rest
 }: TooltipProps) {
   return (
     <Popover
       trigger="hover"
       delay={delay}
+      noPointerEvents={noPointerEvents}
       content={
         <div
           data-test-id={dataTestId}

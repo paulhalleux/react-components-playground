@@ -1,0 +1,33 @@
+$colors: (
+  "primary"
+  "info"
+  "success"
+  "warning"
+  "danger"
+);
+
+.activity-indicator {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background-color: c(main-contrast, .4);
+  border: 1px solid c(border, .7);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: c(text, .5);
+  transition: opacity .2s ease-in-out;
+
+  &:hover {
+    opacity: .5;
+  }
+
+  @each $color in $colors {
+    &--variant-#{$color}.activity-indicator--active {
+      background-color: c(#{$color}, var(--intensity));
+      border: 1px solid c(#{$color}, .5);
+    }
+  }
+}

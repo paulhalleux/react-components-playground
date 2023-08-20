@@ -1,0 +1,10 @@
+.activity-chart__legend {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  &__content {
+    display: flex;
+    gap: 3px;
+  }
+}

@@ -48,6 +48,18 @@ export type PopoverProps = PropsWithChildren<{
    * The offset of the popover.
    */
   offset?: number;
+  /**
+   * The style of the popover container.
+   */
+  containerStyle?: React.CSSProperties;
+  /**
+   * The class name of the popover container.
+   */
+  containerClassName?: string;
+  /**
+   * Whether to disable pointer events on the popover.
+   */
+  noPointerEvents?: boolean;
 }> &
   BaseProps;
 
@@ -68,6 +80,9 @@ function Popover(
     offset = 5,
     delay = 0,
     style,
+    containerStyle,
+    containerClassName,
+    noPointerEvents,
   }: PopoverProps,
   ref: React.Ref<PopoverRef>,
 ) {
@@ -109,9 +124,10 @@ function Popover(
     <div
       ref={popoverRef}
       data-test-id={`${dataTestId}-wrapper`}
-      className={styles.popover__wrapper}
+      className={clsx(styles.popover__wrapper, containerClassName)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      style={containerStyle}
     >
       <AnimatePresence mode="wait">
         {active && (
@@ -129,6 +145,7 @@ function Popover(
             style={
               {
                 "--offset": `${offset}px`,
+                pointerEvents: noPointerEvents ? "none" : "all",
                 ...style,
               } as React.CSSProperties
             }

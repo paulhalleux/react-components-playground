@@ -1,7 +1,9 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import ReactDOM from "react-dom/client";
 
-import { Button, Transfer } from "./components";
+import { ActivityChart } from "./components/ActivityChart";
+import { oneYearBefore } from "./utils/date";
+import { Button, Flex, Label, StatusIndicator } from "./components";
 import { ThemeContext, ThemeProvider } from "./theme";
 
 import "./index.app.scss";
@@ -17,25 +19,48 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
-  const [value, setValue] = useState<string[]>([]);
+  const today = new Date();
   return (
-    <Transfer
-      items={[
-        { id: "1", label: "Item 1" },
-        { id: "2", label: "Item 2" },
-        { id: "3", label: "Item 3" },
-        { id: "4", label: "Item 4" },
-        { id: "5", label: "Item 5" },
-        { id: "6", label: "Item 6" },
-        { id: "7", label: "Item 7" },
-        { id: "8", label: "Item 8" },
-        { id: "9", label: "Item 9" },
-        { id: "10", label: "Item 10" },
-      ]}
-      selectedItems={value}
-      onChange={setValue}
-    />
+    <ActivityChart
+      items={getRandomActivity()}
+      start={oneYearBefore(today)}
+      end={today}
+      variant="primary"
+    >
+      <ActivityChart.Legend />
+      <ActivityChart.Tooltip>
+        {({ activity, day }) => (
+          <>
+            <div>{day.toDateString()}</div>
+            <Flex alignItems="center" gap={6}>
+              <StatusIndicator status="primary" />
+              <Label>{activity.length} activities</Label>
+            </Flex>
+          </>
+        )}
+      </ActivityChart.Tooltip>
+      <ActivityChart.Labels type="day" />
+      <ActivityChart.Labels type="month" />
+    </ActivityChart>
   );
+};
+
+const getRandomActivity = () => {
+  // generate random activity for some days in the past year
+  const today = new Date();
+  const oneYearAgo = oneYearBefore(today);
+  const activityAmount = Math.floor(Math.random() * 1000);
+  const activity = [];
+  for (let i = 0; i < activityAmount; i++) {
+    activity.push({
+      id: i.toString(),
+      date: new Date(
+        oneYearAgo.getTime() +
+          Math.random() * (today.getTime() - oneYearAgo.getTime()),
+      ),
+    });
+  }
+  return activity;
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);

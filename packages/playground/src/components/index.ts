@@ -40,5 +40,7 @@ export * from "./Tree";
 export * from "./WindowSize";
 export * from "./Rating";
 export * from "./Transfer";
+export * from "./Slot";
+export * from "./ActivityChart";
 
 export * as Icons from "./Icons";

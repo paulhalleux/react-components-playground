@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Icons, Input } from "@paulhalleux/react-playground";
+import { Flex, Icons, Input } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../../../src/components/Mdx/Example";
 
@@ -7,10 +7,22 @@ import styles from "./Icons.example.module.scss";
 
 function IconsExample() {
   const [search, setSearch] = useState<string>("");
+  const [size, setSize] = useState<number>(20);
 
   return (
     <div className={styles.container}>
-      <Input placeholder="Search icon..." value={search} onChange={setSearch} />
+      <Flex gap={8} alignItems="center">
+        <Input
+          placeholder="Search icon..."
+          value={search}
+          onChange={setSearch}
+        />
+        <Input
+          type="number"
+          value={size.toString()}
+          onChange={(value) => setSize(parseInt(value))}
+        />
+      </Flex>
       <div className={styles.icons__container}>
         {Object.keys(Icons)
           .filter((icon) => icon.toLowerCase().includes(search.toLowerCase()))
@@ -19,7 +31,7 @@ function IconsExample() {
 
             return (
               <div key={icon} className={styles.icon}>
-                <Icon size={24} />
+                <Icon size={size} />
                 <div className={styles.icon__label} title={icon}>
                   {icon.replace(/Icon$/, "")}
                 </div>

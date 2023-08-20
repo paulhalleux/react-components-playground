@@ -1,0 +1,75 @@
+---
+type: component
+category: Dashboard
+title: ActivityChart
+description: An activity chart component.
+status: done
+icon: ActivityIcon
+sourceUrl: https://github.com/paulhalleux/react-playground/blob/main/packages/playground/src/components/ActivityChart/ActivityChart.tsx
+---
+
+`ActivityChart` is a component that displays a chart of activity over time.
+
+## Example
+
+<Example name="components/Dashboard/ActivityChart" />
+
+## API
+
+### \{:component} ActivityChart
+
+This component is charged to display the activity chart. It also takes care of rendering the children.
+
+#### Usage
+
+```tsx
+<ActivityChart
+  items={items}
+  start={start}
+  end={end}
+  variant={variant}
+>
+  {/* Children to render */}
+</ActivityChart>
+```
+
+#### Properties
+
+<Properties component="ActivityChart" />
+
+### \{:component} ActivityChart.Tooltip
+
+This component is charged to display the tooltip of the activity chart items.
+
+#### Usage
+
+```tsx
+<ActivityChart.Tooltip>
+  {({ activity, day }) => <div>Tooltip content</div>}
+</ActivityChart.Tooltip>
+```
+
+### \{:component} ActivityChart.Legend
+
+This component is charged to display the legend of the activity chart items.
+
+#### Usage
+
+```tsx
+<ActivityChart.Legend />
+```
+
+### \{:component} ActivityChart.Labels
+
+This component is charged to display the labels of the activity chart items.
+
+#### Usage
+
+```tsx
+<ActivityChart.Labels type="days" />
+<ActivityChart.Labels type="month" />
+```
+
+#### Properties
+
+<Properties component="ActivityChart.Labels" />

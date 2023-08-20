@@ -1,0 +1,1 @@
+export { ActivityChartLegend } from "./ActivityChartLegend";

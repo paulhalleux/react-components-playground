@@ -10,7 +10,7 @@ const GroupOrder = [
   "Form",
   "Navigation",
   "Layout",
-  "Experimental",
+  "Dashboard",
 ];
 
 export function groupComponents(

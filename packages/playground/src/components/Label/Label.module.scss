@@ -9,8 +9,12 @@ $sizes: (
   align-items: center;
   gap: t(padding-xs);
   color: c(text-contrast);
-  cursor: pointer;
-  user-select: none;
+  cursor: auto;
+
+  &--interactive {
+    cursor: pointer;
+    user-select: none;
+  }
 
   &--selectable {
     user-select: auto;

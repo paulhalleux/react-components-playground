@@ -1,0 +1,8 @@
+.activity-chart__container {
+  display: grid;
+  grid-template-areas:
+    ". labels-month"
+    "labels-day activity"
+    ". legend";
+  gap: 8px;
+}

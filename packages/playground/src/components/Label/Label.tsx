@@ -42,6 +42,7 @@ export function Label({
         styles[`label--${size}`],
         {
           [styles["label--selectable"]]: selectable,
+          [styles["label--interactive"]]: !!htmlFor,
         },
         className,
       )}
