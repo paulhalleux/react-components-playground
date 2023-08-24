@@ -1,4 +1,4 @@
-import * as fs from "fs/promises";
+import { FileUtils } from "@paulhalleux/cli";
 import startCase from "lodash/startCase";
 import * as path from "path";
 
@@ -8,8 +8,7 @@ import * as path from "path";
  * @returns Icon name
  */
 export function getIconName(filename: string) {
-  const clean = filename
-    .replace(".svg", "")
+  const clean = FileUtils.withoutExtension(filename)
     .split(/[\/\\]/)
     .pop();
   return startCase(clean).replace(/ /g, "") + "Icon";
@@ -22,7 +21,7 @@ export function getIconName(filename: string) {
  * @returns Icon content
  */
 export async function getIconContent(root: string, filename: string) {
-  return await fs.readFile(path.join(root, filename), "utf-8");
+  return await FileUtils.read(path.join(root, filename));
 }
 
 /**

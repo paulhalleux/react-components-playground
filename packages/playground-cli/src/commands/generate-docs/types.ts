@@ -6,7 +6,6 @@ export type DocumentationMeta = Partial<{
 
 export type DocumentationData = {
   id: string;
-  raw: string;
   meta: DocumentationMeta;
   filePath: string;
   jsxCode: string;

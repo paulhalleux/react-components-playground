@@ -1,13 +1,11 @@
 import {
   BaseCommand,
   clearLog,
+  FileUtils,
   logMessage,
-  writeTemplate,
+  TemplateUtils,
 } from "@paulhalleux/cli";
-import * as fs from "fs/promises";
-import { glob } from "glob";
 import * as path from "path";
-import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
 import { Messages } from "./messages";
 import {
@@ -33,13 +31,13 @@ const handler = async (
 ): Promise<void> => {
   // Clean up the output directory
   logMessage(Messages.Cleanup, { prefix: Messages.Prefix });
-  await rimraf(argv.output);
-  await fs.mkdir(argv.output, { recursive: true });
+  await FileUtils.remove(argv.output);
+  await FileUtils.mkdir(argv.output);
   logMessage(Messages.CleanupSuccess, { prefix: Messages.Prefix });
 
   // Find all the SVG files in the icons directory
   logMessage(Messages.FindIcons, { prefix: Messages.Prefix });
-  const icons = await glob("**/*.svg", {
+  const icons = await FileUtils.readGlob("**/*.svg", {
     cwd: argv.icons,
   });
   logMessage(Messages.FindIconsSuccess(icons.length), {
@@ -58,7 +56,7 @@ const handler = async (
       const props = getSvgProps(svg);
       const content = getSvgContent(svg);
 
-      await writeTemplate(
+      await TemplateUtils.write(
         templates.icon,
         {
           iconName,
@@ -92,7 +90,7 @@ const handler = async (
 
   // Write additional files
   logMessage(Messages.WriteAdditionalFiles, { prefix: Messages.Prefix });
-  await writeTemplate(
+  await TemplateUtils.write(
     templates.types,
     {},
     {
@@ -108,7 +106,7 @@ const handler = async (
       `export * from "./types";`,
       ...components.map((component) => `export * from "./${component}";`),
     ].join("\n") + "\n";
-  await fs.writeFile(path.join(argv.output, "index.ts"), indexFile);
+  await FileUtils.write(path.join(argv.output, "index.ts"), indexFile);
   logMessage(Messages.WriteIndexSuccess, { prefix: Messages.Prefix });
 };
 

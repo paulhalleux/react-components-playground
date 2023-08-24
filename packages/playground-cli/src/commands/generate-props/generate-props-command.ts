@@ -1,5 +1,5 @@
-import { BaseCommand, clearLog, logMessage } from "@paulhalleux/cli";
-import { mkdir, writeFile } from "fs/promises";
+import { BaseCommand, clearLog, FileUtils, logMessage } from "@paulhalleux/cli";
+import * as path from "path";
 import { ArgumentsCamelCase } from "yargs";
 import { Messages } from "./messages";
 import { ComponentProp } from "./types";
@@ -58,16 +58,16 @@ const handler = async (
 
   // Write props.json file
   logMessage(Messages.WritingPropsFile, { prefix: Messages.Prefix });
-  await mkdir(`${argv.output}`, { recursive: true });
-  await writeFile(
-    `${argv.output}/props.json`,
+  await FileUtils.mkdir(argv.output);
+  await FileUtils.remove(`${argv.output}/props.json`);
+  await FileUtils.write(
+    path.join(argv.output, "props.json"),
     JSON.stringify(
       [...components.entries()].reduce(
         (acc, [key, value]) => ({ ...acc, [key]: value }),
         {},
       ),
     ),
-    "utf8",
   );
   logMessage(Messages.Generated, { prefix: Messages.Prefix });
 };

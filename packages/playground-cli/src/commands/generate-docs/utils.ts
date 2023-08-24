@@ -1,6 +1,4 @@
-import { compile } from "@mdx-js/mdx";
-import fs, { readFile } from "fs/promises";
-import { glob } from "glob";
+import { FileUtils, Transpile } from "@paulhalleux/cli";
 import startCase from "lodash/startCase";
 import * as path from "path";
 import { TitlePlugin } from "./title-plugin";
@@ -12,7 +10,7 @@ import { DocumentationData, DocumentationMeta, ParsingError } from "./types";
  * @returns List of documentation files
  */
 export async function getDocumentationFiles(path: string): Promise<string[]> {
-  return await glob("**/*.mdx", {
+  return await FileUtils.readGlob("**/*.mdx", {
     cwd: path,
   });
 }
@@ -27,56 +25,29 @@ export async function processDocumentationFile(
   file: string,
   root: string,
 ): Promise<DocumentationData> {
-  const mdxContent = await getMDXContent(path.join(root, file));
-  const defaultTitle = file.replace(/\.mdx$/, "");
-  const jsxCode = await getJSXCode(mdxContent);
-  const metadata = getMetadata(mdxContent);
+  const transpiledMdx = await Transpile.mdx<DocumentationMeta>(
+    path.join(root, file),
+    {
+      metadataDelimiter: "---",
+      parseMetadata: true,
+      plugins: [TitlePlugin],
+    },
+  );
 
-  if (!metadata.type) {
+  const defaultTitle = FileUtils.withoutExtension(file);
+  if (!transpiledMdx.metadata.type) {
     throw new ParsingError("'type' missing in metadata", "metadata");
   }
 
   return {
     id: getDocumentationId(defaultTitle),
-    raw: mdxContent,
     meta: {
       title: defaultTitle.split(/[\/\\]/g).pop(),
-      ...getMetadata(mdxContent),
+      ...transpiledMdx.metadata,
     },
     filePath: defaultTitle,
-    jsxCode: jsxCode,
+    jsxCode: transpiledMdx.code,
   };
-}
-
-/**
- * Get the JSX code from an MDX file
- * @param mdx MDX content
- * @returns JSX code
- */
-async function getJSXCode(mdx: string): Promise<string> {
-  let metadataCleaned = mdx;
-  if (mdx.startsWith("---")) {
-    metadataCleaned = mdx.split("---").slice(2).join("---");
-  }
-
-  return (
-    await compile(metadataCleaned, {
-      // @ts-ignore
-      Fragment: "React.Fragment",
-      jsx: true,
-      jsxs: true,
-      remarkPlugins: [TitlePlugin],
-    })
-  ).toString();
-}
-
-/**
- * Get the content of an MDX file
- * @param file Path to the MDX file
- * @returns Content of the MDX file
- */
-async function getMDXContent(file: string): Promise<string> {
-  return await readFile(file, "utf8");
 }
 
 /**
@@ -85,29 +56,7 @@ async function getMDXContent(file: string): Promise<string> {
  * @returns Documentation ID
  */
 function getDocumentationId(filePath: string): string {
-  return startCase(filePath.replace(/\.mdx$/, "")).replace(/\s/g, "");
-}
-
-/**
- * Parse the metadata of a documentation file
- * @param mdx MDX content
- * @returns Metadata
- */
-function getMetadata(mdx: string): DocumentationMeta {
-  if (!mdx.startsWith("---") || mdx.split("---").length < 3)
-    throw new ParsingError("Metadata not found", "metadata");
-
-  const metadata = mdx.split("---")[1];
-  return metadata
-    .split("\n")
-    .filter((line) => line.trim().match(/^[a-zA-Z0-9]+:/))
-    .reduce((acc, line) => {
-      const indexOfKey = line.indexOf(":");
-      const key = line.slice(0, indexOfKey);
-      const value = line.slice(indexOfKey + 1);
-      acc[key.trim() as keyof DocumentationMeta] = value.trim();
-      return acc;
-    }, {} as DocumentationMeta);
+  return startCase(FileUtils.withoutExtension(filePath)).replace(/\s/g, "");
 }
 
 /**
@@ -146,7 +95,7 @@ export function getIndexFile(
  * @returns Examples file content
  */
 export async function getExamplesFile(examplesPath: string) {
-  const files = await glob("**/*.example.{js,jsx,ts,tsx}", {
+  const files = await FileUtils.readGlob("**/*.example.{js,jsx,ts,tsx}", {
     cwd: examplesPath,
   });
 
@@ -155,7 +104,7 @@ export async function getExamplesFile(examplesPath: string) {
 
   const examples = await Promise.all(
     files.map(async (file) => {
-      const source = await fs.readFile(`${examplesPath}/${file}`, "utf-8");
+      const source = await FileUtils.read(path.join(examplesPath, file));
       const filename = file.replace(/[\\]/g, "/").replace(/\.[jt]sx?$/, "");
       const name = file
         .replace(/\.example\.[jt]sx?$/, "")

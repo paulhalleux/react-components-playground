@@ -1,13 +1,11 @@
 import {
   BaseCommand,
   clearLog,
+  FileUtils,
   logMessage,
-  writeTemplate,
+  TemplateUtils,
 } from "@paulhalleux/cli";
-import { copy } from "fs-extra";
-import { mkdir, writeFile } from "fs/promises";
 import * as path from "path";
-import { rimraf } from "rimraf";
 import { ArgumentsCamelCase } from "yargs";
 import { Messages } from "./messages";
 import { DocumentationData } from "./types";
@@ -68,36 +66,49 @@ const handler = async (
 
   // Write documentation files
   logMessage(Messages.WritingMdxFiles, { prefix: Messages.Prefix });
-  await rimraf(`${argv.output}/documentation`);
-  await mkdir(`${argv.output}/documentation`, { recursive: true });
+
+  // Remove existing documentation folder and create a new one
+  await FileUtils.remove(path.join(argv.output, "documentation"));
+  await FileUtils.mkdir(path.join(argv.output, "documentation"));
+
   for (const documentationData of documentations.values()) {
-    await mkdir(
-      `${argv.output}/documentation/${documentationData.filePath
-        .split(/[\/\\]/g)
-        .slice(0, -1)
-        .join("\\")
-        .replace(/\\/g, "/")}`,
-      { recursive: true },
+    // Create directory
+    await FileUtils.mkdir(
+      path.join(
+        argv.output,
+        "documentation",
+        documentationData.filePath
+          .split(/[\/\\]/g)
+          .slice(0, -1)
+          .join("\\")
+          .replace(/\\/g, "/"),
+      ),
     );
-    await writeFile(
-      `${argv.output}/documentation/${documentationData.filePath}.jsx`,
-      `${documentationData.jsxCode}`,
+
+    // Write MDX source code
+    await FileUtils.write(
+      path.join(
+        argv.output,
+        "documentation",
+        `${documentationData.filePath}.jsx`,
+      ),
+      documentationData.jsxCode,
     );
   }
 
   // Generate examples.ts file
   logMessage(Messages.WritingExamplesFile, { prefix: Messages.Prefix });
 
-  await rimraf(`${argv.output}/examples`);
-  await mkdir(`${argv.output}/examples`, { recursive: true });
-  await copy(argv.examples, `${argv.output}/examples`);
+  await FileUtils.remove(path.join(argv.output, "examples"));
+  await FileUtils.mkdir(path.join(argv.output, "examples"));
+  await FileUtils.copy(argv.examples, path.join(argv.output, "examples"));
 
   const examplesFile = await getExamplesFile(argv.examples);
-  await writeFile(`${argv.output}/examples.ts`, examplesFile);
+  await FileUtils.write(path.join(argv.output, "examples.ts"), examplesFile);
 
   // Generate additional files
   logMessage(Messages.WritingAdditionalFiles, { prefix: Messages.Prefix });
-  await writeTemplate(
+  await TemplateUtils.write(
     templates.types,
     {
       types: getDocumentationTypesList(documentations),
@@ -111,12 +122,12 @@ const handler = async (
   // Generate index.ts file
   logMessage(Messages.WritingIndexFile, { prefix: Messages.Prefix });
   const indexFile = getIndexFile(documentations);
-  await writeFile(`${argv.output}/index.ts`, indexFile);
+  await FileUtils.write(path.join(argv.output, "index.ts"), indexFile);
 
   // Generate registry.ts file
   logMessage(Messages.WritingRegistryFile, { prefix: Messages.Prefix });
   const registryFile = getRegistryFile(documentations);
-  await writeFile(`${argv.output}/registry.ts`, registryFile);
+  await FileUtils.write(path.join(argv.output, "registry.ts"), registryFile);
 
   logMessage(Messages.Generated, { prefix: Messages.Prefix });
 };
