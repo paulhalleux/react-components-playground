@@ -1,6 +1,5 @@
 import {
   BaseCommand,
-  clearLog,
   FileUtils,
   logMessage,
   TemplateUtils,
@@ -8,16 +7,14 @@ import {
 import * as path from "path";
 import { ArgumentsCamelCase } from "yargs";
 import { Messages } from "./messages";
-import {
-  getIconContent,
-  getIconName,
-  getSvgContent,
-  getSvgProps,
-} from "./utils";
+import { ParsedIcon } from "./types";
+import { getSVGContent, getSvgProps, minifySVG } from "./utils";
 
 const templates = {
+  index: require("raw-loader!./templates/index.liquid").default,
+  list: require("raw-loader!./templates/icon-list.liquid").default,
   icon: require("raw-loader!./templates/icon.liquid").default,
-  types: require("raw-loader!./templates/types.liquid").default,
+  sprite: require("raw-loader!./templates/sprite.liquid").default,
 };
 
 type GeneratePropsCommandOptions = {
@@ -33,81 +30,77 @@ const handler = async (
   logMessage(Messages.Cleanup, { prefix: Messages.Prefix });
   await FileUtils.remove(argv.output);
   await FileUtils.mkdir(argv.output);
-  logMessage(Messages.CleanupSuccess, { prefix: Messages.Prefix });
 
   // Find all the SVG files in the icons directory
   logMessage(Messages.FindIcons, { prefix: Messages.Prefix });
-  const icons = await FileUtils.readGlob("**/*.svg", {
+  const iconsFiles = await FileUtils.readGlob("**/*.svg", {
     cwd: argv.icons,
   });
-  logMessage(Messages.FindIconsSuccess(icons.length), {
+  logMessage(Messages.FindIconsSuccess(iconsFiles.length), {
     prefix: Messages.Prefix,
   });
 
-  // Generate the components
-  logMessage(Messages.GenerateComponents, { prefix: Messages.Prefix });
-  const components: string[] = [];
+  // Generate the svg sprite
+  logMessage(Messages.GenerateSprite, { prefix: Messages.Prefix });
+  const icons: ParsedIcon[] = [];
+  for (const icon of iconsFiles) {
+    const svgContent = await FileUtils.read(path.join(argv.icons, icon));
+    const props = getSvgProps(svgContent).join(" ");
 
-  let index = 1;
-  for (const icon of icons) {
-    try {
-      const iconName = getIconName(icon);
-      const svg = await getIconContent(argv.icons, icon);
-      const props = getSvgProps(svg);
-      const content = getSvgContent(svg);
-
-      await TemplateUtils.write(
-        templates.icon,
-        {
-          iconName,
-          defaultIconSize: argv.defaultIconSize,
-          props: props.join(" ").replace('"currentColor"', "{color}"),
-          iconContent: content.replace('"currentColor"', "{color}"),
-        },
-        {
-          output: path.join(argv.output, `${iconName}.tsx`),
-          prettier: true,
-        },
-      );
-
-      logMessage(
-        Messages.GenerateComponentSuccess(iconName, index, icons.length),
-        {
-          prefix: Messages.Prefix,
-          replace: true,
-        },
-      );
-
-      components.push(iconName);
-    } catch (error) {
-      logMessage(Messages.ProcessingError(icon, error), {
-        prefix: Messages.Prefix,
-      });
-    }
-    index++;
+    icons.push({
+      name: FileUtils.withoutExtension(icon)
+        .split(/[\/\\]/)
+        .pop()!,
+      props,
+      content: getSVGContent(svgContent),
+    });
   }
-  clearLog();
 
-  // Write additional files
-  logMessage(Messages.WriteAdditionalFiles, { prefix: Messages.Prefix });
   await TemplateUtils.write(
-    templates.types,
-    {},
+    templates.sprite,
     {
-      output: path.join(argv.output, "types.ts"),
-      prettier: true,
+      icons,
+    },
+    {
+      output: path.join(argv.output, "sprite.svg"),
+      transform: minifySVG,
     },
   );
 
-  // Generate the index file
-  logMessage(Messages.WriteIndex, { prefix: Messages.Prefix });
-  const indexFile =
-    [
-      `export * from "./types";`,
-      ...components.map((component) => `export * from "./${component}";`),
-    ].join("\n") + "\n";
-  await FileUtils.write(path.join(argv.output, "index.ts"), indexFile);
-  logMessage(Messages.WriteIndexSuccess, { prefix: Messages.Prefix });
+  // Generate icon component
+  await TemplateUtils.write(
+    templates.icon,
+    {
+      defaultIconSize: argv.defaultIconSize,
+    },
+    {
+      output: path.join(argv.output, "Icon.tsx"),
+      prettier: true,
+      cleanEndOfLine: true,
+    },
+  );
+
+  await TemplateUtils.write(
+    templates.list,
+    {
+      icons,
+    },
+    {
+      output: path.join(argv.output, "icon-list.ts"),
+      prettier: true,
+      cleanEndOfLine: true,
+    },
+  );
+
+  await TemplateUtils.write(
+    templates.index,
+    {},
+    {
+      output: path.join(argv.output, "index.ts"),
+      prettier: true,
+      cleanEndOfLine: true,
+    },
+  );
 };
 
 export const GenerateIconsCommand: BaseCommand<GeneratePropsCommandOptions> = {

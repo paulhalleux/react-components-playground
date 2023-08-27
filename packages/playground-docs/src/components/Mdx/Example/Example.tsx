@@ -1,10 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  AlertCircleIcon,
-  CodeBlock,
-  Label,
-  Tabs,
-} from "@paulhalleux/react-playground";
+import { CodeBlock, Label, Tabs } from "@paulhalleux/react-playground";
 import kebabCase from "lodash/kebabCase";
 
 import { Examples, ExamplesSources } from "@/generated";
@@ -47,7 +42,7 @@ export function Example({ name, hideCode, highlight, props }: ExampleProps) {
 
   if (!example?.component || !sources) {
     return (
-      <Alert style={{ margin: "10px 0" }} icon={AlertCircleIcon}>
+      <Alert style={{ margin: "10px 0" }} icon="alert-circle">
         Example <Code>{name}</Code> not found
       </Alert>
     );

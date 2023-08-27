@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Icons } from "@paulhalleux/react-playground";
+import { Icon, IconProps } from "@paulhalleux/react-playground";
 
 import { DocumentationPage } from "@/generated";
 
@@ -13,9 +13,7 @@ type MainItemProps = {
 };
 
 export function MainItem({ component }: MainItemProps) {
-  const Icon = component.icon
-    ? Icons[component.icon as keyof typeof Icons]
-    : undefined;
+  const icon: IconProps["name"] = component.icon as IconProps["name"];
 
   return (
     <Link
@@ -24,7 +22,7 @@ export function MainItem({ component }: MainItemProps) {
       title={`${component.title}\n${component.description}`}
     >
       <header className={styles.main__grid_item__header}>
-        {Icon && <Icon size={24} />}
+        <Icon name={icon} size={24} />
       </header>
       <div className={styles.main__grid_item__content}>
         <h2 className={styles.item__title}>{component.title}</h2>

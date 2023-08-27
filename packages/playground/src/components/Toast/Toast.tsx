@@ -1,11 +1,11 @@
 import React from "react";
 
-import { IconProps } from "../Icons";
+import { Icon, IconProps } from "../Icons";
 
 import styles from "./Toast.module.scss";
 
 export type ToastProps = {
-  icon?: React.FC<IconProps>;
+  icon?: IconProps["name"];
   title?: string;
   content: string;
   duration?: number;
@@ -22,11 +22,15 @@ export function Toast({
   onClose,
   actionLabel,
   onAction,
-  icon: Icon,
+  icon,
 }: ToastProps) {
   return (
     <div className={styles.toast}>
-      {Icon && <div className={styles.toast__icon}>{<Icon size={16} />}</div>}
+      {icon && (
+        <div className={styles.toast__icon}>
+          {<Icon name={icon} size={16} />}
+        </div>
+      )}
       <div className={styles.toast__content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.content}>{content}</p>

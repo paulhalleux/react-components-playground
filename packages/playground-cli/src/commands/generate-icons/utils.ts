@@ -1,27 +1,11 @@
-import { FileUtils } from "@paulhalleux/cli";
-import startCase from "lodash/startCase";
-import * as path from "path";
-
 /**
- * Get the icon name from the filename
- * @param filename Filename
- * @returns Icon name
+ * Get the content of an SVG
+ * @param svg SVG content
+ * @returns SVG content
  */
-export function getIconName(filename: string) {
-  const clean = FileUtils.withoutExtension(filename)
-    .split(/[\/\\]/)
-    .pop();
-  return startCase(clean).replace(/ /g, "") + "Icon";
-}
-
-/**
- * Get the icon content
- * @param root Path to the icons directory
- * @param filename Filename
- * @returns Icon content
- */
-export async function getIconContent(root: string, filename: string) {
-  return await FileUtils.read(path.join(root, filename));
+export function getSVGContent(svg: string): string {
+  const [, content] = svg.match(/<svg.*?>(.*)<\/svg>/s)!;
+  return content;
 }
 
 /**
@@ -40,27 +24,14 @@ export function getSvgProps(content: string) {
     .replace(/[^-]width="(.+?)"/, "")
     .replace(/class="(.+?)"/, "");
 
-  return cleaned.split(" ");
+  return cleaned.replace(/\s+/g, " ").split(" ");
 }
 
 /**
- * Get the SVG content
- * @param content SVG content
- * @returns SVG content
+ * Replace all the tabs and newlines by an empty string
+ * @param svg SVG content
+ * @returns Minified SVG
  */
-export function getSvgContent(content: string) {
-  const svg = content.match(/<svg(.+?)>(.+?)<\/svg>/s);
-  if (!svg) {
-    throw new Error("SVG not found");
-  }
-  return svg[2];
-}
-
-/**
- * Clean up the end of line
- * @param content Content
- * @returns Cleaned up content
- */
-export function cleanEndOfLine(content: string) {
-  return content.replace(/\r\n/g, "\n");
+export function minifySVG(svg: string): string {
+  return svg.replace(/\t|\n/g, "");
 }

@@ -2,11 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
-import {
-  ArrowTightDownIcon,
-  ArrowTightUpDownIcon,
-  ArrowTightUpIcon,
-} from "../Icons";
+import { Icon } from "../Icons";
 
 import styles from "./Table.module.scss";
 
@@ -91,13 +87,16 @@ export function Table<T extends Record<string, any>>({
                       className={styles.table__header__button}
                       onClick={() => onSort(column)}
                     >
-                      {column.sort === "asc" ? (
-                        <ArrowTightUpIcon size={14} />
-                      ) : column.sort === "desc" ? (
-                        <ArrowTightDownIcon size={14} />
-                      ) : (
-                        <ArrowTightUpDownIcon size={14} />
-                      )}
+                      <Icon
+                        name={
+                          column.sort === "asc"
+                            ? "arrow-tight-up"
+                            : column.sort === "desc"
+                            ? "arrow-tight-down"
+                            : "arrow-tight-up-down"
+                        }
+                        size={14}
+                      />
                     </button>
                   )}
                 </div>

@@ -1,4 +1,4 @@
-import { ArrowRightIcon, Table } from "@paulhalleux/react-playground";
+import { Icon, Table } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../../../../src/components/Mdx/Example";
 
@@ -31,7 +31,7 @@ function CustomRenderingExample() {
                 gap: 8,
               }}
             >
-              <ArrowRightIcon size={16} />
+              <Icon name="arrow-right" size={16} />
               {value}
             </span>
           ),

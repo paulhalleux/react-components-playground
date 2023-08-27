@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Button, ButtonSize } from "../../Button";
-import { CheckIcon, XIcon } from "../../Icons";
+import { Icon } from "../../Icons";
 import { ConfirmData } from "../ConfirmDialog";
 
 import styles from "../ConfirmDialog.module.scss";
@@ -40,7 +40,7 @@ export function ConfirmButtons({
         loading={confirming}
         disabled={canceling}
       >
-        <CheckIcon size={15} />
+        <Icon name="check" size={15} />
         {confirmText ?? "Confirm"}
       </Button>
       <Button
@@ -51,7 +51,7 @@ export function ConfirmButtons({
         loading={canceling}
         disabled={confirming}
       >
-        <XIcon size={15} />
+        <Icon name="x" size={15} />
         {cancelText ?? "Cancel"}
       </Button>
     </>

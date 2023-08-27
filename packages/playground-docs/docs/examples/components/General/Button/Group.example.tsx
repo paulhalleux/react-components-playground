@@ -3,7 +3,6 @@ import {
   ButtonGroupOrientation,
   ButtonSize,
   ButtonVariant,
-  TypeIcon,
 } from "@paulhalleux/react-playground";
 
 import {
@@ -29,19 +28,19 @@ function GroupExample({
           <Button.Icon
             size={controls.size}
             variant={controls.variant}
-            icon={TypeIcon}
+            icon="italic"
             disabled={controls.disabled}
           />
           <Button.Icon
             size={controls.size}
             variant={controls.variant}
-            icon={TypeIcon}
+            icon="bold"
             disabled={controls.disabled}
           />
           <Button.Icon
             size={controls.size}
             variant={controls.variant}
-            icon={TypeIcon}
+            icon="type"
             disabled={controls.disabled}
           />
         </>

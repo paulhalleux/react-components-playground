@@ -5,12 +5,9 @@ import {
   Badge,
   Button,
   Drawer,
-  GithubFillIcon,
   Header,
-  MoonIcon,
+  Icon,
   Navigation,
-  SidebarIcon,
-  SunIcon,
   Text,
   useTheme,
   WindowSize,
@@ -101,17 +98,17 @@ export function MainHeader() {
           to="https://github.com/paulhalleux/react-playground"
           target="_blank"
         >
-          <GithubFillIcon size={20} />
+          <Icon name="github-fill" size={20} />
         </Anchor>
         <Button.Icon
           onClick={onThemeChange}
           ghost
-          icon={theme === "Light" ? MoonIcon : SunIcon}
+          icon={theme === "Light" ? "moon" : "sun"}
           iconSize={20}
         />
         <WindowSize maxWidth={768}>
           <Button.Icon
-            icon={SidebarIcon}
+            icon="sidebar"
             iconSize={20}
             onClick={() => setSidebarOpen(true)}
           />

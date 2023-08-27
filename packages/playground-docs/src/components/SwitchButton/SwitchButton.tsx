@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeftIcon, ArrowRightIcon } from "@paulhalleux/react-playground";
+import { Icon } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import { DocumentationPage } from "@/generated";
@@ -22,14 +22,15 @@ export function SwitchButton({ position, page, path }: SwitchButtonProps) {
       })}
       to={page && path ? path : "#"}
     >
-      {position === "left" && <ArrowLeftIcon />}
+      {position === "left" && <Icon name="arrow-left" />}
+
       <div className={styles.content}>
         <span className={styles.title}>
           {position === "left" ? "Previous" : "Next"}
         </span>
         <span className={styles.documentation}>{page?.title}</span>
       </div>
-      {position === "right" && <ArrowRightIcon />}
+      {position === "right" && <Icon name="arrow-right" />}
     </Link>
   );
 }

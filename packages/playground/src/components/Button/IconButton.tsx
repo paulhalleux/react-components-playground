@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IconProps } from "../Icons";
+import { Icon, IconProps } from "../Icons";
 
 import { Button, ButtonProps } from "./Button";
 
@@ -10,7 +10,7 @@ export type IconButtonProps = ButtonProps & {
   /**
    * Icon to display
    */
-  icon: React.FC<IconProps>;
+  icon: IconProps["name"];
   /**
    * Size of the icon
    */
@@ -23,10 +23,12 @@ const IconSize = {
   large: 24,
 };
 
-export function IconButton({ icon: Icon, iconSize, ...rest }: IconButtonProps) {
+export function IconButton({ icon, iconSize, ...rest }: IconButtonProps) {
   return (
     <Button className={styles[`button--icon`]} {...rest}>
-      {Icon && <Icon size={iconSize ?? IconSize[rest.size ?? "medium"]} />}
+      {icon && (
+        <Icon name={icon} size={iconSize ?? IconSize[rest.size ?? "medium"]} />
+      )}
     </Button>
   );
 }

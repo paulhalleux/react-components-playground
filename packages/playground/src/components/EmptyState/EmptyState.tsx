@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { BaseProps } from "../../types";
 import { Anchor } from "../Anchor";
 import { Button } from "../Button";
-import { IconProps } from "../Icons";
+import { Icon, IconProps } from "../Icons";
 
 import styles from "./EmptyState.module.scss";
 
@@ -17,7 +17,7 @@ export type EmptyStateProps = {
   /**
    * The icon of the empty state.
    */
-  icon?: React.FC<IconProps>;
+  icon?: IconProps["name"];
   /**
    * The title of the empty state.
    */
@@ -40,7 +40,7 @@ export function EmptyState({
   title,
   description,
   actions,
-  icon: Icon,
+  icon,
   className,
   variant = "default",
   ...rest
@@ -54,9 +54,9 @@ export function EmptyState({
       )}
       {...rest}
     >
-      {Icon && (
+      {icon && (
         <div className={styles.icon}>
-          <Icon size={64} />
+          <Icon name={icon} size={64} />
         </div>
       )}
       <div className={styles.content}>

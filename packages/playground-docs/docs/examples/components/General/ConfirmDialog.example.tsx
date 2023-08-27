@@ -1,7 +1,6 @@
 import {
   Button,
   ButtonVariant,
-  CheckIcon,
   ConfirmProvider,
   useConfirm,
 } from "@paulhalleux/react-playground";
@@ -48,7 +47,7 @@ function ConfirmExample({
           description: controls.description,
           onConfirm: controls.async ? onConfirmAsync : onConfirm,
           onCancel: () => alert("Cancel"),
-          icon: controls.icon ? CheckIcon : undefined,
+          icon: controls.icon ? "check" : undefined,
           confirmStyle: controls.confirmStyle,
           cancelStyle: controls.cancelStyle,
         })

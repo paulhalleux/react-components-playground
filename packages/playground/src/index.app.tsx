@@ -1,9 +1,7 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 import ReactDOM from "react-dom/client";
 
-import { ActivityChart } from "./components/ActivityChart";
-import { oneYearBefore } from "./utils/date";
-import { Button, Flex, Label, StatusIndicator } from "./components";
+import { Button, StringBuilder, Text } from "./components";
 import { ThemeContext, ThemeProvider } from "./theme";
 
 import "./index.app.scss";
@@ -19,48 +17,26 @@ const Container: CSSProperties = {
 };
 
 const App = () => {
-  const today = new Date();
-  return (
-    <ActivityChart
-      items={getRandomActivity()}
-      start={oneYearBefore(today)}
-      end={today}
-      variant="primary"
-    >
-      <ActivityChart.Legend />
-      <ActivityChart.Tooltip>
-        {({ activity, day }) => (
-          <>
-            <div>{day.toDateString()}</div>
-            <Flex alignItems="center" gap={6}>
-              <StatusIndicator status="primary" />
-              <Label>{activity.length} activities</Label>
-            </Flex>
-          </>
-        )}
-      </ActivityChart.Tooltip>
-      <ActivityChart.Labels type="day" />
-      <ActivityChart.Labels type="month" />
-    </ActivityChart>
+  const [value, setValue] = useState(
+    `Hello {{first_name}} {{last_name}},\n\nThank you for registering to our platform.\n\nYour account has been created with the following email: {{email}}.\n\nBest regards,\n\nThe team - {{ date }}`,
   );
-};
 
-const getRandomActivity = () => {
-  // generate random activity for some days in the past year
-  const today = new Date();
-  const oneYearAgo = oneYearBefore(today);
-  const activityAmount = Math.floor(Math.random() * 1000);
-  const activity = [];
-  for (let i = 0; i < activityAmount; i++) {
-    activity.push({
-      id: i.toString(),
-      date: new Date(
-        oneYearAgo.getTime() +
-          Math.random() * (today.getTime() - oneYearAgo.getTime()),
-      ),
-    });
-  }
-  return activity;
+  return (
+    <>
+      <StringBuilder
+        value={value}
+        onChange={setValue}
+        variables={[
+          { label: "First name", value: "first_name" },
+          { label: "Last name", value: "last_name" },
+          { label: "Email", value: "email" },
+        ]}
+      />
+      <Text type="text-xs" style={{ marginTop: 16 }}>
+        <pre>{value}</pre>
+      </Text>
+    </>
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);

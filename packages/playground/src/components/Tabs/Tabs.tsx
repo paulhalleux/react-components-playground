@@ -6,13 +6,7 @@ import { BaseProps } from "../../types";
 import { CloseButton } from "../CloseButton";
 import { Divider } from "../Divider";
 import { EditInline } from "../EditInline";
-import {
-  ArrowDownIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ArrowUpIcon,
-  PlusIcon,
-} from "../Icons";
+import { Icon } from "../Icons";
 
 import { Tab, TabProps } from "./Tab";
 
@@ -128,11 +122,12 @@ export function Tabs({
             className={styles["scroll--left"]}
             onClick={() => onScrollClick("left")}
           >
-            {orientation === "horizontal" ? (
-              <ArrowUpIcon size={16} />
-            ) : (
-              <ArrowLeftIcon size={16} />
-            )}
+            <Icon
+              name={
+                orientation === "horizontal" ? "chevron-up" : "chevron-left"
+              }
+              size={16}
+            />
           </div>
         )}
         <div onScroll={onScroll} className={styles.tabs} ref={tabsContainer}>
@@ -179,11 +174,12 @@ export function Tabs({
             className={styles["scroll--right"]}
             onClick={() => onScrollClick("right")}
           >
-            {orientation === "horizontal" ? (
-              <ArrowDownIcon size={16} />
-            ) : (
-              <ArrowRightIcon size={16} />
-            )}
+            <Icon
+              name={
+                orientation === "horizontal" ? "chevron-down" : "chevron-right"
+              }
+              size={16}
+            />
           </div>
         )}
         {addButton && (
@@ -197,7 +193,7 @@ export function Tabs({
                 styles.tabs__tab__button_add,
               )}
             >
-              <PlusIcon size={15} />
+              <Icon name="plus" size={15} />
               {orientation === "horizontal" && addButtonLabel}
             </button>
           </>

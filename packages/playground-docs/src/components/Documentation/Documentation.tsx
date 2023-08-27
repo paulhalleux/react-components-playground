@@ -4,7 +4,7 @@ import {
   Badge,
   Breadcrumb,
   Flex,
-  GithubFillIcon,
+  Icon,
   WindowSize,
 } from "@paulhalleux/react-playground";
 import { AnimatePresence, motion } from "framer-motion";
@@ -46,7 +46,6 @@ export function Documentation({
 }: DocumentationProps) {
   const mdxContainer = useRef<HTMLDivElement>(null);
   const [tableItems, setTableItems] = useState<ContentTableItem[]>();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -119,7 +118,7 @@ export function Documentation({
             </h1>
             {page.sourceUrl && (
               <Badge onClick={() => window.open(page.sourceUrl, "_blank")}>
-                <GithubFillIcon size={14} />
+                <Icon name="github-fill" size={14} />
                 View source
               </Badge>
             )}

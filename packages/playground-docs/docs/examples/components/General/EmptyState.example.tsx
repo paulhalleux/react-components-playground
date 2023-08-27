@@ -1,4 +1,4 @@
-import { AlertTriangleIcon, EmptyState } from "@paulhalleux/react-playground";
+import { EmptyState } from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../../../src/components/Mdx/Example";
 
@@ -8,7 +8,7 @@ function EmptyStateExample() {
       title="Component not found"
       description="The component you are looking for does not exist."
       actions={[{ type: "button", onClick: () => {}, label: "Go back" }]}
-      icon={AlertTriangleIcon}
+      icon="alert-triangle"
     />
   );
 }

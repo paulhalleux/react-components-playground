@@ -20,7 +20,7 @@ export type ConfirmData = {
   confirmStyle?: ButtonVariant;
   cancelStyle?: ButtonVariant;
   size?: ModalSize;
-  icon?: React.FC<IconProps>;
+  icon?: IconProps["name"];
 };
 
 export type ConfirmDialogProps = {

@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Flex, Icons, Input } from "@paulhalleux/react-playground";
+import {
+  Flex,
+  Icon,
+  IconList,
+  IconProps,
+  Input,
+} from "@paulhalleux/react-playground";
 
 import { ExampleMetadata } from "../../../../src/components/Mdx/Example";
 
@@ -24,14 +30,12 @@ function IconsExample() {
         />
       </Flex>
       <div className={styles.icons__container}>
-        {Object.keys(Icons)
+        {Object.keys(IconList)
           .filter((icon) => icon.toLowerCase().includes(search.toLowerCase()))
           .map((icon) => {
-            const Icon = Icons[icon as keyof typeof Icons];
-
             return (
               <div key={icon} className={styles.icon}>
-                <Icon size={size} />
+                <Icon name={icon as IconProps["name"]} size={size} />
                 <div className={styles.icon__label} title={icon}>
                   {icon.replace(/Icon$/, "")}
                 </div>

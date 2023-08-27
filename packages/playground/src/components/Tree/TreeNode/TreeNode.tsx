@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../../types";
-import { ChevronDownIcon, ChevronRightIcon } from "../../Icons";
+import { Icon } from "../../Icons";
 import { useTreeContext } from "../tree-context";
 
 import styles from "./TreeNode.module.scss";
@@ -118,11 +118,10 @@ export function TreeNode({
             onClick={onExpandButtonClick}
             className={styles.tree__node__expand}
           >
-            {isExpanded(id) ? (
-              <ChevronDownIcon size={14} />
-            ) : (
-              <ChevronRightIcon size={14} />
-            )}
+            <Icon
+              name={isExpanded(id) ? "chevron-down" : "chevron-right"}
+              size={14}
+            />
           </button>
         )}
         <div className={styles.tree__node__text}>

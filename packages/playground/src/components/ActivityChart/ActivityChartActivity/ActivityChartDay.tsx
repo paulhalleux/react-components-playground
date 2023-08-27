@@ -34,6 +34,7 @@ export function ActivityChartDay({ day, index }: ActivityChartDayProps) {
       active={activity.length > 0}
       intensity={computeIntensity(activity) as ActivityIndicatorIntensity}
       variant={variant}
+      style={{ gridRow: index + 1 }}
     />
   );
 

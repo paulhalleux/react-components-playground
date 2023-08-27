@@ -1,0 +1,55 @@
+@import "../../style/input";
+
+.builder__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: c(text-contrast);
+
+  :global(.tagify__input) {
+    white-space: unset!important;
+  }
+}
+
+.builder__editor {
+  @include input();
+
+  width: 100%;
+  min-height: 125px;
+  padding: 8px 10px;
+  line-height: 18px;
+
+  &--focused {
+    outline: 2px solid c(primary, .2) !important;
+    border-color: c(primary) !important;
+  }
+}
+
+.builder__variables {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  gap: 10px;
+}
+
+.builder__variables__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.builder__variables__item {
+  user-select: none;
+}
+
+.builder__tag {
+  user-select: none;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  background: c(main-contrast);
+  border-radius: 3px;
+  color: c(text-contrast);
+  border: 1px solid c(border);
+}

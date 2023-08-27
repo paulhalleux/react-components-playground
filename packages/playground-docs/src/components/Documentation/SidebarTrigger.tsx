@@ -2,7 +2,6 @@ import React from "react";
 import {
   Button,
   Drawer,
-  SidebarIcon,
   Text,
   WindowSize,
 } from "@paulhalleux/react-playground";
@@ -23,7 +22,7 @@ export function SidebarTrigger({ sidebarItems }: SidebarTriggerProps) {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
   return (
     <WindowSize maxWidth={768}>
-      <Button.Icon onClick={() => setSidebarOpen(true)} icon={SidebarIcon} />
+      <Button.Icon onClick={() => setSidebarOpen(true)} icon="sidebar" />
       <Drawer
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}

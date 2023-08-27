@@ -10,12 +10,14 @@ export type ActivityIndicatorProps = {
   active: boolean;
   intensity?: ActivityIndicatorIntensity;
   variant?: ActivityChartVariant;
+  style?: React.CSSProperties;
 };
 
 export function ActivityIndicator({
   active,
   intensity,
   variant = "primary",
+  style,
 }: ActivityIndicatorProps) {
   return (
     <div
@@ -29,6 +31,7 @@ export function ActivityIndicator({
       style={
         {
           "--intensity": (intensity || 0) / 10,
+          ...style,
         } as React.CSSProperties
       }
     />

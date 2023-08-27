@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
-import { XIcon } from "../Icons";
+import { Icon } from "../Icons";
 
 import styles from "./CloseButton.module.scss";
 
@@ -58,7 +58,7 @@ export function CloseButton({
       disabled={disabled}
       {...rest}
     >
-      <XIcon size={iconSize} />
+      <Icon name="x" size={iconSize} />
     </button>
   );
 }

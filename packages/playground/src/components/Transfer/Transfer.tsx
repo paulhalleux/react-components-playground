@@ -4,12 +4,6 @@ import { uniq } from "lodash";
 
 import { BaseProps } from "../../types";
 import { Button } from "../Button";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-} from "../Icons";
 
 import styles from "./Transfer.module.scss";
 
@@ -166,7 +160,7 @@ export function Transfer({
       <div className={styles.transfer__controls}>
         <Button.Icon
           size="small"
-          icon={ChevronRightIcon}
+          icon="chevron-right"
           disabled={disabled}
           onClick={() => {
             onValueChange([...selectedItems, ...listSelectedItems]);
@@ -175,7 +169,7 @@ export function Transfer({
         />
         <Button.Icon
           size="small"
-          icon={ChevronsRightIcon}
+          icon="chevrons-right"
           disabled={disabled}
           onClick={() => {
             onValueChange(items.map((item) => item.id));
@@ -185,7 +179,7 @@ export function Transfer({
         />
         <Button.Icon
           size="small"
-          icon={ChevronsLeftIcon}
+          icon="chevrons-left"
           disabled={disabled}
           onClick={() => {
             onValueChange([]);
@@ -195,7 +189,7 @@ export function Transfer({
         />
         <Button.Icon
           size="small"
-          icon={ChevronLeftIcon}
+          icon="chevron-left"
           disabled={disabled}
           onClick={() => {
             onValueChange(

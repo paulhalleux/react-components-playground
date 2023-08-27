@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from "react";
-import { BaseProps, IconProps } from "@paulhalleux/react-playground";
+import { BaseProps, Icon, IconProps } from "@paulhalleux/react-playground";
 import clsx from "clsx";
 
 import styles from "./Alert.module.scss";
 
 type AlertProps = PropsWithChildren<{
-  icon?: React.FC<IconProps>;
+  icon?: IconProps["name"];
   variant?: "info" | "warning" | "danger" | "success" | "default";
 }> &
   BaseProps;
@@ -13,7 +13,7 @@ type AlertProps = PropsWithChildren<{
 export function Alert({
   children,
   variant = "default",
-  icon: Icon,
+  icon,
   className,
   ...rest
 }: AlertProps) {
@@ -26,9 +26,9 @@ export function Alert({
       )}
       {...rest}
     >
-      {Icon && (
+      {icon && (
         <div className={styles.alert__icon}>
-          <Icon size={20} />
+          <Icon name={icon} size={20} />
         </div>
       )}
       <div>{children}</div>

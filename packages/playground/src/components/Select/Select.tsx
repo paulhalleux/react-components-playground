@@ -3,7 +3,7 @@ import { useClickAway } from "react-use";
 import clsx from "clsx";
 
 import { BaseProps } from "../../types";
-import { ChevronDownIcon } from "../Icons";
+import { Icon } from "../Icons";
 import { InputSize, InputState } from "../Input";
 
 import styles from "./Select.module.scss";
@@ -137,7 +137,11 @@ export function Select({
         onClick={() => !disabled && setOpen((o) => !o)}
       >
         {selectedOption?.label}
-        <ChevronDownIcon size={16} className={clsx(styles.select__icon)} />
+        <Icon
+          name="chevron-down"
+          size={16}
+          className={clsx(styles.select__icon)}
+        />
       </div>
       {open && (
         <ul className={styles.select__dropdown} tabIndex={-1}>

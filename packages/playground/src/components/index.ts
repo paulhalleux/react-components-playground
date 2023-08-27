@@ -42,5 +42,6 @@ export * from "./Rating";
 export * from "./Transfer";
 export * from "./Slot";
 export * from "./ActivityChart";
+export * from "./StringBuilder";
 
 export * as Icons from "./Icons";

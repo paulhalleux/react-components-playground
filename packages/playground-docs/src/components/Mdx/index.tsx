@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { Anchor, InfoIcon, Table } from "@paulhalleux/react-playground";
+import { Anchor, Table } from "@paulhalleux/react-playground";
 
 import { Alert } from "../Alert";
 
@@ -33,7 +33,7 @@ export const mdxComponents: Record<string, React.FC<MdxComponentProps>> = {
     />
   ),
   ul: (props) => <UnorderedList {...props} />,
-  blockquote: (props) => <Alert icon={InfoIcon} {...props} />,
+  blockquote: (props) => <Alert icon="info" {...props} />,
   Example,
   Properties,
   ApiType,

@@ -32,7 +32,7 @@ export type BadgeProps = PropsWithChildren<{
   /**
    * The click handler.
    */
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
 }> &
   BaseProps;
 
@@ -49,6 +49,7 @@ export function Badge({
     <span
       onClick={onClick}
       role={onClick ? "button" : undefined}
+      contentEditable={false}
       className={clsx(
         styles.badge,
         styles[`badge--size-${size}`],
